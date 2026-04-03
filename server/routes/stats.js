@@ -55,7 +55,7 @@ router.get('/', (req, res) => {
     const categoryAvgMinutes = {};
     for (const cat of Object.keys(categoryTotals)) {
       categoryAvgMinutes[cat] = categoryDays[cat] > 0
-        ? Math.round(categoryTotals[cat] / last30.length)
+        ? Math.round(categoryTotals[cat] / categoryDays[cat])
         : 0;
     }
 

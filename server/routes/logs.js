@@ -9,7 +9,7 @@ function calculateScore(tasks) {
   for (const task of tasks) {
     const cat = task.category.toLowerCase();
     if (!categoryMax[cat]) continue;
-    let pts = categoryMax[cat];
+    let pts;
     if (task.duration_minutes >= 30) pts = categoryMax[cat];
     else if (task.duration_minutes >= 15) pts = categoryMax[cat] * 0.75;
     else pts = categoryMax[cat] * 0.5;
