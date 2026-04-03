@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/components/ChatInterface.tsx","./src/components/Navbar.tsx","./src/components/ProgressChart.tsx","./src/components/StatCard.tsx","./src/components/TaskForm.tsx","./src/pages/AICoach.tsx","./src/pages/Dashboard.tsx","./src/pages/Goals.tsx","./src/pages/LogTasks.tsx","./src/pages/Progress.tsx"],"version":"5.9.3"}
