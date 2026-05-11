@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User,
+  Timer, User, Settings, Zap,
 } from 'lucide-react'
 
 const navItems = [
@@ -10,6 +10,7 @@ const navItems = [
   { to: '/log',          icon: ClipboardList,   label: 'Log Tasks'    },
   { to: '/timer',        icon: Timer,           label: 'Focus Timer'  },
   { to: '/profile',      icon: User,            label: 'Profile'      },
+  { to: '/skills',       icon: Zap,             label: 'Skill Tree'   },
   { to: '/progress',     icon: BarChart3,        label: 'Progress'     },
   { to: '/weekly',       icon: FileText,         label: 'Weekly'       },
   { to: '/activity',     icon: Calendar,         label: 'Activity'     },
@@ -19,6 +20,7 @@ const navItems = [
   { to: '/achievements', icon: Trophy,           label: 'Achievements' },
   { to: '/ai-coach',     icon: Bot,              label: 'AI Coach'     },
   { to: '/goals',        icon: Target,           label: 'Goals'        },
+  { to: '/settings',     icon: Settings,         label: 'Settings'     },
 ]
 
 const mobileItems = [

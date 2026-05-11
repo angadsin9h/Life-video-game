@@ -13,6 +13,8 @@ import Heatmap from './pages/Heatmap'
 import WeeklyReport from './pages/WeeklyReport'
 import Timer from './pages/Timer'
 import Profile from './pages/Profile'
+import Settings from './pages/Settings'
+import SkillTree from './pages/SkillTree'
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
               <Route path="/weekly"       element={<WeeklyReport />} />
               <Route path="/timer"        element={<Timer />}        />
               <Route path="/profile"      element={<Profile />}      />
+              <Route path="/settings"     element={<Settings />}     />
+              <Route path="/skills"       element={<SkillTree />}    />
             </Routes>
           </div>
         </main>
