@@ -205,6 +205,60 @@ export default function Dashboard() {
         </div>
       )}
 
+      {/* Today at a Glance */}
+      <div className="game-card p-4 border border-slate-700">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Today at a Glance</h3>
+          <span className="text-xs text-slate-500">
+            {new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
+          </span>
+        </div>
+        <div className="flex items-center gap-4">
+          {/* Score circle */}
+          <div className="relative w-16 h-16 flex-shrink-0">
+            <svg className="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="26" fill="none" stroke="#1e293b" strokeWidth="6" />
+              <circle
+                cx="32" cy="32" r="26" fill="none"
+                stroke={todayScore >= 80 ? '#22c55e' : todayScore >= 50 ? '#8b5cf6' : '#475569'}
+                strokeWidth="6"
+                strokeDasharray={2 * Math.PI * 26}
+                strokeDashoffset={2 * Math.PI * 26 * (1 - todayScore / 100)}
+                strokeLinecap="round"
+                className="transition-all duration-1000"
+              />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-sm font-bold text-slate-200" style={{ fontFamily: 'Orbitron, monospace' }}>{todayScore}</span>
+            </div>
+          </div>
+          {/* Actions needed */}
+          <div className="flex-1 space-y-1">
+            {todayScore === 0 && (
+              <Link to="/log" className="flex items-center gap-2 text-sm text-violet-400 hover:text-violet-300 font-semibold">
+                → Log today's activities to earn your score
+              </Link>
+            )}
+            {todayScore > 0 && todayScore < 100 && (
+              <Link to="/log" className="flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300">
+                → {100 - todayScore} pts remaining — keep going!
+              </Link>
+            )}
+            {todayScore >= 100 && (
+              <div className="text-sm text-green-400 font-semibold">✓ Perfect day achieved!</div>
+            )}
+            {quests.filter(q => !q.completed).length > 0 && (
+              <Link to="/quests" className="flex items-center gap-2 text-xs text-yellow-400 hover:text-yellow-300">
+                → {quests.filter(q => !q.completed).length} quest{quests.filter(q => !q.completed).length > 1 ? 's' : ''} uncompleted
+              </Link>
+            )}
+            {!mood && (
+              <div className="text-xs text-slate-500">→ Log your mood for the day</div>
+            )}
+          </div>
+        </div>
+      </div>
+
       {/* Character Class Banner */}
       <div className="game-card p-4 flex items-center gap-4 border border-slate-600 hover:border-violet-500/40 transition-colors">
         <div className="text-4xl animate-float flex-shrink-0">{charClass.emoji}</div>

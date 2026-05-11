@@ -26,7 +26,7 @@ function App() {
     <BrowserRouter>
       <div className="min-h-screen bg-slate-900">
         <Navbar />
-        <main className="pb-20 md:pb-0 md:pl-64">
+        <main className="pb-20 md:pb-0 md:pl-56">
           <div className="max-w-6xl mx-auto px-4 py-6">
             <Routes>
               <Route path="/"             element={<Dashboard />}    />
