@@ -101,6 +101,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [moodSubmitting, setMoodSubmitting] = useState(false)
   const [showMoodPicker, setShowMoodPicker] = useState(false)
+  const [playerName, setPlayerName] = useState('Hero')
+  const [playerAvatar, setPlayerAvatar] = useState('⚔️')
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -111,12 +113,15 @@ export default function Dashboard() {
       axios.get<Quest[]>('/api/quests/today'),
       axios.get<MoodEntry | null>('/api/mood/today'),
       axios.get<{ achievements: Achievement[]; totalXp: number }>('/api/achievements'),
-    ]).then(([statsRes, logRes, questsRes, moodRes, achRes]) => {
+      axios.get<{ username: string; avatar: string }>('/api/settings'),
+    ]).then(([statsRes, logRes, questsRes, moodRes, achRes, settingsRes]) => {
       setStats(statsRes.data)
       setTodayLog(logRes.data)
       setQuests(questsRes.data)
       setMood(moodRes.data)
       setAchievementXp(achRes.data.totalXp)
+      setPlayerName(settingsRes.data.username || 'Hero')
+      setPlayerAvatar(settingsRes.data.avatar || '⚔️')
       setRecentAchievements(
         achRes.data.achievements
           .filter(a => a.unlocked && a.unlocked_at)
@@ -169,9 +174,15 @@ export default function Dashboard() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>Dashboard</h1>
-          <p className="text-slate-400 mt-1">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+        <div className="flex items-center gap-3">
+          <div className="text-3xl">{playerAvatar}</div>
+          <div>
+            <h1 className="text-2xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>
+              {new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 17 ? 'Good afternoon' : 'Good evening'},{' '}
+              <span className="text-violet-400">{playerName}</span>
+            </h1>
+            <p className="text-slate-400 text-sm mt-0.5">{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+          </div>
         </div>
         <div className="text-right">
           <div className="text-2xl font-bold text-violet-400" style={{ fontFamily: 'Orbitron, monospace' }}>

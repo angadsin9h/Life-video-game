@@ -15,6 +15,7 @@ import Timer from './pages/Timer'
 import Profile from './pages/Profile'
 import Settings from './pages/Settings'
 import SkillTree from './pages/SkillTree'
+import Quests from './pages/Quests'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path="/profile"      element={<Profile />}      />
               <Route path="/settings"     element={<Settings />}     />
               <Route path="/skills"       element={<SkillTree />}    />
+              <Route path="/quests"       element={<Quests />}       />
             </Routes>
           </div>
         </main>
