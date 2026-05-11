@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Settings as SettingsIcon, User, Palette, Target, Volume2, VolumeX, Check, Save } from 'lucide-react'
+import { Settings as SettingsIcon, User, Palette, Target, Volume2, VolumeX, Check, Save, Download } from 'lucide-react'
 
 interface UserSettings {
   username: string
@@ -224,6 +224,28 @@ export default function Settings() {
               settings.soundEnabled === 'true' ? 'translate-x-6' : 'translate-x-1'
             }`} />
           </button>
+        </div>
+      </div>
+
+      {/* Data export */}
+      <div className="game-card p-5">
+        <h3 className="font-semibold text-slate-200 mb-4 flex items-center gap-2">
+          <Download className="w-5 h-5 text-cyan-400" />
+          Data
+        </h3>
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-sm text-slate-300">Export all data</div>
+            <div className="text-xs text-slate-500">Download logs, habits, goals, journal and more as JSON</div>
+          </div>
+          <a
+            href="/api/settings/export"
+            download="lifequest-export.json"
+            className="game-btn-secondary text-sm flex items-center gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Export
+          </a>
         </div>
       </div>
 

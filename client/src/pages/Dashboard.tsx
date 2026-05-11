@@ -192,6 +192,19 @@ export default function Dashboard() {
         </div>
       </div>
 
+      {/* Streak at-risk warning */}
+      {stats && stats.currentStreak > 0 && !todayLog && new Date().getHours() >= 18 && (
+        <div className="flex items-center gap-3 bg-orange-900/30 border border-orange-500/50 rounded-xl px-4 py-3 animate-pulse">
+          <span className="text-2xl">🔥</span>
+          <div className="flex-1">
+            <div className="text-sm font-bold text-orange-400">Streak at risk!</div>
+            <div className="text-xs text-orange-300/70">
+              Your {stats.currentStreak}-day streak will reset at midnight. <Link to="/log" className="underline hover:text-orange-200">Log today's activities</Link> to keep it alive.
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Character Class Banner */}
       <div className="game-card p-4 flex items-center gap-4 border border-slate-600 hover:border-violet-500/40 transition-colors">
         <div className="text-4xl animate-float flex-shrink-0">{charClass.emoji}</div>
