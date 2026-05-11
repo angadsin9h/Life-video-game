@@ -53,6 +53,9 @@ app.use('/api/challenges', challengesRouter);
 const insightsRouter = require('./routes/insights');
 app.use('/api/insights', insightsRouter);
 
+const notesRouter = require('./routes/notes');
+app.use('/api/notes', notesRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

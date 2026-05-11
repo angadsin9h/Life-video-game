@@ -335,26 +335,69 @@ export default function Timer() {
         )}
       </div>
 
-      {/* Recent sessions */}
+      {/* Session stats */}
       {sessions.length > 0 && (
         <div className="game-card p-5">
           <h3 className="font-semibold text-slate-200 mb-4 flex items-center gap-2">
             <Coffee className="w-5 h-5 text-orange-400" />
-            Recent Focus Sessions
+            Focus Stats
           </h3>
-          <div className="space-y-2">
-            {sessions.slice(0, 8).map(s => (
-              <div key={s.id} className="flex items-center gap-3 py-2 border-b border-slate-700 last:border-0">
-                <span className="text-lg">{CAT_ICONS[s.category]}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm text-slate-200 truncate">{s.task_name}</div>
-                  <div className="text-xs text-slate-500">{s.date}</div>
+
+          {/* Today's sessions */}
+          {(() => {
+            const today = new Date().toISOString().split('T')[0]
+            const todaySessions = sessions.filter(s => s.date === today)
+            const todayMins = todaySessions.reduce((sum, s) => sum + s.duration_minutes, 0)
+            const totalMins = sessions.reduce((sum, s) => sum + s.duration_minutes, 0)
+            if (todaySessions.length === 0) return null
+            return (
+              <div className="mb-4 p-3 bg-violet-600/10 border border-violet-500/30 rounded-lg">
+                <div className="text-xs text-slate-400 mb-1">Today's Focus</div>
+                <div className="flex items-center gap-4">
+                  <div>
+                    <div className="text-xl font-bold text-violet-400" style={{ fontFamily: 'Orbitron, monospace' }}>
+                      {Math.floor(todayMins / 60) > 0 ? `${Math.floor(todayMins / 60)}h ` : ''}{todayMins % 60}m
+                    </div>
+                    <div className="text-xs text-slate-500">{todaySessions.length} session{todaySessions.length !== 1 ? 's' : ''}</div>
+                  </div>
+                  <div className="flex-1">
+                    {CATEGORIES.map(cat => {
+                      const catMins = todaySessions.filter(s => s.category === cat).reduce((sum, s) => sum + s.duration_minutes, 0)
+                      if (catMins === 0) return null
+                      return (
+                        <div key={cat} className="flex items-center gap-2 mb-0.5">
+                          <span className="text-xs text-slate-400 w-14">{CAT_ICONS[cat]} {cat}</span>
+                          <span className="text-xs text-slate-300">{catMins}m</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs text-slate-500">All time</div>
+                    <div className="text-sm font-bold text-slate-300">{Math.floor(totalMins / 60)}h {totalMins % 60}m</div>
+                  </div>
                 </div>
-                <span className={`text-xs font-bold px-2 py-1 rounded ${CAT_COLORS[s.category]}`}>
-                  {s.duration_minutes}m
-                </span>
               </div>
-            ))}
+            )
+          })()}
+
+          {/* Recent sessions list */}
+          <div className="space-y-2">
+            {sessions.slice(0, 10).map(s => {
+              const isToday = s.date === new Date().toISOString().split('T')[0]
+              return (
+                <div key={s.id} className={`flex items-center gap-3 py-2 border-b border-slate-700 last:border-0 ${isToday ? 'opacity-100' : 'opacity-70'}`}>
+                  <span className="text-lg">{CAT_ICONS[s.category]}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm text-slate-200 truncate">{s.task_name}</div>
+                    <div className="text-xs text-slate-500">{isToday ? 'Today' : s.date}</div>
+                  </div>
+                  <span className={`text-xs font-bold px-2 py-1 rounded border ${CAT_COLORS[s.category]}`}>
+                    {s.duration_minutes}m
+                  </span>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}

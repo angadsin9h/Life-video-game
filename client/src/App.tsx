@@ -22,6 +22,7 @@ import Milestones from './pages/Milestones'
 import Challenges from './pages/Challenges'
 import Insights from './pages/Insights'
 import MoodTracker from './pages/MoodTracker'
+import Notes from './pages/Notes'
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
               <Route path="/challenges"   element={<Challenges />}   />
               <Route path="/insights"     element={<Insights />}     />
               <Route path="/mood"         element={<MoodTracker />}  />
+              <Route path="/notes"        element={<Notes />}        />
             </Routes>
           </div>
         </main>

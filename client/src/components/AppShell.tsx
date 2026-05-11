@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 import KeyboardShortcutsHelp from './KeyboardShortcutsHelp'
 import SearchModal from './SearchModal'
+import QuickLogFAB from './QuickLogFAB'
 
 interface Props {
   children: React.ReactNode
@@ -31,6 +32,7 @@ export default function AppShell({ children }: Props) {
         pendingKey={pendingKey}
       />
       <SearchModal show={showSearch} onClose={() => setShowSearch(false)} />
+      <QuickLogFAB />
       {pendingKey && !showHelp && (
         <div className="fixed bottom-20 md:bottom-4 right-4 z-50 px-3 py-2 bg-slate-800 border border-violet-500/50 rounded-lg text-sm text-violet-300 shadow-lg animate-fade-in">
           <span className="font-mono font-bold">g</span>

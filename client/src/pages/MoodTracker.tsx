@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import axios from 'axios'
 import { Heart, TrendingUp, Calendar, Edit2 } from 'lucide-react'
 
@@ -82,6 +82,21 @@ export default function MoodTracker() {
   const todayEntry = history.find(e => e.date === today)
   const avg7 = avgMood(history.slice(0, 7))
   const avg30 = avgMood(history)
+
+  const moodMap = useMemo(() => {
+    const map: Record<string, number> = {}
+    for (const e of history) map[e.date] = e.mood
+    return map
+  }, [history])
+
+  const last30Days = useMemo(() => {
+    const days: string[] = []
+    for (let i = 29; i >= 0; i--) {
+      const d = new Date(); d.setDate(d.getDate() - i)
+      days.push(d.toISOString().split('T')[0])
+    }
+    return days
+  }, [])
 
   const moodCounts = [0, 0, 0, 0, 0, 0]
   for (const e of history) if (e.mood >= 1 && e.mood <= 5) moodCounts[e.mood]++
@@ -172,6 +187,92 @@ export default function MoodTracker() {
           <div className="text-xs text-slate-500">Days logged</div>
         </div>
       </div>
+
+      {/* 30-day mood heatmap */}
+      {history.length > 0 && (
+        <div className="game-card p-5">
+          <h3 className="font-semibold text-slate-200 mb-3 flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-pink-400" />
+            30-Day Mood Map
+          </h3>
+          <div className="grid grid-cols-[repeat(7,1fr)] gap-1.5">
+            {['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => (
+              <div key={d} className="text-center text-[9px] text-slate-600 font-medium">{d}</div>
+            ))}
+            {Array.from({ length: new Date(last30Days[0]).getDay() }).map((_, i) => (
+              <div key={`pad-${i}`} />
+            ))}
+            {last30Days.map(date => {
+              const mood = moodMap[date]
+              const isToday = date === today
+              const colorMap: Record<number, string> = {
+                1: 'bg-red-500',
+                2: 'bg-orange-500',
+                3: 'bg-yellow-500',
+                4: 'bg-green-500',
+                5: 'bg-violet-500',
+              }
+              return (
+                <div
+                  key={date}
+                  title={`${date}${mood ? `: ${MOOD_LABELS[mood]} ${MOOD_EMOJIS[mood]}` : ': not logged'}`}
+                  className={`aspect-square rounded-sm flex items-center justify-center transition-all cursor-default ${
+                    mood
+                      ? `${colorMap[mood]} opacity-80 hover:opacity-100`
+                      : isToday
+                      ? 'bg-slate-600 border border-slate-500'
+                      : 'bg-slate-800'
+                  } ${isToday ? 'ring-1 ring-white/30' : ''}`}
+                >
+                  {mood && <span className="text-[8px]">{MOOD_EMOJIS[mood]}</span>}
+                </div>
+              )
+            })}
+          </div>
+          <div className="flex items-center gap-3 mt-3 flex-wrap">
+            {[1,2,3,4,5].map(m => (
+              <div key={m} className="flex items-center gap-1">
+                <div className={`w-2.5 h-2.5 rounded-sm ${MOOD_COLORS[m]}`} />
+                <span className="text-[10px] text-slate-500">{MOOD_LABELS[m]}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Mood Sparkline */}
+      {history.length > 1 && (
+        <div className="game-card p-5">
+          <h3 className="font-semibold text-slate-200 mb-3">Mood Trend</h3>
+          {(() => {
+            const sorted = [...history].sort((a, b) => a.date.localeCompare(b.date))
+            const W = 400, H = 60
+            const pad = { top: 8, bottom: 8, left: 4, right: 4 }
+            const chartW = W - pad.left - pad.right
+            const chartH = H - pad.top - pad.bottom
+            const toX = (i: number) => pad.left + (i / (sorted.length - 1)) * chartW
+            const toY = (v: number) => pad.top + chartH - ((v - 1) / 4) * chartH
+            const pathD = sorted.map((d, i) => `${i === 0 ? 'M' : 'L'} ${toX(i)} ${toY(d.mood)}`).join(' ')
+            const areaD = `${pathD} L ${toX(sorted.length - 1)} ${H - pad.bottom} L ${pad.left} ${H - pad.bottom} Z`
+            const avgY = toY(avg30)
+            return (
+              <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 60 }}>
+                <path d={areaD} fill="#8b5cf620" />
+                <line x1={pad.left} y1={avgY} x2={W - pad.right} y2={avgY} stroke="#8b5cf640" strokeWidth="1" strokeDasharray="3,4" />
+                <path d={pathD} fill="none" stroke="#ec4899" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                {sorted.length > 0 && (
+                  <circle cx={toX(sorted.length - 1)} cy={toY(sorted[sorted.length - 1].mood)} r="3" fill="#ec4899" stroke="#0f172a" strokeWidth="1.5" />
+                )}
+              </svg>
+            )
+          })()}
+          <div className="flex justify-between text-xs text-slate-600 mt-1">
+            <span>{history[history.length - 1]?.date.slice(5)}</span>
+            <span>Avg: {avg30.toFixed(1)}</span>
+            <span>{history[0]?.date.slice(5)}</span>
+          </div>
+        </div>
+      )}
 
       {/* Mood distribution */}
       {history.length > 0 && (
