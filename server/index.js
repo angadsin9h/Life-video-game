@@ -41,6 +41,9 @@ app.use('/api/journal', journalRouter);
 const weeklyRouter = require('./routes/weekly');
 app.use('/api/weekly', weeklyRouter);
 
+const timerRouter = require('./routes/timer');
+app.use('/api/timer', timerRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

@@ -1,0 +1,363 @@
+import { useEffect, useRef, useState, useCallback } from 'react'
+import axios from 'axios'
+import { Play, Pause, RotateCcw, CheckCircle2, Zap, Coffee, Target, Settings } from 'lucide-react'
+
+const CATEGORIES = ['health', 'mind', 'work', 'social', 'growth'] as const
+const CAT_ICONS: Record<string, string> = { health: '❤️', mind: '🧠', work: '💼', social: '👥', growth: '🚀' }
+const CAT_COLORS: Record<string, string> = {
+  health: 'border-green-500/50 bg-green-500/5 text-green-400',
+  mind:   'border-cyan-500/50 bg-cyan-500/5 text-cyan-400',
+  work:   'border-violet-500/50 bg-violet-500/5 text-violet-400',
+  social: 'border-yellow-500/50 bg-yellow-500/5 text-yellow-400',
+  growth: 'border-red-500/50 bg-red-500/5 text-red-400',
+}
+
+type Mode = 'focus' | 'short' | 'long'
+const MODE_DURATIONS: Record<Mode, number> = { focus: 25, short: 5, long: 15 }
+const MODE_LABELS: Record<Mode, string> = { focus: '🎯 Focus', short: '☕ Short Break', long: '🛋️ Long Break' }
+
+interface Session {
+  id: number; date: string; category: string; task_name: string; duration_minutes: number; created_at: string
+}
+
+interface Targets { health: number; mind: number; work: number; social: number; growth: number }
+
+function pad(n: number) { return String(n).padStart(2, '0') }
+
+export default function Timer() {
+  const [mode, setMode] = useState<Mode>('focus')
+  const [secondsLeft, setSecondsLeft] = useState(MODE_DURATIONS.focus * 60)
+  const [running, setRunning] = useState(false)
+  const [completed, setCompleted] = useState(false)
+  const [category, setCategory] = useState<string>('work')
+  const [taskName, setTaskName] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [sessions, setSessions] = useState<Session[]>([])
+  const [targets, setTargets] = useState<Targets>({ health: 0, mind: 0, work: 0, social: 0, growth: 0 })
+  const [editingTargets, setEditingTargets] = useState(false)
+  const [draftTargets, setDraftTargets] = useState<Targets>({ health: 0, mind: 0, work: 0, social: 0, growth: 0 })
+  const [weekMins, setWeekMins] = useState<Partial<Targets>>({})
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const totalSeconds = MODE_DURATIONS[mode] * 60
+  const elapsedSeconds = totalSeconds - secondsLeft
+  const minutes = Math.floor(secondsLeft / 60)
+  const seconds = secondsLeft % 60
+  const progress = elapsedSeconds / totalSeconds
+
+  const loadData = useCallback(async () => {
+    const [sessionsRes, targetsRes] = await Promise.all([
+      axios.get<Session[]>('/api/timer/sessions'),
+      axios.get<Targets>('/api/timer/targets'),
+    ])
+    setSessions(sessionsRes.data)
+    setTargets(targetsRes.data)
+    setDraftTargets(targetsRes.data)
+
+    // Calculate this week's minutes by category from sessions
+    const monday = (() => {
+      const d = new Date(); const day = d.getDay()
+      d.setDate(d.getDate() - (day === 0 ? 6 : day - 1)); return d.toISOString().split('T')[0]
+    })()
+    const thisWeek = sessionsRes.data.filter(s => s.date >= monday)
+    const mins: Partial<Targets> = {}
+    for (const s of thisWeek) {
+      const cat = s.category as keyof Targets
+      mins[cat] = (mins[cat] || 0) + s.duration_minutes
+    }
+    setWeekMins(mins)
+  }, [])
+
+  useEffect(() => { loadData() }, [loadData])
+
+  // Reset timer when mode changes
+  useEffect(() => {
+    setRunning(false)
+    setCompleted(false)
+    setSecondsLeft(MODE_DURATIONS[mode] * 60)
+    if (intervalRef.current) clearInterval(intervalRef.current)
+  }, [mode])
+
+  // Ticker
+  useEffect(() => {
+    if (running && !completed) {
+      intervalRef.current = setInterval(() => {
+        setSecondsLeft(s => {
+          if (s <= 1) {
+            setRunning(false)
+            setCompleted(true)
+            clearInterval(intervalRef.current!)
+            // Play a gentle notification if supported
+            try { new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAA').play().catch(() => {}) } catch (_) {}
+            return 0
+          }
+          return s - 1
+        })
+      }, 1000)
+    } else {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+  }, [running, completed])
+
+  const reset = () => {
+    setRunning(false); setCompleted(false); setSecondsLeft(MODE_DURATIONS[mode] * 60)
+  }
+
+  const logSession = async () => {
+    if (!taskName.trim()) return
+    setSaving(true)
+    try {
+      const today = new Date().toISOString().split('T')[0]
+      const durationMinutes = Math.ceil(elapsedSeconds / 60) || MODE_DURATIONS[mode]
+      await axios.post('/api/timer/sessions', { date: today, category, task_name: taskName, duration_minutes: durationMinutes })
+      setCompleted(false)
+      setSecondsLeft(MODE_DURATIONS[mode] * 60)
+      setTaskName('')
+      await loadData()
+    } finally { setSaving(false) }
+  }
+
+  const saveTargets = async () => {
+    await axios.put('/api/timer/targets', draftTargets)
+    setTargets(draftTargets)
+    setEditingTargets(false)
+  }
+
+  const circumference = 2 * Math.PI * 54
+  const strokeDashoffset = circumference * (1 - progress)
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>Focus Timer</h1>
+        <p className="text-slate-400 mt-1">Lock in. Sessions auto-log to your daily score.</p>
+      </div>
+
+      {/* Mode selector */}
+      <div className="flex gap-2">
+        {(Object.keys(MODE_LABELS) as Mode[]).map(m => (
+          <button
+            key={m}
+            onClick={() => setMode(m)}
+            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+              mode === m ? 'bg-violet-600 text-white border border-violet-500' : 'bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-600'
+            }`}
+          >
+            {MODE_LABELS[m]}
+          </button>
+        ))}
+      </div>
+
+      {/* Timer circle */}
+      <div className="game-card p-8 text-center glowing-border">
+        <div className="relative inline-flex items-center justify-center">
+          <svg className="w-40 h-40 -rotate-90" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#1e293b" strokeWidth="8" />
+            <circle
+              cx="60" cy="60" r="54" fill="none"
+              stroke={completed ? '#22c55e' : running ? '#8b5cf6' : '#475569'}
+              strokeWidth="8"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              strokeLinecap="round"
+              className="transition-all duration-1000"
+            />
+          </svg>
+          <div className="absolute text-center">
+            <div
+              className={`text-4xl font-bold ${completed ? 'text-green-400' : 'text-slate-200'}`}
+              style={{ fontFamily: 'Orbitron, monospace' }}
+            >
+              {pad(minutes)}:{pad(seconds)}
+            </div>
+            <div className="text-xs text-slate-500 mt-1">
+              {completed ? '✓ Done!' : running ? 'In flow...' : 'Ready'}
+            </div>
+          </div>
+        </div>
+
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-4 mt-6">
+          <button onClick={reset} className="game-btn-secondary p-3 rounded-full">
+            <RotateCcw className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => setRunning(r => !r)}
+            disabled={completed}
+            className={`p-5 rounded-full font-bold text-white transition-all hover:scale-105 disabled:opacity-40 ${
+              running ? 'bg-orange-600 hover:bg-orange-500 border-2 border-orange-400' : 'bg-violet-600 hover:bg-violet-500 border-2 border-violet-400'
+            }`}
+          >
+            {running ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7" />}
+          </button>
+          {completed && (
+            <div className="text-green-400 animate-bounce">
+              <Zap className="w-6 h-6" />
+            </div>
+          )}
+        </div>
+
+        {/* Completion prompt */}
+        {completed && (
+          <div className="mt-6 space-y-3 animate-slide-in-up">
+            <p className="text-green-400 font-semibold">🎉 Session complete! Log it for XP?</p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="text"
+                className="game-input flex-1"
+                placeholder="What did you work on?"
+                value={taskName}
+                onChange={e => setTaskName(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && logSession()}
+                autoFocus
+              />
+              <select
+                className="game-input"
+                value={category}
+                onChange={e => setCategory(e.target.value)}
+              >
+                {CATEGORIES.map(c => <option key={c} value={c}>{CAT_ICONS[c]} {c}</option>)}
+              </select>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={logSession}
+                disabled={saving || !taskName.trim()}
+                className="game-btn-primary flex-1 flex items-center justify-center gap-2"
+              >
+                <CheckCircle2 className="w-4 h-4" />
+                {saving ? 'Saving...' : `Log ${Math.ceil(elapsedSeconds / 60) || MODE_DURATIONS[mode]} minutes`}
+              </button>
+              <button onClick={reset} className="game-btn-secondary">Skip</button>
+            </div>
+          </div>
+        )}
+
+        {/* Task/category pre-selection (before timer starts) */}
+        {!running && !completed && (
+          <div className="mt-6 space-y-3">
+            <input
+              type="text"
+              className="game-input w-full"
+              placeholder="What are you focusing on? (optional)"
+              value={taskName}
+              onChange={e => setTaskName(e.target.value)}
+            />
+            <div className="flex gap-2 flex-wrap justify-center">
+              {CATEGORIES.map(c => (
+                <button
+                  key={c}
+                  onClick={() => setCategory(c)}
+                  className={`px-3 py-1.5 rounded-lg text-sm border transition-all ${
+                    category === c ? CAT_COLORS[c] + ' border-opacity-100' : 'bg-slate-700 border-slate-600 text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  {CAT_ICONS[c]} {c}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Weekly targets progress */}
+      <div className="game-card p-5">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-semibold text-slate-200 flex items-center gap-2">
+            <Target className="w-5 h-5 text-violet-400" />
+            Weekly Targets
+          </h3>
+          <button
+            onClick={() => setEditingTargets(e => !e)}
+            className="text-slate-500 hover:text-slate-300 transition-colors"
+          >
+            <Settings className="w-4 h-4" />
+          </button>
+        </div>
+
+        {editingTargets ? (
+          <div className="space-y-3">
+            <p className="text-xs text-slate-400">Set weekly minute goals per category:</p>
+            {CATEGORIES.map(cat => (
+              <div key={cat} className="flex items-center gap-3">
+                <span className="text-sm w-20">{CAT_ICONS[cat]} {cat}</span>
+                <input
+                  type="number"
+                  min="0"
+                  max="1440"
+                  className="game-input w-24 text-center"
+                  value={draftTargets[cat] || ''}
+                  onChange={e => setDraftTargets(d => ({ ...d, [cat]: parseInt(e.target.value) || 0 }))}
+                  placeholder="min"
+                />
+                <span className="text-xs text-slate-500">min/week</span>
+              </div>
+            ))}
+            <div className="flex gap-2 mt-2">
+              <button onClick={saveTargets} className="game-btn-primary flex-1 text-sm">Save Targets</button>
+              <button onClick={() => { setEditingTargets(false); setDraftTargets(targets) }} className="game-btn-secondary text-sm">Cancel</button>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {CATEGORIES.map(cat => {
+              const target = targets[cat]
+              const actual = weekMins[cat] || 0
+              const pct = target > 0 ? Math.min(100, Math.round((actual / target) * 100)) : 0
+              const h = Math.floor(actual / 60); const m = actual % 60
+              return (
+                <div key={cat}>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="text-slate-400">{CAT_ICONS[cat]} {cat}</span>
+                    <span className={target > 0 && actual >= target ? 'text-green-400 font-bold' : 'text-slate-500'}>
+                      {h > 0 ? `${h}h ` : ''}{m}m{target > 0 ? ` / ${Math.floor(target / 60) > 0 ? `${Math.floor(target / 60)}h ` : ''}${target % 60}m` : ''}
+                      {target > 0 && actual >= target ? ' ✓' : ''}
+                    </span>
+                  </div>
+                  {target > 0 ? (
+                    <div className="stat-bar h-2">
+                      <div className={`stat-bar-fill bar-${cat}`} style={{ width: `${pct}%` }} />
+                    </div>
+                  ) : (
+                    <div className="stat-bar h-2 opacity-30">
+                      <div className="h-full w-0" />
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+            {Object.values(targets).every(v => v === 0) && (
+              <p className="text-xs text-slate-500 text-center">
+                Click ⚙️ to set weekly minute targets per category.
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Recent sessions */}
+      {sessions.length > 0 && (
+        <div className="game-card p-5">
+          <h3 className="font-semibold text-slate-200 mb-4 flex items-center gap-2">
+            <Coffee className="w-5 h-5 text-orange-400" />
+            Recent Focus Sessions
+          </h3>
+          <div className="space-y-2">
+            {sessions.slice(0, 8).map(s => (
+              <div key={s.id} className="flex items-center gap-3 py-2 border-b border-slate-700 last:border-0">
+                <span className="text-lg">{CAT_ICONS[s.category]}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm text-slate-200 truncate">{s.task_name}</div>
+                  <div className="text-xs text-slate-500">{s.date}</div>
+                </div>
+                <span className={`text-xs font-bold px-2 py-1 rounded ${CAT_COLORS[s.category]}`}>
+                  {s.duration_minutes}m
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

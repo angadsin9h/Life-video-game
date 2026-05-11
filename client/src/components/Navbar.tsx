@@ -2,11 +2,14 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
+  Timer, User,
 } from 'lucide-react'
 
 const navItems = [
   { to: '/',             icon: LayoutDashboard, label: 'Dashboard'    },
   { to: '/log',          icon: ClipboardList,   label: 'Log Tasks'    },
+  { to: '/timer',        icon: Timer,           label: 'Focus Timer'  },
+  { to: '/profile',      icon: User,            label: 'Profile'      },
   { to: '/progress',     icon: BarChart3,        label: 'Progress'     },
   { to: '/weekly',       icon: FileText,         label: 'Weekly'       },
   { to: '/activity',     icon: Calendar,         label: 'Activity'     },
@@ -21,9 +24,9 @@ const navItems = [
 const mobileItems = [
   { to: '/',             icon: LayoutDashboard, label: 'Home'    },
   { to: '/log',          icon: ClipboardList,   label: 'Log'     },
-  { to: '/habits',       icon: RefreshCw,        label: 'Habits'  },
-  { to: '/boss',         icon: Sword,            label: 'Boss'    },
-  { to: '/achievements', icon: Trophy,           label: 'Awards'  },
+  { to: '/timer',        icon: Timer,           label: 'Timer'   },
+  { to: '/boss',         icon: Sword,           label: 'Boss'    },
+  { to: '/profile',      icon: User,            label: 'Profile' },
 ]
 
 export default function Navbar() {

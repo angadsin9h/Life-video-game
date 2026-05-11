@@ -11,6 +11,8 @@ import BossBattle from './pages/BossBattle'
 import Journal from './pages/Journal'
 import Heatmap from './pages/Heatmap'
 import WeeklyReport from './pages/WeeklyReport'
+import Timer from './pages/Timer'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
               <Route path="/habits"       element={<Habits />}       />
               <Route path="/boss"         element={<BossBattle />}   />
               <Route path="/weekly"       element={<WeeklyReport />} />
+              <Route path="/timer"        element={<Timer />}        />
+              <Route path="/profile"      element={<Profile />}      />
             </Routes>
           </div>
         </main>
