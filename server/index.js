@@ -47,6 +47,9 @@ app.use('/api/timer', timerRouter);
 const settingsRouter = require('./routes/settings');
 app.use('/api/settings', settingsRouter);
 
+const challengesRouter = require('./routes/challenges');
+app.use('/api/challenges', challengesRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

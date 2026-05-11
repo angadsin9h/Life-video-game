@@ -17,6 +17,7 @@ import Settings from './pages/Settings'
 import SkillTree from './pages/SkillTree'
 import Quests from './pages/Quests'
 import Milestones from './pages/Milestones'
+import Challenges from './pages/Challenges'
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
               <Route path="/skills"       element={<SkillTree />}    />
               <Route path="/quests"       element={<Quests />}       />
               <Route path="/milestones"   element={<Milestones />}   />
+              <Route path="/challenges"   element={<Challenges />}   />
             </Routes>
           </div>
         </main>
