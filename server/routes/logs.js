@@ -74,20 +74,37 @@ router.post('/', (req, res) => {
     const allTasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
     const score = calculateScore(allTasks);
 
-    // Side-effects: sync boss HP and check achievements (async, non-blocking)
+    // Capture pre-existing achievements for delta detection
+    const preAchievements = new Set(db.prepare('SELECT key FROM achievements').all().map(a => a.key));
+
+    // Run achievement check synchronously so we can detect new unlocks
+    let newAchievements = [];
+    try {
+      const { checkAndAwardAchievements, getStats, ACHIEVEMENTS } = require('./achievements');
+      checkAndAwardAchievements(getStats());
+      const postAchievements = db.prepare('SELECT key, unlocked_at FROM achievements').all();
+      newAchievements = postAchievements
+        .filter(a => !preAchievements.has(a.key))
+        .map(a => {
+          const def = ACHIEVEMENTS.find(d => d.key === a.key);
+          return def ? { key: a.key, title: def.title, icon: def.icon, xp: def.xp, rarity: def.rarity } : null;
+        })
+        .filter(Boolean);
+    } catch (_) {}
+
+    // Boss HP sync (non-blocking)
     setImmediate(() => {
       try {
         const { syncBossHp, getWeekStart } = require('./boss');
         const weekStart = getWeekStart(date);
         syncBossHp(weekStart);
       } catch (_) {}
-      try {
-        const { checkAndAwardAchievements, getStats } = require('./achievements');
-        checkAndAwardAchievements(getStats());
-      } catch (_) {}
     });
 
-    res.json({ ...log, tasks: allTasks, score });
+    // XP earned estimate: score * 2 + achievement xp
+    const xp_earned = score * 2 + newAchievements.reduce((s, a) => s + (a?.xp || 0), 0);
+
+    res.json({ ...log, tasks: allTasks, score, xp_earned, newAchievements });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

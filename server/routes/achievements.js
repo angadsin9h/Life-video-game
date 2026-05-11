@@ -220,4 +220,4 @@ router.post('/check', (req, res) => {
   }
 });
 
-module.exports = { router, checkAndAwardAchievements, getStats };
+module.exports = { router, checkAndAwardAchievements, getStats, ACHIEVEMENTS };

@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import ScoreSparkline from '../components/ScoreSparkline'
+import FocusRecommendation from '../components/FocusRecommendation'
 
 interface DayLog {
   date: string
@@ -286,6 +287,9 @@ export default function Dashboard() {
           <div className="stat-bar-fill bar-work transition-all duration-1000" style={{ width: `${(xp / nextXp) * 100}%` }} />
         </div>
       </div>
+
+      {/* Focus Recommendation */}
+      <FocusRecommendation />
 
       {/* Score History Sparkline */}
       {stats && stats.last30Days.length > 1 && (

@@ -50,7 +50,7 @@ export default function LogTasks() {
   const [submitting, setSubmitting] = useState(false)
   const [result, setResult] = useState<{ score: number; xp_earned?: number } | null>(null)
   const [error, setError] = useState('')
-  const { toastXP, toastSuccess } = useToast()
+  const { toastXP, toastSuccess, toastAchievement } = useToast()
 
   const preview = useMemo(() => calcPreviewScore(tasks), [tasks])
 
@@ -60,11 +60,23 @@ export default function LogTasks() {
     setError('')
     setSubmitting(true)
     try {
-      const res = await axios.post<{ score: number; xp_earned?: number }>('/api/logs', { date, tasks: valid })
+      const res = await axios.post<{
+        score: number
+        xp_earned?: number
+        newAchievements?: Array<{ key: string; title: string; icon: string; xp: number; rarity: string }>
+      }>('/api/logs', { date, tasks: valid })
       setResult(res.data)
       const xp = res.data.xp_earned ?? res.data.score * 2
       toastXP(xp, `Score: ${res.data.score}/100`)
       if (res.data.score >= 80) toastSuccess('Legendary Day! 🔥', 'You scored 80+ today')
+      // Fire achievement toasts with delay
+      if (res.data.newAchievements?.length) {
+        res.data.newAchievements.forEach((ach, i) => {
+          setTimeout(() => {
+            toastAchievement(`${ach.icon} ${ach.title} (+${ach.xp} XP)`)
+          }, (i + 1) * 800)
+        })
+      }
     } catch {
       setError('Failed to save. Please try again.')
     } finally {
