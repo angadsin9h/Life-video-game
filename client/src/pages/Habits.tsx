@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
-import { Plus, Trash2, Flame, CheckCircle2, Circle, RefreshCw } from 'lucide-react'
+import { Plus, Trash2, Flame, CheckCircle2, Circle, RefreshCw, ChevronDown, ChevronUp, Trophy } from 'lucide-react'
 
 interface Habit {
   id: number
@@ -25,11 +25,92 @@ const CAT_COLORS: Record<string, string> = {
   social: 'border-yellow-500/50 bg-yellow-500/5',
   growth: 'border-red-500/50 bg-red-500/5',
 }
+const CAT_DOT: Record<string, string> = {
+  health: 'bg-green-500',
+  mind: 'bg-cyan-500',
+  work: 'bg-violet-500',
+  social: 'bg-yellow-500',
+  growth: 'bg-red-500',
+}
 const STREAK_FIRE_COLORS = ['text-slate-500', 'text-yellow-500', 'text-orange-500', 'text-red-500', 'text-red-400']
-
 const EMOJI_OPTIONS = ['✅', '🏃', '📚', '💪', '🧘', '🎯', '⚡', '🌟', '🔥', '💎', '🎸', '🧠', '💼', '🌱', '🏋️']
-
 const emptyForm = { title: '', description: '', category: 'health', target_minutes: 0, emoji: '✅' }
+
+const DOW_LABELS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+
+function get30Days(): string[] {
+  const days: string[] = []
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date()
+    d.setDate(d.getDate() - i)
+    days.push(d.toISOString().split('T')[0])
+  }
+  return days
+}
+
+function HabitCalendar({ habitId, category, streak }: { habitId: number; category: string; streak: number }) {
+  const [completedDates, setCompletedDates] = useState<Set<string>>(new Set())
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    axios.get<string[]>(`/api/habits/${habitId}/history`)
+      .then(r => setCompletedDates(new Set(r.data)))
+      .finally(() => setLoading(false))
+  }, [habitId])
+
+  const days = get30Days()
+  const dotColor = CAT_DOT[category] ?? 'bg-violet-500'
+
+  // Calculate completion rate
+  const rate = Math.round((completedDates.size / 30) * 100)
+
+  if (loading) return <div className="h-16 animate-pulse bg-slate-700 rounded-lg mt-3" />
+
+  return (
+    <div className="mt-3 pt-3 border-t border-slate-700/50">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs text-slate-500">Last 30 days</span>
+        <span className="text-xs text-slate-400 font-semibold">{rate}% complete · {streak} day streak</span>
+      </div>
+      <div className="grid grid-cols-[repeat(7,1fr)] gap-1">
+        {DOW_LABELS.map(d => (
+          <div key={d} className="text-center text-[9px] text-slate-600 font-medium">{d}</div>
+        ))}
+        {/* Pad to align first day */}
+        {Array.from({ length: new Date(days[0]).getDay() }).map((_, i) => (
+          <div key={`pad-${i}`} />
+        ))}
+        {days.map(date => {
+          const done = completedDates.has(date)
+          const isToday = date === new Date().toISOString().split('T')[0]
+          return (
+            <div
+              key={date}
+              title={date}
+              className={`aspect-square rounded-sm transition-all ${
+                done
+                  ? `${dotColor} opacity-90 shadow-sm`
+                  : isToday
+                  ? 'bg-slate-600 border border-slate-500'
+                  : 'bg-slate-800'
+              }`}
+            />
+          )
+        })}
+      </div>
+      <div className="flex items-center gap-2 mt-2">
+        <div className="flex items-center gap-1">
+          <div className={`w-2 h-2 rounded-sm ${dotColor}`} />
+          <span className="text-[10px] text-slate-500">Completed</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-2 h-2 rounded-sm bg-slate-800" />
+          <span className="text-[10px] text-slate-500">Missed</span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Habits() {
   const [habits, setHabits] = useState<Habit[]>([])
@@ -38,11 +119,12 @@ export default function Habits() {
   const [form, setForm] = useState({ ...emptyForm })
   const [submitting, setSubmitting] = useState(false)
   const [toggling, setToggling] = useState<number | null>(null)
+  const [expandedId, setExpandedId] = useState<number | null>(null)
 
-  const load = () =>
-    axios.get<Habit[]>('/api/habits').then(r => setHabits(r.data)).catch(console.error).finally(() => setLoading(false))
+  const load = useCallback(() =>
+    axios.get<Habit[]>('/api/habits').then(r => setHabits(r.data)).catch(console.error).finally(() => setLoading(false)), [])
 
-  useEffect(() => { load() }, [])
+  useEffect(() => { load() }, [load])
 
   const handleAdd = async () => {
     if (!form.title.trim()) return
@@ -75,6 +157,9 @@ export default function Habits() {
 
   const completedToday = habits.filter(h => h.completedToday).length
   const totalActive = habits.length
+  const bestStreak = Math.max(...habits.map(h => h.streak), 0)
+  const totalCompletions = habits.reduce((sum, h) => sum + h.totalCompletions, 0)
+  const perfectDay = totalActive > 0 && completedToday === totalActive
 
   if (loading) {
     return (
@@ -89,7 +174,10 @@ export default function Habits() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>Habits</h1>
+          <h1 className="text-3xl font-bold text-white flex items-center gap-3" style={{ fontFamily: 'Orbitron, monospace' }}>
+            <RefreshCw className="w-8 h-8 text-violet-400" />
+            Habits
+          </h1>
           <p className="text-slate-400 mt-1">Build streaks, forge your character</p>
         </div>
         <button onClick={() => setShowForm(!showForm)} className="game-btn-primary flex items-center gap-2">
@@ -97,22 +185,43 @@ export default function Habits() {
         </button>
       </div>
 
-      {/* Daily progress bar */}
+      {/* Stats row */}
       {totalActive > 0 && (
-        <div className="game-card p-4 glowing-border">
+        <div className="grid grid-cols-3 gap-3">
+          <div className={`game-card p-3 text-center ${perfectDay ? 'border border-green-500/40 bg-green-500/5' : ''}`}>
+            <div className={`text-xl font-bold ${perfectDay ? 'text-green-400' : 'text-violet-400'}`} style={{ fontFamily: 'Orbitron, monospace' }}>
+              {completedToday}/{totalActive}
+            </div>
+            <div className="text-xs text-slate-500">Today</div>
+          </div>
+          <div className="game-card p-3 text-center">
+            <div className="text-xl font-bold text-orange-400 flex items-center justify-center gap-1" style={{ fontFamily: 'Orbitron, monospace' }}>
+              <Flame className="w-4 h-4" />{bestStreak}
+            </div>
+            <div className="text-xs text-slate-500">Best Streak</div>
+          </div>
+          <div className="game-card p-3 text-center">
+            <div className="text-xl font-bold text-cyan-400" style={{ fontFamily: 'Orbitron, monospace' }}>{totalCompletions}</div>
+            <div className="text-xs text-slate-500">Total Reps</div>
+          </div>
+        </div>
+      )}
+
+      {/* Daily progress */}
+      {totalActive > 0 && (
+        <div className={`game-card p-4 ${perfectDay ? 'glowing-border border-green-500/30' : 'glowing-border'}`}>
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-slate-300 font-semibold">Today's Habits</span>
-            <span className="text-violet-400 font-bold">{completedToday}/{totalActive}</span>
+            <span className="text-slate-300 font-semibold">
+              {perfectDay ? '🏆 Perfect Day Achieved!' : "Today's Habits"}
+            </span>
+            <span className="text-violet-400 font-bold">{Math.round((completedToday / totalActive) * 100)}%</span>
           </div>
           <div className="stat-bar h-3">
             <div
-              className="stat-bar-fill bar-work transition-all duration-700"
+              className={`stat-bar-fill transition-all duration-700 ${perfectDay ? 'bar-health' : 'bar-work'}`}
               style={{ width: totalActive > 0 ? `${(completedToday / totalActive) * 100}%` : '0%' }}
             />
           </div>
-          {completedToday === totalActive && totalActive > 0 && (
-            <p className="text-xs text-green-400 mt-2 text-center">🎉 All habits done today! Legendary discipline!</p>
-          )}
         </div>
       )}
 
@@ -120,58 +229,28 @@ export default function Habits() {
       {showForm && (
         <div className="game-card p-5 space-y-3 border-violet-500/30 glowing-border">
           <h2 className="font-semibold text-slate-200">New Habit</h2>
-
-          {/* Emoji picker */}
           <div>
             <label className="block text-xs text-slate-400 mb-2">Pick an Icon</label>
             <div className="flex flex-wrap gap-2">
               {EMOJI_OPTIONS.map(e => (
-                <button
-                  key={e}
-                  onClick={() => setForm(f => ({ ...f, emoji: e }))}
-                  className={`w-9 h-9 rounded-lg text-xl transition-all ${form.emoji === e ? 'bg-violet-600 scale-110' : 'bg-slate-700 hover:bg-slate-600'}`}
-                >
+                <button key={e} onClick={() => setForm(f => ({ ...f, emoji: e }))}
+                  className={`w-9 h-9 rounded-lg text-xl transition-all ${form.emoji === e ? 'bg-violet-600 scale-110' : 'bg-slate-700 hover:bg-slate-600'}`}>
                   {e}
                 </button>
               ))}
             </div>
           </div>
-
-          <input
-            type="text"
-            className="game-input w-full"
-            placeholder="Habit title *"
-            value={form.title}
-            onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
-          />
-          <input
-            type="text"
-            className="game-input w-full"
-            placeholder="Description (optional)"
-            value={form.description}
-            onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
-          />
+          <input type="text" className="game-input w-full" placeholder="Habit title *"
+            value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
+            onKeyDown={e => e.key === 'Enter' && handleAdd()} />
+          <input type="text" className="game-input w-full" placeholder="Description (optional)"
+            value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
           <div className="grid grid-cols-2 gap-3">
-            <select
-              className="game-input"
-              value={form.category}
-              onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
-            >
-              {CATEGORIES.map(c => (
-                <option key={c} value={c}>{CAT_ICONS[c]} {c.charAt(0).toUpperCase() + c.slice(1)}</option>
-              ))}
+            <select className="game-input" value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
+              {CATEGORIES.map(c => <option key={c} value={c}>{CAT_ICONS[c]} {c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
             </select>
-            <div className="flex items-center gap-2">
-              <input
-                type="number"
-                min="0"
-                max="480"
-                className="game-input w-full"
-                placeholder="Min target"
-                value={form.target_minutes || ''}
-                onChange={e => setForm(f => ({ ...f, target_minutes: parseInt(e.target.value) || 0 }))}
-              />
-            </div>
+            <input type="number" min="0" max="480" className="game-input" placeholder="Min target (optional)"
+              value={form.target_minutes || ''} onChange={e => setForm(f => ({ ...f, target_minutes: parseInt(e.target.value) || 0 }))} />
           </div>
           <div className="flex gap-2">
             <button onClick={handleAdd} disabled={submitting || !form.title.trim()} className="game-btn-primary flex-1">
@@ -194,97 +273,91 @@ export default function Habits() {
           {habits.map(habit => {
             const fireColor = STREAK_FIRE_COLORS[Math.min(habit.streak, STREAK_FIRE_COLORS.length - 1)]
             const colorClass = CAT_COLORS[habit.category] || 'border-slate-700'
+            const isExpanded = expandedId === habit.id
+            const isBest = habit.streak === bestStreak && bestStreak > 0
+
             return (
-              <div
-                key={habit.id}
-                className={`game-card p-4 border ${colorClass} transition-all duration-200 ${habit.completedToday ? 'opacity-80' : ''}`}
-              >
-                <div className="flex items-center gap-4">
+              <div key={habit.id} className={`game-card p-4 border ${colorClass} transition-all duration-200`}>
+                <div className="flex items-center gap-3">
                   {/* Completion toggle */}
-                  <button
-                    onClick={() => toggleToday(habit)}
-                    disabled={toggling === habit.id}
-                    className="flex-shrink-0 transition-transform hover:scale-110"
-                  >
-                    {toggling === habit.id ? (
-                      <RefreshCw className="w-8 h-8 text-violet-400 animate-spin" />
-                    ) : habit.completedToday ? (
-                      <CheckCircle2 className="w-8 h-8 text-green-400" />
-                    ) : (
-                      <Circle className="w-8 h-8 text-slate-500 hover:text-violet-400" />
-                    )}
+                  <button onClick={() => toggleToday(habit)} disabled={toggling === habit.id}
+                    className="flex-shrink-0 transition-transform hover:scale-110">
+                    {toggling === habit.id
+                      ? <RefreshCw className="w-8 h-8 text-violet-400 animate-spin" />
+                      : habit.completedToday
+                      ? <CheckCircle2 className="w-8 h-8 text-green-400" />
+                      : <Circle className="w-8 h-8 text-slate-500 hover:text-violet-400" />
+                    }
                   </button>
 
-                  {/* Emoji */}
                   <div className="text-2xl flex-shrink-0">{habit.emoji}</div>
 
-                  {/* Info */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h3 className={`font-semibold text-slate-200 ${habit.completedToday ? 'line-through text-slate-400' : ''}`}>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className={`font-semibold ${habit.completedToday ? 'line-through text-slate-400' : 'text-slate-200'}`}>
                         {habit.title}
                       </h3>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-slate-700 text-slate-400 capitalize flex-shrink-0">
+                      {isBest && <span title="Best streak!"><Trophy className="w-3.5 h-3.5 text-yellow-400" /></span>}
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-slate-700 text-slate-400 capitalize">
                         {CAT_ICONS[habit.category]} {habit.category}
                       </span>
                     </div>
                     {habit.description && <p className="text-xs text-slate-400 mt-0.5">{habit.description}</p>}
-                    <div className="flex items-center gap-4 mt-2">
-                      {habit.target_minutes > 0 && (
-                        <span className="text-xs text-slate-500">⏱ {habit.target_minutes}m target</span>
-                      )}
-                      <span className="text-xs text-slate-500">✓ {habit.totalCompletions}x total</span>
+                    <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                      {habit.target_minutes > 0 && <span>⏱ {habit.target_minutes}m</span>}
+                      <span>✓ {habit.totalCompletions}× done</span>
                     </div>
                   </div>
 
-                  {/* Streak */}
-                  <div className="flex-shrink-0 text-center">
-                    <div className={`flex items-center gap-1 ${fireColor}`}>
+                  <div className="flex-shrink-0 text-center min-w-[48px]">
+                    <div className={`flex items-center gap-1 justify-center ${fireColor}`}>
                       <Flame className="w-4 h-4" />
-                      <span className="text-lg font-bold" style={{ fontFamily: 'Orbitron, monospace' }}>
-                        {habit.streak}
-                      </span>
+                      <span className="text-lg font-bold" style={{ fontFamily: 'Orbitron, monospace' }}>{habit.streak}</span>
                     </div>
                     <div className="text-xs text-slate-500">streak</div>
                   </div>
 
-                  {/* Delete */}
-                  <button
-                    onClick={() => deleteHabit(habit.id)}
-                    className="flex-shrink-0 text-slate-600 hover:text-red-400 transition-colors"
-                  >
+                  <button onClick={() => setExpandedId(isExpanded ? null : habit.id)}
+                    className="flex-shrink-0 text-slate-500 hover:text-slate-300 transition-colors">
+                    {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  </button>
+
+                  <button onClick={() => deleteHabit(habit.id)}
+                    className="flex-shrink-0 text-slate-600 hover:text-red-400 transition-colors">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
+
+                {isExpanded && (
+                  <HabitCalendar habitId={habit.id} category={habit.category} streak={habit.streak} />
+                )}
               </div>
             )
           })}
         </div>
       )}
 
-      {/* Leaderboard/stats footer */}
+      {/* Category summary */}
       {habits.length > 0 && (
-        <div className="game-card p-4">
-          <h3 className="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">Habit Stats</h3>
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div>
-              <div className="text-2xl font-bold text-violet-400" style={{ fontFamily: 'Orbitron, monospace' }}>
-                {Math.max(...habits.map(h => h.streak), 0)}
-              </div>
-              <div className="text-xs text-slate-500">Best Streak</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-orange-400" style={{ fontFamily: 'Orbitron, monospace' }}>
-                {habits.reduce((sum, h) => sum + h.totalCompletions, 0)}
-              </div>
-              <div className="text-xs text-slate-500">Total Completions</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-green-400" style={{ fontFamily: 'Orbitron, monospace' }}>
-                {habits.filter(h => h.completedToday).length}
-              </div>
-              <div className="text-xs text-slate-500">Done Today</div>
-            </div>
+        <div className="game-card p-5">
+          <h3 className="text-sm font-semibold text-slate-400 mb-4 uppercase tracking-wider">By Category</h3>
+          <div className="space-y-2">
+            {CATEGORIES.map(cat => {
+              const catHabits = habits.filter(h => h.category === cat)
+              if (catHabits.length === 0) return null
+              const catDone = catHabits.filter(h => h.completedToday).length
+              const pct = Math.round((catDone / catHabits.length) * 100)
+              return (
+                <div key={cat} className="flex items-center gap-3">
+                  <span className="text-sm w-24 text-slate-400 flex-shrink-0">{CAT_ICONS[cat]} {cat}</span>
+                  <div className="flex-1 stat-bar h-2">
+                    <div className={`stat-bar-fill transition-all duration-700 ${CAT_DOT[cat]?.replace('bg-', 'bg-') ?? 'bg-violet-500'}`}
+                      style={{ width: `${pct}%` }} />
+                  </div>
+                  <span className="text-xs text-slate-500 w-12 text-right">{catDone}/{catHabits.length}</span>
+                </div>
+              )
+            }).filter(Boolean)}
           </div>
         </div>
       )}

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -72,6 +72,14 @@ export default function Navbar() {
             LifeQuest
           </span>
         </div>
+        <button
+          onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true }))}
+          className="mx-3 mt-2 mb-1 flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-slate-500 hover:text-slate-300 hover:border-slate-600 transition-colors text-xs"
+        >
+          <Search className="w-3.5 h-3.5" />
+          <span className="flex-1 text-left">Search…</span>
+          <kbd className="text-[10px] bg-slate-700 px-1 rounded">⌘K</kbd>
+        </button>
 
         <nav className="flex-1 overflow-y-auto py-2 scrollbar-thin">
           {NAV_GROUPS.map(group => (
@@ -102,8 +110,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="px-4 py-3 border-t border-slate-700">
+        <div className="px-4 py-3 border-t border-slate-700 flex items-center justify-between">
           <p className="text-xs text-slate-600">Level up your life ⚔️</p>
+          <button
+            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: '?' }))}
+            className="text-slate-600 hover:text-slate-400 transition-colors"
+            title="Keyboard shortcuts (?)"
+          >
+            <Keyboard className="w-3.5 h-3.5" />
+          </button>
         </div>
       </aside>
 

@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import AppShell from './components/AppShell'
+import { ToastProvider } from './contexts/ToastContext'
 import Dashboard from './pages/Dashboard'
 import LogTasks from './pages/LogTasks'
 import Progress from './pages/Progress'
@@ -24,6 +26,8 @@ import MoodTracker from './pages/MoodTracker'
 function App() {
   return (
     <BrowserRouter>
+      <ToastProvider>
+      <AppShell>
       <div className="min-h-screen bg-slate-900">
         <Navbar />
         <main className="pb-20 md:pb-0 md:pl-56">
@@ -53,6 +57,8 @@ function App() {
           </div>
         </main>
       </div>
+      </AppShell>
+      </ToastProvider>
     </BrowserRouter>
   )
 }

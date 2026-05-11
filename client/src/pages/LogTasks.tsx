@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import axios from 'axios'
 import { CheckCircle2, Loader2, Zap } from 'lucide-react'
 import TaskForm, { Task } from '../components/TaskForm'
+import { useToast } from '../contexts/ToastContext'
 
 const CAT_MAX: Record<string, number> = { health: 25, mind: 25, work: 25, social: 10, growth: 15 }
 const CAT_COLORS: Record<string, string> = {
@@ -47,8 +48,9 @@ export default function LogTasks() {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [tasks, setTasks] = useState<Task[]>([{ category: 'health', task_name: '', duration_minutes: 30, notes: '' }])
   const [submitting, setSubmitting] = useState(false)
-  const [result, setResult] = useState<{ score: number } | null>(null)
+  const [result, setResult] = useState<{ score: number; xp_earned?: number } | null>(null)
   const [error, setError] = useState('')
+  const { toastXP, toastSuccess } = useToast()
 
   const preview = useMemo(() => calcPreviewScore(tasks), [tasks])
 
@@ -58,8 +60,11 @@ export default function LogTasks() {
     setError('')
     setSubmitting(true)
     try {
-      const res = await axios.post<{ score: number }>('/api/logs', { date, tasks: valid })
+      const res = await axios.post<{ score: number; xp_earned?: number }>('/api/logs', { date, tasks: valid })
       setResult(res.data)
+      const xp = res.data.xp_earned ?? res.data.score * 2
+      toastXP(xp, `Score: ${res.data.score}/100`)
+      if (res.data.score >= 80) toastSuccess('Legendary Day! 🔥', 'You scored 80+ today')
     } catch {
       setError('Failed to save. Please try again.')
     } finally {

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Shield, Star, Zap, Trophy, Flame, Clock, Calendar, BookOpen } from 'lucide-react'
+import LifeBalanceWheel from '../components/LifeBalanceWheel'
+import ScoreSparkline from '../components/ScoreSparkline'
 
 interface Stats {
   last30Days: Array<{ date: string; score: number }>
@@ -172,32 +174,52 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Attribute radars / stat bars */}
+      {/* Life Balance Wheel + Attributes */}
       <div className="game-card p-5">
         <h3 className="font-semibold text-slate-200 mb-4 flex items-center gap-2">
           <Zap className="w-5 h-5 text-yellow-400" />
-          Life Attributes
+          Life Balance Wheel
         </h3>
-        <div className="space-y-4">
-          {['health','mind','work','social','growth'].map(cat => {
-            const avgMins = catMins[cat] ?? 0
-            const maxPts = CAT_MAX[cat]
-            const pts = Math.min(maxPts, Math.round(avgMins / 2))
-            const pct = Math.round((pts / maxPts) * 100)
-            return (
-              <div key={cat}>
-                <div className="flex justify-between text-sm mb-1">
-                  <span className="font-medium text-slate-300">{CAT_ICONS[cat]} {cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
-                  <span className="text-slate-400">{pts}<span className="text-slate-600">/{maxPts}</span></span>
+        <div className="flex flex-col sm:flex-row items-center gap-6">
+          <LifeBalanceWheel
+            attributes={[
+              { label: 'Health', value: Math.min(25, Math.round((catMins.health ?? 0) / 2)), max: 25, color: '#22c55e', icon: '❤️' },
+              { label: 'Mind',   value: Math.min(25, Math.round((catMins.mind ?? 0) / 2)),   max: 25, color: '#06b6d4', icon: '🧠' },
+              { label: 'Work',   value: Math.min(25, Math.round((catMins.work ?? 0) / 2)),   max: 25, color: '#8b5cf6', icon: '💼' },
+              { label: 'Social', value: Math.min(10, Math.round((catMins.social ?? 0) / 3)), max: 10, color: '#f59e0b', icon: '👥' },
+              { label: 'Growth', value: Math.min(15, Math.round((catMins.growth ?? 0) / 2)), max: 15, color: '#ef4444', icon: '🚀' },
+            ]}
+            size={200}
+          />
+          <div className="flex-1 space-y-3 w-full">
+            {['health','mind','work','social','growth'].map(cat => {
+              const avgMins = catMins[cat] ?? 0
+              const maxPts = CAT_MAX[cat]
+              const pts = Math.min(maxPts, Math.round(avgMins / 2))
+              const pct = Math.round((pts / maxPts) * 100)
+              return (
+                <div key={cat}>
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="font-medium text-slate-300">{CAT_ICONS[cat]} {cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
+                    <span className="text-slate-400">{pts}<span className="text-slate-600">/{maxPts}</span></span>
+                  </div>
+                  <div className="stat-bar h-2.5">
+                    <div className={`stat-bar-fill bar-${cat} transition-all duration-1000`} style={{ width: `${pct}%` }} />
+                  </div>
                 </div>
-                <div className="stat-bar h-3">
-                  <div className={`stat-bar-fill bar-${cat} transition-all duration-1000`} style={{ width: `${pct}%` }} />
-                </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
       </div>
+
+      {/* Score trend */}
+      {(stats?.last30Days ?? []).length > 1 && (
+        <div className="game-card p-4">
+          <h3 className="font-semibold text-slate-300 mb-3 text-sm">Score Trend (30d)</h3>
+          <ScoreSparkline data={stats!.last30Days} height={80} showLabels />
+        </div>
+      )}
 
       {/* Key stats grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">

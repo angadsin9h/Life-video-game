@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword } from 'lucide-react'
 import StatCard from '../components/StatCard'
+import ScoreSparkline from '../components/ScoreSparkline'
 
 interface DayLog {
   date: string
@@ -285,6 +286,20 @@ export default function Dashboard() {
           <div className="stat-bar-fill bar-work transition-all duration-1000" style={{ width: `${(xp / nextXp) * 100}%` }} />
         </div>
       </div>
+
+      {/* Score History Sparkline */}
+      {stats && stats.last30Days.length > 1 && (
+        <div className="game-card p-4">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Score History (30d)</h3>
+            <div className="flex gap-3 text-xs text-slate-500">
+              <span>Avg: <span className="text-slate-300 font-semibold">{stats.monthlyAvg}</span></span>
+              <span>Best: <span className="text-slate-300 font-semibold">{stats.bestDay?.score ?? 0}</span></span>
+            </div>
+          </div>
+          <ScoreSparkline data={stats.last30Days} height={72} showLabels />
+        </div>
+      )}
 
       {/* Today's Score */}
       <div className="game-card p-6 text-center glowing-border animate-pulse-glow">
