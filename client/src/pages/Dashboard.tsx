@@ -5,6 +5,7 @@ import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword } from 'l
 import StatCard from '../components/StatCard'
 import ScoreSparkline from '../components/ScoreSparkline'
 import FocusRecommendation from '../components/FocusRecommendation'
+import UpcomingDeadlines from '../components/UpcomingDeadlines'
 
 interface DayLog {
   date: string
@@ -290,6 +291,9 @@ export default function Dashboard() {
 
       {/* Focus Recommendation */}
       <FocusRecommendation />
+
+      {/* Upcoming Deadlines */}
+      <UpcomingDeadlines />
 
       {/* Score History Sparkline */}
       {stats && stats.last30Days.length > 1 && (

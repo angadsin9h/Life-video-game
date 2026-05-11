@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Shield, Star, Zap, Trophy, Flame, Clock, Calendar, BookOpen } from 'lucide-react'
 import LifeBalanceWheel from '../components/LifeBalanceWheel'
 import ScoreSparkline from '../components/ScoreSparkline'
+import LevelUpModal from '../components/LevelUpModal'
 
 interface Stats {
   last30Days: Array<{ date: string; score: number }>
@@ -68,6 +69,7 @@ export default function Profile() {
   const [bossData, setBossData] = useState<BossData | null>(null)
   const [habits, setHabits] = useState<Habit[]>([])
   const [loading, setLoading] = useState(true)
+  const [levelUpModal, setLevelUpModal] = useState<number | null>(null)
 
   useEffect(() => {
     Promise.all([
@@ -77,6 +79,15 @@ export default function Profile() {
       axios.get<Habit[]>('/api/habits'),
     ]).then(([s, a, b, h]) => {
       setStats(s.data); setAchData(a.data); setBossData(b.data); setHabits(h.data)
+
+      // Check for level-up since last visit
+      const xp = (s.data.totalHours ?? 0) * 10 + (s.data.currentStreak ?? 0) * 50 + (a.data.totalXp ?? 0)
+      const newLevel = Math.floor(xp / 500) + 1
+      const storedLevel = parseInt(sessionStorage.getItem('lastKnownLevel') ?? '0')
+      if (storedLevel > 0 && newLevel > storedLevel) {
+        setLevelUpModal(newLevel)
+      }
+      sessionStorage.setItem('lastKnownLevel', String(newLevel))
     }).catch(console.error).finally(() => setLoading(false))
   }, [])
 
@@ -116,6 +127,9 @@ export default function Profile() {
 
   return (
     <div className="space-y-6">
+      {levelUpModal && (
+        <LevelUpModal newLevel={levelUpModal} onClose={() => setLevelUpModal(null)} />
+      )}
       <div>
         <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>Character Sheet</h1>
         <p className="text-slate-400 mt-1">Your RPG identity, forged from real life</p>

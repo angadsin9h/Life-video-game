@@ -114,6 +114,14 @@ db.exec(`
     created_at TEXT DEFAULT (datetime('now')),
     updated_at TEXT DEFAULT (datetime('now'))
   );
+
+  CREATE TABLE IF NOT EXISTS goal_progress (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    goal_id INTEGER NOT NULL,
+    note TEXT NOT NULL,
+    created_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (goal_id) REFERENCES goals(id)
+  );
 `);
 
 module.exports = db;

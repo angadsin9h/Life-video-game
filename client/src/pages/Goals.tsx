@@ -1,6 +1,79 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useCallback } from 'react'
 import axios from 'axios'
-import { Plus, CheckCircle2, Circle, Trash2, Target, Flame, TrendingUp, AlertCircle } from 'lucide-react'
+import { Plus, CheckCircle2, Circle, Trash2, Target, Flame, TrendingUp, AlertCircle, ChevronDown, ChevronUp, MessageSquarePlus, Clock } from 'lucide-react'
+
+interface ProgressNote {
+  id: number
+  goal_id: number
+  note: string
+  created_at: string
+}
+
+function GoalProgressPanel({ goalId }: { goalId: number }) {
+  const [notes, setNotes] = useState<ProgressNote[]>([])
+  const [loading, setLoading] = useState(true)
+  const [newNote, setNewNote] = useState('')
+  const [adding, setAdding] = useState(false)
+
+  const loadNotes = useCallback(async () => {
+    const res = await axios.get<ProgressNote[]>(`/api/goals/${goalId}/progress`)
+    setNotes(res.data)
+  }, [goalId])
+
+  useEffect(() => { loadNotes().finally(() => setLoading(false)) }, [loadNotes])
+
+  const addNote = async () => {
+    if (!newNote.trim()) return
+    setAdding(true)
+    try {
+      await axios.post(`/api/goals/${goalId}/progress`, { note: newNote.trim() })
+      setNewNote('')
+      await loadNotes()
+    } finally { setAdding(false) }
+  }
+
+  const deleteNote = async (noteId: number) => {
+    await axios.delete(`/api/goals/${goalId}/progress/${noteId}`)
+    setNotes(prev => prev.filter(n => n.id !== noteId))
+  }
+
+  if (loading) return <div className="h-8 animate-pulse bg-slate-700 rounded mt-3" />
+
+  return (
+    <div className="mt-3 pt-3 border-t border-slate-700/50">
+      <div className="flex items-center gap-2 mb-2">
+        <Clock className="w-3.5 h-3.5 text-slate-500" />
+        <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Progress Notes</span>
+      </div>
+      {notes.length > 0 && (
+        <div className="space-y-2 mb-3 max-h-40 overflow-y-auto">
+          {notes.map(n => (
+            <div key={n.id} className="flex items-start gap-2 text-xs text-slate-400">
+              <div className="flex-1">
+                <span className="text-slate-300">{n.note}</span>
+                <span className="text-slate-600 ml-2">{new Date(n.created_at).toLocaleDateString()}</span>
+              </div>
+              <button onClick={() => deleteNote(n.id)} className="text-slate-600 hover:text-red-400 flex-shrink-0">×</button>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={newNote}
+          onChange={e => setNewNote(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && addNote()}
+          className="game-input flex-1 text-xs py-1"
+          placeholder="Add a progress update..."
+        />
+        <button onClick={addNote} disabled={adding || !newNote.trim()} className="game-btn-primary text-xs px-3 py-1 flex items-center gap-1">
+          <MessageSquarePlus className="w-3 h-3" /> Add
+        </button>
+      </div>
+    </div>
+  )
+}
 
 interface Goal {
   id: number
@@ -64,6 +137,7 @@ export default function Goals() {
   const [catFilter, setCatFilter] = useState('all')
   const [form, setForm] = useState({ title: '', description: '', category: 'health', target_date: '' })
   const [submitting, setSubmitting] = useState(false)
+  const [expandedId, setExpandedId] = useState<number | null>(null)
 
   const load = () => axios.get<Goal[]>('/api/goals').then(r => setGoals(r.data)).catch(console.error)
   useEffect(() => { load() }, [])
@@ -269,10 +343,23 @@ export default function Goals() {
                     )}
                   </div>
 
-                  <button onClick={() => deleteGoal(goal.id)} className="text-slate-700 hover:text-red-400 transition-colors flex-shrink-0 mt-0.5">
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    {!goal.completed && (
+                      <button
+                        onClick={() => setExpandedId(expandedId === goal.id ? null : goal.id)}
+                        className="text-slate-600 hover:text-slate-400 transition-colors"
+                        title="Progress notes"
+                      >
+                        {expandedId === goal.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </button>
+                    )}
+                    <button onClick={() => deleteGoal(goal.id)} className="text-slate-700 hover:text-red-400 transition-colors mt-0.5">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
+
+                {expandedId === goal.id && <GoalProgressPanel goalId={goal.id} />}
               </div>
             )
           })}
