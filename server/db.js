@@ -95,6 +95,15 @@ db.exec(`
     defeated INTEGER DEFAULT 0,
     defeated_at TEXT
   );
+
+  CREATE TABLE IF NOT EXISTS journal_entries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL UNIQUE,
+    content TEXT NOT NULL DEFAULT '',
+    word_count INTEGER DEFAULT 0,
+    created_at TEXT DEFAULT (datetime('now')),
+    updated_at TEXT DEFAULT (datetime('now'))
+  );
 `);
 
 module.exports = db;

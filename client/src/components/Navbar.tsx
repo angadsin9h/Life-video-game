@@ -1,23 +1,28 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, ClipboardList, BarChart3, Bot, Target, Gamepad2, Trophy, RefreshCw, Sword } from 'lucide-react'
+import {
+  LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
+  Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar,
+} from 'lucide-react'
 
 const navItems = [
-  { to: '/',            icon: LayoutDashboard, label: 'Dashboard'   },
-  { to: '/log',         icon: ClipboardList,   label: 'Log Tasks'   },
-  { to: '/progress',    icon: BarChart3,        label: 'Progress'    },
-  { to: '/habits',      icon: RefreshCw,        label: 'Habits'      },
-  { to: '/boss',        icon: Sword,            label: 'Boss Battle' },
-  { to: '/achievements',icon: Trophy,           label: 'Achievements'},
-  { to: '/ai-coach',    icon: Bot,              label: 'AI Coach'    },
-  { to: '/goals',       icon: Target,           label: 'Goals'       },
+  { to: '/',             icon: LayoutDashboard, label: 'Dashboard'    },
+  { to: '/log',          icon: ClipboardList,   label: 'Log Tasks'    },
+  { to: '/progress',     icon: BarChart3,        label: 'Progress'     },
+  { to: '/activity',     icon: Calendar,         label: 'Activity'     },
+  { to: '/habits',       icon: RefreshCw,        label: 'Habits'       },
+  { to: '/journal',      icon: BookOpen,         label: 'Journal'      },
+  { to: '/boss',         icon: Sword,            label: 'Boss Battle'  },
+  { to: '/achievements', icon: Trophy,           label: 'Achievements' },
+  { to: '/ai-coach',     icon: Bot,              label: 'AI Coach'     },
+  { to: '/goals',        icon: Target,           label: 'Goals'        },
 ]
 
 const mobileItems = [
-  { to: '/',            icon: LayoutDashboard, label: 'Home'   },
-  { to: '/log',         icon: ClipboardList,   label: 'Log'    },
-  { to: '/habits',      icon: RefreshCw,        label: 'Habits' },
-  { to: '/boss',        icon: Sword,            label: 'Boss'   },
-  { to: '/achievements',icon: Trophy,           label: 'Awards' },
+  { to: '/',             icon: LayoutDashboard, label: 'Home'    },
+  { to: '/log',          icon: ClipboardList,   label: 'Log'     },
+  { to: '/habits',       icon: RefreshCw,        label: 'Habits'  },
+  { to: '/boss',         icon: Sword,            label: 'Boss'    },
+  { to: '/achievements', icon: Trophy,           label: 'Awards'  },
 ]
 
 export default function Navbar() {

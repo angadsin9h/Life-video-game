@@ -8,6 +8,8 @@ import Goals from './pages/Goals'
 import Achievements from './pages/Achievements'
 import Habits from './pages/Habits'
 import BossBattle from './pages/BossBattle'
+import Journal from './pages/Journal'
+import Heatmap from './pages/Heatmap'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
               <Route path="/"             element={<Dashboard />}    />
               <Route path="/log"          element={<LogTasks />}     />
               <Route path="/progress"     element={<Progress />}     />
+              <Route path="/activity"     element={<Heatmap />}      />
+              <Route path="/journal"      element={<Journal />}      />
               <Route path="/ai-coach"     element={<AICoach />}      />
               <Route path="/goals"        element={<Goals />}        />
               <Route path="/achievements" element={<Achievements />} />

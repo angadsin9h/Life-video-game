@@ -25,6 +25,7 @@ const questsRouter = require('./routes/quests');
 const habitsRouter = require('./routes/habits');
 const { router: bossRouter } = require('./routes/boss');
 const moodRouter = require('./routes/mood');
+const journalRouter = require('./routes/journal');
 
 app.use('/api/logs', logsRouter);
 app.use('/api/stats', statsRouter);
@@ -35,6 +36,7 @@ app.use('/api/quests', questsRouter);
 app.use('/api/habits', habitsRouter);
 app.use('/api/boss', bossRouter);
 app.use('/api/mood', moodRouter);
+app.use('/api/journal', journalRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

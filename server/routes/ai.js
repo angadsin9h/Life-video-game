@@ -32,7 +32,7 @@ const MOCK_RESPONSES = {
   ],
 };
 
-function getMockResponse(message) {
+function getMockResponse(message, userContext) {
   const lower = message.toLowerCase();
   let pool = MOCK_RESPONSES.default;
   if (lower.includes('health') || lower.includes('workout') || lower.includes('exercise') || lower.includes('sleep') || lower.includes('diet') || lower.includes('nutrition')) {
@@ -44,7 +44,131 @@ function getMockResponse(message) {
   } else if (lower.includes('learn') || lower.includes('study') || lower.includes('skill') || lower.includes('read')) {
     pool = MOCK_RESPONSES.learn;
   }
-  return pool[Math.floor(Math.random() * pool.length)];
+  const base = pool[Math.floor(Math.random() * pool.length)];
+
+  if (!userContext) return base;
+
+  // Append personalized context if available
+  const { streak, weeklyAvg, totalHours, weakestCat } = userContext;
+  let personal = '';
+  if (streak > 0) personal += `\n\n📊 **Your Stats:** You're on a ${streak}-day streak`;
+  if (weeklyAvg > 0) personal += `, averaging ${weeklyAvg} pts/week`;
+  if (totalHours > 0) personal += `, with ${totalHours} total hours invested`;
+  if (weakestCat) personal += `. Your weakest category is **${weakestCat}** — that's your biggest opportunity for growth!`;
+  if (personal) personal += ' Keep pushing! ⚡';
+
+  return base + personal;
+}
+
+function getUserContext() {
+  try {
+    const logs = db.prepare('SELECT * FROM daily_logs ORDER BY date DESC LIMIT 30').all();
+    const allTasks = db.prepare('SELECT * FROM task_entries').all();
+    const totalMinutes = allTasks.reduce((a, t) => a + (t.duration_minutes || 0), 0);
+    const totalHours = Math.round(totalMinutes / 60);
+
+    const categoryMax = { health: 25, mind: 25, work: 25, social: 10, growth: 15 };
+    function calcScore(tasks) {
+      const scores = {};
+      for (const t of tasks) {
+        const cat = t.category.toLowerCase();
+        if (!categoryMax[cat]) continue;
+        let pts = t.duration_minutes >= 30 ? categoryMax[cat] : t.duration_minutes >= 15 ? categoryMax[cat] * 0.75 : categoryMax[cat] * 0.5;
+        scores[cat] = Math.min(categoryMax[cat], (scores[cat] || 0) + pts);
+      }
+      return Math.round(Object.values(scores).reduce((a, b) => a + b, 0));
+    }
+
+    const scores = logs.map(log => {
+      const tasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
+      return calcScore(tasks);
+    });
+    const weeklyAvg = scores.slice(0, 7).length > 0
+      ? Math.round(scores.slice(0, 7).reduce((a, b) => a + b, 0) / scores.slice(0, 7).length)
+      : 0;
+
+    // Streak
+    const dateSet = new Set(logs.map(l => l.date));
+    const today = new Date().toISOString().split('T')[0];
+    let streak = 0;
+    let d = new Date(today);
+    while (dateSet.has(d.toISOString().split('T')[0])) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    }
+
+    // Category avg minutes (last 30 days)
+    const catMins = { health: 0, mind: 0, work: 0, social: 0, growth: 0 };
+    const catDays = { health: 0, mind: 0, work: 0, social: 0, growth: 0 };
+    for (const log of logs) {
+      const tasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
+      const dayMins = {};
+      for (const t of tasks) {
+        dayMins[t.category] = (dayMins[t.category] || 0) + t.duration_minutes;
+      }
+      for (const [cat, mins] of Object.entries(dayMins)) {
+        if (catMins[cat] !== undefined) { catMins[cat] += mins; catDays[cat]++; }
+      }
+    }
+    const avgMins = {};
+    for (const cat of Object.keys(catMins)) {
+      avgMins[cat] = catDays[cat] > 0 ? Math.round(catMins[cat] / catDays[cat]) : 0;
+    }
+
+    // Weakest category (lowest avg minutes among ones with some data)
+    const active = Object.entries(avgMins).filter(([, v]) => v > 0);
+    const weakestCat = active.length > 0 ? active.sort((a, b) => a[1] - b[1])[0][0] : null;
+
+    // Achievements + goals
+    const unlockedAch = db.prepare('SELECT COUNT(*) as cnt FROM achievements WHERE unlocked_at IS NOT NULL').get().cnt;
+    const completedGoals = db.prepare('SELECT COUNT(*) as cnt FROM goals WHERE completed = 1').get().cnt;
+    const activeGoals = db.prepare('SELECT title FROM goals WHERE completed = 0 LIMIT 3').all();
+
+    return {
+      streak,
+      weeklyAvg,
+      totalHours,
+      weeklyScores: scores.slice(0, 7),
+      categoryAvgMinutes: avgMins,
+      weakestCat,
+      unlockedAchievements: unlockedAch,
+      completedGoals,
+      activeGoals: activeGoals.map(g => g.title),
+      totalLogged: logs.length,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function buildSystemPrompt(ctx) {
+  let prompt = 'You are LifeQuest AI Coach, a gamified life productivity assistant. You speak with enthusiasm and use gaming metaphors (XP, levels, stats, quests, achievements). You give practical, actionable advice about health, productivity, learning, social connections, and personal growth. Keep responses concise but impactful (2-4 paragraphs max). Use relevant emojis.';
+
+  if (!ctx) return prompt;
+
+  prompt += '\n\nCURRENT PLAYER STATS (use these to give personalized advice):';
+  if (ctx.streak > 0) prompt += `\n- Current streak: ${ctx.streak} days`;
+  if (ctx.weeklyAvg > 0) prompt += `\n- Weekly average score: ${ctx.weeklyAvg}/100`;
+  if (ctx.totalHours > 0) prompt += `\n- Total hours invested: ${ctx.totalHours}h`;
+  if (ctx.totalLogged > 0) prompt += `\n- Days logged: ${ctx.totalLogged}`;
+  if (ctx.unlockedAchievements > 0) prompt += `\n- Achievements unlocked: ${ctx.unlockedAchievements}`;
+  if (ctx.completedGoals > 0) prompt += `\n- Goals completed: ${ctx.completedGoals}`;
+
+  if (Object.keys(ctx.categoryAvgMinutes).some(k => ctx.categoryAvgMinutes[k] > 0)) {
+    prompt += '\n- Average daily minutes by category:';
+    for (const [cat, mins] of Object.entries(ctx.categoryAvgMinutes)) {
+      if (mins > 0) prompt += ` ${cat}: ${mins}m,`;
+    }
+  }
+
+  if (ctx.weakestCat) prompt += `\n- Weakest category needing attention: ${ctx.weakestCat}`;
+
+  if (ctx.activeGoals.length > 0) {
+    prompt += `\n- Active goals: ${ctx.activeGoals.join(', ')}`;
+  }
+
+  prompt += '\n\nReference these stats naturally in your coaching to make advice feel personalized and relevant.';
+  return prompt;
 }
 
 // POST /chat
@@ -55,6 +179,7 @@ router.post('/chat', async (req, res) => {
 
     db.prepare('INSERT INTO chat_history (role, content) VALUES (?, ?)').run('user', message);
 
+    const userContext = getUserContext();
     let reply;
 
     if (process.env.OPENAI_API_KEY) {
@@ -65,19 +190,16 @@ router.post('/chat', async (req, res) => {
         const completion = await openai.chat.completions.create({
           model: 'gpt-4o-mini',
           messages: [
-            {
-              role: 'system',
-              content: 'You are LifeQuest AI Coach, a gamified life productivity assistant. You speak with enthusiasm and use gaming metaphors (XP, levels, stats, quests, achievements). You give practical, actionable advice about health, productivity, learning, social connections, and personal growth. Keep responses concise but impactful (2-4 paragraphs max). Use relevant emojis.',
-            },
+            { role: 'system', content: buildSystemPrompt(userContext) },
             ...history.map(h => ({ role: h.role, content: h.content })),
           ],
         });
         reply = completion.choices[0].message.content;
-      } catch (aiErr) {
-        reply = getMockResponse(message);
+      } catch {
+        reply = getMockResponse(message, userContext);
       }
     } else {
-      reply = getMockResponse(message);
+      reply = getMockResponse(message, userContext);
     }
 
     db.prepare('INSERT INTO chat_history (role, content) VALUES (?, ?)').run('assistant', reply);
