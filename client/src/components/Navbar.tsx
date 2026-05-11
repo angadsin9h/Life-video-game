@@ -1,12 +1,23 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, ClipboardList, BarChart3, Bot, Target, Gamepad2 } from 'lucide-react'
+import { LayoutDashboard, ClipboardList, BarChart3, Bot, Target, Gamepad2, Trophy, RefreshCw, Sword } from 'lucide-react'
 
 const navItems = [
-  { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
-  { to: '/log', icon: ClipboardList, label: 'Log Tasks' },
-  { to: '/progress', icon: BarChart3, label: 'Progress' },
-  { to: '/ai-coach', icon: Bot, label: 'AI Coach' },
-  { to: '/goals', icon: Target, label: 'Goals' },
+  { to: '/',            icon: LayoutDashboard, label: 'Dashboard'   },
+  { to: '/log',         icon: ClipboardList,   label: 'Log Tasks'   },
+  { to: '/progress',    icon: BarChart3,        label: 'Progress'    },
+  { to: '/habits',      icon: RefreshCw,        label: 'Habits'      },
+  { to: '/boss',        icon: Sword,            label: 'Boss Battle' },
+  { to: '/achievements',icon: Trophy,           label: 'Achievements'},
+  { to: '/ai-coach',    icon: Bot,              label: 'AI Coach'    },
+  { to: '/goals',       icon: Target,           label: 'Goals'       },
+]
+
+const mobileItems = [
+  { to: '/',            icon: LayoutDashboard, label: 'Home'   },
+  { to: '/log',         icon: ClipboardList,   label: 'Log'    },
+  { to: '/habits',      icon: RefreshCw,        label: 'Habits' },
+  { to: '/boss',        icon: Sword,            label: 'Boss'   },
+  { to: '/achievements',icon: Trophy,           label: 'Awards' },
 ]
 
 export default function Navbar() {
@@ -20,7 +31,7 @@ export default function Navbar() {
             LifeQuest
           </span>
         </div>
-        <nav className="flex-1 px-4 py-4 space-y-1">
+        <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
           {navItems.map(({ to, icon: Icon, label }) => (
             <NavLink
               key={to}
@@ -47,7 +58,7 @@ export default function Navbar() {
       {/* Mobile bottom nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 z-50">
         <div className="flex justify-around py-2">
-          {navItems.map(({ to, icon: Icon, label }) => (
+          {mobileItems.map(({ to, icon: Icon, label }) => (
             <NavLink
               key={to}
               to={to}
