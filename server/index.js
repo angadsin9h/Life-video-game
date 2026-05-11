@@ -38,6 +38,9 @@ app.use('/api/boss', bossRouter);
 app.use('/api/mood', moodRouter);
 app.use('/api/journal', journalRouter);
 
+const weeklyRouter = require('./routes/weekly');
+app.use('/api/weekly', weeklyRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

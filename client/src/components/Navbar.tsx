@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
-  Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar,
+  Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
 } from 'lucide-react'
 
 const navItems = [
   { to: '/',             icon: LayoutDashboard, label: 'Dashboard'    },
   { to: '/log',          icon: ClipboardList,   label: 'Log Tasks'    },
   { to: '/progress',     icon: BarChart3,        label: 'Progress'     },
+  { to: '/weekly',       icon: FileText,         label: 'Weekly'       },
   { to: '/activity',     icon: Calendar,         label: 'Activity'     },
   { to: '/habits',       icon: RefreshCw,        label: 'Habits'       },
   { to: '/journal',      icon: BookOpen,         label: 'Journal'      },
