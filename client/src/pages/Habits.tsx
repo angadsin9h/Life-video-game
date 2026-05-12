@@ -144,6 +144,7 @@ export default function Habits() {
   const [addingTemplate, setAddingTemplate] = useState<string | null>(null)
   const [usingShield, setUsingShield] = useState<number | null>(null)
   const [shieldMsg, setShieldMsg] = useState<string | null>(null)
+  const [milestoneMsg, setMilestoneMsg] = useState<string | null>(null)
 
   const load = useCallback(() =>
     axios.get<Habit[]>('/api/habits').then(r => setHabits(r.data)).catch(console.error).finally(() => setLoading(false)), [])
@@ -163,11 +164,31 @@ export default function Habits() {
     }
   }
 
+  const STREAK_MILESTONES: Record<number, string> = {
+    7:   '🔥 One week streak! You\'re building a real habit!',
+    14:  '⚡ Two weeks strong! Habits are forming.',
+    21:  '🧠 21 days! Science says this habit is now wired.',
+    30:  '🏆 30-day streak! One full month of consistency!',
+    50:  '💎 50-day legend! You\'re in elite territory!',
+    100: '👑 100 DAYS! You are unstoppable. Absolute legend.',
+  }
+
   const toggleToday = async (habit: Habit) => {
     setToggling(habit.id)
     try {
       const today = new Date().toISOString().split('T')[0]
-      await axios.post(`/api/habits/${habit.id}/complete`, { date: today })
+      const res = await axios.post<{ completed: boolean; streak: number; shieldEarned: boolean; shields: number }>(`/api/habits/${habit.id}/complete`, { date: today })
+      if (res.data.completed) {
+        const newStreak = res.data.streak
+        const milestoneMsg = STREAK_MILESTONES[newStreak]
+        if (milestoneMsg) {
+          setMilestoneMsg(milestoneMsg)
+          setTimeout(() => setMilestoneMsg(null), 5000)
+        } else if (res.data.shieldEarned) {
+          setShieldMsg(`🛡️ Shield earned at ${newStreak}-day milestone!`)
+          setTimeout(() => setShieldMsg(null), 3500)
+        }
+      }
       load()
     } finally {
       setToggling(null)
@@ -232,6 +253,14 @@ export default function Habits() {
           <Plus className="w-4 h-4" /> New Habit
         </button>
       </div>
+
+      {/* Milestone celebration */}
+      {milestoneMsg && (
+        <div className="game-card p-4 border border-yellow-500/40 bg-yellow-900/10 text-center text-slate-200 font-semibold animate-pulse">
+          <div className="text-2xl mb-1">🎉</div>
+          <div>{milestoneMsg}</div>
+        </div>
+      )}
 
       {/* Shield notification */}
       {shieldMsg && (

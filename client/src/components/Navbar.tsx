@@ -19,7 +19,8 @@ const NAV_GROUPS = [
       { to: '/metrics',    icon: Activity,        label: 'Body Metrics'},
       { to: '/planner',    icon: CalendarDays,    label: 'Day Planner' },
       { to: '/gratitude',  icon: Sparkles,        label: 'Gratitude'   },
-      { to: '/intentions', icon: Target,           label: 'Intentions'  },
+      { to: '/intentions',   icon: Target,           label: 'Intentions'  },
+      { to: '/affirmations', icon: Star,             label: 'Affirmations'},
     ],
   },
   {
