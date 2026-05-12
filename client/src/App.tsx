@@ -117,6 +117,8 @@ import LifeAudit from './pages/LifeAudit'
 import AnxietyJournal from './pages/AnxietyJournal'
 import FitnessGoals from './pages/FitnessGoals'
 import SocialBattery from './pages/SocialBattery'
+import ContentLibrary from './pages/ContentLibrary'
+import DeepWorkPlanner from './pages/DeepWorkPlanner'
 
 function App() {
   return (
@@ -243,6 +245,8 @@ function App() {
               <Route path="/anxiety-journal"      element={<AnxietyJournal />}        />
               <Route path="/fitness-goals"        element={<FitnessGoals />}          />
               <Route path="/social-battery"       element={<SocialBattery />}         />
+              <Route path="/content-library"      element={<ContentLibrary />}        />
+              <Route path="/deep-work"            element={<DeepWorkPlanner />}       />
             </Routes>
           </div>
         </main>
