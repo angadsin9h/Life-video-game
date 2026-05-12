@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword, RefreshCw, Zap, ChevronDown } from 'lucide-react'
+import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword, RefreshCw, Zap, ChevronDown, Sun } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import ScoreSparkline from '../components/ScoreSparkline'
 import FocusRecommendation from '../components/FocusRecommendation'
@@ -51,6 +51,12 @@ interface Achievement {
   icon: string
   unlocked: boolean
   unlocked_at: string | null
+}
+
+interface Intention {
+  id: number
+  text: string
+  completed: number
 }
 
 const CAT_ICONS: Record<string, string> = { health: '❤️', mind: '🧠', work: '💼', social: '👥', growth: '🚀' }
@@ -119,6 +125,10 @@ export default function Dashboard() {
   const [quickMins, setQuickMins] = useState(30)
   const [quickLogging, setQuickLogging] = useState(false)
   const [quickSuccess, setQuickSuccess] = useState(false)
+  const [intentions, setIntentions] = useState<Intention[]>([])
+  const [togglingIntention, setTogglingIntention] = useState<number | null>(null)
+  const [smartMessages, setSmartMessages] = useState<Array<{ type: string; priority: number; msg: string }>>([])
+  const [dismissedSmartMsg, setDismissedSmartMsg] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -131,7 +141,8 @@ export default function Dashboard() {
       axios.get<{ achievements: Achievement[]; totalXp: number }>('/api/achievements'),
       axios.get<{ username: string; avatar: string }>('/api/settings'),
       axios.get<Habit[]>('/api/habits'),
-    ]).then(([statsRes, logRes, questsRes, moodRes, achRes, settingsRes, habitsRes]) => {
+      axios.get<Intention[]>(`/api/intentions/${today}`),
+    ]).then(([statsRes, logRes, questsRes, moodRes, achRes, settingsRes, habitsRes, intentionsRes]) => {
       setStats(statsRes.data)
       setTodayLog(logRes.data)
       setQuests(questsRes.data)
@@ -140,6 +151,7 @@ export default function Dashboard() {
       setPlayerName(settingsRes.data.username || 'Hero')
       setPlayerAvatar(settingsRes.data.avatar || '⚔️')
       setHabits(habitsRes.data.slice(0, 6))
+      setIntentions(intentionsRes.data)
       setRecentAchievements(
         achRes.data.achievements
           .filter(a => a.unlocked && a.unlocked_at)
@@ -147,6 +159,10 @@ export default function Dashboard() {
           .slice(0, 3)
       )
     }).catch(console.error).finally(() => setLoading(false))
+    // Load smart status in parallel (non-blocking)
+    axios.get<{ messages: Array<{ type: string; priority: number; msg: string }> }>('/api/reminders/status')
+      .then(r => setSmartMessages(r.data.messages))
+      .catch(() => {})
   }, [])
 
   const quickLog = async () => {
@@ -161,6 +177,14 @@ export default function Dashboard() {
       setTodayLog(logRes.data)
     } catch (e) { console.error(e) }
     finally { setQuickLogging(false) }
+  }
+
+  const toggleIntention = async (id: number) => {
+    setTogglingIntention(id)
+    try {
+      const res = await axios.patch<Intention>(`/api/intentions/${id}/complete`)
+      setIntentions(prev => prev.map(i => i.id === id ? res.data : i))
+    } finally { setTogglingIntention(null) }
   }
 
   const toggleHabit = async (habit: Habit) => {
@@ -233,16 +257,26 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Streak at-risk warning */}
-      {stats && stats.currentStreak > 0 && !todayLog && new Date().getHours() >= 18 && (
-        <div className="flex items-center gap-3 bg-orange-900/30 border border-orange-500/50 rounded-xl px-4 py-3 animate-pulse">
-          <span className="text-2xl">🔥</span>
-          <div className="flex-1">
-            <div className="text-sm font-bold text-orange-400">Streak at risk!</div>
-            <div className="text-xs text-orange-300/70">
-              Your {stats.currentStreak}-day streak will reset at midnight. <Link to="/log" className="underline hover:text-orange-200">Log today's activities</Link> to keep it alive.
+      {/* Smart daily nudges */}
+      {smartMessages.length > 0 && !dismissedSmartMsg && (
+        <div className="space-y-2">
+          {smartMessages.map((m, i) => (
+            <div
+              key={i}
+              className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm ${
+                m.type === 'celebration'
+                  ? 'bg-green-900/20 border border-green-500/30 text-green-300'
+                  : m.type === 'streak'
+                  ? 'bg-orange-900/20 border border-orange-500/30 text-orange-300'
+                  : 'bg-slate-800/60 border border-slate-700 text-slate-300'
+              }`}
+            >
+              <span className="flex-1">{m.msg}</span>
+              {i === 0 && (
+                <button onClick={() => setDismissedSmartMsg(true)} className="text-slate-600 hover:text-slate-400 text-xs flex-shrink-0">✕</button>
+              )}
             </div>
-          </div>
+          ))}
         </div>
       )}
 
@@ -326,6 +360,40 @@ export default function Dashboard() {
           <div className="stat-bar-fill bar-work transition-all duration-1000" style={{ width: `${(xp / nextXp) * 100}%` }} />
         </div>
       </div>
+
+      {/* Daily Intentions Widget */}
+      {intentions.length > 0 && (
+        <div className="game-card p-4 border border-yellow-500/20 bg-yellow-900/5">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
+              <Sun className="w-4 h-4 text-yellow-400" />
+              Today's Intentions
+            </h3>
+            <Link to="/intentions" className="text-xs text-yellow-500 hover:text-yellow-400">Edit →</Link>
+          </div>
+          <div className="space-y-2">
+            {intentions.map((intention, idx) => (
+              <button
+                key={intention.id}
+                onClick={() => toggleIntention(intention.id)}
+                disabled={togglingIntention === intention.id}
+                className={`w-full flex items-center gap-3 text-left transition-all ${intention.completed ? 'opacity-50' : ''}`}
+              >
+                {intention.completed
+                  ? <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  : <Circle className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                }
+                <span className={`text-sm ${intention.completed ? 'line-through text-slate-500' : 'text-slate-200'}`}>
+                  {idx + 1}. {intention.text}
+                </span>
+              </button>
+            ))}
+          </div>
+          {intentions.every(i => i.completed) && (
+            <div className="mt-2 text-center text-xs text-green-400 font-semibold">🌟 All intentions complete!</div>
+          )}
+        </div>
+      )}
 
       {/* Quick Log Widget */}
       <div className="game-card p-4">

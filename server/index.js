@@ -71,6 +71,9 @@ app.use('/api/intentions', intentionsRouter);
 const categoryGoalsRouter = require('./routes/category_goals');
 app.use('/api/category-goals', categoryGoalsRouter);
 
+const remindersRouter = require('./routes/reminders');
+app.use('/api/reminders', remindersRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

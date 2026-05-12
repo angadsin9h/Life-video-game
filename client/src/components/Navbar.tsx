@@ -12,6 +12,7 @@ const NAV_GROUPS = [
       { to: '/',           icon: LayoutDashboard, label: 'Dashboard'   },
       { to: '/log',        icon: ClipboardList,   label: 'Log Tasks'   },
       { to: '/timer',      icon: Timer,           label: 'Focus Timer' },
+      { to: '/focus-log',  icon: Zap,             label: 'Focus Log'   },
       { to: '/quests',     icon: Scroll,          label: 'Quests'      },
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
       { to: '/review',     icon: Star,            label: 'Daily Review'},
