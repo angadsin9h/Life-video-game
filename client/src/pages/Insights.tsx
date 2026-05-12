@@ -7,16 +7,23 @@ interface Insight {
   text: string
 }
 
+interface DowAvg { day: string; avg: number; count: number }
+
 interface InsightsData {
   insights: Insight[]
   weeklyTrend: { last7Avg: number; prev7Avg: number; delta: number } | null
   bestCat: string | null
   weakestCat: string | null
   bestDow: string | null
+  worstDow: string | null
   longestDrought: number
   perfectDays30: number
   scoreStdDev: number
   catAvgMinutes: Record<string, number>
+  scoreDist: Record<string, number>
+  dowAvgs: DowAvg[]
+  monthlyTotal: number
+  totalDaysLogged: number
 }
 
 const CAT_ICONS: Record<string, string> = { health: '❤️', mind: '🧠', work: '💼', social: '👥', growth: '🚀' }
@@ -74,7 +81,7 @@ export default function Insights() {
   }
 
   const tip = getTodayTip()
-  const { weeklyTrend, insights, bestCat, weakestCat, bestDow, perfectDays30, scoreStdDev, catAvgMinutes } = data ?? {}
+  const { weeklyTrend, insights, bestCat, weakestCat, bestDow, worstDow, perfectDays30, scoreStdDev, catAvgMinutes, scoreDist, dowAvgs, monthlyTotal, totalDaysLogged } = data ?? {}
 
   const TrendIcon = !weeklyTrend || weeklyTrend.delta === 0
     ? Minus
@@ -193,7 +200,7 @@ export default function Insights() {
           { label: 'Best Day', value: bestDow ?? '—', icon: '📅', color: 'text-cyan-400' },
           { label: 'Perfect Days', value: `${perfectDays30 ?? 0}`, icon: '💎', sub: 'last 30', color: 'text-yellow-400' },
           { label: 'Score Variance', value: `±${scoreStdDev ?? 0}`, icon: '📊', sub: 'std dev', color: 'text-violet-400' },
-          { label: 'Strongest Cat', value: bestCat ? (CAT_ICONS[bestCat] ?? '') + ' ' + bestCat : '—', icon: '', color: bestCat ? CAT_COLORS[bestCat] : 'text-slate-400' },
+          { label: 'Days Logged', value: `${totalDaysLogged ?? 0}`, icon: '📓', sub: 'all time', color: 'text-green-400' },
         ].map(s => (
           <div key={s.label} className="game-card p-4 text-center">
             {s.icon && <div className="text-2xl mb-1">{s.icon}</div>}
@@ -203,6 +210,75 @@ export default function Insights() {
           </div>
         ))}
       </div>
+
+      {/* Day-of-week performance chart */}
+      {dowAvgs && dowAvgs.some(d => d.count > 0) && (
+        <div className="game-card p-5">
+          <h3 className="font-semibold text-slate-200 mb-1">Performance by Day of Week</h3>
+          <p className="text-xs text-slate-500 mb-4">Average score per weekday</p>
+          <div className="flex items-end gap-2 h-28">
+            {dowAvgs.map(d => {
+              const pct = d.avg / 100
+              const isBest = d.day === bestDow?.slice(0, 3)
+              const isWorst = d.day === worstDow?.slice(0, 3)
+              return (
+                <div key={d.day} className="flex-1 flex flex-col items-center gap-1">
+                  <div className="text-xs font-bold text-slate-400" style={{ fontFamily: 'Orbitron, monospace' }}>
+                    {d.count > 0 ? d.avg : '—'}
+                  </div>
+                  <div className="w-full flex items-end" style={{ height: '72px' }}>
+                    <div
+                      className={`w-full rounded-t-md transition-all duration-700 ${
+                        isBest ? 'bg-green-500' : isWorst ? 'bg-orange-500/60' : 'bg-violet-600/60'
+                      }`}
+                      style={{ height: d.count > 0 ? `${Math.max(4, pct * 72)}px` : '4px' }}
+                    />
+                  </div>
+                  <div className={`text-[10px] ${isBest ? 'text-green-400 font-bold' : 'text-slate-500'}`}>{d.day}</div>
+                </div>
+              )
+            })}
+          </div>
+          <div className="flex gap-3 mt-2 text-xs text-slate-500">
+            {bestDow && <span><span className="text-green-400">■</span> Best: {bestDow}</span>}
+            {worstDow && worstDow !== bestDow && <span><span className="text-orange-400">■</span> Weakest: {worstDow}</span>}
+          </div>
+        </div>
+      )}
+
+      {/* Score distribution */}
+      {scoreDist && Object.values(scoreDist).some(v => v > 0) && (
+        <div className="game-card p-5">
+          <h3 className="font-semibold text-slate-200 mb-1">Score Distribution</h3>
+          <p className="text-xs text-slate-500 mb-4">Last 30 days — where do your scores cluster?</p>
+          {(() => {
+            const buckets = [
+              { label: '0–24', key: '0-24', color: 'bg-red-500/70' },
+              { label: '25–49', key: '25-49', color: 'bg-orange-500/70' },
+              { label: '50–74', key: '50-74', color: 'bg-yellow-500/70' },
+              { label: '75–99', key: '75-99', color: 'bg-cyan-500/70' },
+              { label: '100', key: '100', color: 'bg-green-500' },
+            ]
+            const maxVal = Math.max(...buckets.map(b => scoreDist[b.key] ?? 0), 1)
+            return (
+              <div className="space-y-2">
+                {buckets.map(b => {
+                  const val = scoreDist[b.key] ?? 0
+                  return (
+                    <div key={b.key} className="flex items-center gap-3">
+                      <span className="text-xs text-slate-400 w-12 text-right">{b.label}</span>
+                      <div className="flex-1 stat-bar h-5">
+                        <div className={`${b.color} h-full rounded-r transition-all duration-700`} style={{ width: `${(val / maxVal) * 100}%` }} />
+                      </div>
+                      <span className="text-xs font-bold text-slate-300 w-6 text-right">{val}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })()}
+        </div>
+      )}
 
       {!insights?.length && !weeklyTrend && (
         <div className="text-center py-12 text-slate-500">

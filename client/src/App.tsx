@@ -23,6 +23,10 @@ import Challenges from './pages/Challenges'
 import Insights from './pages/Insights'
 import MoodTracker from './pages/MoodTracker'
 import Notes from './pages/Notes'
+import DailyReview from './pages/DailyReview'
+import BodyMetrics from './pages/BodyMetrics'
+import Planner from './pages/Planner'
+import Gratitude from './pages/Gratitude'
 
 function App() {
   return (
@@ -55,6 +59,10 @@ function App() {
               <Route path="/insights"     element={<Insights />}     />
               <Route path="/mood"         element={<MoodTracker />}  />
               <Route path="/notes"        element={<Notes />}        />
+              <Route path="/review"       element={<DailyReview />}  />
+              <Route path="/metrics"      element={<BodyMetrics />}  />
+              <Route path="/planner"      element={<Planner />}      />
+              <Route path="/gratitude"    element={<Gratitude />}    />
             </Routes>
           </div>
         </main>

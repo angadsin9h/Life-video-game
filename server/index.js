@@ -56,6 +56,15 @@ app.use('/api/insights', insightsRouter);
 const notesRouter = require('./routes/notes');
 app.use('/api/notes', notesRouter);
 
+const metricsRouter = require('./routes/metrics');
+app.use('/api/metrics', metricsRouter);
+
+const plannerRouter = require('./routes/planner');
+app.use('/api/planner', plannerRouter);
+
+const gratitudeRouter = require('./routes/gratitude');
+app.use('/api/gratitude', gratitudeRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

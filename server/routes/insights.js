@@ -88,8 +88,8 @@ router.get('/', (req, res) => {
     // Perfect days in last 30
     const perfectDays30 = sorted.slice(0, 30).filter(d => d.score >= 100).length;
 
-    // Most productive hour (from focus sessions if available)
-    const sessions = db.prepare("SELECT created_at FROM focus_sessions ORDER BY created_at DESC LIMIT 100").all();
+    // Most productive hour (from timer sessions)
+    const sessions = db.prepare("SELECT created_at FROM timer_sessions ORDER BY created_at DESC LIMIT 200").all();
     const hourCounts = Array(24).fill(0);
     for (const s of sessions) {
       try {
@@ -98,6 +98,30 @@ router.get('/', (req, res) => {
       } catch (_) {}
     }
     const peakHour = sessions.length > 0 ? hourCounts.indexOf(Math.max(...hourCounts)) : null;
+
+    // Score distribution buckets
+    const scoreDist = { '0-24': 0, '25-49': 0, '50-74': 0, '75-99': 0, '100': 0 };
+    for (const log of sorted.slice(0, 30)) {
+      if (log.score >= 100) scoreDist['100']++;
+      else if (log.score >= 75) scoreDist['75-99']++;
+      else if (log.score >= 50) scoreDist['50-74']++;
+      else if (log.score >= 25) scoreDist['25-49']++;
+      else scoreDist['0-24']++;
+    }
+
+    // Day-of-week averages array
+    const dowAvgs = dayAvgs.map((avg, i) => ({
+      day: DAY_NAMES[i].slice(0, 3),
+      avg: Math.round(avg),
+      count: dayCounts[i],
+    }));
+
+    // Best and worst DOW
+    const worstDowIdx = dayAvgs.map((v, i) => ({ v, i })).filter(x => dayCounts[x.i] > 0).sort((a, b) => a.v - b.v)[0]?.i ?? null;
+    const worstDow = worstDowIdx !== null ? DAY_NAMES[worstDowIdx] : null;
+
+    // Monthly score total
+    const monthlyTotal = sorted.slice(0, 30).reduce((s, d) => s + d.score, 0);
 
     const insights = [];
 
@@ -122,10 +146,15 @@ router.get('/', (req, res) => {
       bestCat,
       weakestCat,
       bestDow,
+      worstDow,
       longestDrought,
       perfectDays30,
       scoreStdDev: stdDev,
       catAvgMinutes: catAvg,
+      scoreDist,
+      dowAvgs,
+      monthlyTotal,
+      totalDaysLogged: logsWithScores.length,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

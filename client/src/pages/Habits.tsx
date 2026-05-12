@@ -1,6 +1,24 @@
 import { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
-import { Plus, Trash2, Flame, CheckCircle2, Circle, RefreshCw, ChevronDown, ChevronUp, Trophy } from 'lucide-react'
+import { Plus, Trash2, Flame, CheckCircle2, Circle, RefreshCw, ChevronDown, ChevronUp, Trophy, Wand2 } from 'lucide-react'
+
+const HABIT_TEMPLATES = [
+  { emoji: '🏃', title: 'Morning Run', category: 'health', target_minutes: 30, description: 'Run or jog to start the day' },
+  { emoji: '💪', title: 'Workout', category: 'health', target_minutes: 45, description: 'Strength or cardio session' },
+  { emoji: '🧘', title: 'Meditation', category: 'mind', target_minutes: 10, description: 'Mindfulness or breathing practice' },
+  { emoji: '📚', title: 'Read 30 Min', category: 'mind', target_minutes: 30, description: 'Read books or articles' },
+  { emoji: '💧', title: 'Drink Water', category: 'health', target_minutes: 0, description: '8 glasses throughout the day' },
+  { emoji: '🌱', title: 'Learning', category: 'growth', target_minutes: 30, description: 'Study or learn something new' },
+  { emoji: '✍️', title: 'Journaling', category: 'mind', target_minutes: 15, description: 'Write daily reflections' },
+  { emoji: '🛏️', title: 'Sleep by 11pm', category: 'health', target_minutes: 0, description: 'Consistent sleep schedule' },
+  { emoji: '🧹', title: 'Tidy Space', category: 'growth', target_minutes: 10, description: 'Keep your environment clean' },
+  { emoji: '📞', title: 'Connect', category: 'social', target_minutes: 15, description: 'Reach out to a friend or family' },
+  { emoji: '🎯', title: 'Deep Work', category: 'work', target_minutes: 90, description: 'Focused productive session' },
+  { emoji: '🚶', title: 'Walk 10k Steps', category: 'health', target_minutes: 60, description: 'Hit your daily steps goal' },
+  { emoji: '🙏', title: 'Gratitude', category: 'mind', target_minutes: 5, description: 'List 3 things you are grateful for' },
+  { emoji: '📵', title: 'No Phone AM', category: 'mind', target_minutes: 0, description: 'Avoid phone first hour of day' },
+  { emoji: '🥗', title: 'Eat Clean', category: 'health', target_minutes: 0, description: 'Whole foods, skip junk food' },
+]
 
 interface Habit {
   id: number
@@ -120,6 +138,8 @@ export default function Habits() {
   const [submitting, setSubmitting] = useState(false)
   const [toggling, setToggling] = useState<number | null>(null)
   const [expandedId, setExpandedId] = useState<number | null>(null)
+  const [showTemplates, setShowTemplates] = useState(false)
+  const [addingTemplate, setAddingTemplate] = useState<string | null>(null)
 
   const load = useCallback(() =>
     axios.get<Habit[]>('/api/habits').then(r => setHabits(r.data)).catch(console.error).finally(() => setLoading(false)), [])
@@ -153,6 +173,14 @@ export default function Habits() {
   const deleteHabit = async (id: number) => {
     await axios.delete(`/api/habits/${id}`)
     load()
+  }
+
+  const addFromTemplate = async (t: typeof HABIT_TEMPLATES[number]) => {
+    setAddingTemplate(t.title)
+    try {
+      await axios.post('/api/habits', { title: t.title, description: t.description, category: t.category, target_minutes: t.target_minutes, emoji: t.emoji })
+      load()
+    } finally { setAddingTemplate(null) }
   }
 
   const completedToday = habits.filter(h => h.completedToday).length
@@ -258,6 +286,44 @@ export default function Habits() {
             </button>
             <button onClick={() => setShowForm(false)} className="game-btn-secondary">Cancel</button>
           </div>
+        </div>
+      )}
+
+      {/* Template library */}
+      {!showForm && (
+        <div className="game-card p-4">
+          <button
+            onClick={() => setShowTemplates(s => !s)}
+            className="flex items-center justify-between w-full text-left"
+          >
+            <span className="flex items-center gap-2 text-sm font-medium text-slate-300">
+              <Wand2 className="w-4 h-4 text-violet-400" />
+              Quick-add from templates
+            </span>
+            {showTemplates ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+          </button>
+          {showTemplates && (
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {HABIT_TEMPLATES.filter(t => !habits.some(h => h.title === t.title)).map(t => (
+                <button
+                  key={t.title}
+                  onClick={() => addFromTemplate(t)}
+                  disabled={addingTemplate === t.title}
+                  className="flex items-center gap-3 p-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 rounded-lg transition-all text-left group"
+                >
+                  <span className="text-xl">{t.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium text-slate-200 group-hover:text-white">{t.title}</div>
+                    <div className="text-xs text-slate-500">{CAT_ICONS[t.category]} {t.category}{t.target_minutes > 0 ? ` · ${t.target_minutes}m` : ''}</div>
+                  </div>
+                  <Plus className={`w-4 h-4 flex-shrink-0 transition-all ${addingTemplate === t.title ? 'animate-spin text-violet-400' : 'text-slate-600 group-hover:text-violet-400'}`} />
+                </button>
+              ))}
+              {HABIT_TEMPLATES.filter(t => !habits.some(h => h.title === t.title)).length === 0 && (
+                <p className="text-sm text-slate-500 col-span-2 text-center py-2">All templates added! 🎉</p>
+              )}
+            </div>
+          )}
         </div>
       )}
 

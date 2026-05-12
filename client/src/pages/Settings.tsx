@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Settings as SettingsIcon, User, Palette, Target, Volume2, VolumeX, Check, Save, Download } from 'lucide-react'
+import { Settings as SettingsIcon, User, Palette, Target, Volume2, VolumeX, Check, Save, Download, Bell, BellOff } from 'lucide-react'
 
 interface UserSettings {
   username: string
@@ -39,6 +39,11 @@ export default function Settings() {
   })
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [notifPermission, setNotifPermission] = useState<NotificationPermission>('default')
+
+  useEffect(() => {
+    if ('Notification' in window) setNotifPermission(Notification.permission)
+  }, [])
 
   useEffect(() => {
     axios.get<UserSettings>('/api/settings').then(r => {
@@ -54,6 +59,24 @@ export default function Settings() {
 
   const update = (key: keyof UserSettings, value: string) =>
     setSettings(s => ({ ...s, [key]: value }))
+
+  const requestNotifications = async () => {
+    if (!('Notification' in window)) return
+    const perm = await Notification.requestPermission()
+    setNotifPermission(perm)
+    if (perm === 'granted') {
+      new Notification('LifeQuest', { body: '🔔 Notifications enabled! You\'ll get daily reminders.', icon: '/favicon.ico' })
+    }
+  }
+
+  const sendTestNotif = () => {
+    if (notifPermission === 'granted') {
+      new Notification('LifeQuest Daily Reminder', {
+        body: "⚔️ Don't forget to log today's activities and keep your streak alive!",
+        icon: '/favicon.ico',
+      })
+    }
+  }
 
   if (loading) {
     return (
@@ -226,6 +249,35 @@ export default function Settings() {
           </button>
         </div>
       </div>
+
+      {/* Browser notifications */}
+      {'Notification' in window && (
+        <div className="game-card p-5">
+          <h3 className="font-semibold text-slate-200 mb-4 flex items-center gap-2">
+            {notifPermission === 'granted' ? <Bell className="w-5 h-5 text-green-400" /> : <BellOff className="w-5 h-5 text-slate-500" />}
+            Browser Notifications
+          </h3>
+          {notifPermission === 'granted' ? (
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-green-400 text-sm">
+                <Check className="w-4 h-4" /> Notifications enabled
+              </div>
+              <button onClick={sendTestNotif} className="game-btn-secondary text-sm flex items-center gap-2">
+                <Bell className="w-4 h-4" /> Send test notification
+              </button>
+            </div>
+          ) : notifPermission === 'denied' ? (
+            <p className="text-sm text-slate-400">Notifications are blocked. Enable them in your browser settings.</p>
+          ) : (
+            <div className="space-y-3">
+              <p className="text-sm text-slate-400">Enable notifications to get daily streak reminders and quest alerts.</p>
+              <button onClick={requestNotifications} className="game-btn-primary flex items-center gap-2 text-sm">
+                <Bell className="w-4 h-4" /> Enable Notifications
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Data export */}
       <div className="game-card p-5">

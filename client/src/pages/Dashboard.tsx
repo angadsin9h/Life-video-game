@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword } from 'lucide-react'
+import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword, RefreshCw } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import ScoreSparkline from '../components/ScoreSparkline'
 import FocusRecommendation from '../components/FocusRecommendation'
 import UpcomingDeadlines from '../components/UpcomingDeadlines'
+
+interface Habit {
+  id: number; title: string; emoji: string; category: string; streak: number; completedToday: boolean
+}
 
 interface DayLog {
   date: string
@@ -106,6 +110,8 @@ export default function Dashboard() {
   const [showMoodPicker, setShowMoodPicker] = useState(false)
   const [playerName, setPlayerName] = useState('Hero')
   const [playerAvatar, setPlayerAvatar] = useState('⚔️')
+  const [habits, setHabits] = useState<Habit[]>([])
+  const [togglingHabit, setTogglingHabit] = useState<number | null>(null)
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -117,7 +123,8 @@ export default function Dashboard() {
       axios.get<MoodEntry | null>('/api/mood/today'),
       axios.get<{ achievements: Achievement[]; totalXp: number }>('/api/achievements'),
       axios.get<{ username: string; avatar: string }>('/api/settings'),
-    ]).then(([statsRes, logRes, questsRes, moodRes, achRes, settingsRes]) => {
+      axios.get<Habit[]>('/api/habits'),
+    ]).then(([statsRes, logRes, questsRes, moodRes, achRes, settingsRes, habitsRes]) => {
       setStats(statsRes.data)
       setTodayLog(logRes.data)
       setQuests(questsRes.data)
@@ -125,6 +132,7 @@ export default function Dashboard() {
       setAchievementXp(achRes.data.totalXp)
       setPlayerName(settingsRes.data.username || 'Hero')
       setPlayerAvatar(settingsRes.data.avatar || '⚔️')
+      setHabits(habitsRes.data.slice(0, 6))
       setRecentAchievements(
         achRes.data.achievements
           .filter(a => a.unlocked && a.unlocked_at)
@@ -133,6 +141,15 @@ export default function Dashboard() {
       )
     }).catch(console.error).finally(() => setLoading(false))
   }, [])
+
+  const toggleHabit = async (habit: Habit) => {
+    setTogglingHabit(habit.id)
+    try {
+      await axios.post(`/api/habits/${habit.id}/complete`, { date: today })
+      const res = await axios.get<Habit[]>('/api/habits')
+      setHabits(res.data.slice(0, 6))
+    } finally { setTogglingHabit(null) }
+  }
 
   const logMood = async (moodValue: number) => {
     setMoodSubmitting(true)
@@ -288,6 +305,50 @@ export default function Dashboard() {
           <div className="stat-bar-fill bar-work transition-all duration-1000" style={{ width: `${(xp / nextXp) * 100}%` }} />
         </div>
       </div>
+
+      {/* Habits Quick Check */}
+      {habits.length > 0 && (
+        <div className="game-card p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
+              <RefreshCw className="w-4 h-4 text-violet-400" />
+              Today's Habits
+            </h3>
+            <Link to="/habits" className="text-xs text-violet-400 hover:text-violet-300">Manage →</Link>
+          </div>
+          <div className="space-y-2">
+            {habits.map(h => (
+              <button
+                key={h.id}
+                onClick={() => toggleHabit(h)}
+                disabled={togglingHabit === h.id}
+                className={`w-full flex items-center gap-3 p-2.5 rounded-lg border transition-all text-left ${
+                  h.completedToday
+                    ? 'border-green-500/30 bg-green-500/5'
+                    : 'border-slate-700 bg-slate-800 hover:border-violet-500/40 hover:bg-slate-700/60'
+                }`}
+              >
+                {togglingHabit === h.id
+                  ? <RefreshCw className="w-5 h-5 text-violet-400 animate-spin flex-shrink-0" />
+                  : h.completedToday
+                  ? <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  : <Circle className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                }
+                <span className="text-base flex-shrink-0">{h.emoji}</span>
+                <span className={`text-sm flex-1 ${h.completedToday ? 'line-through text-slate-500' : 'text-slate-200'}`}>{h.title}</span>
+                {h.streak > 0 && (
+                  <span className={`text-xs flex items-center gap-0.5 flex-shrink-0 ${h.streak >= 7 ? 'text-orange-400' : 'text-slate-500'}`}>
+                    <Flame className="w-3 h-3" />{h.streak}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+          {habits.every(h => h.completedToday) && (
+            <p className="text-center text-green-400 text-xs mt-2 font-semibold">🏆 All habits done today!</p>
+          )}
+        </div>
+      )}
 
       {/* Focus Recommendation */}
       <FocusRecommendation />

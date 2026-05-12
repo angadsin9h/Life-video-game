@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -14,6 +14,10 @@ const NAV_GROUPS = [
       { to: '/timer',      icon: Timer,           label: 'Focus Timer' },
       { to: '/quests',     icon: Scroll,          label: 'Quests'      },
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
+      { to: '/review',     icon: Star,            label: 'Daily Review'},
+      { to: '/metrics',    icon: Activity,        label: 'Body Metrics'},
+      { to: '/planner',    icon: CalendarDays,    label: 'Day Planner' },
+      { to: '/gratitude',  icon: Sparkles,        label: 'Gratitude'   },
     ],
   },
   {
