@@ -121,6 +121,8 @@ import ContentLibrary from './pages/ContentLibrary'
 import DeepWorkPlanner from './pages/DeepWorkPlanner'
 import StreakChallenge from './pages/StreakChallenge'
 import LifeEvents from './pages/LifeEvents'
+import StressTracker from './pages/StressTracker'
+import GratitudeChain from './pages/GratitudeChain'
 
 function App() {
   return (
@@ -251,6 +253,8 @@ function App() {
               <Route path="/deep-work"            element={<DeepWorkPlanner />}       />
               <Route path="/streak-challenge"     element={<StreakChallenge />}        />
               <Route path="/life-events"          element={<LifeEvents />}            />
+              <Route path="/stress"               element={<StressTracker />}         />
+              <Route path="/gratitude-chain"      element={<GratitudeChain />}        />
             </Routes>
           </div>
         </main>

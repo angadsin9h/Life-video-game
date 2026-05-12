@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -30,6 +30,8 @@ const NAV_GROUPS = [
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
       { to: '/emotions',   icon: Heart,           label: 'Emotions'    },
       { to: '/anxiety-journal', icon: Brain,      label: 'Anxiety Log' },
+      { to: '/stress',     icon: AlertCircle,     label: 'Stress Log'  },
+      { to: '/gratitude-chain', icon: Sparkles,   label: 'Gratitude Chain'},
       { to: '/mood-stats', icon: BarChart3,       label: 'Mood Stats'  },
       { to: '/mood-patterns', icon: TrendingUp,  label: 'Mood Patterns'},
       { to: '/task-analytics', icon: BarChart3,  label: 'Task Stats'  },
@@ -121,7 +123,8 @@ const NAV_GROUPS = [
       { to: '/project-analytics', icon: TrendingUp, label: 'Project Stats' },
       { to: '/expenses',     icon: TrendingUp, label: 'Expenses'       },
       { to: '/expense-analytics', icon: TrendingUp, label: 'Expense Stats' },
-      { to: '/financial-goals', icon: Target,    label: 'Financial Goals'},
+      { to: '/financial-goals', icon: PiggyBank,  label: 'Financial Goals'},
+      { to: '/mind-map',        icon: Network,   label: 'Mind Maps'     },
       { to: '/streaks-calendar',  icon: Flame,      label: 'Streaks Cal.' },
     ],
   },

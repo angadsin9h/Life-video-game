@@ -137,6 +137,12 @@ app.use('/api/time-blocks', timeBlocksRouter);
 const accountabilityRouter = require('./routes/accountability');
 app.use('/api/accountability', accountabilityRouter);
 
+const stressRouter = require('./routes/stress');
+app.use('/api/stress', stressRouter);
+
+const gratitudeChainRouter = require('./routes/gratitude_chain');
+app.use('/api/gratitude-chain', gratitudeChainRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
