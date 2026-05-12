@@ -125,4 +125,18 @@ router.get('/', (req, res) => {
   }
 });
 
+// GET /all-days — all logged days with scores (for year view)
+router.get('/all-days', (req, res) => {
+  try {
+    const logs = db.prepare('SELECT * FROM daily_logs ORDER BY date ASC').all();
+    const result = logs.map(log => {
+      const tasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
+      return { date: log.date, score: calculateScore(tasks) };
+    });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

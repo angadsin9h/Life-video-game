@@ -235,6 +235,58 @@ export default function Profile() {
         </div>
       )}
 
+      {/* XP progression chart */}
+      {(stats?.last30Days ?? []).length > 1 && (() => {
+        const days = stats!.last30Days.slice().sort((a, b) => a.date.localeCompare(b.date))
+        let cumXp = totalXp - days.reduce((s, d) => s + d.score * 2, 0)
+        const xpPoints = days.map(d => {
+          cumXp += d.score * 2
+          return { date: d.date, xp: cumXp }
+        })
+        const minXp = Math.max(0, xpPoints[0].xp - 200)
+        const maxXp = xpPoints[xpPoints.length - 1].xp + 100
+        const W = 400; const H = 80
+        const toX = (i: number) => (i / (xpPoints.length - 1)) * W
+        const toY = (xp: number) => H - ((xp - minXp) / (maxXp - minXp)) * H
+        const pts = xpPoints.map((p, i) => `${toX(i)},${toY(p.xp)}`).join(' ')
+        const area = `${toX(0)},${H} ${pts} ${toX(xpPoints.length - 1)},${H}`
+        return (
+          <div className="game-card p-5">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-slate-200 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-yellow-400" />
+                XP Growth (30d)
+              </h3>
+              <span className="text-xs text-slate-500">+{days.reduce((s, d) => s + d.score * 2, 0).toLocaleString()} XP this month</span>
+            </div>
+            <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-20" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="xpGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <polygon points={area} fill="url(#xpGrad)" />
+              <polyline points={pts} fill="none" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              {/* Level markers */}
+              {Array.from({ length: 5 }, (_, i) => {
+                const levelXp = (Math.floor(minXp / 500) + i + 1) * 500
+                if (levelXp > maxXp) return null
+                const y = toY(levelXp)
+                return (
+                  <g key={i}>
+                    <line x1={0} y1={y} x2={W} y2={y} stroke="#1e293b" strokeWidth="1" strokeDasharray="4,4" />
+                    <text x={W - 2} y={y - 2} textAnchor="end" fontSize="8" fill="#334155">Lv{Math.floor(levelXp / 500) + 1}</text>
+                  </g>
+                )
+              })}
+              {/* Last dot */}
+              <circle cx={toX(xpPoints.length - 1)} cy={toY(xpPoints[xpPoints.length - 1].xp)} r="3" fill="#8b5cf6" />
+            </svg>
+          </div>
+        )
+      })()}
+
       {/* Key stats grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {[

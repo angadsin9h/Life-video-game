@@ -32,6 +32,7 @@ import Intentions from './pages/Intentions'
 import LifeScore from './pages/LifeScore'
 import CategoryGoals from './pages/CategoryGoals'
 import FocusSessions from './pages/FocusSessions'
+import YearView from './pages/YearView'
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
               <Route path="/lifescore"    element={<LifeScore />}    />
               <Route path="/cat-goals"    element={<CategoryGoals />}/>
               <Route path="/focus-log"    element={<FocusSessions />}/>
+              <Route path="/year"         element={<YearView />}     />
             </Routes>
           </div>
         </main>

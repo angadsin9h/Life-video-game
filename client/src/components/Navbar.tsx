@@ -51,6 +51,7 @@ const NAV_GROUPS = [
       { to: '/weekly',    icon: FileText,  label: 'Weekly'        },
       { to: '/activity',  icon: Calendar,  label: 'Activity'      },
       { to: '/insights',  icon: Brain,     label: 'Insights'      },
+      { to: '/year',      icon: Calendar,  label: 'Year View'     },
       { to: '/lifescore', icon: Sparkles,  label: 'Life Score'    },
     ],
   },
