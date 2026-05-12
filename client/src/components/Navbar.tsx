@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -70,6 +70,7 @@ const NAV_GROUPS = [
       { to: '/streaks',      icon: Flame,      label: 'Streaks'        },
       { to: '/goals',        icon: Target,  label: 'Goals'          },
       { to: '/goal-analytics', icon: TrendingUp, label: 'Goal Stats'  },
+      { to: '/accountability', icon: Shield,  label: 'Accountability'},
       { to: '/weekly-goals', icon: Flag,    label: 'Weekly Big 3'   },
       { to: '/cat-goals', icon: Zap,        label: 'Category Goals' },
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
@@ -110,6 +111,7 @@ const NAV_GROUPS = [
       { to: '/life-calendar',  icon: Calendar,  label: 'Life Calendar' },
       { to: '/progress',       icon: BarChart3, label: 'Progress'      },
       { to: '/weekly',    icon: FileText,  label: 'Weekly'        },
+      { to: '/weekly-scorecard', icon: Trophy, label: 'Weekly Scorecard'},
       { to: '/activity',  icon: Calendar,  label: 'Activity'      },
       { to: '/insights',  icon: Brain,     label: 'Insights'      },
       { to: '/year',      icon: Calendar,  label: 'Year View'     },

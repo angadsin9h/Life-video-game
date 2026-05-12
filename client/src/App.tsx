@@ -94,6 +94,8 @@ import MindsetJournal from './pages/MindsetJournal'
 import HabitStacking from './pages/HabitStacking'
 import DailyWins from './pages/DailyWins'
 import ReflectionPrompts from './pages/ReflectionPrompts'
+import WeeklyScorecard from './pages/WeeklyScorecard'
+import Accountability from './pages/Accountability'
 
 function App() {
   return (
@@ -197,6 +199,8 @@ function App() {
               <Route path="/habit-stacking"        element={<HabitStacking />}         />
               <Route path="/daily-wins"            element={<DailyWins />}             />
               <Route path="/reflection"            element={<ReflectionPrompts />}     />
+              <Route path="/weekly-scorecard"      element={<WeeklyScorecard />}       />
+              <Route path="/accountability"        element={<Accountability />}        />
             </Routes>
           </div>
         </main>
