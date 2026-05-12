@@ -72,6 +72,15 @@ import LifeOS from './pages/LifeOS'
 import QuoteJournal from './pages/QuoteJournal'
 import Relationships from './pages/Relationships'
 import SleepAnalytics from './pages/SleepAnalytics'
+import MorningPages from './pages/MorningPages'
+import ExpenseAnalytics from './pages/ExpenseAnalytics'
+import StreaksCalendar from './pages/StreaksCalendar'
+import GoalAnalytics from './pages/GoalAnalytics'
+import WorkoutAnalytics from './pages/WorkoutAnalytics'
+import NutritionAnalytics from './pages/NutritionAnalytics'
+import BookAnalytics from './pages/BookAnalytics'
+import ProductivityDashboard from './pages/ProductivityDashboard'
+import LearningAnalytics from './pages/LearningAnalytics'
 
 function App() {
   return (
@@ -153,6 +162,15 @@ function App() {
               <Route path="/quotes"          element={<QuoteJournal />}   />
               <Route path="/relationships"   element={<Relationships />}  />
               <Route path="/sleep-stats"     element={<SleepAnalytics />} />
+              <Route path="/morning-pages"   element={<MorningPages />}   />
+              <Route path="/expense-analytics" element={<ExpenseAnalytics />} />
+              <Route path="/streaks-calendar"  element={<StreaksCalendar />}  />
+              <Route path="/goal-analytics"    element={<GoalAnalytics />}    />
+              <Route path="/workout-analytics" element={<WorkoutAnalytics />} />
+              <Route path="/nutrition-analytics" element={<NutritionAnalytics />} />
+              <Route path="/book-analytics"      element={<BookAnalytics />}      />
+              <Route path="/productivity"        element={<ProductivityDashboard />} />
+              <Route path="/learning-analytics"  element={<LearningAnalytics />}     />
             </Routes>
           </div>
         </main>

@@ -31,7 +31,8 @@ db.prepare(`
 // GET / — last 20 sessions
 router.get('/', (req, res) => {
   try {
-    const sessions = db.prepare('SELECT * FROM workout_sessions ORDER BY date DESC, created_at DESC LIMIT 20').all();
+    const limit = Math.min(500, parseInt(req.query.limit) || 20);
+    const sessions = db.prepare('SELECT * FROM workout_sessions ORDER BY date DESC, created_at DESC LIMIT ?').all(limit);
     const result = sessions.map(s => ({
       ...s,
       exercises: db.prepare('SELECT * FROM workout_sets WHERE session_id = ?').all(s.id),

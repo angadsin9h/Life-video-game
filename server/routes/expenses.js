@@ -33,6 +33,17 @@ const DEFAULT_BUDGETS = [
 const stmt = db.prepare('INSERT OR IGNORE INTO expense_budgets (category, monthly_limit) VALUES (?, ?)');
 for (const b of DEFAULT_BUDGETS) stmt.run(b.category, b.monthly_limit);
 
+// GET / — all expenses with optional limit
+router.get('/', (req, res) => {
+  try {
+    const limit = Math.min(1000, parseInt(req.query.limit) || 100);
+    const expenses = db.prepare('SELECT * FROM expenses ORDER BY date DESC, created_at DESC LIMIT ?').all(limit);
+    res.json(expenses);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // GET /month/:year/:month — get monthly expenses
 router.get('/month/:year/:month', (req, res) => {
   try {
