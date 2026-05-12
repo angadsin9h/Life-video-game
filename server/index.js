@@ -89,6 +89,9 @@ app.use('/api/books', booksRouter);
 const workoutsRouter = require('./routes/workouts');
 app.use('/api/workouts', workoutsRouter);
 
+const expensesRouter = require('./routes/expenses');
+app.use('/api/expenses', expensesRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

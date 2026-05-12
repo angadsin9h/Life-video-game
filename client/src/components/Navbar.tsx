@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -50,7 +50,8 @@ const NAV_GROUPS = [
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
       { to: '/books',        icon: BookOpen,   label: 'Books'          },
-      { to: '/workouts',     icon: Activity,   label: 'Workouts'       },
+      { to: '/workouts',     icon: Dumbbell,   label: 'Workouts'       },
+      { to: '/expenses',     icon: TrendingUp, label: 'Expenses'       },
     ],
   },
   {
