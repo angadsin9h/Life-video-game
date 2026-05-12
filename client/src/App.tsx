@@ -96,6 +96,13 @@ import DailyWins from './pages/DailyWins'
 import ReflectionPrompts from './pages/ReflectionPrompts'
 import WeeklyScorecard from './pages/WeeklyScorecard'
 import Accountability from './pages/Accountability'
+import SleepOptimizer from './pages/SleepOptimizer'
+import FinancialGoals from './pages/FinancialGoals'
+import EnergyTracker from './pages/EnergyTracker'
+import ChallengeMode from './pages/ChallengeMode'
+import SkillProgress from './pages/SkillProgress'
+import LifeMetricsDashboard from './pages/LifeMetricsDashboard'
+import FocusRituals from './pages/FocusRituals'
 
 function App() {
   return (
@@ -201,6 +208,13 @@ function App() {
               <Route path="/reflection"            element={<ReflectionPrompts />}     />
               <Route path="/weekly-scorecard"      element={<WeeklyScorecard />}       />
               <Route path="/accountability"        element={<Accountability />}        />
+              <Route path="/sleep-optimizer"      element={<SleepOptimizer />}        />
+              <Route path="/financial-goals"      element={<FinancialGoals />}        />
+              <Route path="/energy"               element={<EnergyTracker />}         />
+              <Route path="/challenge-mode"       element={<ChallengeMode />}         />
+              <Route path="/skill-progress"       element={<SkillProgress />}         />
+              <Route path="/life-metrics"         element={<LifeMetricsDashboard />}  />
+              <Route path="/focus-rituals"        element={<FocusRituals />}          />
             </Routes>
           </div>
         </main>
