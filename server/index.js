@@ -95,6 +95,12 @@ app.use('/api/expenses', expensesRouter);
 const briefingRouter = require('./routes/briefing');
 app.use('/api/briefing', briefingRouter);
 
+const nutritionRouter = require('./routes/nutrition');
+app.use('/api/nutrition', nutritionRouter);
+
+const timelineRouter = require('./routes/timeline');
+app.use('/api/timeline', timelineRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

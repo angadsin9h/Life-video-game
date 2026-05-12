@@ -62,6 +62,9 @@ function getMockResponse(message, userContext) {
 
 function getUserContext() {
   try {
+    const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+
     const logs = db.prepare('SELECT * FROM daily_logs ORDER BY date DESC LIMIT 30').all();
     const allTasks = db.prepare('SELECT * FROM task_entries').all();
     const totalMinutes = allTasks.reduce((a, t) => a + (t.duration_minutes || 0), 0);
@@ -89,13 +92,9 @@ function getUserContext() {
 
     // Streak
     const dateSet = new Set(logs.map(l => l.date));
-    const today = new Date().toISOString().split('T')[0];
     let streak = 0;
     let d = new Date(today);
-    while (dateSet.has(d.toISOString().split('T')[0])) {
-      streak++;
-      d.setDate(d.getDate() - 1);
-    }
+    while (dateSet.has(d.toISOString().split('T')[0])) { streak++; d.setDate(d.getDate() - 1); }
 
     // Category avg minutes (last 30 days)
     const catMins = { health: 0, mind: 0, work: 0, social: 0, growth: 0 };
@@ -103,9 +102,7 @@ function getUserContext() {
     for (const log of logs) {
       const tasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
       const dayMins = {};
-      for (const t of tasks) {
-        dayMins[t.category] = (dayMins[t.category] || 0) + t.duration_minutes;
-      }
+      for (const t of tasks) { dayMins[t.category] = (dayMins[t.category] || 0) + t.duration_minutes; }
       for (const [cat, mins] of Object.entries(dayMins)) {
         if (catMins[cat] !== undefined) { catMins[cat] += mins; catDays[cat]++; }
       }
@@ -114,8 +111,6 @@ function getUserContext() {
     for (const cat of Object.keys(catMins)) {
       avgMins[cat] = catDays[cat] > 0 ? Math.round(catMins[cat] / catDays[cat]) : 0;
     }
-
-    // Weakest category (lowest avg minutes among ones with some data)
     const active = Object.entries(avgMins).filter(([, v]) => v > 0);
     const weakestCat = active.length > 0 ? active.sort((a, b) => a[1] - b[1])[0][0] : null;
 
@@ -124,17 +119,64 @@ function getUserContext() {
     const completedGoals = db.prepare('SELECT COUNT(*) as cnt FROM goals WHERE completed = 1').get().cnt;
     const activeGoals = db.prepare('SELECT title FROM goals WHERE completed = 0 LIMIT 3').all();
 
+    // New data sources
+    let sleepAvg = null;
+    try {
+      const sleepRows = db.prepare('SELECT duration_minutes, quality FROM sleep_logs ORDER BY date DESC LIMIT 7').all();
+      if (sleepRows.length > 0) {
+        const validSleep = sleepRows.filter(r => r.duration_minutes > 0);
+        sleepAvg = validSleep.length > 0 ? {
+          avgHours: +(validSleep.reduce((s, r) => s + r.duration_minutes, 0) / validSleep.length / 60).toFixed(1),
+          avgQuality: +(validSleep.filter(r => r.quality > 0).reduce((s, r) => s + r.quality, 0) / Math.max(1, validSleep.filter(r => r.quality > 0).length)).toFixed(1),
+        } : null;
+      }
+    } catch {}
+
+    let habits = null;
+    try {
+      const habitRows = db.prepare('SELECT * FROM habits WHERE active = 1').all();
+      const habitStats = habitRows.map(h => {
+        const last7 = [];
+        for (let i = 0; i < 7; i++) {
+          const d = new Date(Date.now() - i * 86400000).toISOString().split('T')[0];
+          last7.push(!!db.prepare('SELECT id FROM habit_completions WHERE habit_id = ? AND date = ?').get(h.id, d));
+        }
+        return { title: h.title, completionRate: Math.round(last7.filter(Boolean).length / 7 * 100) };
+      });
+      habits = { total: habitRows.length, avgRate: habitStats.length ? Math.round(habitStats.reduce((s, h) => s + h.completionRate, 0) / habitStats.length) : 0, weakest: habitStats.sort((a, b) => a.completionRate - b.completionRate)[0]?.title };
+    } catch {}
+
+    let moodAvg = null;
+    try {
+      const moodRows = db.prepare('SELECT mood FROM mood_logs ORDER BY date DESC LIMIT 7').all();
+      if (moodRows.length > 0) moodAvg = +(moodRows.reduce((s, r) => s + r.mood, 0) / moodRows.length).toFixed(1);
+    } catch {}
+
+    let waterAvg = null;
+    try {
+      const waterRows = db.prepare('SELECT glasses, goal FROM water_logs ORDER BY date DESC LIMIT 7').all();
+      if (waterRows.length > 0) waterAvg = {
+        avg: +(waterRows.reduce((s, r) => s + r.glasses, 0) / waterRows.length).toFixed(1),
+        goal: waterRows[0]?.goal || 8,
+      };
+    } catch {}
+
+    let booksRead = null;
+    try {
+      booksRead = db.prepare('SELECT COUNT(*) as cnt FROM books WHERE status = "completed"').get().cnt;
+    } catch {}
+
+    let workoutCount = null;
+    try {
+      const thirtyDaysAgo = new Date(Date.now() - 30 * 86400000).toISOString().split('T')[0];
+      workoutCount = db.prepare('SELECT COUNT(*) as cnt FROM workout_sessions WHERE date >= ?').get(thirtyDaysAgo).cnt;
+    } catch {}
+
     return {
-      streak,
-      weeklyAvg,
-      totalHours,
-      weeklyScores: scores.slice(0, 7),
-      categoryAvgMinutes: avgMins,
-      weakestCat,
-      unlockedAchievements: unlockedAch,
-      completedGoals,
-      activeGoals: activeGoals.map(g => g.title),
-      totalLogged: logs.length,
+      streak, weeklyAvg, totalHours, weeklyScores: scores.slice(0, 7),
+      categoryAvgMinutes: avgMins, weakestCat, unlockedAchievements: unlockedAch,
+      completedGoals, activeGoals: activeGoals.map(g => g.title), totalLogged: logs.length,
+      sleepAvg, habits, moodAvg, waterAvg, booksRead, workoutCount,
     };
   } catch {
     return null;
@@ -163,11 +205,40 @@ function buildSystemPrompt(ctx) {
 
   if (ctx.weakestCat) prompt += `\n- Weakest category needing attention: ${ctx.weakestCat}`;
 
-  if (ctx.activeGoals.length > 0) {
+  if (ctx.activeGoals && ctx.activeGoals.length > 0) {
     prompt += `\n- Active goals: ${ctx.activeGoals.join(', ')}`;
   }
 
-  prompt += '\n\nReference these stats naturally in your coaching to make advice feel personalized and relevant.';
+  if (ctx.sleepAvg) {
+    prompt += `\n- Average sleep: ${ctx.sleepAvg.avgHours}h/night (quality: ${ctx.sleepAvg.avgQuality}/5) over last 7 days`;
+    if (ctx.sleepAvg.avgHours < 7) prompt += ' — BELOW optimal, recovery is compromised';
+    else if (ctx.sleepAvg.avgHours >= 8) prompt += ' — excellent recovery';
+  }
+
+  if (ctx.habits) {
+    prompt += `\n- Habit tracking: ${ctx.habits.total} active habits, ${ctx.habits.avgRate}% weekly completion rate`;
+    if (ctx.habits.weakest) prompt += `, weakest habit: "${ctx.habits.weakest}"`;
+  }
+
+  if (ctx.moodAvg !== null && ctx.moodAvg !== undefined) {
+    const moodLabel = ctx.moodAvg >= 4 ? 'positive' : ctx.moodAvg >= 3 ? 'neutral' : 'low';
+    prompt += `\n- Average mood: ${ctx.moodAvg}/5 (${moodLabel}) over last 7 days`;
+  }
+
+  if (ctx.waterAvg) {
+    const pct = Math.round(ctx.waterAvg.avg / ctx.waterAvg.goal * 100);
+    prompt += `\n- Hydration: averaging ${ctx.waterAvg.avg} glasses/day (${pct}% of ${ctx.waterAvg.goal} glass goal)`;
+  }
+
+  if (ctx.booksRead !== null && ctx.booksRead !== undefined) {
+    prompt += `\n- Books completed: ${ctx.booksRead}`;
+  }
+
+  if (ctx.workoutCount !== null && ctx.workoutCount !== undefined) {
+    prompt += `\n- Workouts last 30 days: ${ctx.workoutCount}`;
+  }
+
+  prompt += '\n\nReference these stats naturally in your coaching. If stats indicate concerns (low sleep, poor hydration, low mood, missed habits), proactively address them with specific advice.';
   return prompt;
 }
 

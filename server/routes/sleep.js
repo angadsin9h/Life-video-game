@@ -49,9 +49,9 @@ router.get('/:date', (req, res) => {
 // POST / — log or update sleep
 router.post('/', (req, res) => {
   try {
-    const { date, bedtime, wake_time, quality = 0, notes = '' } = req.body;
+    const { date, bedtime, wake_time, quality = 0, notes = '', duration_minutes: explicitDuration } = req.body;
     if (!date) return res.status(400).json({ error: 'date required' });
-    const duration_minutes = calcDuration(bedtime, wake_time);
+    const duration_minutes = explicitDuration != null ? parseInt(explicitDuration) : calcDuration(bedtime, wake_time);
     db.prepare(`
       INSERT INTO sleep_logs (date, bedtime, wake_time, duration_minutes, quality, notes)
       VALUES (?, ?, ?, ?, ?, ?)

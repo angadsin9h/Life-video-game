@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -10,6 +10,7 @@ const NAV_GROUPS = [
     label: 'Daily',
     items: [
       { to: '/',           icon: LayoutDashboard, label: 'Dashboard'   },
+      { to: '/checkin',    icon: Sparkles,        label: 'Check In'    },
       { to: '/briefing',   icon: Sun,             label: 'Briefing'    },
       { to: '/log',        icon: ClipboardList,   label: 'Log Tasks'   },
       { to: '/timer',      icon: Timer,           label: 'Focus Timer' },
@@ -45,6 +46,7 @@ const NAV_GROUPS = [
     items: [
       { to: '/habits',       icon: RefreshCw,  label: 'Habits'         },
       { to: '/habit-stats',  icon: BarChart3,  label: 'Habit Stats'    },
+      { to: '/streaks',      icon: Flame,      label: 'Streaks'        },
       { to: '/goals',        icon: Target,  label: 'Goals'          },
       { to: '/weekly-goals', icon: Flag,    label: 'Weekly Big 3'   },
       { to: '/cat-goals', icon: Zap,        label: 'Category Goals' },
@@ -52,13 +54,16 @@ const NAV_GROUPS = [
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
       { to: '/books',        icon: BookOpen,   label: 'Books'          },
       { to: '/workouts',     icon: Dumbbell,   label: 'Workouts'       },
+      { to: '/nutrition',    icon: Apple,      label: 'Nutrition'      },
       { to: '/expenses',     icon: TrendingUp, label: 'Expenses'       },
     ],
   },
   {
     label: 'Analytics',
     items: [
-      { to: '/progress',  icon: BarChart3, label: 'Progress'      },
+      { to: '/timeline',       icon: Clock,     label: 'Timeline'      },
+      { to: '/life-calendar',  icon: Calendar,  label: 'Life Calendar' },
+      { to: '/progress',       icon: BarChart3, label: 'Progress'      },
       { to: '/weekly',    icon: FileText,  label: 'Weekly'        },
       { to: '/activity',  icon: Calendar,  label: 'Activity'      },
       { to: '/insights',  icon: Brain,     label: 'Insights'      },

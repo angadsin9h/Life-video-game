@@ -132,6 +132,7 @@ export default function Dashboard() {
   const [waterGlasses, setWaterGlasses] = useState(0)
   const [waterGoal, setWaterGoal] = useState(8)
   const [updatingWater, setUpdatingWater] = useState(false)
+  const [weekDays, setWeekDays] = useState<Array<{ date: string; score: number }>>([])
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -168,6 +169,10 @@ export default function Dashboard() {
       .catch(() => {})
     axios.get<{ glasses: number; goal: number }>(`/api/water/${today}`)
       .then(r => { setWaterGlasses(r.data.glasses); setWaterGoal(r.data.goal) })
+      .catch(() => {})
+    // Load 7-day scores for mini week chart
+    axios.get<Array<{ date: string; score: number }>>('/api/timeline?limit=7')
+      .then(r => setWeekDays(r.data.slice().reverse()))
       .catch(() => {})
   }, [])
 
@@ -550,6 +555,38 @@ export default function Dashboard() {
 
       {/* Upcoming Deadlines */}
       <UpcomingDeadlines />
+
+      {/* This Week mini chart */}
+      {weekDays.length > 0 && (
+        <div className="game-card p-4">
+          <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">This Week</h3>
+          <div className="flex items-end gap-2 h-14">
+            {weekDays.map(d => {
+              const isToday = d.date === today
+              const pct = Math.max(4, d.score)
+              const label = new Date(d.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short' })
+              return (
+                <div key={d.date} className="flex-1 flex flex-col items-center gap-1">
+                  <div className="w-full flex-1 flex items-end">
+                    <div
+                      className={`w-full rounded-t transition-all duration-500 ${
+                        isToday ? 'bg-violet-500' :
+                        d.score >= 80 ? 'bg-green-500' :
+                        d.score >= 50 ? 'bg-violet-500/50' :
+                        d.score > 0 ? 'bg-yellow-500/40' : 'bg-slate-800'
+                      }`}
+                      style={{ height: `${pct}%` }}
+                    />
+                  </div>
+                  <div className={`text-[10px] ${isToday ? 'text-violet-400 font-bold' : 'text-slate-600'}`}>{label}</div>
+                  <div className={`text-[10px] font-bold ${isToday ? 'text-violet-400' : d.score > 0 ? 'text-slate-400' : 'text-slate-700'}`}>{d.score || '—'}</div>
+                </div>
+              )
+            })}
+          </div>
+          {stats && <p className="text-xs text-slate-600 mt-2">7-day avg: <span className="text-slate-400 font-semibold">{stats.weeklyAvg}</span></p>}
+        </div>
+      )}
 
       {/* Score History Sparkline */}
       {stats && stats.last30Days.length > 1 && (

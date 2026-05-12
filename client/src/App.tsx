@@ -44,6 +44,11 @@ import Books from './pages/Books'
 import Workouts from './pages/Workouts'
 import Expenses from './pages/Expenses'
 import Briefing from './pages/Briefing'
+import Nutrition from './pages/Nutrition'
+import Timeline from './pages/Timeline'
+import LifeCalendar from './pages/LifeCalendar'
+import Streaks from './pages/Streaks'
+import CheckIn from './pages/CheckIn'
 
 function App() {
   return (
@@ -97,6 +102,11 @@ function App() {
               <Route path="/workouts"       element={<Workouts />}       />
               <Route path="/expenses"       element={<Expenses />}       />
               <Route path="/briefing"       element={<Briefing />}       />
+              <Route path="/nutrition"      element={<Nutrition />}      />
+              <Route path="/timeline"       element={<Timeline />}       />
+              <Route path="/life-calendar"  element={<LifeCalendar />}   />
+              <Route path="/streaks"        element={<Streaks />}        />
+              <Route path="/checkin"         element={<CheckIn />}        />
             </Routes>
           </div>
         </main>

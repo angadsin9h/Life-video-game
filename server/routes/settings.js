@@ -16,6 +16,8 @@ const DEFAULTS = {
   accentColor: 'violet',
   showClassBanner: 'true',
   soundEnabled: 'true',
+  birth_date: '',
+  life_expectancy: '90',
 };
 
 router.get('/', (req, res) => {
