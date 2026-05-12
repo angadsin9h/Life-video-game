@@ -22,6 +22,7 @@ const SHORTCUT_MAP: Record<string, string> = {
   'g v': '/metrics',
   'g y': '/planner',
   'g e': '/gratitude',
+  'g f': '/records',
 }
 
 export const SHORTCUT_LABELS = [
@@ -45,6 +46,7 @@ export const SHORTCUT_LABELS = [
   { key: 'g v', label: 'Body Metrics' },
   { key: 'g y', label: 'Day Planner' },
   { key: 'g e', label: 'Gratitude' },
+  { key: 'g f', label: 'Trophy Room' },
   { key: '?', label: 'Show shortcuts' },
 ]
 

@@ -27,6 +27,7 @@ import DailyReview from './pages/DailyReview'
 import BodyMetrics from './pages/BodyMetrics'
 import Planner from './pages/Planner'
 import Gratitude from './pages/Gratitude'
+import Records from './pages/Records'
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
               <Route path="/metrics"      element={<BodyMetrics />}  />
               <Route path="/planner"      element={<Planner />}      />
               <Route path="/gratitude"    element={<Gratitude />}    />
+              <Route path="/records"      element={<Records />}      />
             </Routes>
           </div>
         </main>

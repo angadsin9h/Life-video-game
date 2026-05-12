@@ -27,6 +27,7 @@ const NAV_GROUPS = [
       { to: '/skills',       icon: Zap,   label: 'Skill Tree'   },
       { to: '/milestones',   icon: Medal, label: 'Milestones'   },
       { to: '/achievements', icon: Trophy, label: 'Achievements'},
+      { to: '/records',      icon: Medal, label: 'Trophy Room'  },
       { to: '/boss',         icon: Sword, label: 'Boss Battle'  },
       { to: '/challenges',   icon: Swords,label: 'Challenges'   },
     ],
