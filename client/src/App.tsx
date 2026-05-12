@@ -52,6 +52,12 @@ import CheckIn from './pages/CheckIn'
 import WindDown from './pages/WindDown'
 import Learning from './pages/Learning'
 import AmbientFocus from './pages/AmbientFocus'
+import TaskBoard from './pages/TaskBoard'
+import Routines from './pages/Routines'
+import LifeWheel from './pages/LifeWheel'
+import DecisionJournal from './pages/DecisionJournal'
+import Values from './pages/Values'
+import WeeklyPlanning from './pages/WeeklyPlanning'
 
 function App() {
   return (
@@ -113,6 +119,12 @@ function App() {
               <Route path="/winddown"        element={<WindDown />}       />
               <Route path="/learning"        element={<Learning />}       />
               <Route path="/ambient"         element={<AmbientFocus />}   />
+              <Route path="/taskboard"       element={<TaskBoard />}      />
+              <Route path="/routines"        element={<Routines />}       />
+              <Route path="/life-wheel"      element={<LifeWheel />}      />
+              <Route path="/decisions"       element={<DecisionJournal />}/>
+              <Route path="/values"          element={<Values />}         />
+              <Route path="/week-plan"       element={<WeeklyPlanning />} />
             </Routes>
           </div>
         </main>

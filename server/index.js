@@ -107,6 +107,12 @@ app.use('/api/winddown', winddownRouter);
 const learningRouter = require('./routes/learning');
 app.use('/api/learning', learningRouter);
 
+const routinesRouter = require('./routes/routines');
+app.use('/api/routines', routinesRouter);
+
+const decisionsRouter = require('./routes/decisions');
+app.use('/api/decisions', decisionsRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

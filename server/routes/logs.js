@@ -144,4 +144,32 @@ router.post('/task', (req, res) => {
   }
 });
 
+// PATCH /task/:id - update a task (completed status, etc.)
+router.patch('/task/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const { completed } = req.body;
+    const task = db.prepare('SELECT * FROM task_entries WHERE id = ?').get(id);
+    if (!task) return res.status(404).json({ error: 'Task not found' });
+    if (completed !== undefined) {
+      db.prepare('UPDATE task_entries SET completed = ? WHERE id = ?').run(completed, id);
+    }
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE /task/:id - delete a single task
+router.delete('/task/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = db.prepare('DELETE FROM task_entries WHERE id = ?').run(id);
+    if (result.changes === 0) return res.status(404).json({ error: 'Task not found' });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
