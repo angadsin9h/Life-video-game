@@ -107,6 +107,9 @@ import HabitInsights from './pages/HabitInsights'
 import PersonalManifesto from './pages/PersonalManifesto'
 import MoodPatterns from './pages/MoodPatterns'
 import TaskAnalytics from './pages/TaskAnalytics'
+import BodyComposition from './pages/BodyComposition'
+import DailyIntentions from './pages/DailyIntentions'
+import GrowthLog from './pages/GrowthLog'
 
 function App() {
   return (
@@ -223,6 +226,9 @@ function App() {
               <Route path="/manifesto"            element={<PersonalManifesto />}     />
               <Route path="/mood-patterns"        element={<MoodPatterns />}          />
               <Route path="/task-analytics"       element={<TaskAnalytics />}         />
+              <Route path="/body-composition"     element={<BodyComposition />}       />
+              <Route path="/daily-intentions"     element={<DailyIntentions />}       />
+              <Route path="/growth-log"           element={<GrowthLog />}             />
             </Routes>
           </div>
         </main>
