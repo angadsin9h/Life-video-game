@@ -110,6 +110,9 @@ import TaskAnalytics from './pages/TaskAnalytics'
 import BodyComposition from './pages/BodyComposition'
 import DailyIntentions from './pages/DailyIntentions'
 import GrowthLog from './pages/GrowthLog'
+import PomodoroTracker from './pages/PomodoroTracker'
+import WeeklyReview from './pages/WeeklyReview'
+import MindMapPage from './pages/MindMap'
 
 function App() {
   return (
@@ -229,6 +232,9 @@ function App() {
               <Route path="/body-composition"     element={<BodyComposition />}       />
               <Route path="/daily-intentions"     element={<DailyIntentions />}       />
               <Route path="/growth-log"           element={<GrowthLog />}             />
+              <Route path="/pomodoro"             element={<PomodoroTracker />}       />
+              <Route path="/weekly-review"        element={<WeeklyReview />}          />
+              <Route path="/mind-map"             element={<MindMapPage />}           />
             </Routes>
           </div>
         </main>
