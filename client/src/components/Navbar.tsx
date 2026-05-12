@@ -11,7 +11,6 @@ const NAV_GROUPS = [
     items: [
       { to: '/',           icon: LayoutDashboard, label: 'Dashboard'   },
       { to: '/checkin',    icon: Sparkles,        label: 'Check In'    },
-      { to: '/wellness',   icon: Activity,        label: 'Wellness'    },
       { to: '/briefing',   icon: Sun,             label: 'Briefing'    },
       { to: '/winddown',   icon: Moon,            label: 'Wind Down'   },
       { to: '/log',        icon: ClipboardList,   label: 'Log Tasks'   },
@@ -46,6 +45,9 @@ const NAV_GROUPS = [
       { to: '/boss',         icon: Sword, label: 'Boss Battle'  },
       { to: '/challenges',      icon: Swords,     label: 'Challenges'   },
       { to: '/daily-challenge', icon: Swords,     label: 'Daily Dare'   },
+      { to: '/habit-challenges', icon: Swords,   label: 'Challenges'   },
+      { to: '/meditation',   icon: Wind,          label: 'Meditation'   },
+      { to: '/wellness',     icon: Activity,      label: 'Wellness'     },
     ],
   },
   {

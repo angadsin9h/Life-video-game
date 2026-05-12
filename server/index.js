@@ -122,6 +122,9 @@ app.use('/api/reading-notes', readingNotesRouter);
 const projectsRouter = require('./routes/projects');
 app.use('/api/projects', projectsRouter);
 
+const habitChallengesRouter = require('./routes/habit_challenges');
+app.use('/api/habit-challenges', habitChallengesRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
