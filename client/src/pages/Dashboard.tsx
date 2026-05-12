@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword, RefreshCw } from 'lucide-react'
+import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword, RefreshCw, Zap, ChevronDown } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import ScoreSparkline from '../components/ScoreSparkline'
 import FocusRecommendation from '../components/FocusRecommendation'
@@ -54,6 +54,7 @@ interface Achievement {
 }
 
 const CAT_ICONS: Record<string, string> = { health: '❤️', mind: '🧠', work: '💼', social: '👥', growth: '🚀' }
+const CATEGORIES = ['health', 'mind', 'work', 'social', 'growth']
 const MOOD_EMOJIS = ['', '😭', '😔', '😐', '😊', '🤩']
 const MOOD_COLORS = ['', 'border-red-500 bg-red-900/30', 'border-orange-500 bg-orange-900/30', 'border-yellow-500 bg-yellow-900/30', 'border-green-500 bg-green-900/30', 'border-violet-500 bg-violet-900/30']
 const MOOD_LABELS = ['', 'Terrible', 'Bad', 'Okay', 'Good', 'Amazing']
@@ -112,6 +113,12 @@ export default function Dashboard() {
   const [playerAvatar, setPlayerAvatar] = useState('⚔️')
   const [habits, setHabits] = useState<Habit[]>([])
   const [togglingHabit, setTogglingHabit] = useState<number | null>(null)
+  const [showQuickLog, setShowQuickLog] = useState(false)
+  const [quickTask, setQuickTask] = useState('')
+  const [quickCat, setQuickCat] = useState('work')
+  const [quickMins, setQuickMins] = useState(30)
+  const [quickLogging, setQuickLogging] = useState(false)
+  const [quickSuccess, setQuickSuccess] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -141,6 +148,20 @@ export default function Dashboard() {
       )
     }).catch(console.error).finally(() => setLoading(false))
   }, [])
+
+  const quickLog = async () => {
+    if (!quickTask.trim() || quickLogging) return
+    setQuickLogging(true)
+    try {
+      await axios.post('/api/logs/task', { date: today, category: quickCat, task_name: quickTask, duration_minutes: quickMins })
+      setQuickTask('')
+      setQuickSuccess(true)
+      setTimeout(() => setQuickSuccess(false), 2000)
+      const logRes = await axios.get(`/api/logs/${today}`)
+      setTodayLog(logRes.data)
+    } catch (e) { console.error(e) }
+    finally { setQuickLogging(false) }
+  }
 
   const toggleHabit = async (habit: Habit) => {
     setTogglingHabit(habit.id)
@@ -304,6 +325,53 @@ export default function Dashboard() {
         <div className="stat-bar h-4">
           <div className="stat-bar-fill bar-work transition-all duration-1000" style={{ width: `${(xp / nextXp) * 100}%` }} />
         </div>
+      </div>
+
+      {/* Quick Log Widget */}
+      <div className="game-card p-4">
+        <button
+          onClick={() => setShowQuickLog(s => !s)}
+          className="flex items-center justify-between w-full text-left"
+        >
+          <span className="flex items-center gap-2 font-semibold text-slate-200">
+            <Zap className="w-4 h-4 text-yellow-400" />
+            Quick Log
+          </span>
+          <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${showQuickLog ? 'rotate-180' : ''}`} />
+        </button>
+        {showQuickLog && (
+          <div className="mt-3 space-y-3">
+            <input
+              type="text"
+              className="game-input w-full"
+              placeholder="What did you do? (e.g. Ran 5km, Read, Worked on project)"
+              value={quickTask}
+              onChange={e => setQuickTask(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && quickLog()}
+              autoFocus
+            />
+            <div className="flex gap-2">
+              <select className="game-input flex-1" value={quickCat} onChange={e => setQuickCat(e.target.value)}>
+                {CATEGORIES.map(c => (
+                  <option key={c} value={c}>{CAT_ICONS[c]} {c}</option>
+                ))}
+              </select>
+              <select className="game-input w-28" value={quickMins} onChange={e => setQuickMins(parseInt(e.target.value))}>
+                {[15, 30, 45, 60, 90, 120].map(m => <option key={m} value={m}>{m}m</option>)}
+              </select>
+            </div>
+            <button
+              onClick={quickLog}
+              disabled={quickLogging || !quickTask.trim()}
+              className={`w-full py-2.5 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all ${
+                quickSuccess ? 'bg-green-600 border border-green-500' : 'bg-yellow-600 hover:bg-yellow-500 border border-yellow-500'
+              }`}
+            >
+              <Zap className="w-4 h-4" />
+              {quickLogging ? 'Logging…' : quickSuccess ? '✓ Logged!' : 'Log Activity'}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Habits Quick Check */}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Minus, Award } from 'lucide-react'
+import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Minus, Award, Sparkles, Loader2 } from 'lucide-react'
 
 interface DailyScore { date: string; score: number | null }
 interface TopTask { task_name: string; category: string; total_mins: number; times: number }
@@ -59,6 +59,8 @@ export default function WeeklyReport() {
   const [report, setReport] = useState<WeekSummary | null>(null)
   const [weeks, setWeeks] = useState<WeekListItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [aiSummary, setAiSummary] = useState<string>('')
+  const [generatingAi, setGeneratingAi] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -81,6 +83,32 @@ export default function WeeklyReport() {
 
   const isCurrentWeek = weekStart === getMonday()
   const totalCatMins = report ? Object.values(report.catMins).reduce((a, b) => a + b, 0) : 0
+
+  const generateAiSummary = async () => {
+    if (!report || generatingAi) return
+    setGeneratingAi(true)
+    setAiSummary('')
+    try {
+      const catList = Object.entries(report.catMins)
+        .filter(([, v]) => v > 0)
+        .map(([c, m]) => `${c}: ${Math.round(m / 60 * 10) / 10}h`)
+        .join(', ')
+      const prompt = `Generate a brief, motivating weekly retrospective (3-4 sentences max) for a user based on this data:
+Week: ${report.weekStart} to ${report.weekEnd}
+Average score: ${report.avgScore}/100 (${report.scoreDelta >= 0 ? '+' : ''}${report.scoreDelta} vs last week)
+Days logged: ${report.daysLogged}/7
+Total hours: ${report.totalHours}h
+Time by category: ${catList || 'none'}
+Best day score: ${report.bestDay?.score ?? 'n/a'}
+Mood average: ${report.avgMood !== null ? `${report.avgMood.toFixed(1)}/5` : 'n/a'}
+Top task: ${report.topTasks[0]?.task_name ?? 'none'}
+Be direct, positive, and specific. Don't use emojis. Reference the actual numbers.`
+      const res = await axios.post<{ reply: string }>('/api/ai', { message: prompt })
+      setAiSummary(res.data.reply)
+    } catch {
+      setAiSummary('Unable to generate summary — try again later.')
+    } finally { setGeneratingAi(false) }
+  }
 
   return (
     <div className="space-y-6">
@@ -219,6 +247,31 @@ export default function WeeklyReport() {
               </div>
             </div>
           )}
+
+          {/* AI weekly narrative */}
+          <div className="game-card p-5 border-violet-500/20">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-slate-200 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-violet-400" />
+                AI Retrospective
+              </h3>
+              <button
+                onClick={generateAiSummary}
+                disabled={generatingAi}
+                className="game-btn-secondary text-xs flex items-center gap-1.5 py-1.5 px-3"
+              >
+                {generatingAi ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
+                {generatingAi ? 'Generating…' : aiSummary ? 'Regenerate' : 'Generate Summary'}
+              </button>
+            </div>
+            {aiSummary ? (
+              <p className="text-sm text-slate-300 leading-relaxed italic">{aiSummary}</p>
+            ) : (
+              <p className="text-sm text-slate-500">
+                Get a personalized AI-written narrative of your week — click Generate to start.
+              </p>
+            )}
+          </div>
 
           {/* Mood + summary */}
           <div className="grid grid-cols-2 gap-4">

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import axios from 'axios'
-import { Play, Pause, RotateCcw, CheckCircle2, Zap, Coffee, Target, Settings, SkipForward } from 'lucide-react'
+import { Play, Pause, RotateCcw, CheckCircle2, Zap, Coffee, Target, Settings, SkipForward, Maximize2 } from 'lucide-react'
+import FocusFlow from '../components/FocusFlow'
 
 const CATEGORIES = ['health', 'mind', 'work', 'social', 'growth'] as const
 const CAT_ICONS: Record<string, string> = { health: '❤️', mind: '🧠', work: '💼', social: '👥', growth: '🚀' }
@@ -55,6 +56,7 @@ export default function Timer() {
   const [draftTargets, setDraftTargets] = useState<Targets>({ health: 0, mind: 0, work: 0, social: 0, growth: 0 })
   const [weekMins, setWeekMins] = useState<Partial<Targets>>({})
   // Pomodoro state
+  const [flowMode, setFlowMode] = useState(false)
   const [pomodoroMode, setPomodoroMode] = useState(false)
   const [pomodoroCount, setPomodoroCount] = useState(0) // completed work sessions
   const [pomodoroPhase, setPomodoroPhase] = useState<'work' | 'short' | 'long'>('work')
@@ -197,11 +199,32 @@ export default function Timer() {
   const circumference = 2 * Math.PI * 54
   const strokeDashoffset = circumference * (1 - progress)
 
+  if (flowMode) {
+    return (
+      <FocusFlow
+        onClose={() => setFlowMode(false)}
+        taskName={taskName}
+        category={category}
+        durationMinutes={pomodoroMode ? 25 : MODE_DURATIONS[mode]}
+      />
+    )
+  }
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>Focus Timer</h1>
-        <p className="text-slate-400 mt-1">Lock in. Sessions auto-log to your daily score.</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>Focus Timer</h1>
+          <p className="text-slate-400 mt-1">Lock in. Sessions auto-log to your daily score.</p>
+        </div>
+        <button
+          onClick={() => setFlowMode(true)}
+          className="game-btn-secondary flex items-center gap-2 text-sm"
+          title="Enter full-screen flow state with ambient sounds"
+        >
+          <Maximize2 className="w-4 h-4" />
+          Flow State
+        </button>
       </div>
 
       {/* Pomodoro mode toggle */}

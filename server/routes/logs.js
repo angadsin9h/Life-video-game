@@ -110,4 +110,38 @@ router.post('/', (req, res) => {
   }
 });
 
+// POST /task - quick-add a single task to today's log (append mode)
+router.post('/task', (req, res) => {
+  try {
+    const { date, category, task_name, duration_minutes } = req.body;
+    if (!date || !category || !task_name) return res.status(400).json({ error: 'date, category, and task_name required' });
+
+    let log = db.prepare('SELECT * FROM daily_logs WHERE date = ?').get(date);
+    if (!log) {
+      const result = db.prepare('INSERT INTO daily_logs (date) VALUES (?)').run(date);
+      log = { id: result.lastInsertRowid, date };
+    }
+
+    db.prepare(
+      'INSERT INTO task_entries (log_id, category, task_name, duration_minutes, completed) VALUES (?, ?, ?, ?, 1)'
+    ).run(log.id, category, task_name, duration_minutes || 30);
+
+    const allTasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
+    const score = calculateScore(allTasks);
+
+    setImmediate(() => {
+      try {
+        const { checkAndAwardAchievements, getStats } = require('./achievements');
+        checkAndAwardAchievements(getStats());
+        const { syncBossHp, getWeekStart } = require('./boss');
+        syncBossHp(getWeekStart(date));
+      } catch (_) {}
+    });
+
+    res.json({ ...log, tasks: allTasks, score });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
