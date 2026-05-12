@@ -28,6 +28,9 @@ import BodyMetrics from './pages/BodyMetrics'
 import Planner from './pages/Planner'
 import Gratitude from './pages/Gratitude'
 import Records from './pages/Records'
+import Intentions from './pages/Intentions'
+import LifeScore from './pages/LifeScore'
+import CategoryGoals from './pages/CategoryGoals'
 
 function App() {
   return (
@@ -65,6 +68,9 @@ function App() {
               <Route path="/planner"      element={<Planner />}      />
               <Route path="/gratitude"    element={<Gratitude />}    />
               <Route path="/records"      element={<Records />}      />
+              <Route path="/intentions"   element={<Intentions />}   />
+              <Route path="/lifescore"    element={<LifeScore />}    />
+              <Route path="/cat-goals"    element={<CategoryGoals />}/>
             </Routes>
           </div>
         </main>

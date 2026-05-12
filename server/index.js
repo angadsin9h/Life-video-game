@@ -65,6 +65,12 @@ app.use('/api/planner', plannerRouter);
 const gratitudeRouter = require('./routes/gratitude');
 app.use('/api/gratitude', gratitudeRouter);
 
+const intentionsRouter = require('./routes/intentions');
+app.use('/api/intentions', intentionsRouter);
+
+const categoryGoalsRouter = require('./routes/category_goals');
+app.use('/api/category-goals', categoryGoalsRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

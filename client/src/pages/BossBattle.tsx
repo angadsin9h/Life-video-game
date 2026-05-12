@@ -167,42 +167,58 @@ export default function BossBattle() {
           <Sword className="w-5 h-5 text-red-400" />
           This Week's Attacks
         </h3>
-        <div className="grid grid-cols-7 gap-2">
+        {/* Bar chart style damage view */}
+        <div className="flex items-end gap-2 h-24 mb-1">
           {days.map(day => {
             const hasLog = day.damage > 0
             const today = new Date().toISOString().split('T')[0]
             const isToday = day.dateStr === today
+            const barH = hasLog ? Math.max(8, (day.damage / 100) * 100) : 0
             return (
-              <div
-                key={day.dateStr}
-                className={`rounded-xl p-3 text-center transition-all ${
-                  hasLog
-                    ? 'bg-slate-700 border border-green-500/30'
-                    : isToday
-                    ? 'bg-slate-700 border border-violet-500/50 animate-pulse-glow'
-                    : 'bg-slate-800 border border-slate-700 opacity-50'
-                }`}
-              >
-                <div className="text-xs text-slate-400 mb-1">{day.dayName}</div>
-                {hasLog ? (
-                  <>
-                    <Zap className="w-4 h-4 mx-auto mb-1 text-yellow-400" />
-                    <div className={`text-sm font-bold ${getDamageColor(day.damage)}`}>
-                      -{day.damage}
-                    </div>
-                  </>
-                ) : (
-                  <div className="text-slate-600 text-xs mt-2">{isToday ? '⚔️' : '—'}</div>
-                )}
+              <div key={day.dateStr} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div className="text-xs font-semibold" style={{ color: hasLog ? (day.damage >= 70 ? '#4ade80' : day.damage >= 40 ? '#facc15' : '#f97316') : 'transparent' }}>
+                  {hasLog ? day.damage : ''}
+                </div>
+                <div
+                  className={`w-full rounded-t-md transition-all duration-700 ${
+                    hasLog
+                      ? day.damage >= 70
+                        ? 'bg-gradient-to-t from-green-700 to-green-400'
+                        : day.damage >= 40
+                          ? 'bg-gradient-to-t from-yellow-700 to-yellow-400'
+                          : 'bg-gradient-to-t from-orange-700 to-orange-400'
+                      : isToday
+                        ? 'bg-slate-700 border-t-2 border-violet-500'
+                        : 'bg-slate-800'
+                  }`}
+                  style={{ height: `${barH}%`, minHeight: '4px' }}
+                />
               </div>
             )
           })}
         </div>
-        <div className="mt-4 flex items-center justify-between text-sm">
+        <div className="flex gap-2 mb-3">
+          {days.map(day => {
+            const today = new Date().toISOString().split('T')[0]
+            const isToday = day.dateStr === today
+            return (
+              <div key={day.dateStr} className={`flex-1 text-center text-xs ${isToday ? 'text-violet-400 font-semibold' : 'text-slate-600'}`}>
+                {day.dayName}
+              </div>
+            )
+          })}
+        </div>
+        <div className="mt-2 flex items-center justify-between text-sm border-t border-slate-700 pt-3">
           <span className="text-slate-400">Total damage this week:</span>
           <span className="font-bold text-red-400" style={{ fontFamily: 'Orbitron, monospace' }}>
             -{totalDamageDealt} HP
           </span>
+        </div>
+        {/* Days logged summary */}
+        <div className="flex gap-4 mt-2 text-xs text-slate-600">
+          <span>{days.filter(d => d.damage > 0).length}/7 days attacked</span>
+          <span>Avg damage: {days.filter(d => d.damage > 0).length ? Math.round(totalDamageDealt / days.filter(d => d.damage > 0).length) : 0}/day</span>
+          <span>Needed: {Math.ceil((boss.current_hp) / Math.max(1, days.filter(d => d.dateStr >= new Date().toISOString().split('T')[0]).length))}/day to win</span>
         </div>
       </div>
 

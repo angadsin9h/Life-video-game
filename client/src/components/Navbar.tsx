@@ -18,6 +18,7 @@ const NAV_GROUPS = [
       { to: '/metrics',    icon: Activity,        label: 'Body Metrics'},
       { to: '/planner',    icon: CalendarDays,    label: 'Day Planner' },
       { to: '/gratitude',  icon: Sparkles,        label: 'Gratitude'   },
+      { to: '/intentions', icon: Target,           label: 'Intentions'  },
     ],
   },
   {
@@ -35,19 +36,21 @@ const NAV_GROUPS = [
   {
     label: 'Tracking',
     items: [
-      { to: '/habits',   icon: RefreshCw,  label: 'Habits'    },
-      { to: '/goals',    icon: Target,     label: 'Goals'     },
-      { to: '/journal',  icon: BookOpen,   label: 'Journal'   },
-      { to: '/notes',    icon: StickyNote, label: 'Notes'     },
+      { to: '/habits',    icon: RefreshCw,  label: 'Habits'         },
+      { to: '/goals',     icon: Target,     label: 'Goals'          },
+      { to: '/cat-goals', icon: Zap,        label: 'Category Goals' },
+      { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
+      { to: '/notes',     icon: StickyNote, label: 'Notes'          },
     ],
   },
   {
     label: 'Analytics',
     items: [
-      { to: '/progress',  icon: BarChart3, label: 'Progress'  },
-      { to: '/weekly',    icon: FileText,  label: 'Weekly'    },
-      { to: '/activity',  icon: Calendar,  label: 'Activity'  },
-      { to: '/insights',  icon: Brain,     label: 'Insights'  },
+      { to: '/progress',  icon: BarChart3, label: 'Progress'      },
+      { to: '/weekly',    icon: FileText,  label: 'Weekly'        },
+      { to: '/activity',  icon: Calendar,  label: 'Activity'      },
+      { to: '/insights',  icon: Brain,     label: 'Insights'      },
+      { to: '/lifescore', icon: Sparkles,  label: 'Life Score'    },
     ],
   },
   {

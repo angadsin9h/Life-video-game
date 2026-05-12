@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
-import { Plus, Trash2, Flame, CheckCircle2, Circle, RefreshCw, ChevronDown, ChevronUp, Trophy, Wand2 } from 'lucide-react'
+import { Plus, Trash2, Flame, CheckCircle2, Circle, RefreshCw, ChevronDown, ChevronUp, Trophy, Wand2, Shield } from 'lucide-react'
 
 const HABIT_TEMPLATES = [
   { emoji: '🏃', title: 'Morning Run', category: 'health', target_minutes: 30, description: 'Run or jog to start the day' },
@@ -32,6 +32,8 @@ interface Habit {
   completedToday: boolean
   totalCompletions: number
   created_at: string
+  shields: number
+  shieldUses: string[]
 }
 
 const CATEGORIES = ['health', 'mind', 'work', 'social', 'growth']
@@ -140,6 +142,8 @@ export default function Habits() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
   const [showTemplates, setShowTemplates] = useState(false)
   const [addingTemplate, setAddingTemplate] = useState<string | null>(null)
+  const [usingShield, setUsingShield] = useState<number | null>(null)
+  const [shieldMsg, setShieldMsg] = useState<string | null>(null)
 
   const load = useCallback(() =>
     axios.get<Habit[]>('/api/habits').then(r => setHabits(r.data)).catch(console.error).finally(() => setLoading(false)), [])
@@ -175,6 +179,21 @@ export default function Habits() {
     load()
   }
 
+  const useShield = async (habit: Habit) => {
+    setUsingShield(habit.id)
+    try {
+      const res = await axios.post<{ ok: boolean; streak: number; shields: number; protectedDate: string }>(`/api/habits/${habit.id}/use-shield`)
+      setShieldMsg(`🛡️ Shield used! Streak protected for ${res.data.protectedDate}`)
+      setTimeout(() => setShieldMsg(null), 3500)
+      load()
+    } catch (err: any) {
+      setShieldMsg(err.response?.data?.error || 'Could not use shield')
+      setTimeout(() => setShieldMsg(null), 3500)
+    } finally {
+      setUsingShield(null)
+    }
+  }
+
   const addFromTemplate = async (t: typeof HABIT_TEMPLATES[number]) => {
     setAddingTemplate(t.title)
     try {
@@ -188,6 +207,7 @@ export default function Habits() {
   const bestStreak = Math.max(...habits.map(h => h.streak), 0)
   const totalCompletions = habits.reduce((sum, h) => sum + h.totalCompletions, 0)
   const perfectDay = totalActive > 0 && completedToday === totalActive
+  const totalShields = habits.reduce((sum, h) => sum + (h.shields || 0), 0)
 
   if (loading) {
     return (
@@ -213,9 +233,16 @@ export default function Habits() {
         </button>
       </div>
 
+      {/* Shield notification */}
+      {shieldMsg && (
+        <div className="game-card p-3 border border-blue-500/40 bg-blue-900/10 text-center text-sm text-blue-300 font-semibold animate-pulse">
+          {shieldMsg}
+        </div>
+      )}
+
       {/* Stats row */}
       {totalActive > 0 && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-4 gap-3">
           <div className={`game-card p-3 text-center ${perfectDay ? 'border border-green-500/40 bg-green-500/5' : ''}`}>
             <div className={`text-xl font-bold ${perfectDay ? 'text-green-400' : 'text-violet-400'}`} style={{ fontFamily: 'Orbitron, monospace' }}>
               {completedToday}/{totalActive}
@@ -231,6 +258,12 @@ export default function Habits() {
           <div className="game-card p-3 text-center">
             <div className="text-xl font-bold text-cyan-400" style={{ fontFamily: 'Orbitron, monospace' }}>{totalCompletions}</div>
             <div className="text-xs text-slate-500">Total Reps</div>
+          </div>
+          <div className="game-card p-3 text-center" title="Shields protect your streak for a missed day. Earned every 7-day milestone.">
+            <div className="text-xl font-bold text-blue-400 flex items-center justify-center gap-1" style={{ fontFamily: 'Orbitron, monospace' }}>
+              <Shield className="w-4 h-4" />{totalShields}
+            </div>
+            <div className="text-xs text-slate-500">Shields</div>
           </div>
         </div>
       )}
@@ -381,6 +414,16 @@ export default function Habits() {
                       <span className="text-lg font-bold" style={{ fontFamily: 'Orbitron, monospace' }}>{habit.streak}</span>
                     </div>
                     <div className="text-xs text-slate-500">streak</div>
+                    {(habit.shields > 0) && (
+                      <button
+                        onClick={() => useShield(habit)}
+                        disabled={usingShield === habit.id}
+                        title={`Use shield to protect streak (${habit.shields} left)`}
+                        className="mt-1 flex items-center gap-0.5 text-blue-400 hover:text-blue-300 transition-colors text-xs"
+                      >
+                        <Shield className="w-3 h-3" />{habit.shields}
+                      </button>
+                    )}
                   </div>
 
                   <button onClick={() => setExpandedId(isExpanded ? null : habit.id)}

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { CheckCircle2, Loader2, Zap } from 'lucide-react'
 import TaskForm, { Task } from '../components/TaskForm'
 import { useToast } from '../contexts/ToastContext'
+import Confetti from '../components/Confetti'
 
 const CAT_MAX: Record<string, number> = { health: 25, mind: 25, work: 25, social: 10, growth: 15 }
 const CAT_COLORS: Record<string, string> = {
@@ -50,6 +51,7 @@ export default function LogTasks() {
   const [submitting, setSubmitting] = useState(false)
   const [result, setResult] = useState<{ score: number; xp_earned?: number } | null>(null)
   const [error, setError] = useState('')
+  const [showConfetti, setShowConfetti] = useState(false)
   const { toastXP, toastSuccess, toastAchievement } = useToast()
 
   const preview = useMemo(() => calcPreviewScore(tasks), [tasks])
@@ -69,8 +71,10 @@ export default function LogTasks() {
       const xp = res.data.xp_earned ?? res.data.score * 2
       toastXP(xp, `Score: ${res.data.score}/100`)
       if (res.data.score >= 80) toastSuccess('Legendary Day! 🔥', 'You scored 80+ today')
-      // Fire achievement toasts with delay
+      // Fire achievement toasts + confetti with delay
       if (res.data.newAchievements?.length) {
+        setShowConfetti(true)
+        setTimeout(() => setShowConfetti(false), 4000)
         res.data.newAchievements.forEach((ach, i) => {
           setTimeout(() => {
             toastAchievement(`${ach.icon} ${ach.title} (+${ach.xp} XP)`)
@@ -86,6 +90,7 @@ export default function LogTasks() {
 
   return (
     <div className="space-y-6">
+      <Confetti trigger={showConfetti} />
       <div>
         <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Orbitron, monospace' }}>Log Tasks</h1>
         <p className="text-slate-400 mt-1">Record what you accomplished — watch your score grow</p>

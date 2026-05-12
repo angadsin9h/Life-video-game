@@ -23,6 +23,9 @@ const SHORTCUT_MAP: Record<string, string> = {
   'g y': '/planner',
   'g e': '/gratitude',
   'g f': '/records',
+  'g o': '/intentions',
+  'g z': '/lifescore',
+  'g k': '/cat-goals',
 }
 
 export const SHORTCUT_LABELS = [
@@ -47,6 +50,9 @@ export const SHORTCUT_LABELS = [
   { key: 'g y', label: 'Day Planner' },
   { key: 'g e', label: 'Gratitude' },
   { key: 'g f', label: 'Trophy Room' },
+  { key: 'g o', label: 'Intentions' },
+  { key: 'g z', label: 'Life Score' },
+  { key: 'g k', label: 'Category Goals' },
   { key: '?', label: 'Show shortcuts' },
 ]
 
