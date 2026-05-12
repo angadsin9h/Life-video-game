@@ -108,6 +108,8 @@ const NAV_GROUPS = [
       { to: '/learning',     icon: GraduationCap, label: 'Learning'      },
       { to: '/learning-analytics', icon: TrendingUp, label: 'Learning Stats' },
       { to: '/workouts',     icon: Dumbbell,   label: 'Workouts'       },
+      { to: '/fitness-goals', icon: Dumbbell, label: 'Fitness Goals'  },
+      { to: '/social-battery', icon: Users,   label: 'Social Battery' },
       { to: '/workout-analytics', icon: TrendingUp, label: 'Workout Stats' },
       { to: '/nutrition',    icon: Apple,      label: 'Nutrition'      },
       { to: '/nutrition-analytics', icon: TrendingUp, label: 'Nutrition Stats' },

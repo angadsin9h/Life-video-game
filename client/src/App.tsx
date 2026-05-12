@@ -115,6 +115,8 @@ import WeeklyReview from './pages/WeeklyReview'
 import MindMapPage from './pages/MindMap'
 import LifeAudit from './pages/LifeAudit'
 import AnxietyJournal from './pages/AnxietyJournal'
+import FitnessGoals from './pages/FitnessGoals'
+import SocialBattery from './pages/SocialBattery'
 
 function App() {
   return (
@@ -239,6 +241,8 @@ function App() {
               <Route path="/mind-map"             element={<MindMapPage />}           />
               <Route path="/life-audit"           element={<LifeAudit />}             />
               <Route path="/anxiety-journal"      element={<AnxietyJournal />}        />
+              <Route path="/fitness-goals"        element={<FitnessGoals />}          />
+              <Route path="/social-battery"       element={<SocialBattery />}         />
             </Routes>
           </div>
         </main>
