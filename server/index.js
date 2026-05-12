@@ -113,6 +113,12 @@ app.use('/api/routines', routinesRouter);
 const decisionsRouter = require('./routes/decisions');
 app.use('/api/decisions', decisionsRouter);
 
+const mealPlanRouter = require('./routes/meal_plan');
+app.use('/api/meal-plan', mealPlanRouter);
+
+const readingNotesRouter = require('./routes/reading_notes');
+app.use('/api/reading-notes', readingNotesRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

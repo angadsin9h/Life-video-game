@@ -62,6 +62,8 @@ import XPLog from './pages/XPLog'
 import WaterTracker from './pages/WaterTracker'
 import FocusStats from './pages/FocusStats'
 import JournalInsights from './pages/JournalInsights'
+import MealPlanner from './pages/MealPlanner'
+import ReadingNotes from './pages/ReadingNotes'
 
 function App() {
   return (
@@ -133,6 +135,8 @@ function App() {
               <Route path="/water"           element={<WaterTracker />}   />
               <Route path="/focus-stats"     element={<FocusStats />}     />
               <Route path="/journal-insights" element={<JournalInsights />}/>
+              <Route path="/meal-plan"       element={<MealPlanner />}    />
+              <Route path="/reading-notes"   element={<ReadingNotes />}   />
             </Routes>
           </div>
         </main>
