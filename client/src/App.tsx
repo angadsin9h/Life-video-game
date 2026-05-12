@@ -35,6 +35,7 @@ import FocusSessions from './pages/FocusSessions'
 import YearView from './pages/YearView'
 import Affirmations from './pages/Affirmations'
 import MoodAnalytics from './pages/MoodAnalytics'
+import WeeklyGoals from './pages/WeeklyGoals'
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
               <Route path="/year"         element={<YearView />}     />
               <Route path="/affirmations"  element={<Affirmations />}  />
               <Route path="/mood-stats"    element={<MoodAnalytics />} />
+              <Route path="/weekly-goals"  element={<WeeklyGoals />}   />
             </Routes>
           </div>
         </main>
