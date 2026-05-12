@@ -131,6 +131,9 @@ app.use('/api/relationships', relationshipsRouter);
 const quotesRouter = require('./routes/quotes');
 app.use('/api/quotes', quotesRouter);
 
+const timeBlocksRouter = require('./routes/time_blocks');
+app.use('/api/time-blocks', timeBlocksRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

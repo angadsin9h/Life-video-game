@@ -81,6 +81,15 @@ import NutritionAnalytics from './pages/NutritionAnalytics'
 import BookAnalytics from './pages/BookAnalytics'
 import ProductivityDashboard from './pages/ProductivityDashboard'
 import LearningAnalytics from './pages/LearningAnalytics'
+import ProjectAnalytics from './pages/ProjectAnalytics'
+import MetricsAnalytics from './pages/MetricsAnalytics'
+import GratitudeAnalytics from './pages/GratitudeAnalytics'
+import RelationshipAnalytics from './pages/RelationshipAnalytics'
+import TimeBlocking from './pages/TimeBlocking'
+import EmotionCheck from './pages/EmotionCheck'
+import VisionBoard from './pages/VisionBoard'
+import PriorityMatrix from './pages/PriorityMatrix'
+import HabitWizard from './pages/HabitWizard'
 
 function App() {
   return (
@@ -171,6 +180,15 @@ function App() {
               <Route path="/book-analytics"      element={<BookAnalytics />}      />
               <Route path="/productivity"        element={<ProductivityDashboard />} />
               <Route path="/learning-analytics"  element={<LearningAnalytics />}     />
+              <Route path="/project-analytics"   element={<ProjectAnalytics />}      />
+              <Route path="/metrics-analytics"  element={<MetricsAnalytics />}     />
+              <Route path="/gratitude-analytics"    element={<GratitudeAnalytics />}    />
+              <Route path="/relationship-analytics" element={<RelationshipAnalytics />} />
+              <Route path="/time-blocking"          element={<TimeBlocking />}          />
+              <Route path="/emotions"               element={<EmotionCheck />}          />
+              <Route path="/vision-board"          element={<VisionBoard />}           />
+              <Route path="/priority-matrix"       element={<PriorityMatrix />}        />
+              <Route path="/habit-wizard"          element={<HabitWizard />}           />
             </Routes>
           </div>
         </main>

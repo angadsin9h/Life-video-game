@@ -67,7 +67,8 @@ router.post('/sessions', (req, res) => {
 // GET /sessions — recent sessions
 router.get('/sessions', (req, res) => {
   try {
-    const sessions = db.prepare('SELECT * FROM focus_sessions ORDER BY created_at DESC LIMIT 20').all();
+    const limit = Math.min(500, parseInt(req.query.limit) || 20);
+    const sessions = db.prepare('SELECT * FROM focus_sessions ORDER BY created_at DESC LIMIT ?').all(limit);
     res.json(sessions);
   } catch (err) {
     res.status(500).json({ error: err.message });
