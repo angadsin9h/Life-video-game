@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -11,6 +11,7 @@ const NAV_GROUPS = [
     items: [
       { to: '/',           icon: LayoutDashboard, label: 'Dashboard'   },
       { to: '/checkin',    icon: Sparkles,        label: 'Check In'    },
+      { to: '/wellness',   icon: Activity,        label: 'Wellness'    },
       { to: '/briefing',   icon: Sun,             label: 'Briefing'    },
       { to: '/winddown',   icon: Moon,            label: 'Wind Down'   },
       { to: '/log',        icon: ClipboardList,   label: 'Log Tasks'   },
@@ -69,6 +70,7 @@ const NAV_GROUPS = [
       { to: '/workouts',     icon: Dumbbell,   label: 'Workouts'       },
       { to: '/nutrition',    icon: Apple,      label: 'Nutrition'      },
       { to: '/meal-plan',    icon: Apple,      label: 'Meal Planner'   },
+      { to: '/projects',     icon: FolderOpen, label: 'Projects'       },
       { to: '/expenses',     icon: TrendingUp, label: 'Expenses'       },
     ],
   },

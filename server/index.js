@@ -119,6 +119,9 @@ app.use('/api/meal-plan', mealPlanRouter);
 const readingNotesRouter = require('./routes/reading_notes');
 app.use('/api/reading-notes', readingNotesRouter);
 
+const projectsRouter = require('./routes/projects');
+app.use('/api/projects', projectsRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

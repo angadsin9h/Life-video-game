@@ -64,6 +64,8 @@ import FocusStats from './pages/FocusStats'
 import JournalInsights from './pages/JournalInsights'
 import MealPlanner from './pages/MealPlanner'
 import ReadingNotes from './pages/ReadingNotes'
+import Projects from './pages/Projects'
+import WellnessCheck from './pages/WellnessCheck'
 
 function App() {
   return (
@@ -137,6 +139,8 @@ function App() {
               <Route path="/journal-insights" element={<JournalInsights />}/>
               <Route path="/meal-plan"       element={<MealPlanner />}    />
               <Route path="/reading-notes"   element={<ReadingNotes />}   />
+              <Route path="/projects"        element={<Projects />}       />
+              <Route path="/wellness"        element={<WellnessCheck />}  />
             </Routes>
           </div>
         </main>
