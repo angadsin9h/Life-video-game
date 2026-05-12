@@ -2,11 +2,79 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
+try { db.prepare('ALTER TABLE goals ADD COLUMN progress_pct INTEGER DEFAULT 0').run(); } catch (_) {}
+try { db.prepare('ALTER TABLE goals ADD COLUMN emoji TEXT DEFAULT "🎯"').run(); } catch (_) {}
+
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS goal_milestones (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    goal_id INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    completed INTEGER DEFAULT 0,
+    position INTEGER DEFAULT 0,
+    created_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY(goal_id) REFERENCES goals(id) ON DELETE CASCADE
+  )
+`).run();
+
+function enrichGoal(goal) {
+  const milestones = db.prepare('SELECT * FROM goal_milestones WHERE goal_id = ? ORDER BY position ASC, created_at ASC').all(goal.id);
+  const autoProgress = milestones.length > 0
+    ? Math.round(milestones.filter(m => m.completed).length / milestones.length * 100)
+    : (goal.progress_pct || 0);
+  return { ...goal, milestones, progress_pct: autoProgress };
+}
+
 // GET / - get all goals
 router.get('/', (req, res) => {
   try {
     const goals = db.prepare('SELECT * FROM goals ORDER BY created_at DESC').all();
-    res.json(goals);
+    res.json(goals.map(enrichGoal));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /:id - single goal with milestones
+router.get('/:id', (req, res) => {
+  try {
+    const goal = db.prepare('SELECT * FROM goals WHERE id = ?').get(req.params.id);
+    if (!goal) return res.status(404).json({ error: 'not found' });
+    res.json(enrichGoal(goal));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /:id/milestones
+router.post('/:id/milestones', (req, res) => {
+  try {
+    const { text, position = 0 } = req.body;
+    if (!text?.trim()) return res.status(400).json({ error: 'text required' });
+    const result = db.prepare('INSERT INTO goal_milestones (goal_id, text, position) VALUES (?, ?, ?)').run(req.params.id, text.trim(), position);
+    res.json(db.prepare('SELECT * FROM goal_milestones WHERE id = ?').get(result.lastInsertRowid));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// PATCH /:id/milestones/:mid/complete
+router.patch('/:id/milestones/:mid/complete', (req, res) => {
+  try {
+    const m = db.prepare('SELECT * FROM goal_milestones WHERE id = ? AND goal_id = ?').get(req.params.mid, req.params.id);
+    if (!m) return res.status(404).json({ error: 'not found' });
+    db.prepare('UPDATE goal_milestones SET completed = ? WHERE id = ?').run(m.completed ? 0 : 1, m.id);
+    res.json(db.prepare('SELECT * FROM goal_milestones WHERE id = ?').get(m.id));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE /:id/milestones/:mid
+router.delete('/:id/milestones/:mid', (req, res) => {
+  try {
+    db.prepare('DELETE FROM goal_milestones WHERE id = ? AND goal_id = ?').run(req.params.mid, req.params.id);
+    res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

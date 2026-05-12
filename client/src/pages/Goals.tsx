@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react'
 import axios from 'axios'
-import { Plus, CheckCircle2, Circle, Trash2, Target, Flame, TrendingUp, AlertCircle, ChevronDown, ChevronUp, MessageSquarePlus, Clock } from 'lucide-react'
+import { Plus, CheckCircle2, Circle, Trash2, Target, Flame, TrendingUp, AlertCircle, ChevronDown, ChevronUp, MessageSquarePlus, Clock, ListChecks } from 'lucide-react'
 
 interface ProgressNote {
   id: number
@@ -9,18 +9,34 @@ interface ProgressNote {
   created_at: string
 }
 
-function GoalProgressPanel({ goalId }: { goalId: number }) {
+interface Milestone {
+  id: number
+  goal_id: number
+  text: string
+  completed: number
+  position: number
+}
+
+function GoalProgressPanel({ goalId, onMilestoneChange }: { goalId: number; onMilestoneChange?: () => void }) {
   const [notes, setNotes] = useState<ProgressNote[]>([])
+  const [milestones, setMilestones] = useState<Milestone[]>([])
   const [loading, setLoading] = useState(true)
   const [newNote, setNewNote] = useState('')
+  const [newMilestone, setNewMilestone] = useState('')
   const [adding, setAdding] = useState(false)
+  const [addingMilestone, setAddingMilestone] = useState(false)
+  const [tab, setTab] = useState<'milestones' | 'notes'>('milestones')
 
-  const loadNotes = useCallback(async () => {
-    const res = await axios.get<ProgressNote[]>(`/api/goals/${goalId}/progress`)
-    setNotes(res.data)
+  const loadData = useCallback(async () => {
+    const [notesRes, goalRes] = await Promise.all([
+      axios.get<ProgressNote[]>(`/api/goals/${goalId}/progress`),
+      axios.get<{ milestones: Milestone[] }>(`/api/goals/${goalId}`),
+    ])
+    setNotes(notesRes.data)
+    setMilestones(goalRes.data.milestones ?? [])
   }, [goalId])
 
-  useEffect(() => { loadNotes().finally(() => setLoading(false)) }, [loadNotes])
+  useEffect(() => { loadData().finally(() => setLoading(false)) }, [loadData])
 
   const addNote = async () => {
     if (!newNote.trim()) return
@@ -28,7 +44,7 @@ function GoalProgressPanel({ goalId }: { goalId: number }) {
     try {
       await axios.post(`/api/goals/${goalId}/progress`, { note: newNote.trim() })
       setNewNote('')
-      await loadNotes()
+      await loadData()
     } finally { setAdding(false) }
   }
 
@@ -37,40 +53,114 @@ function GoalProgressPanel({ goalId }: { goalId: number }) {
     setNotes(prev => prev.filter(n => n.id !== noteId))
   }
 
+  const addMilestone = async () => {
+    if (!newMilestone.trim()) return
+    setAddingMilestone(true)
+    try {
+      await axios.post(`/api/goals/${goalId}/milestones`, { text: newMilestone.trim(), position: milestones.length })
+      setNewMilestone('')
+      await loadData()
+      onMilestoneChange?.()
+    } finally { setAddingMilestone(false) }
+  }
+
+  const toggleMilestone = async (m: Milestone) => {
+    await axios.patch(`/api/goals/${goalId}/milestones/${m.id}/complete`)
+    await loadData()
+    onMilestoneChange?.()
+  }
+
+  const deleteMilestone = async (mid: number) => {
+    await axios.delete(`/api/goals/${goalId}/milestones/${mid}`)
+    setMilestones(prev => prev.filter(m => m.id !== mid))
+    onMilestoneChange?.()
+  }
+
   if (loading) return <div className="h-8 animate-pulse bg-slate-700 rounded mt-3" />
+
+  const doneMilestones = milestones.filter(m => m.completed).length
 
   return (
     <div className="mt-3 pt-3 border-t border-slate-700/50">
-      <div className="flex items-center gap-2 mb-2">
-        <Clock className="w-3.5 h-3.5 text-slate-500" />
-        <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Progress Notes</span>
-      </div>
-      {notes.length > 0 && (
-        <div className="space-y-2 mb-3 max-h-40 overflow-y-auto">
-          {notes.map(n => (
-            <div key={n.id} className="flex items-start gap-2 text-xs text-slate-400">
-              <div className="flex-1">
-                <span className="text-slate-300">{n.note}</span>
-                <span className="text-slate-600 ml-2">{new Date(n.created_at).toLocaleDateString()}</span>
-              </div>
-              <button onClick={() => deleteNote(n.id)} className="text-slate-600 hover:text-red-400 flex-shrink-0">×</button>
-            </div>
-          ))}
-        </div>
-      )}
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={newNote}
-          onChange={e => setNewNote(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && addNote()}
-          className="game-input flex-1 text-xs py-1"
-          placeholder="Add a progress update..."
-        />
-        <button onClick={addNote} disabled={adding || !newNote.trim()} className="game-btn-primary text-xs px-3 py-1 flex items-center gap-1">
-          <MessageSquarePlus className="w-3 h-3" /> Add
+      <div className="flex gap-2 mb-3">
+        <button
+          onClick={() => setTab('milestones')}
+          className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg transition-colors ${tab === 'milestones' ? 'bg-violet-600/30 text-violet-300' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+          <ListChecks className="w-3.5 h-3.5" />
+          Milestones {milestones.length > 0 && `(${doneMilestones}/${milestones.length})`}
+        </button>
+        <button
+          onClick={() => setTab('notes')}
+          className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg transition-colors ${tab === 'notes' ? 'bg-violet-600/30 text-violet-300' : 'text-slate-500 hover:text-slate-300'}`}
+        >
+          <Clock className="w-3.5 h-3.5" />
+          Progress Log {notes.length > 0 && `(${notes.length})`}
         </button>
       </div>
+
+      {tab === 'milestones' && (
+        <div className="space-y-2">
+          {milestones.length > 0 && milestones.map(m => (
+            <div key={m.id} className="flex items-center gap-2">
+              <button onClick={() => toggleMilestone(m)}>
+                {m.completed
+                  ? <CheckCircle2 className="w-4 h-4 text-green-400" />
+                  : <Circle className="w-4 h-4 text-slate-500 hover:text-violet-400 transition-colors" />
+                }
+              </button>
+              <span className={`flex-1 text-sm ${m.completed ? 'line-through text-slate-600' : 'text-slate-300'}`}>{m.text}</span>
+              <button onClick={() => deleteMilestone(m.id)} className="text-slate-700 hover:text-red-400 transition-colors">
+                <Trash2 className="w-3 h-3" />
+              </button>
+            </div>
+          ))}
+          <div className="flex gap-2 mt-2">
+            <input
+              type="text"
+              value={newMilestone}
+              onChange={e => setNewMilestone(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && addMilestone()}
+              className="game-input flex-1 text-xs py-1"
+              placeholder="Add a milestone step…"
+            />
+            <button onClick={addMilestone} disabled={addingMilestone || !newMilestone.trim()} className="game-btn-primary text-xs px-3 py-1">
+              + Add
+            </button>
+          </div>
+        </div>
+      )}
+
+      {tab === 'notes' && (
+        <div className="space-y-2">
+          {notes.length > 0 && (
+            <div className="space-y-2 mb-3 max-h-40 overflow-y-auto">
+              {notes.map(n => (
+                <div key={n.id} className="flex items-start gap-2 text-xs text-slate-400">
+                  <div className="flex-1">
+                    <span className="text-slate-300">{n.note}</span>
+                    <span className="text-slate-600 ml-2">{new Date(n.created_at).toLocaleDateString()}</span>
+                  </div>
+                  <button onClick={() => deleteNote(n.id)} className="text-slate-600 hover:text-red-400 flex-shrink-0">×</button>
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={newNote}
+              onChange={e => setNewNote(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && addNote()}
+              className="game-input flex-1 text-xs py-1"
+              placeholder="Add a progress update..."
+            />
+            <button onClick={addNote} disabled={adding || !newNote.trim()} className="game-btn-primary text-xs px-3 py-1 flex items-center gap-1">
+              <MessageSquarePlus className="w-3 h-3" /> Add
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -83,6 +173,8 @@ interface Goal {
   target_date: string | null
   completed: number
   created_at: string
+  progress_pct: number
+  milestones: Milestone[]
 }
 
 const CATEGORIES = ['health', 'mind', 'work', 'social', 'growth']
@@ -139,7 +231,7 @@ export default function Goals() {
   const [submitting, setSubmitting] = useState(false)
   const [expandedId, setExpandedId] = useState<number | null>(null)
 
-  const load = () => axios.get<Goal[]>('/api/goals').then(r => setGoals(r.data)).catch(console.error)
+  const load = () => axios.get<Goal[]>('/api/goals').then(r => setGoals(r.data as Goal[])).catch(console.error)
   useEffect(() => { load() }, [])
 
   const handleAdd = async () => {
@@ -326,6 +418,22 @@ export default function Goals() {
                       )}
                     </div>
 
+                    {/* Milestone progress bar */}
+                    {goal.milestones?.length > 0 && !goal.completed && (
+                      <div className="mt-2">
+                        <div className="flex justify-between text-xs text-slate-600 mb-0.5">
+                          <span className="flex items-center gap-1"><ListChecks className="w-3 h-3" /> {goal.milestones.filter(m => m.completed).length}/{goal.milestones.length} milestones</span>
+                          <span>{goal.progress_pct}%</span>
+                        </div>
+                        <div className="stat-bar h-1.5">
+                          <div
+                            className={`stat-bar-fill transition-all duration-700 ${goal.progress_pct >= 80 ? 'bg-green-500' : CAT_BAR[goal.category] ?? 'bar-work'}`}
+                            style={{ width: `${goal.progress_pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
+
                     {/* Time progress bar */}
                     {timePct !== null && !goal.completed && (
                       <div className="mt-2">
@@ -359,7 +467,7 @@ export default function Goals() {
                   </div>
                 </div>
 
-                {expandedId === goal.id && <GoalProgressPanel goalId={goal.id} />}
+                {expandedId === goal.id && <GoalProgressPanel goalId={goal.id} onMilestoneChange={load} />}
               </div>
             )
           })}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword, RefreshCw, Zap, ChevronDown, Sun } from 'lucide-react'
+import { Flame, Trophy, Clock, TrendingUp, CheckCircle2, Circle, Sword, RefreshCw, Zap, ChevronDown, Sun, Droplets } from 'lucide-react'
 import StatCard from '../components/StatCard'
 import ScoreSparkline from '../components/ScoreSparkline'
 import FocusRecommendation from '../components/FocusRecommendation'
@@ -129,6 +129,9 @@ export default function Dashboard() {
   const [togglingIntention, setTogglingIntention] = useState<number | null>(null)
   const [smartMessages, setSmartMessages] = useState<Array<{ type: string; priority: number; msg: string }>>([])
   const [dismissedSmartMsg, setDismissedSmartMsg] = useState(false)
+  const [waterGlasses, setWaterGlasses] = useState(0)
+  const [waterGoal, setWaterGoal] = useState(8)
+  const [updatingWater, setUpdatingWater] = useState(false)
 
   const today = new Date().toISOString().split('T')[0]
 
@@ -159,9 +162,12 @@ export default function Dashboard() {
           .slice(0, 3)
       )
     }).catch(console.error).finally(() => setLoading(false))
-    // Load smart status in parallel (non-blocking)
+    // Load smart status + water in parallel (non-blocking)
     axios.get<{ messages: Array<{ type: string; priority: number; msg: string }> }>('/api/reminders/status')
       .then(r => setSmartMessages(r.data.messages))
+      .catch(() => {})
+    axios.get<{ glasses: number; goal: number }>(`/api/water/${today}`)
+      .then(r => { setWaterGlasses(r.data.glasses); setWaterGoal(r.data.goal) })
       .catch(() => {})
   }, [])
 
@@ -185,6 +191,15 @@ export default function Dashboard() {
       const res = await axios.patch<Intention>(`/api/intentions/${id}/complete`)
       setIntentions(prev => prev.map(i => i.id === id ? res.data : i))
     } finally { setTogglingIntention(null) }
+  }
+
+  const adjustWater = async (delta: number) => {
+    const newVal = Math.max(0, Math.min(20, waterGlasses + delta))
+    setWaterGlasses(newVal)
+    setUpdatingWater(true)
+    try {
+      await axios.post(`/api/water/${today}`, { glasses: newVal })
+    } finally { setUpdatingWater(false) }
   }
 
   const toggleHabit = async (habit: Habit) => {
@@ -485,6 +500,50 @@ export default function Dashboard() {
           )}
         </div>
       )}
+
+      {/* Water Tracker */}
+      <div className="game-card p-4 border border-cyan-500/20 bg-cyan-900/5">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
+            <Droplets className="w-4 h-4 text-cyan-400" />
+            Hydration
+          </h3>
+          <span className={`text-sm font-bold ${waterGlasses >= waterGoal ? 'text-cyan-400' : 'text-slate-400'}`}>
+            {waterGlasses}/{waterGoal} glasses
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => adjustWater(-1)}
+            disabled={waterGlasses === 0 || updatingWater}
+            className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-400 hover:text-slate-200 text-lg disabled:opacity-30 transition-colors flex items-center justify-center"
+          >
+            −
+          </button>
+          <div className="flex-1 flex items-center gap-1">
+            {Array.from({ length: waterGoal }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => adjustWater(i + 1 > waterGlasses ? i + 1 - waterGlasses : -(waterGlasses - i))}
+                className={`flex-1 h-6 rounded transition-all ${
+                  i < waterGlasses ? 'bg-cyan-500/60 hover:bg-cyan-400/60' : 'bg-slate-700 hover:bg-slate-600'
+                }`}
+                title={`${i + 1} glass${i + 1 > 1 ? 'es' : ''}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => adjustWater(1)}
+            disabled={waterGlasses >= 20 || updatingWater}
+            className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-cyan-700 text-cyan-400 text-lg disabled:opacity-30 transition-colors flex items-center justify-center"
+          >
+            +
+          </button>
+        </div>
+        {waterGlasses >= waterGoal && (
+          <div className="mt-2 text-center text-xs text-cyan-400 font-semibold">💧 Daily goal reached!</div>
+        )}
+      </div>
 
       {/* Focus Recommendation */}
       <FocusRecommendation />

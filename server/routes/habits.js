@@ -173,4 +173,77 @@ router.get('/:id/history', (req, res) => {
   }
 });
 
+// GET /:id/analytics — full analytics for a habit
+router.get('/:id/analytics', (req, res) => {
+  try {
+    const habit = db.prepare('SELECT * FROM habits WHERE id = ?').get(req.params.id);
+    if (!habit) return res.status(404).json({ error: 'not found' });
+
+    const allCompletions = db.prepare('SELECT date FROM habit_completions WHERE habit_id = ? ORDER BY date ASC').all(req.params.id);
+    const dateSet = new Set(allCompletions.map(c => c.date));
+
+    // Last 365 days calendar
+    const calendar = [];
+    for (let i = 364; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const ds = d.toISOString().split('T')[0];
+      calendar.push({ date: ds, done: dateSet.has(ds) });
+    }
+
+    // Day of week stats (0=Sun .. 6=Sat)
+    const dowCounts = [0, 0, 0, 0, 0, 0, 0];
+    const dowTotals = [0, 0, 0, 0, 0, 0, 0];
+    calendar.forEach(({ date, done }) => {
+      const dow = new Date(date + 'T12:00:00').getDay();
+      dowTotals[dow]++;
+      if (done) dowCounts[dow]++;
+    });
+
+    // Monthly stats last 6 months
+    const monthly = [];
+    for (let m = 5; m >= 0; m--) {
+      const d = new Date();
+      d.setDate(1);
+      d.setMonth(d.getMonth() - m);
+      const year = d.getFullYear();
+      const month = d.getMonth() + 1;
+      const prefix = `${year}-${String(month).padStart(2, '0')}`;
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const done = allCompletions.filter(c => c.date.startsWith(prefix)).length;
+      monthly.push({ label: d.toLocaleDateString('en', { month: 'short' }), done, total: daysInMonth, pct: Math.round((done / daysInMonth) * 100) });
+    }
+
+    // Best streak calc
+    let bestStreak = 0, cur = 0;
+    let prevDate = null;
+    for (const { date } of allCompletions) {
+      if (prevDate) {
+        const diff = (new Date(date + 'T12:00:00') - new Date(prevDate + 'T12:00:00')) / 86400000;
+        if (diff === 1) cur++;
+        else cur = 1;
+      } else cur = 1;
+      if (cur > bestStreak) bestStreak = cur;
+      prevDate = date;
+    }
+
+    // Overall completion rate (last 30 days)
+    const last30 = calendar.slice(-30);
+    const completionRate30 = Math.round(last30.filter(d => d.done).length / 30 * 100);
+
+    res.json({
+      habit: { ...habit, streak: calcStreak(habit.id) },
+      calendar,
+      dowCounts,
+      dowTotals,
+      monthly,
+      bestStreak,
+      completionRate30,
+      totalCompletions: allCompletions.length,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

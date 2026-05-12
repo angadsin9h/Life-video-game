@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -18,8 +18,10 @@ const NAV_GROUPS = [
       { to: '/mood-stats', icon: BarChart3,       label: 'Mood Stats'  },
       { to: '/review',     icon: Star,            label: 'Daily Review'},
       { to: '/metrics',    icon: Activity,        label: 'Body Metrics'},
+      { to: '/sleep',        icon: Moon,            label: 'Sleep'       },
       { to: '/planner',    icon: CalendarDays,    label: 'Day Planner' },
       { to: '/gratitude',  icon: Sparkles,        label: 'Gratitude'   },
+      { to: '/breathing',  icon: Wind,            label: 'Breathing'   },
       { to: '/intentions',   icon: Target,           label: 'Intentions'  },
       { to: '/affirmations', icon: Star,             label: 'Affirmations'},
     ],
@@ -33,13 +35,15 @@ const NAV_GROUPS = [
       { to: '/achievements', icon: Trophy, label: 'Achievements'},
       { to: '/records',      icon: Medal, label: 'Trophy Room'  },
       { to: '/boss',         icon: Sword, label: 'Boss Battle'  },
-      { to: '/challenges',   icon: Swords,label: 'Challenges'   },
+      { to: '/challenges',      icon: Swords,     label: 'Challenges'   },
+      { to: '/daily-challenge', icon: Swords,     label: 'Daily Dare'   },
     ],
   },
   {
     label: 'Tracking',
     items: [
-      { to: '/habits',    icon: RefreshCw,  label: 'Habits'         },
+      { to: '/habits',       icon: RefreshCw,  label: 'Habits'         },
+      { to: '/habit-stats',  icon: BarChart3,  label: 'Habit Stats'    },
       { to: '/goals',        icon: Target,  label: 'Goals'          },
       { to: '/weekly-goals', icon: Flag,    label: 'Weekly Big 3'   },
       { to: '/cat-goals', icon: Zap,        label: 'Category Goals' },

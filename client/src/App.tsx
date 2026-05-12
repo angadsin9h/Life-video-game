@@ -36,6 +36,10 @@ import YearView from './pages/YearView'
 import Affirmations from './pages/Affirmations'
 import MoodAnalytics from './pages/MoodAnalytics'
 import WeeklyGoals from './pages/WeeklyGoals'
+import Breathing from './pages/Breathing'
+import SleepTracker from './pages/SleepTracker'
+import HabitAnalytics from './pages/HabitAnalytics'
+import DailyChallenge from './pages/DailyChallenge'
 
 function App() {
   return (
@@ -81,6 +85,10 @@ function App() {
               <Route path="/affirmations"  element={<Affirmations />}  />
               <Route path="/mood-stats"    element={<MoodAnalytics />} />
               <Route path="/weekly-goals"  element={<WeeklyGoals />}   />
+              <Route path="/breathing"     element={<Breathing />}     />
+              <Route path="/sleep"         element={<SleepTracker />}  />
+              <Route path="/habit-stats"     element={<HabitAnalytics />}/>
+              <Route path="/daily-challenge" element={<DailyChallenge />}/>
             </Routes>
           </div>
         </main>
