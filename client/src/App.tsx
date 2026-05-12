@@ -103,6 +103,10 @@ import ChallengeMode from './pages/ChallengeMode'
 import SkillProgress from './pages/SkillProgress'
 import LifeMetricsDashboard from './pages/LifeMetricsDashboard'
 import FocusRituals from './pages/FocusRituals'
+import HabitInsights from './pages/HabitInsights'
+import PersonalManifesto from './pages/PersonalManifesto'
+import MoodPatterns from './pages/MoodPatterns'
+import TaskAnalytics from './pages/TaskAnalytics'
 
 function App() {
   return (
@@ -215,6 +219,10 @@ function App() {
               <Route path="/skill-progress"       element={<SkillProgress />}         />
               <Route path="/life-metrics"         element={<LifeMetricsDashboard />}  />
               <Route path="/focus-rituals"        element={<FocusRituals />}          />
+              <Route path="/habit-insights"       element={<HabitInsights />}         />
+              <Route path="/manifesto"            element={<PersonalManifesto />}     />
+              <Route path="/mood-patterns"        element={<MoodPatterns />}          />
+              <Route path="/task-analytics"       element={<TaskAnalytics />}         />
             </Routes>
           </div>
         </main>
