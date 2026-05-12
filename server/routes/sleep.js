@@ -29,7 +29,8 @@ function calcDuration(bedtime, wakeTime) {
 // GET / — last 30 nights
 router.get('/', (req, res) => {
   try {
-    const rows = db.prepare('SELECT * FROM sleep_logs ORDER BY date DESC LIMIT 30').all();
+    const limit = Math.min(365, parseInt(req.query.limit) || 30);
+    const rows = db.prepare('SELECT * FROM sleep_logs ORDER BY date DESC LIMIT ?').all(limit);
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });

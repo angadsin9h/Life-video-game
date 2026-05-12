@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -24,6 +24,7 @@ const NAV_GROUPS = [
       { to: '/quests',     icon: Scroll,          label: 'Quests'      },
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
       { to: '/mood-stats', icon: BarChart3,       label: 'Mood Stats'  },
+      { to: '/sleep-stats', icon: Moon,           label: 'Sleep Stats' },
       { to: '/review',     icon: Star,            label: 'Daily Review'},
       { to: '/metrics',    icon: Activity,        label: 'Body Metrics'},
       { to: '/sleep',        icon: Moon,            label: 'Sleep'       },
@@ -64,8 +65,9 @@ const NAV_GROUPS = [
       { to: '/journal-insights', icon: Brain, label: 'J. Insights' },
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
       { to: '/quotes',    icon: BookOpen,   label: 'Quotes'         },
-      { to: '/decisions', icon: Star,       label: 'Decisions'      },
-      { to: '/values',    icon: Heart,      label: 'Values'         },
+      { to: '/decisions',     icon: Star,   label: 'Decisions'      },
+      { to: '/values',        icon: Heart,  label: 'Values'         },
+      { to: '/relationships', icon: Users,  label: 'Relationships'  },
       { to: '/week-plan', icon: CalendarDays, label: 'Week Plan'    },
       { to: '/water',     icon: Droplets,    label: 'Water'        },
       { to: '/books',        icon: BookOpen,   label: 'Books'          },

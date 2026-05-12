@@ -125,6 +125,9 @@ app.use('/api/projects', projectsRouter);
 const habitChallengesRouter = require('./routes/habit_challenges');
 app.use('/api/habit-challenges', habitChallengesRouter);
 
+const relationshipsRouter = require('./routes/relationships');
+app.use('/api/relationships', relationshipsRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

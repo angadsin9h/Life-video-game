@@ -70,6 +70,8 @@ import MeditationTimer from './pages/MeditationTimer'
 import HabitChallenges from './pages/HabitChallenges'
 import LifeOS from './pages/LifeOS'
 import QuoteJournal from './pages/QuoteJournal'
+import Relationships from './pages/Relationships'
+import SleepAnalytics from './pages/SleepAnalytics'
 
 function App() {
   return (
@@ -149,6 +151,8 @@ function App() {
               <Route path="/habit-challenges" element={<HabitChallenges />}/>
               <Route path="/life-os"         element={<LifeOS />}         />
               <Route path="/quotes"          element={<QuoteJournal />}   />
+              <Route path="/relationships"   element={<Relationships />}  />
+              <Route path="/sleep-stats"     element={<SleepAnalytics />} />
             </Routes>
           </div>
         </main>
