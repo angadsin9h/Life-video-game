@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -12,8 +12,10 @@ const NAV_GROUPS = [
       { to: '/',           icon: LayoutDashboard, label: 'Dashboard'   },
       { to: '/checkin',    icon: Sparkles,        label: 'Check In'    },
       { to: '/briefing',   icon: Sun,             label: 'Briefing'    },
+      { to: '/winddown',   icon: Moon,            label: 'Wind Down'   },
       { to: '/log',        icon: ClipboardList,   label: 'Log Tasks'   },
       { to: '/timer',      icon: Timer,           label: 'Focus Timer' },
+      { to: '/ambient',    icon: Headphones,      label: 'Focus Sounds'},
       { to: '/focus-log',  icon: Zap,             label: 'Focus Log'   },
       { to: '/quests',     icon: Scroll,          label: 'Quests'      },
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
@@ -53,6 +55,7 @@ const NAV_GROUPS = [
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
       { to: '/books',        icon: BookOpen,   label: 'Books'          },
+      { to: '/learning',     icon: GraduationCap, label: 'Learning'      },
       { to: '/workouts',     icon: Dumbbell,   label: 'Workouts'       },
       { to: '/nutrition',    icon: Apple,      label: 'Nutrition'      },
       { to: '/expenses',     icon: TrendingUp, label: 'Expenses'       },

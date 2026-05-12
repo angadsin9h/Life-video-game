@@ -49,6 +49,9 @@ import Timeline from './pages/Timeline'
 import LifeCalendar from './pages/LifeCalendar'
 import Streaks from './pages/Streaks'
 import CheckIn from './pages/CheckIn'
+import WindDown from './pages/WindDown'
+import Learning from './pages/Learning'
+import AmbientFocus from './pages/AmbientFocus'
 
 function App() {
   return (
@@ -107,6 +110,9 @@ function App() {
               <Route path="/life-calendar"  element={<LifeCalendar />}   />
               <Route path="/streaks"        element={<Streaks />}        />
               <Route path="/checkin"         element={<CheckIn />}        />
+              <Route path="/winddown"        element={<WindDown />}       />
+              <Route path="/learning"        element={<Learning />}       />
+              <Route path="/ambient"         element={<AmbientFocus />}   />
             </Routes>
           </div>
         </main>

@@ -253,7 +253,24 @@ router.post('/chat', async (req, res) => {
     const userContext = getUserContext();
     let reply;
 
-    if (process.env.OPENAI_API_KEY) {
+    if (process.env.ANTHROPIC_API_KEY) {
+      try {
+        const Anthropic = require('@anthropic-ai/sdk');
+        const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+        const history = db.prepare('SELECT role, content FROM chat_history ORDER BY id DESC LIMIT 20').all().reverse();
+        // Filter to only user/assistant messages for Anthropic (exclude system)
+        const messages = history.map(h => ({ role: h.role, content: h.content }));
+        const completion = await anthropic.messages.create({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 1024,
+          system: buildSystemPrompt(userContext),
+          messages: messages.length > 0 ? messages : [{ role: 'user', content: message }],
+        });
+        reply = completion.content[0].type === 'text' ? completion.content[0].text : getMockResponse(message, userContext);
+      } catch {
+        reply = getMockResponse(message, userContext);
+      }
+    } else if (process.env.OPENAI_API_KEY) {
       try {
         const OpenAI = require('openai');
         const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

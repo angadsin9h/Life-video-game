@@ -101,6 +101,12 @@ app.use('/api/nutrition', nutritionRouter);
 const timelineRouter = require('./routes/timeline');
 app.use('/api/timeline', timelineRouter);
 
+const winddownRouter = require('./routes/winddown');
+app.use('/api/winddown', winddownRouter);
+
+const learningRouter = require('./routes/learning');
+app.use('/api/learning', learningRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
