@@ -58,6 +58,10 @@ import LifeWheel from './pages/LifeWheel'
 import DecisionJournal from './pages/DecisionJournal'
 import Values from './pages/Values'
 import WeeklyPlanning from './pages/WeeklyPlanning'
+import XPLog from './pages/XPLog'
+import WaterTracker from './pages/WaterTracker'
+import FocusStats from './pages/FocusStats'
+import JournalInsights from './pages/JournalInsights'
 
 function App() {
   return (
@@ -125,6 +129,10 @@ function App() {
               <Route path="/decisions"       element={<DecisionJournal />}/>
               <Route path="/values"          element={<Values />}         />
               <Route path="/week-plan"       element={<WeeklyPlanning />} />
+              <Route path="/xp-log"          element={<XPLog />}          />
+              <Route path="/water"           element={<WaterTracker />}   />
+              <Route path="/focus-stats"     element={<FocusStats />}     />
+              <Route path="/journal-insights" element={<JournalInsights />}/>
             </Routes>
           </div>
         </main>

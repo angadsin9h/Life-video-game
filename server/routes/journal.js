@@ -60,7 +60,8 @@ router.get('/:date', (req, res) => {
 // GET / — recent entries (last 50)
 router.get('/', (req, res) => {
   try {
-    const entries = db.prepare('SELECT id, date, content, word_count, tags, mood, created_at, updated_at FROM journal_entries ORDER BY date DESC LIMIT 50').all();
+    const limit = Math.min(500, parseInt(req.query.limit) || 50);
+    const entries = db.prepare('SELECT id, date, content, word_count, tags, mood, created_at, updated_at FROM journal_entries ORDER BY date DESC LIMIT ?').all(limit);
     res.json(entries.map(e => ({ ...e, tags: parseTags(e.tags) })));
   } catch (err) {
     res.status(500).json({ error: err.message });

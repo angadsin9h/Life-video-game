@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones,
+  Timer, User, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -19,6 +19,7 @@ const NAV_GROUPS = [
       { to: '/timer',      icon: Timer,           label: 'Focus Timer' },
       { to: '/ambient',    icon: Headphones,      label: 'Focus Sounds'},
       { to: '/focus-log',  icon: Zap,             label: 'Focus Log'   },
+      { to: '/focus-stats', icon: TrendingUp,     label: 'Focus Stats' },
       { to: '/quests',     icon: Scroll,          label: 'Quests'      },
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
       { to: '/mood-stats', icon: BarChart3,       label: 'Mood Stats'  },
@@ -40,6 +41,7 @@ const NAV_GROUPS = [
       { to: '/milestones',   icon: Medal, label: 'Milestones'   },
       { to: '/achievements', icon: Trophy, label: 'Achievements'},
       { to: '/records',      icon: Medal, label: 'Trophy Room'  },
+      { to: '/xp-log',      icon: Swords, label: 'XP Log'       },
       { to: '/boss',         icon: Sword, label: 'Boss Battle'  },
       { to: '/challenges',      icon: Swords,     label: 'Challenges'   },
       { to: '/daily-challenge', icon: Swords,     label: 'Daily Dare'   },
@@ -55,10 +57,12 @@ const NAV_GROUPS = [
       { to: '/weekly-goals', icon: Flag,    label: 'Weekly Big 3'   },
       { to: '/cat-goals', icon: Zap,        label: 'Category Goals' },
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
+      { to: '/journal-insights', icon: Brain, label: 'J. Insights' },
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
       { to: '/decisions', icon: Star,       label: 'Decisions'      },
       { to: '/values',    icon: Heart,      label: 'Values'         },
       { to: '/week-plan', icon: CalendarDays, label: 'Week Plan'    },
+      { to: '/water',     icon: Droplets,    label: 'Water'        },
       { to: '/books',        icon: BookOpen,   label: 'Books'          },
       { to: '/learning',     icon: GraduationCap, label: 'Learning'      },
       { to: '/workouts',     icon: Dumbbell,   label: 'Workouts'       },
