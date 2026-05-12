@@ -90,6 +90,10 @@ import EmotionCheck from './pages/EmotionCheck'
 import VisionBoard from './pages/VisionBoard'
 import PriorityMatrix from './pages/PriorityMatrix'
 import HabitWizard from './pages/HabitWizard'
+import MindsetJournal from './pages/MindsetJournal'
+import HabitStacking from './pages/HabitStacking'
+import DailyWins from './pages/DailyWins'
+import ReflectionPrompts from './pages/ReflectionPrompts'
 
 function App() {
   return (
@@ -189,6 +193,10 @@ function App() {
               <Route path="/vision-board"          element={<VisionBoard />}           />
               <Route path="/priority-matrix"       element={<PriorityMatrix />}        />
               <Route path="/habit-wizard"          element={<HabitWizard />}           />
+              <Route path="/mindset-journal"       element={<MindsetJournal />}        />
+              <Route path="/habit-stacking"        element={<HabitStacking />}         />
+              <Route path="/daily-wins"            element={<DailyWins />}             />
+              <Route path="/reflection"            element={<ReflectionPrompts />}     />
             </Routes>
           </div>
         </main>

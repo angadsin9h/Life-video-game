@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -30,6 +30,7 @@ const NAV_GROUPS = [
       { to: '/mood-stats', icon: BarChart3,       label: 'Mood Stats'  },
       { to: '/sleep-stats', icon: Moon,           label: 'Sleep Stats' },
       { to: '/review',     icon: Star,            label: 'Daily Review'},
+      { to: '/daily-wins', icon: Trophy,          label: 'Daily Wins'  },
       { to: '/metrics',    icon: Activity,        label: 'Body Metrics'},
       { to: '/metrics-analytics', icon: TrendingUp, label: 'Metrics Stats'},
       { to: '/sleep',        icon: Moon,            label: 'Sleep'       },
@@ -72,6 +73,10 @@ const NAV_GROUPS = [
       { to: '/weekly-goals', icon: Flag,    label: 'Weekly Big 3'   },
       { to: '/cat-goals', icon: Zap,        label: 'Category Goals' },
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
+      { to: '/morning-pages', icon: Sun,    label: 'Morning Pages'  },
+      { to: '/mindset-journal', icon: Brain, label: 'Mindset Journal'},
+      { to: '/reflection', icon: BookOpen,  label: 'Deep Reflection'},
+      { to: '/habit-stacking', icon: Layers, label: 'Habit Stacking'},
       { to: '/journal-insights', icon: Brain, label: 'J. Insights' },
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
       { to: '/quotes',    icon: BookOpen,   label: 'Quotes'         },
