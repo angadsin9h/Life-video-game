@@ -82,6 +82,7 @@ const NAV_GROUPS = [
       { to: '/habit-stats',  icon: BarChart3,  label: 'Habit Stats'    },
       { to: '/habit-insights', icon: BarChart3, label: 'Habit Insights' },
       { to: '/streaks',      icon: Flame,      label: 'Streaks'        },
+      { to: '/streak-challenge', icon: Flame, label: 'Streak Challenge'},
       { to: '/goals',        icon: Target,  label: 'Goals'          },
       { to: '/goal-analytics', icon: TrendingUp, label: 'Goal Stats'  },
       { to: '/accountability', icon: Shield,  label: 'Accountability'},
@@ -128,6 +129,7 @@ const NAV_GROUPS = [
     label: 'Analytics',
     items: [
       { to: '/timeline',       icon: Clock,     label: 'Timeline'      },
+      { to: '/life-events',    icon: Calendar,  label: 'Life Events'   },
       { to: '/life-calendar',  icon: Calendar,  label: 'Life Calendar' },
       { to: '/progress',       icon: BarChart3, label: 'Progress'      },
       { to: '/weekly',    icon: FileText,  label: 'Weekly'        },

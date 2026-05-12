@@ -119,6 +119,8 @@ import FitnessGoals from './pages/FitnessGoals'
 import SocialBattery from './pages/SocialBattery'
 import ContentLibrary from './pages/ContentLibrary'
 import DeepWorkPlanner from './pages/DeepWorkPlanner'
+import StreakChallenge from './pages/StreakChallenge'
+import LifeEvents from './pages/LifeEvents'
 
 function App() {
   return (
@@ -247,6 +249,8 @@ function App() {
               <Route path="/social-battery"       element={<SocialBattery />}         />
               <Route path="/content-library"      element={<ContentLibrary />}        />
               <Route path="/deep-work"            element={<DeepWorkPlanner />}       />
+              <Route path="/streak-challenge"     element={<StreakChallenge />}        />
+              <Route path="/life-events"          element={<LifeEvents />}            />
             </Routes>
           </div>
         </main>
