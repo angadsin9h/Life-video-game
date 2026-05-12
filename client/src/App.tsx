@@ -34,6 +34,7 @@ import CategoryGoals from './pages/CategoryGoals'
 import FocusSessions from './pages/FocusSessions'
 import YearView from './pages/YearView'
 import Affirmations from './pages/Affirmations'
+import MoodAnalytics from './pages/MoodAnalytics'
 
 function App() {
   return (
@@ -76,7 +77,8 @@ function App() {
               <Route path="/cat-goals"    element={<CategoryGoals />}/>
               <Route path="/focus-log"    element={<FocusSessions />}/>
               <Route path="/year"         element={<YearView />}     />
-              <Route path="/affirmations" element={<Affirmations />} />
+              <Route path="/affirmations"  element={<Affirmations />}  />
+              <Route path="/mood-stats"    element={<MoodAnalytics />} />
             </Routes>
           </div>
         </main>

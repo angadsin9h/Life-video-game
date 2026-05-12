@@ -15,6 +15,7 @@ const NAV_GROUPS = [
       { to: '/focus-log',  icon: Zap,             label: 'Focus Log'   },
       { to: '/quests',     icon: Scroll,          label: 'Quests'      },
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
+      { to: '/mood-stats', icon: BarChart3,       label: 'Mood Stats'  },
       { to: '/review',     icon: Star,            label: 'Daily Review'},
       { to: '/metrics',    icon: Activity,        label: 'Body Metrics'},
       { to: '/planner',    icon: CalendarDays,    label: 'Day Planner' },

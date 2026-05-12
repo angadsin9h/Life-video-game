@@ -53,8 +53,8 @@ export default function MoodTracker() {
   const today = new Date().toISOString().split('T')[0]
 
   const load = async () => {
-    const res = await axios.get<MoodEntry[]>('/api/mood/history')
-    setHistory(res.data)
+    const res = await axios.get<{ entries: MoodEntry[] }>('/api/mood/history')
+    setHistory(res.data.entries ?? [])
   }
 
   useEffect(() => { load().catch(console.error).finally(() => setLoading(false)) }, [])
