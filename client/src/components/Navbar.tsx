@@ -49,6 +49,8 @@ const NAV_GROUPS = [
       { to: '/cat-goals', icon: Zap,        label: 'Category Goals' },
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
+      { to: '/books',        icon: BookOpen,   label: 'Books'          },
+      { to: '/workouts',     icon: Activity,   label: 'Workouts'       },
     ],
   },
   {

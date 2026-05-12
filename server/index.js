@@ -83,6 +83,12 @@ app.use('/api/water', waterRouter);
 const sleepRouter = require('./routes/sleep');
 app.use('/api/sleep', sleepRouter);
 
+const booksRouter = require('./routes/books');
+app.use('/api/books', booksRouter);
+
+const workoutsRouter = require('./routes/workouts');
+app.use('/api/workouts', workoutsRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

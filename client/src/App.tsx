@@ -40,6 +40,8 @@ import Breathing from './pages/Breathing'
 import SleepTracker from './pages/SleepTracker'
 import HabitAnalytics from './pages/HabitAnalytics'
 import DailyChallenge from './pages/DailyChallenge'
+import Books from './pages/Books'
+import Workouts from './pages/Workouts'
 
 function App() {
   return (
@@ -89,6 +91,8 @@ function App() {
               <Route path="/sleep"         element={<SleepTracker />}  />
               <Route path="/habit-stats"     element={<HabitAnalytics />}/>
               <Route path="/daily-challenge" element={<DailyChallenge />}/>
+              <Route path="/books"          element={<Books />}          />
+              <Route path="/workouts"       element={<Workouts />}       />
             </Routes>
           </div>
         </main>
