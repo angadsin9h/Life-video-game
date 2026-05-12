@@ -27,6 +27,14 @@ const SHORTCUT_MAP: Record<string, string> = {
   'g z': '/lifescore',
   'g k': '/cat-goals',
   'g u': '/year',
+  'g 1': '/breathing',
+  'g 2': '/sleep',
+  'g 3': '/books',
+  'g 4': '/workouts',
+  'g 5': '/expenses',
+  'g 6': '/daily-challenge',
+  'g 7': '/habit-stats',
+  'g 8': '/weekly-goals',
 }
 
 export const SHORTCUT_LABELS = [
@@ -55,6 +63,14 @@ export const SHORTCUT_LABELS = [
   { key: 'g z', label: 'Life Score' },
   { key: 'g k', label: 'Category Goals' },
   { key: 'g u', label: 'Year View' },
+  { key: 'g 1', label: 'Breathing' },
+  { key: 'g 2', label: 'Sleep Tracker' },
+  { key: 'g 3', label: 'Books' },
+  { key: 'g 4', label: 'Workouts' },
+  { key: 'g 5', label: 'Expenses' },
+  { key: 'g 6', label: 'Daily Challenge' },
+  { key: 'g 7', label: 'Habit Stats' },
+  { key: 'g 8', label: 'Weekly Big 3' },
   { key: '?', label: 'Show shortcuts' },
 ]
 

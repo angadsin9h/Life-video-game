@@ -43,6 +43,7 @@ import DailyChallenge from './pages/DailyChallenge'
 import Books from './pages/Books'
 import Workouts from './pages/Workouts'
 import Expenses from './pages/Expenses'
+import Briefing from './pages/Briefing'
 
 function App() {
   return (
@@ -95,6 +96,7 @@ function App() {
               <Route path="/books"          element={<Books />}          />
               <Route path="/workouts"       element={<Workouts />}       />
               <Route path="/expenses"       element={<Expenses />}       />
+              <Route path="/briefing"       element={<Briefing />}       />
             </Routes>
           </div>
         </main>

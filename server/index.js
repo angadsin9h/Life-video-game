@@ -92,6 +92,9 @@ app.use('/api/workouts', workoutsRouter);
 const expensesRouter = require('./routes/expenses');
 app.use('/api/expenses', expensesRouter);
 
+const briefingRouter = require('./routes/briefing');
+app.use('/api/briefing', briefingRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
