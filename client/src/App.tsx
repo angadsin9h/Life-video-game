@@ -68,6 +68,8 @@ import Projects from './pages/Projects'
 import WellnessCheck from './pages/WellnessCheck'
 import MeditationTimer from './pages/MeditationTimer'
 import HabitChallenges from './pages/HabitChallenges'
+import LifeOS from './pages/LifeOS'
+import QuoteJournal from './pages/QuoteJournal'
 
 function App() {
   return (
@@ -145,6 +147,8 @@ function App() {
               <Route path="/wellness"        element={<WellnessCheck />}  />
               <Route path="/meditation"      element={<MeditationTimer />}/>
               <Route path="/habit-challenges" element={<HabitChallenges />}/>
+              <Route path="/life-os"         element={<LifeOS />}         />
+              <Route path="/quotes"          element={<QuoteJournal />}   />
             </Routes>
           </div>
         </main>

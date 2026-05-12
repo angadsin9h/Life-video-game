@@ -10,6 +10,7 @@ const NAV_GROUPS = [
     label: 'Daily',
     items: [
       { to: '/',           icon: LayoutDashboard, label: 'Dashboard'   },
+      { to: '/life-os',    icon: Zap,             label: 'Life OS'     },
       { to: '/checkin',    icon: Sparkles,        label: 'Check In'    },
       { to: '/briefing',   icon: Sun,             label: 'Briefing'    },
       { to: '/winddown',   icon: Moon,            label: 'Wind Down'   },
@@ -62,6 +63,7 @@ const NAV_GROUPS = [
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
       { to: '/journal-insights', icon: Brain, label: 'J. Insights' },
       { to: '/notes',     icon: StickyNote, label: 'Notes'          },
+      { to: '/quotes',    icon: BookOpen,   label: 'Quotes'         },
       { to: '/decisions', icon: Star,       label: 'Decisions'      },
       { to: '/values',    icon: Heart,      label: 'Values'         },
       { to: '/week-plan', icon: CalendarDays, label: 'Week Plan'    },
