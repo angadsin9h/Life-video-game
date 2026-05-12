@@ -28,6 +28,7 @@ const NAV_GROUPS = [
       { to: '/quests',     icon: Scroll,          label: 'Quests'      },
       { to: '/mood',       icon: Heart,           label: 'Mood'        },
       { to: '/emotions',   icon: Heart,           label: 'Emotions'    },
+      { to: '/anxiety-journal', icon: Brain,      label: 'Anxiety Log' },
       { to: '/mood-stats', icon: BarChart3,       label: 'Mood Stats'  },
       { to: '/mood-patterns', icon: TrendingUp,  label: 'Mood Patterns'},
       { to: '/task-analytics', icon: BarChart3,  label: 'Task Stats'  },
@@ -134,6 +135,7 @@ const NAV_GROUPS = [
       { to: '/year',      icon: Calendar,  label: 'Year View'     },
       { to: '/lifescore', icon: Sparkles,  label: 'Life Score'    },
       { to: '/life-wheel', icon: Target,   label: 'Life Wheel'    },
+      { to: '/life-audit', icon: BarChart3, label: 'Life Audit'   },
     ],
   },
   {

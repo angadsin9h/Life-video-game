@@ -113,6 +113,8 @@ import GrowthLog from './pages/GrowthLog'
 import PomodoroTracker from './pages/PomodoroTracker'
 import WeeklyReview from './pages/WeeklyReview'
 import MindMapPage from './pages/MindMap'
+import LifeAudit from './pages/LifeAudit'
+import AnxietyJournal from './pages/AnxietyJournal'
 
 function App() {
   return (
@@ -235,6 +237,8 @@ function App() {
               <Route path="/pomodoro"             element={<PomodoroTracker />}       />
               <Route path="/weekly-review"        element={<WeeklyReview />}          />
               <Route path="/mind-map"             element={<MindMapPage />}           />
+              <Route path="/life-audit"           element={<LifeAudit />}             />
+              <Route path="/anxiety-journal"      element={<AnxietyJournal />}        />
             </Routes>
           </div>
         </main>
