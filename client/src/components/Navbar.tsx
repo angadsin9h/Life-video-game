@@ -57,6 +57,8 @@ const NAV_GROUPS = [
       { to: '/vision-board', icon: Star,            label: 'Vision Board'},
       { to: '/standup',      icon: ListChecks,      label: 'Daily Standup'},
       { to: '/okr',          icon: Presentation,    label: 'OKRs'         },
+      { to: '/identity',     icon: User,            label: 'Identity'     },
+      { to: '/weekly-wins',  icon: Trophy,          label: 'Weekly Wins'  },
     ],
   },
   {
@@ -131,6 +133,8 @@ const NAV_GROUPS = [
       { to: '/study',             icon: FlaskConical, label: 'Study Tracker'},
       { to: '/kpis',              icon: List,         label: 'Personal KPIs'},
       { to: '/bucket-list',       icon: Star,         label: 'Bucket List'  },
+      { to: '/time-audit',        icon: Clock,        label: 'Time Audit'   },
+      { to: '/habit-coach',       icon: Brain,        label: 'Habit Coach'  },
     ],
   },
   {

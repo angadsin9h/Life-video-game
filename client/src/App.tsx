@@ -128,6 +128,10 @@ import DailyStandup from './pages/DailyStandup'
 import StudyTracker from './pages/StudyTracker'
 import PersonalKPIs from './pages/PersonalKPIs'
 import BucketList from './pages/BucketList'
+import HabitCoach from './pages/HabitCoach'
+import TimeAudit from './pages/TimeAudit'
+import IdentityBuilder from './pages/IdentityBuilder'
+import WeeklyWins from './pages/WeeklyWins'
 
 function App() {
   return (
@@ -265,6 +269,10 @@ function App() {
               <Route path="/study"                element={<StudyTracker />}          />
               <Route path="/kpis"                 element={<PersonalKPIs />}          />
               <Route path="/bucket-list"          element={<BucketList />}            />
+              <Route path="/habit-coach"          element={<HabitCoach />}            />
+              <Route path="/time-audit"           element={<TimeAudit />}             />
+              <Route path="/identity"             element={<IdentityBuilder />}       />
+              <Route path="/weekly-wins"          element={<WeeklyWins />}            />
             </Routes>
           </div>
         </main>
