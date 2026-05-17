@@ -80,6 +80,12 @@ const NAV_GROUPS = [
       { to: '/personal-okr',      icon: Target,    label: 'Personal OKR'  },
       { to: '/life-legacy',       icon: Star,      label: 'Life Legacy'   },
       { to: '/decision-matrix',   icon: Target,    label: 'Decision Matrix'},
+      { to: '/challenge-calendar', icon: Flame,    label: 'Chain Calendar' },
+      { to: '/finance-tracker',   icon: TrendingUp, label: 'Finance'       },
+      { to: '/life-theme',        icon: Sparkles,  label: 'Life Theme'     },
+      { to: '/net-worth',         icon: TrendingUp, label: 'Net Worth'     },
+      { to: '/sleep-score',       icon: Moon,      label: 'Sleep Score'    },
+      { to: '/flashcards',        icon: BookOpen,  label: 'Flashcards'     },
     ],
   },
   {

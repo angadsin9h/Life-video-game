@@ -171,6 +171,12 @@ import WeeklySprint from './pages/WeeklySprint'
 import PersonalOKR from './pages/PersonalOKR'
 import LifeLegacy from './pages/LifeLegacy'
 import DecisionMatrix from './pages/DecisionMatrix'
+import ChallengeCalendar from './pages/ChallengeCalendar'
+import FinanceTracker from './pages/FinanceTracker'
+import LifeTheme from './pages/LifeTheme'
+import NetWorthTracker from './pages/NetWorthTracker'
+import SleepScore from './pages/SleepScore'
+import StudyFlashcards from './pages/StudyFlashcards'
 import MoneyMindset from './pages/MoneyMindset'
 import NutritionGoals from './pages/NutritionGoals'
 import CareerTracker from './pages/CareerTracker'
@@ -362,6 +368,12 @@ function App() {
               <Route path="/personal-okr"         element={<PersonalOKR />}           />
               <Route path="/life-legacy"          element={<LifeLegacy />}            />
               <Route path="/decision-matrix"      element={<DecisionMatrix />}        />
+              <Route path="/challenge-calendar"   element={<ChallengeCalendar />}     />
+              <Route path="/finance-tracker"      element={<FinanceTracker />}        />
+              <Route path="/life-theme"           element={<LifeTheme />}             />
+              <Route path="/net-worth"            element={<NetWorthTracker />}       />
+              <Route path="/sleep-score"          element={<SleepScore />}            />
+              <Route path="/flashcards"           element={<StudyFlashcards />}       />
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
               <Route path="/career"               element={<CareerTracker />}         />
