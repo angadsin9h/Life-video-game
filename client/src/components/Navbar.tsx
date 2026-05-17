@@ -60,8 +60,10 @@ const NAV_GROUPS = [
       { to: '/vision-board', icon: Star,            label: 'Vision Board'},
       { to: '/standup',      icon: ListChecks,      label: 'Daily Standup'},
       { to: '/okr',          icon: Presentation,    label: 'OKRs'         },
-      { to: '/identity',     icon: User,            label: 'Identity'     },
-      { to: '/weekly-wins',  icon: Trophy,          label: 'Weekly Wins'  },
+      { to: '/identity',        icon: User,   label: 'Identity'       },
+      { to: '/weekly-wins',     icon: Trophy, label: 'Weekly Wins'    },
+      { to: '/personal-brand',  icon: Star,   label: 'Personal Brand' },
+      { to: '/cognitive-reframe', icon: Brain, label: 'Reframe'       },
     ],
   },
   {

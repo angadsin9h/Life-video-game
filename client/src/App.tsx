@@ -137,6 +137,8 @@ import PowerHour from './pages/PowerHour'
 import HabitDesigner from './pages/HabitDesigner'
 import DailyCheckIn from './pages/DailyCheckIn'
 import XPCenter from './pages/XPCenter'
+import CognitiveReframe from './pages/CognitiveReframe'
+import PersonalBrand from './pages/PersonalBrand'
 
 function App() {
   return (
@@ -283,6 +285,8 @@ function App() {
               <Route path="/habit-designer"       element={<HabitDesigner />}         />
               <Route path="/daily-check-in"       element={<DailyCheckIn />}          />
               <Route path="/xp-center"            element={<XPCenter />}              />
+              <Route path="/cognitive-reframe"    element={<CognitiveReframe />}      />
+              <Route path="/personal-brand"       element={<PersonalBrand />}         />
             </Routes>
           </div>
         </main>
