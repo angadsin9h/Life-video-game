@@ -139,6 +139,8 @@ import DailyCheckIn from './pages/DailyCheckIn'
 import XPCenter from './pages/XPCenter'
 import CognitiveReframe from './pages/CognitiveReframe'
 import PersonalBrand from './pages/PersonalBrand'
+import MicroHabits from './pages/MicroHabits'
+import SuccessFormula from './pages/SuccessFormula'
 
 function App() {
   return (
@@ -287,6 +289,8 @@ function App() {
               <Route path="/xp-center"            element={<XPCenter />}              />
               <Route path="/cognitive-reframe"    element={<CognitiveReframe />}      />
               <Route path="/personal-brand"       element={<PersonalBrand />}         />
+              <Route path="/micro-habits"         element={<MicroHabits />}           />
+              <Route path="/success-formula"      element={<SuccessFormula />}        />
             </Routes>
           </div>
         </main>
