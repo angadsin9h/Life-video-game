@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -107,6 +107,7 @@ const NAV_GROUPS = [
       { to: '/success-formula', icon: Trophy,  label: 'Success Formula'},
       { to: '/anti-habits',     icon: Shield,  label: 'Anti-Habits'    },
       { to: '/life-rules',      icon: Shield,  label: 'Life Rules'     },
+      { to: '/reward-system',   icon: Gift,    label: 'Rewards'        },
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
       { to: '/growth-log', icon: TrendingUp, label: 'Growth Log'    },
       { to: '/morning-pages', icon: Sun,    label: 'Morning Pages'  },

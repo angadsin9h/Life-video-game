@@ -147,6 +147,7 @@ import FocusJournal from './pages/FocusJournal'
 import LifeMap from './pages/LifeMap'
 import AntiHabits from './pages/AntiHabits'
 import LifeRules from './pages/LifeRules'
+import RewardSystem from './pages/RewardSystem'
 
 function App() {
   return (
@@ -303,6 +304,7 @@ function App() {
               <Route path="/life-map"             element={<LifeMap />}               />
               <Route path="/anti-habits"          element={<AntiHabits />}            />
               <Route path="/life-rules"           element={<LifeRules />}             />
+              <Route path="/reward-system"        element={<RewardSystem />}          />
             </Routes>
           </div>
         </main>
