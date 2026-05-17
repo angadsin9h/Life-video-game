@@ -298,7 +298,11 @@ export default function SkillRoadmap() {
 
   // ── Stats ───────────────────────────────────────────────────────────────────
 
-  const stats = useMemo(() => {
+  const stats = useMemo((): {
+    totalSkills: number
+    weekHours: number
+    nearestMilestone: { name: string; skill: string; hoursLeft: number } | null
+  } => {
     const totalSkills = roadmaps.length
     const weekStart = weekStartStr()
     const weekHours = roadmaps.reduce((acc, r) =>
@@ -372,21 +376,24 @@ export default function SkillRoadmap() {
           <div className="text-xs text-slate-500 mt-0.5">This Week</div>
         </div>
         <div className="game-card p-3 text-center">
-          {stats.nearestMilestone ? (
-            <>
-              <div className="text-sm font-bold text-amber-400 truncate" title={stats.nearestMilestone.name}>
-                {stats.nearestMilestone.name}
-              </div>
-              <div className="text-[10px] text-slate-500 mt-0.5">
-                {stats.nearestMilestone.hoursLeft}h away
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="text-sm font-bold text-slate-500">—</div>
-              <div className="text-xs text-slate-600 mt-0.5">Next Milestone</div>
-            </>
-          )}
+          {(() => {
+            const nm = stats.nearestMilestone
+            return nm ? (
+              <>
+                <div className="text-sm font-bold text-amber-400 truncate" title={nm.name}>
+                  {nm.name}
+                </div>
+                <div className="text-[10px] text-slate-500 mt-0.5">
+                  {nm.hoursLeft}h away
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="text-sm font-bold text-slate-500">—</div>
+                <div className="text-xs text-slate-600 mt-0.5">Next Milestone</div>
+              </>
+            )
+          })()}
           <div className="text-[10px] text-slate-600">Nearest Milestone</div>
         </div>
       </div>

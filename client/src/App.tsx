@@ -177,6 +177,8 @@ import LifeTheme from './pages/LifeTheme'
 import NetWorthTracker from './pages/NetWorthTracker'
 import SleepScore from './pages/SleepScore'
 import StudyFlashcards from './pages/StudyFlashcards'
+import RecoveryTracker from './pages/RecoveryTracker'
+import SkillRoadmap from './pages/SkillRoadmap'
 import MoneyMindset from './pages/MoneyMindset'
 import NutritionGoals from './pages/NutritionGoals'
 import CareerTracker from './pages/CareerTracker'
@@ -374,6 +376,8 @@ function App() {
               <Route path="/net-worth"            element={<NetWorthTracker />}       />
               <Route path="/sleep-score"          element={<SleepScore />}            />
               <Route path="/flashcards"           element={<StudyFlashcards />}       />
+              <Route path="/recovery"             element={<RecoveryTracker />}       />
+              <Route path="/skill-roadmap"        element={<SkillRoadmap />}          />
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
               <Route path="/career"               element={<CareerTracker />}         />

@@ -86,6 +86,8 @@ const NAV_GROUPS = [
       { to: '/net-worth',         icon: TrendingUp, label: 'Net Worth'     },
       { to: '/sleep-score',       icon: Moon,      label: 'Sleep Score'    },
       { to: '/flashcards',        icon: BookOpen,  label: 'Flashcards'     },
+      { to: '/recovery',          icon: Activity,  label: 'Recovery'       },
+      { to: '/skill-roadmap',     icon: TrendingUp, label: 'Skill Roadmap' },
     ],
   },
   {
