@@ -148,6 +148,14 @@ import LifeMap from './pages/LifeMap'
 import AntiHabits from './pages/AntiHabits'
 import LifeRules from './pages/LifeRules'
 import RewardSystem from './pages/RewardSystem'
+import LifeTimeline from './pages/LifeTimeline'
+import ObstacleLog from './pages/ObstacleLog'
+import PersonalCRM from './pages/PersonalCRM'
+import MentorshipLog from './pages/MentorshipLog'
+import SleepRituals from './pages/SleepRituals'
+import MoneyMindset from './pages/MoneyMindset'
+import NutritionGoals from './pages/NutritionGoals'
+import CareerTracker from './pages/CareerTracker'
 
 function App() {
   return (
@@ -305,6 +313,14 @@ function App() {
               <Route path="/anti-habits"          element={<AntiHabits />}            />
               <Route path="/life-rules"           element={<LifeRules />}             />
               <Route path="/reward-system"        element={<RewardSystem />}          />
+              <Route path="/life-timeline"        element={<LifeTimeline />}          />
+              <Route path="/obstacle-log"         element={<ObstacleLog />}           />
+              <Route path="/personal-crm"         element={<PersonalCRM />}           />
+              <Route path="/mentorship"           element={<MentorshipLog />}         />
+              <Route path="/sleep-rituals"        element={<SleepRituals />}          />
+              <Route path="/money-mindset"        element={<MoneyMindset />}          />
+              <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
+              <Route path="/career"               element={<CareerTracker />}         />
             </Routes>
           </div>
         </main>
