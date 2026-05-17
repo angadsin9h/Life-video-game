@@ -144,6 +144,7 @@ import SuccessFormula from './pages/SuccessFormula'
 import GoalHierarchy from './pages/GoalHierarchy'
 import PerformanceReview from './pages/PerformanceReview'
 import FocusJournal from './pages/FocusJournal'
+import LifeMap from './pages/LifeMap'
 
 function App() {
   return (
@@ -297,6 +298,7 @@ function App() {
               <Route path="/goal-hierarchy"       element={<GoalHierarchy />}         />
               <Route path="/monthly-review"       element={<PerformanceReview />}     />
               <Route path="/focus-journal"        element={<FocusJournal />}          />
+              <Route path="/life-map"             element={<LifeMap />}               />
             </Routes>
           </div>
         </main>

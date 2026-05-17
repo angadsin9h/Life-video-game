@@ -166,6 +166,7 @@ const NAV_GROUPS = [
       { to: '/lifescore', icon: Sparkles,  label: 'Life Score'    },
       { to: '/life-wheel', icon: Target,   label: 'Life Wheel'    },
       { to: '/life-audit', icon: BarChart3, label: 'Life Audit'   },
+      { to: '/life-map',   icon: Target,   label: 'Life Map'     },
     ],
   },
   {
