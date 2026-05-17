@@ -169,6 +169,8 @@ import HealthMetrics from './pages/HealthMetrics'
 import MentalHealthLog from './pages/MentalHealthLog'
 import WeeklySprint from './pages/WeeklySprint'
 import PersonalOKR from './pages/PersonalOKR'
+import LifeLegacy from './pages/LifeLegacy'
+import DecisionMatrix from './pages/DecisionMatrix'
 import MoneyMindset from './pages/MoneyMindset'
 import NutritionGoals from './pages/NutritionGoals'
 import CareerTracker from './pages/CareerTracker'
@@ -358,6 +360,8 @@ function App() {
               <Route path="/mental-health"        element={<MentalHealthLog />}       />
               <Route path="/weekly-sprint"        element={<WeeklySprint />}          />
               <Route path="/personal-okr"         element={<PersonalOKR />}           />
+              <Route path="/life-legacy"          element={<LifeLegacy />}            />
+              <Route path="/decision-matrix"      element={<DecisionMatrix />}        />
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
               <Route path="/career"               element={<CareerTracker />}         />

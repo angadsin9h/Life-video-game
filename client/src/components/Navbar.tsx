@@ -78,6 +78,8 @@ const NAV_GROUPS = [
       { to: '/mental-health',     icon: Brain,     label: 'Mental Health' },
       { to: '/weekly-sprint',     icon: Flag,      label: 'Weekly Sprint' },
       { to: '/personal-okr',      icon: Target,    label: 'Personal OKR'  },
+      { to: '/life-legacy',       icon: Star,      label: 'Life Legacy'   },
+      { to: '/decision-matrix',   icon: Target,    label: 'Decision Matrix'},
     ],
   },
   {
