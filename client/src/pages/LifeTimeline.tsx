@@ -22,7 +22,7 @@ const CATEGORY_COLORS: Record<string, { dot: string; badge: string; line: string
   'Education':       { dot: 'bg-violet-500',  badge: 'bg-violet-900/60 text-violet-300 border-violet-500/40', line: 'border-violet-500/40' },
   'Health':          { dot: 'bg-green-500',   badge: 'bg-green-900/60 text-green-300 border-green-500/40',  line: 'border-green-500/40' },
   'Relationships':   { dot: 'bg-pink-500',    badge: 'bg-pink-900/60 text-pink-300 border-pink-500/40',    line: 'border-pink-500/40' },
-  'Travel':          { dot: 'bg-cyan-500',    badge: 'bg-cyan-900/60 text-cyan-300 border-cyan-500/40',    line: 'border-cyan-500/40' },
+  'Travel':          { dot: 'bg-orange-500',  badge: 'bg-orange-900/60 text-orange-300 border-orange-500/40', line: 'border-orange-500/40' },
   'Personal Growth': { dot: 'bg-amber-500',   badge: 'bg-amber-900/60 text-amber-300 border-amber-500/40', line: 'border-amber-500/40' },
   'Finance':         { dot: 'bg-emerald-500', badge: 'bg-emerald-900/60 text-emerald-300 border-emerald-500/40', line: 'border-emerald-500/40' },
   'Other':           { dot: 'bg-slate-400',   badge: 'bg-slate-700/60 text-slate-300 border-slate-500/40', line: 'border-slate-500/40' },
@@ -51,13 +51,13 @@ function getYearsSpanned(events: TimelineEvent[]): number {
   return Math.max(...dates) - Math.min(...dates)
 }
 
-function getMostImpactfulCategory(events: TimelineEvent[]): string {
+function getMostActiveCategory(events: TimelineEvent[]): string {
   if (events.length === 0) return '—'
-  const totals: Record<string, number> = {}
+  const counts: Record<string, number> = {}
   for (const e of events) {
-    totals[e.category] = (totals[e.category] ?? 0) + e.impact
+    counts[e.category] = (counts[e.category] ?? 0) + 1
   }
-  return Object.entries(totals).sort((a, b) => b[1] - a[1])[0]?.[0] ?? '—'
+  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? '—'
 }
 
 export default function LifeTimeline() {
@@ -112,7 +112,7 @@ export default function LifeTimeline() {
     : events.filter(e => e.category === filterCategory)
 
   const yearsSpanned = getYearsSpanned(events)
-  const mostImpactful = getMostImpactfulCategory(events)
+  const mostActive = getMostActiveCategory(events)
 
   return (
     <div className="space-y-6">
@@ -158,9 +158,9 @@ export default function LifeTimeline() {
         </div>
         <div className="game-card p-4 text-center">
           <div className="text-sm font-bold text-amber-400 truncate" style={{ fontFamily: 'Orbitron, monospace' }}>
-            {mostImpactful}
+            {mostActive}
           </div>
-          <div className="text-xs text-slate-400 mt-1">Top Category</div>
+          <div className="text-xs text-slate-400 mt-1">Most Active Category</div>
         </div>
       </div>
 
@@ -297,7 +297,7 @@ export default function LifeTimeline() {
           <div className="absolute left-5 top-0 bottom-0 w-px bg-slate-700" />
 
           <div className="space-y-6">
-            {filtered.map((event, idx) => {
+            {filtered.map(event => {
               const colors = CATEGORY_COLORS[event.category] ?? CATEGORY_COLORS['Other']
               return (
                 <div key={event.id} className="relative flex gap-6">
@@ -325,7 +325,7 @@ export default function LifeTimeline() {
                         {event.description && (
                           <p className="text-sm text-slate-400 mt-1 leading-relaxed">{event.description}</p>
                         )}
-                        {/* Impact stars */}
+                        {/* Impact dots */}
                         <div className="flex items-center gap-1 mt-2">
                           {[1, 2, 3, 4, 5].map(s => (
                             <Star

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import { TrendingUp, Plus, Trash2, RefreshCw, Star } from 'lucide-react'
+import { TrendingUp, Plus, Trash2, RefreshCw, Star, BookOpen, X } from 'lucide-react'
 import { useToast } from '../contexts/ToastContext'
+
+// ── Types ──────────────────────────────────────────────────────────────────
 
 type BeliefCategory = 'Abundance' | 'Scarcity' | 'Neutral' | 'Insight' | 'Goal' | 'Gratitude'
 
@@ -19,29 +21,30 @@ interface Affirmation {
   createdAt: string
 }
 
-const STORAGE_KEY = 'money_mindset'
+// ── Constants ──────────────────────────────────────────────────────────────
 
-const CATEGORY_META: Record<BeliefCategory, { color: string; bg: string; label: string }> = {
-  Abundance:  { color: '#22c55e', bg: '#14532d33', label: 'Abundance' },
-  Scarcity:   { color: '#ef4444', bg: '#7f1d1d33', label: 'Scarcity' },
-  Neutral:    { color: '#94a3b8', bg: '#1e293b',   label: 'Neutral' },
-  Insight:    { color: '#a78bfa', bg: '#2e1065aa', label: 'Insight' },
-  Goal:       { color: '#38bdf8', bg: '#0c4a6e33', label: 'Goal' },
-  Gratitude:  { color: '#fb923c', bg: '#431407aa', label: 'Gratitude' },
-}
+const ENTRIES_KEY = 'money_mindset'
+const AFFIRMATIONS_KEY = 'money_affirmations'
 
 const CATEGORIES: BeliefCategory[] = ['Abundance', 'Scarcity', 'Neutral', 'Insight', 'Goal', 'Gratitude']
 
-const PRESET_AFFIRMATIONS = [
-  'Money flows easily to me',
-  'I am worthy of wealth',
+const CATEGORY_META: Record<BeliefCategory, { color: string; bg: string }> = {
+  Abundance: { color: '#22c55e', bg: '#14532d33' },
+  Scarcity:  { color: '#ef4444', bg: '#7f1d1d33' },
+  Neutral:   { color: '#94a3b8', bg: '#1e293b'   },
+  Insight:   { color: '#60a5fa', bg: '#1e3a5f33' },
+  Goal:      { color: '#a78bfa', bg: '#2e1065aa' },
+  Gratitude: { color: '#facc15', bg: '#422006aa' },
+}
+
+const PRESET_AFFIRMATIONS: string[] = [
+  'Money flows to me easily',
+  'I am worthy of abundance',
   'I make smart financial decisions',
-  'I attract abundance in all areas of life',
-  'My income grows consistently every year',
-  'I am at peace with money',
-  'I give and receive freely',
-  'Financial freedom is my birthright',
+  'I give generously and receive abundantly',
 ]
+
+// ── Helpers ────────────────────────────────────────────────────────────────
 
 function today(): string {
   return new Date().toISOString().split('T')[0]
@@ -53,45 +56,57 @@ function startOfWeek(): string {
   return d.toISOString().split('T')[0]
 }
 
+function loadEntries(): BeliefEntry[] {
+  try { return JSON.parse(localStorage.getItem(ENTRIES_KEY) || '[]') } catch { return [] }
+}
+
+function loadAffirmations(): Affirmation[] {
+  try { return JSON.parse(localStorage.getItem(AFFIRMATIONS_KEY) || '[]') } catch { return [] }
+}
+
+// ── Component ──────────────────────────────────────────────────────────────
+
 export default function MoneyMindset() {
   const { toastSuccess } = useToast()
 
   const [entries, setEntries] = useState<BeliefEntry[]>([])
   const [affirmations, setAffirmations] = useState<Affirmation[]>([])
 
-  // Belief form
+  // Belief form state
   const [showBeliefForm, setShowBeliefForm] = useState(false)
   const [beliefText, setBeliefText] = useState('')
   const [beliefCategory, setBeliefCategory] = useState<BeliefCategory>('Neutral')
   const [beliefReframe, setBeliefReframe] = useState('')
   const [beliefDate, setBeliefDate] = useState(today())
 
-  // Reframe editing
+  // Reframe editing state
   const [editingReframe, setEditingReframe] = useState<string | null>(null)
   const [reframeText, setReframeText] = useState('')
 
-  // Affirmation form
+  // Affirmation form state
   const [showAffirmForm, setShowAffirmForm] = useState(false)
   const [affirmText, setAffirmText] = useState('')
 
+  // ── Load from localStorage ─────────────────────────────────────────────
+
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY)
-      if (raw) {
-        const parsed = JSON.parse(raw)
-        setEntries(parsed.entries ?? [])
-        setAffirmations(parsed.affirmations ?? [])
-      }
-    } catch {
-      // ignore
-    }
+    setEntries(loadEntries())
+    setAffirmations(loadAffirmations())
   }, [])
 
-  function persist(nextEntries: BeliefEntry[], nextAffirmations: Affirmation[]) {
-    setEntries(nextEntries)
-    setAffirmations(nextAffirmations)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ entries: nextEntries, affirmations: nextAffirmations }))
+  // ── Persist helpers ────────────────────────────────────────────────────
+
+  function persistEntries(next: BeliefEntry[]) {
+    setEntries(next)
+    localStorage.setItem(ENTRIES_KEY, JSON.stringify(next))
   }
+
+  function persistAffirmations(next: Affirmation[]) {
+    setAffirmations(next)
+    localStorage.setItem(AFFIRMATIONS_KEY, JSON.stringify(next))
+  }
+
+  // ── Belief actions ─────────────────────────────────────────────────────
 
   function addBelief() {
     if (!beliefText.trim()) return
@@ -102,7 +117,7 @@ export default function MoneyMindset() {
       category: beliefCategory,
       reframe: beliefCategory === 'Scarcity' ? beliefReframe.trim() : '',
     }
-    persist([entry, ...entries], affirmations)
+    persistEntries([entry, ...entries])
     setBeliefText('')
     setBeliefCategory('Neutral')
     setBeliefReframe('')
@@ -112,65 +127,76 @@ export default function MoneyMindset() {
   }
 
   function removeBelief(id: string) {
-    persist(entries.filter(e => e.id !== id), affirmations)
+    persistEntries(entries.filter(e => e.id !== id))
   }
 
   function saveReframe(id: string) {
-    persist(
-      entries.map(e => e.id === id ? { ...e, reframe: reframeText.trim() } : e),
-      affirmations,
-    )
+    persistEntries(entries.map(e => e.id === id ? { ...e, reframe: reframeText.trim() } : e))
     setEditingReframe(null)
     toastSuccess('Reframe saved', 'Keep building that abundance mindset!')
   }
 
+  function cancelBeliefForm() {
+    setShowBeliefForm(false)
+    setBeliefText('')
+    setBeliefReframe('')
+    setBeliefCategory('Neutral')
+    setBeliefDate(today())
+  }
+
+  // ── Affirmation actions ────────────────────────────────────────────────
+
   function addAffirmation(text: string) {
-    if (!text.trim()) return
-    if (affirmations.some(a => a.text.toLowerCase() === text.toLowerCase())) {
+    const trimmed = text.trim()
+    if (!trimmed) return
+    if (affirmations.some(a => a.text.toLowerCase() === trimmed.toLowerCase())) {
       toastSuccess('Already added', 'This affirmation is already in your list.')
       return
     }
     const aff: Affirmation = {
       id: Date.now().toString(),
-      text: text.trim(),
+      text: trimmed,
       daily: false,
       createdAt: today(),
     }
-    persist(entries, [aff, ...affirmations])
+    persistAffirmations([aff, ...affirmations])
     setAffirmText('')
     setShowAffirmForm(false)
     toastSuccess('Affirmation added!')
   }
 
   function toggleDaily(id: string) {
-    persist(
-      entries,
-      affirmations.map(a => a.id === id ? { ...a, daily: !a.daily } : a),
-    )
+    persistAffirmations(affirmations.map(a => a.id === id ? { ...a, daily: !a.daily } : a))
   }
 
   function removeAffirmation(id: string) {
-    persist(entries, affirmations.filter(a => a.id !== id))
+    persistAffirmations(affirmations.filter(a => a.id !== id))
   }
 
-  // Stats
+  // ── Derived stats ──────────────────────────────────────────────────────
+
   const totalEntries = entries.length
   const scarcityCount = entries.filter(e => e.category === 'Scarcity').length
   const abundanceCount = entries.filter(e => e.category === 'Abundance').length
   const weekStart = startOfWeek()
   const thisWeek = entries.filter(e => e.date >= weekStart).length
-  const ratio = scarcityCount + abundanceCount > 0
-    ? Math.round((abundanceCount / (scarcityCount + abundanceCount)) * 100)
-    : null
 
-  const scarcityEntries = entries.filter(e => e.category === 'Scarcity')
+  const scarcityPct = totalEntries > 0 ? Math.round((scarcityCount / totalEntries) * 100) : null
+  const abundancePct = totalEntries > 0 ? Math.round((abundanceCount / totalEntries) * 100) : null
+
+  const scarcityWithoutReframe = entries.filter(e => e.category === 'Scarcity' && !e.reframe)
+
+  // ── Render ─────────────────────────────────────────────────────────────
 
   return (
     <div className="space-y-6 max-w-xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2" style={{ fontFamily: 'Orbitron, monospace' }}>
+          <h1
+            className="text-2xl font-bold text-white flex items-center gap-2"
+            style={{ fontFamily: 'Orbitron, monospace' }}
+          >
             <TrendingUp className="w-7 h-7 text-green-400" />
             Money Mindset
           </h1>
@@ -185,14 +211,18 @@ export default function MoneyMindset() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-4 gap-3">
         <div className="game-card p-3 text-center">
           <div className="text-xl font-bold text-white">{totalEntries}</div>
-          <div className="text-xs text-slate-500">Total Entries</div>
+          <div className="text-xs text-slate-500">Total</div>
         </div>
         <div className="game-card p-3 text-center">
-          <div className="text-xl font-bold text-green-400">{ratio !== null ? `${ratio}%` : '—'}</div>
-          <div className="text-xs text-slate-500">Abundance Ratio</div>
+          <div className="text-xl font-bold text-red-400">{scarcityPct !== null ? `${scarcityPct}%` : '—'}</div>
+          <div className="text-xs text-slate-500">Scarcity</div>
+        </div>
+        <div className="game-card p-3 text-center">
+          <div className="text-xl font-bold text-green-400">{abundancePct !== null ? `${abundancePct}%` : '—'}</div>
+          <div className="text-xs text-slate-500">Abundance</div>
         </div>
         <div className="game-card p-3 text-center">
           <div className="text-xl font-bold text-blue-400">{thisWeek}</div>
@@ -203,7 +233,12 @@ export default function MoneyMindset() {
       {/* Belief Form */}
       {showBeliefForm && (
         <div className="game-card p-5 space-y-4 border border-green-500/20">
-          <h3 className="font-semibold text-slate-300">Log a Money Belief</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold text-slate-300">Log a Money Belief</h3>
+            <button onClick={cancelBeliefForm} className="text-slate-500 hover:text-slate-300 transition-colors">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
 
           <div>
             <label className="text-xs text-slate-400 mb-1 block">What belief or thought came up?</label>
@@ -227,9 +262,10 @@ export default function MoneyMindset() {
                     key={cat}
                     onClick={() => setBeliefCategory(cat)}
                     className="px-3 py-1 rounded-lg text-xs font-semibold transition-all"
-                    style={active
-                      ? { background: meta.bg, color: meta.color, border: `1px solid ${meta.color}` }
-                      : { background: '#1e293b', color: '#64748b', border: '1px solid transparent' }
+                    style={
+                      active
+                        ? { background: meta.bg, color: meta.color, border: `1px solid ${meta.color}` }
+                        : { background: '#1e293b', color: '#64748b', border: '1px solid transparent' }
                     }
                   >
                     {cat}
@@ -253,7 +289,7 @@ export default function MoneyMindset() {
             <div className="p-3 bg-red-950/30 border border-red-500/20 rounded-xl space-y-2">
               <div className="flex items-center gap-2">
                 <RefreshCw className="w-4 h-4 text-green-400" />
-                <span className="text-xs text-green-400 font-semibold">Reframe this scarcity belief</span>
+                <span className="text-xs text-green-400 font-semibold">Reframe this scarcity belief (optional)</span>
               </div>
               <textarea
                 value={beliefReframe}
@@ -273,8 +309,8 @@ export default function MoneyMindset() {
               Save Belief
             </button>
             <button
-              onClick={() => { setShowBeliefForm(false); setBeliefText(''); setBeliefReframe('') }}
-              className="px-4 py-2 bg-slate-700 text-slate-400 rounded-xl text-sm"
+              onClick={cancelBeliefForm}
+              className="px-4 py-2 bg-slate-700 text-slate-400 rounded-xl text-sm hover:bg-slate-600 transition-colors"
             >
               Cancel
             </button>
@@ -285,7 +321,10 @@ export default function MoneyMindset() {
       {/* Beliefs List */}
       {entries.length > 0 && (
         <div className="space-y-3">
-          <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Belief Journal</h2>
+          <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+            <BookOpen className="w-4 h-4" />
+            Belief Journal
+          </h2>
           {entries.map(entry => {
             const meta = CATEGORY_META[entry.category]
             const isEditingThis = editingReframe === entry.id
@@ -297,7 +336,7 @@ export default function MoneyMindset() {
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span
                         className="text-xs font-semibold px-2 py-0.5 rounded-full"
                         style={{ background: meta.bg, color: meta.color }}
@@ -316,13 +355,14 @@ export default function MoneyMindset() {
                   </button>
                 </div>
 
-                {/* Reframe section for Scarcity */}
+                {/* Reframe section — only for Scarcity entries */}
                 {entry.category === 'Scarcity' && (
                   <div className="mt-2">
                     {entry.reframe && !isEditingThis ? (
                       <div
-                        className="flex items-start gap-2 p-2 bg-green-950/30 border border-green-500/20 rounded-lg cursor-pointer"
+                        className="flex items-start gap-2 p-2 bg-green-950/30 border border-green-500/20 rounded-lg cursor-pointer hover:border-green-400/40 transition-colors"
                         onClick={() => { setEditingReframe(entry.id); setReframeText(entry.reframe) }}
+                        title="Click to edit reframe"
                       >
                         <RefreshCw className="w-3.5 h-3.5 text-green-400 flex-shrink-0 mt-0.5" />
                         <p className="text-xs text-green-300">{entry.reframe}</p>
@@ -344,7 +384,7 @@ export default function MoneyMindset() {
                           </button>
                           <button
                             onClick={() => setEditingReframe(null)}
-                            className="px-3 py-1 bg-slate-700 text-slate-400 rounded-lg text-xs"
+                            className="px-3 py-1 bg-slate-700 text-slate-400 rounded-lg text-xs hover:bg-slate-600 transition-colors"
                           >
                             Cancel
                           </button>
@@ -356,7 +396,7 @@ export default function MoneyMindset() {
                         className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-green-400 transition-colors"
                       >
                         <RefreshCw className="w-3 h-3" />
-                        Add reframe for this scarcity belief
+                        Add Reframe
                       </button>
                     )}
                   </div>
@@ -367,16 +407,16 @@ export default function MoneyMindset() {
         </div>
       )}
 
-      {/* Scarcity Without Reframe Prompt */}
-      {scarcityEntries.filter(e => !e.reframe).length > 0 && (
+      {/* Scarcity without reframe nudge */}
+      {scarcityWithoutReframe.length > 0 && (
         <div className="game-card p-4 border border-orange-500/20 bg-orange-950/10">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-1">
             <RefreshCw className="w-4 h-4 text-orange-400" />
             <span className="text-sm font-semibold text-orange-400">Reframes Needed</span>
           </div>
           <p className="text-xs text-slate-400">
-            You have {scarcityEntries.filter(e => !e.reframe).length} scarcity belief(s) without a reframe.
-            Reframing scarcity into abundance is one of the most powerful mindset shifts you can make.
+            {scarcityWithoutReframe.length} scarcity belief{scarcityWithoutReframe.length > 1 ? 's' : ''} without a
+            reframe. Shifting scarcity into abundance is one of the most powerful mindset changes you can make.
           </p>
         </div>
       )}
@@ -396,9 +436,15 @@ export default function MoneyMindset() {
           </button>
         </div>
 
-        {/* Custom add form */}
+        {/* Custom affirmation form */}
         {showAffirmForm && (
           <div className="game-card p-4 space-y-3 border border-yellow-500/20">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-slate-300">Custom Affirmation</span>
+              <button onClick={() => { setShowAffirmForm(false); setAffirmText('') }} className="text-slate-500 hover:text-slate-300 transition-colors">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
             <input
               type="text"
               value={affirmText}
@@ -406,7 +452,7 @@ export default function MoneyMindset() {
               placeholder="Write your custom money affirmation..."
               className="game-input w-full"
               autoFocus
-              onKeyDown={e => e.key === 'Enter' && addAffirmation(affirmText)}
+              onKeyDown={e => { if (e.key === 'Enter') addAffirmation(affirmText) }}
             />
             <div className="flex gap-2">
               <button
@@ -418,7 +464,7 @@ export default function MoneyMindset() {
               </button>
               <button
                 onClick={() => { setShowAffirmForm(false); setAffirmText('') }}
-                className="px-4 py-1.5 bg-slate-700 text-slate-400 rounded-xl text-sm"
+                className="px-4 py-1.5 bg-slate-700 text-slate-400 rounded-xl text-sm hover:bg-slate-600 transition-colors"
               >
                 Cancel
               </button>
@@ -426,7 +472,7 @@ export default function MoneyMindset() {
           </div>
         )}
 
-        {/* Quick-add presets */}
+        {/* Quick-add preset affirmations */}
         <div className="game-card p-4 space-y-2">
           <p className="text-xs text-slate-500 mb-3">Quick-add preset affirmations:</p>
           <div className="flex flex-wrap gap-2">
@@ -438,9 +484,10 @@ export default function MoneyMindset() {
                   onClick={() => addAffirmation(preset)}
                   disabled={alreadyAdded}
                   className="px-2.5 py-1 rounded-lg text-xs transition-all"
-                  style={alreadyAdded
-                    ? { background: '#14532d33', color: '#22c55e', cursor: 'default' }
-                    : { background: '#1e293b', color: '#94a3b8', border: '1px solid #334155' }
+                  style={
+                    alreadyAdded
+                      ? { background: '#14532d33', color: '#22c55e', cursor: 'default' }
+                      : { background: '#1e293b', color: '#94a3b8', border: '1px solid #334155' }
                   }
                 >
                   {alreadyAdded ? '✓ ' : '+ '}{preset}

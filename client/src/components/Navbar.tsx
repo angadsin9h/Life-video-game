@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, MapPin, AlertOctagon, Phone, Briefcase, Lightbulb, Pencil, Eye,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -121,9 +121,13 @@ const NAV_GROUPS = [
       { to: '/gratitude-letter', icon: Sparkles,      label: 'Gratitude Letter'},
       { to: '/health-dashboard', icon: Activity,      label: 'Health Dashboard'},
       { to: '/savings-challenge', icon: PiggyBank,    label: 'Savings Challenge'},
+      { to: '/skill-challenge',   icon: Zap,          label: 'Skill Challenge'  },
+      { to: '/podcast',           icon: Headphones,   label: 'Podcasts'         },
+      { to: '/personal-crm',      icon: Phone,        label: 'Contacts CRM'     },
+      { to: '/mentorship',        icon: GraduationCap, label: 'Mentorship'      },
       { to: '/sleep-rituals',   icon: Moon,    label: 'Sleep Rituals'  },
       { to: '/money-mindset',   icon: TrendingUp, label: 'Money Mindset'},
-      { to: '/obstacle-log',    icon: AlertOctagon, label: 'Obstacles' },
+      { to: '/obstacle-log',    icon: AlertTriangle, label: 'Obstacles' },
       { to: '/journal',   icon: BookOpen,   label: 'Journal'        },
       { to: '/growth-log', icon: TrendingUp, label: 'Growth Log'    },
       { to: '/morning-pages', icon: Sun,    label: 'Morning Pages'  },
@@ -138,8 +142,6 @@ const NAV_GROUPS = [
       { to: '/manifesto',     icon: Scroll, label: 'Manifesto'      },
       { to: '/relationships', icon: Users,  label: 'Relationships'  },
       { to: '/relationship-analytics', icon: Users, label: 'Rel. Stats'   },
-      { to: '/personal-crm',   icon: Phone,   label: 'Personal CRM'   },
-      { to: '/mentorship',     icon: GraduationCap, label: 'Mentorship' },
       { to: '/week-plan', icon: CalendarDays, label: 'Week Plan'    },
       { to: '/water',     icon: Droplets,    label: 'Water'        },
       { to: '/books',        icon: BookOpen,   label: 'Books'          },

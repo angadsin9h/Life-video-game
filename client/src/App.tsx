@@ -149,6 +149,8 @@ import AntiHabits from './pages/AntiHabits'
 import LifeRules from './pages/LifeRules'
 import RewardSystem from './pages/RewardSystem'
 import ContentCalendar from './pages/ContentCalendar'
+import SkillChallenge from './pages/SkillChallenge'
+import PodcastTracker from './pages/PodcastTracker'
 import DigitalDetox from './pages/DigitalDetox'
 import EmotionalIntelligence from './pages/EmotionalIntelligence'
 import GratitudeLetter from './pages/GratitudeLetter'
@@ -156,8 +158,6 @@ import HealthDashboard from './pages/HealthDashboard'
 import SavingsChallenge from './pages/SavingsChallenge'
 import LifeTimeline from './pages/LifeTimeline'
 import ObstacleLog from './pages/ObstacleLog'
-import PersonalCRM from './pages/PersonalCRM'
-import MentorshipLog from './pages/MentorshipLog'
 import SleepRituals from './pages/SleepRituals'
 import MoneyMindset from './pages/MoneyMindset'
 import NutritionGoals from './pages/NutritionGoals'
@@ -333,10 +333,10 @@ function App() {
               <Route path="/gratitude-letter"     element={<GratitudeLetter />}       />
               <Route path="/health-dashboard"     element={<HealthDashboard />}       />
               <Route path="/savings-challenge"    element={<SavingsChallenge />}      />
+              <Route path="/skill-challenge"      element={<SkillChallenge />}        />
+              <Route path="/podcast"              element={<PodcastTracker />}        />
               <Route path="/life-timeline"        element={<LifeTimeline />}          />
               <Route path="/obstacle-log"         element={<ObstacleLog />}           />
-              <Route path="/personal-crm"         element={<PersonalCRM />}           />
-              <Route path="/mentorship"           element={<MentorshipLog />}         />
               <Route path="/sleep-rituals"        element={<SleepRituals />}          />
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />

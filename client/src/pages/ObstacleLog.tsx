@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { AlertOctagon, Plus, Trash2, Check, ChevronDown, X } from 'lucide-react'
+import { AlertTriangle, Plus, Trash2, Check, ChevronDown, ChevronUp, X } from 'lucide-react'
 import { useToast } from '../contexts/ToastContext'
 
 type ObstacleStatus = 'active' | 'overcome' | 'accepted'
@@ -48,6 +48,14 @@ function severityColor(s: number): string {
   if (s <= 3) return 'bg-amber-500'
   if (s <= 4) return 'bg-orange-500'
   return 'bg-red-500'
+}
+
+function severityTextColor(s: number): string {
+  if (s <= 1) return 'text-green-400'
+  if (s <= 2) return 'text-lime-400'
+  if (s <= 3) return 'text-amber-400'
+  if (s <= 4) return 'text-orange-400'
+  return 'text-red-400'
 }
 
 function severityLabel(s: number): string {
@@ -151,6 +159,9 @@ export default function ObstacleLog() {
   const resolved = obstacles.filter(ob => ob.status !== 'active')
   const overcomeCount = obstacles.filter(ob => ob.status === 'overcome').length
   const overcomeRate = obstacles.length > 0 ? Math.round((overcomeCount / obstacles.length) * 100) : 0
+  const avgSeverity = obstacles.length > 0
+    ? (obstacles.reduce((sum, ob) => sum + ob.severity, 0) / obstacles.length).toFixed(1)
+    : '—'
 
   const renderCard = (ob: Obstacle) => {
     const isExpanded = expandedId === ob.id
@@ -193,7 +204,7 @@ export default function ObstacleLog() {
                   Accepted
                 </span>
               )}
-              <span className={`text-xs text-slate-500 ml-auto ${isResolved ? '' : `font-semibold ${severityColor(ob.severity).replace('bg-', 'text-').replace('-500', '-400')}`}`}>
+              <span className={`text-xs ml-auto font-semibold ${isResolved ? 'text-slate-500' : severityTextColor(ob.severity)}`}>
                 {severityLabel(ob.severity)}
               </span>
             </div>
@@ -245,7 +256,10 @@ export default function ObstacleLog() {
               title="Toggle details"
               className="p-1.5 rounded-lg hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
             >
-              <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+              {isExpanded
+                ? <ChevronUp className="w-4 h-4" />
+                : <ChevronDown className="w-4 h-4" />
+              }
             </button>
             <button
               onClick={() => deleteObstacle(ob.id)}
@@ -262,6 +276,12 @@ export default function ObstacleLog() {
           <div className="mt-3 pt-3 border-t border-slate-700">
             <p className="text-xs text-slate-500 uppercase tracking-wide mb-1">Notes</p>
             <p className="text-sm text-slate-300">{ob.notes}</p>
+          </div>
+        )}
+
+        {isExpanded && !ob.notes && (
+          <div className="mt-3 pt-3 border-t border-slate-700">
+            <p className="text-xs text-slate-500 italic">No additional notes.</p>
           </div>
         )}
       </div>
@@ -288,7 +308,7 @@ export default function ObstacleLog() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         <div className="game-card p-4 text-center">
           <div className="text-2xl font-bold text-red-400" style={{ fontFamily: 'Orbitron, monospace' }}>
             {obstacles.length}
@@ -306,6 +326,12 @@ export default function ObstacleLog() {
             {overcomeRate}%
           </div>
           <div className="text-xs text-slate-400 mt-1">Success Rate</div>
+        </div>
+        <div className="game-card p-4 text-center">
+          <div className="text-2xl font-bold text-orange-400" style={{ fontFamily: 'Orbitron, monospace' }}>
+            {avgSeverity}
+          </div>
+          <div className="text-xs text-slate-400 mt-1">Avg Severity</div>
         </div>
       </div>
 
@@ -393,7 +419,7 @@ export default function ObstacleLog() {
         </div>
       )}
 
-      {/* Overcome modal */}
+      {/* Overcome outcome modal */}
       {outcomeTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="game-card p-6 w-full max-w-md border border-green-500/30">
@@ -428,10 +454,10 @@ export default function ObstacleLog() {
         </div>
       )}
 
-      {/* Active Obstacles */}
+      {/* Obstacle List */}
       {obstacles.length === 0 ? (
         <div className="game-card p-12 text-center">
-          <AlertOctagon className="w-12 h-12 text-slate-600 mx-auto mb-4" />
+          <AlertTriangle className="w-12 h-12 text-slate-600 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-slate-400 mb-2">No obstacles logged</h3>
           <p className="text-slate-500 text-sm max-w-sm mx-auto">
             Life throws challenges at everyone. Log an obstacle to start tracking it — awareness is the first step to overcoming it.
@@ -449,7 +475,7 @@ export default function ObstacleLog() {
           {active.length > 0 && (
             <div>
               <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                <AlertOctagon className="w-4 h-4 text-red-400" />
+                <AlertTriangle className="w-4 h-4 text-red-400" />
                 Active Obstacles ({active.length})
               </h2>
               <div className="space-y-3">

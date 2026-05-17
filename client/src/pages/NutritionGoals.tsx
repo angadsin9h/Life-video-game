@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Apple, Target, TrendingUp, Plus, Droplets } from 'lucide-react'
+import { Apple, Target, TrendingUp, Plus, Droplets, BarChart3, Check } from 'lucide-react'
 import { useToast } from '../contexts/ToastContext'
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -23,7 +23,7 @@ interface NutritionLog {
 
 // ── Constants ──────────────────────────────────────────────────────────────
 
-const TARGETS_KEY = 'nutrition_goals_targets'
+const TARGETS_KEY = 'nutrition_targets'
 
 const DEFAULT_TARGETS: NutritionTargets = {
   protein: 150,
@@ -60,7 +60,7 @@ function todayKey(): string {
 }
 
 function logKey(date: string): string {
-  return `nutrition_goals_${date}`
+  return `nutrition_log_${date}`
 }
 
 function getLast7Dates(): string[] {
@@ -118,7 +118,7 @@ function MacroBar({
         <span className={over ? 'text-orange-400 font-semibold' : 'text-slate-300'}>
           {value}
           <span className="text-slate-500">/{target}{unit}</span>
-          {over && <span className="text-orange-400"> +{value - target}</span>}
+          {over && <span className="text-orange-400"> (+{value - target})</span>}
         </span>
       </div>
       <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
@@ -138,7 +138,7 @@ function MacroBar({
   )
 }
 
-// ── Macro Ratio Display ────────────────────────────────────────────────────
+// ── Macro Ratio Bar ────────────────────────────────────────────────────────
 
 function MacroRatioBar({
   protein,
@@ -149,7 +149,6 @@ function MacroRatioBar({
   carbs: number
   fat: number
 }) {
-  // Convert to calories for ratio: protein=4cal/g, carbs=4cal/g, fat=9cal/g
   const pCal = protein * 4
   const cCal = carbs * 4
   const fCal = fat * 9
@@ -181,7 +180,7 @@ function MacroRatioBar({
         {cPct > 0 && (
           <div
             className="flex items-center justify-center text-[10px] font-bold text-white transition-all duration-500"
-            style={{ width: `${cPct}%`, backgroundColor: '#eab308' }}
+            style={{ width: `${cPct}%`, backgroundColor: '#f59e0b' }}
             title={`Carbs ${Math.round(cPct)}%`}>
             {cPct > 12 ? `${Math.round(cPct)}%` : ''}
           </div>
@@ -201,7 +200,7 @@ function MacroRatioBar({
           <span className="text-slate-400">Protein {Math.round(pPct)}%</span>
         </span>
         <span className="flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: '#eab308' }} />
+          <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: '#f59e0b' }} />
           <span className="text-slate-400">Carbs {Math.round(cPct)}%</span>
         </span>
         <span className="flex items-center gap-1">
@@ -235,7 +234,7 @@ export default function NutritionGoals() {
     setWeeklyLogs(getLast7Dates().map(d => loadLog(d)))
   }, [today])
 
-  // ── Persist log ──
+  // ── Persist ──
 
   const saveLog = (updated: NutritionLog) => {
     setLog(updated)
@@ -253,8 +252,6 @@ export default function NutritionGoals() {
   const quickAdd = (key: MacroKey, amount: number) => {
     const updated = { ...log, [key]: clamp(log[key] + amount) }
     saveLog(updated)
-
-    // Check if hitting target
     if (log[key] < targets[key] && updated[key] >= targets[key]) {
       const labels: Record<MacroKey, string> = {
         protein: 'Protein goal',
@@ -291,11 +288,11 @@ export default function NutritionGoals() {
       key: 'carbs',
       label: 'Carbs',
       unit: 'g',
-      color: 'text-yellow-400',
-      barColor: '#eab308',
-      icon: <Apple className="w-4 h-4 text-yellow-400" />,
+      color: 'text-amber-400',
+      barColor: '#f59e0b',
+      icon: <Apple className="w-4 h-4 text-amber-400" />,
       quickAdds: [
-        { label: '+15g', amount: 15 },
+        { label: '+10g', amount: 10 },
         { label: '+30g', amount: 30 },
         { label: '+50g', amount: 50 },
       ],
@@ -308,9 +305,9 @@ export default function NutritionGoals() {
       barColor: '#f97316',
       icon: <TrendingUp className="w-4 h-4 text-orange-400" />,
       quickAdds: [
-        { label: '+5g', amount: 5 },
         { label: '+10g', amount: 10 },
         { label: '+20g', amount: 20 },
+        { label: '+30g', amount: 30 },
       ],
     },
     {
@@ -319,7 +316,7 @@ export default function NutritionGoals() {
       unit: 'kcal',
       color: 'text-red-400',
       barColor: '#ef4444',
-      icon: <Target className="w-4 h-4 text-red-400" />,
+      icon: <BarChart3 className="w-4 h-4 text-red-400" />,
       quickAdds: [
         { label: '+100', amount: 100 },
         { label: '+250', amount: 250 },
@@ -524,9 +521,8 @@ export default function NutritionGoals() {
                     }
                     className="game-input flex-1"
                   />
-                  <span className="text-xs text-slate-500 w-10 flex-shrink-0">{m.unit}/day</span>
+                  <span className="text-xs text-slate-500 w-12 flex-shrink-0">{m.unit}/day</span>
                 </div>
-                {/* Visual reference */}
                 <div className="mt-1 h-1 bg-slate-800 rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-300"
@@ -549,8 +545,8 @@ export default function NutritionGoals() {
 
           {/* Calorie estimation hint */}
           <div className="game-card p-4 bg-slate-800/40">
-            <p className="text-xs text-slate-500 font-semibold mb-2">Calorie hint</p>
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-slate-500 font-semibold mb-2">Calorie estimation from macros</p>
+            <p className="text-xs text-slate-600 leading-relaxed">
               Protein {editTargets.protein}g × 4 = {editTargets.protein * 4} kcal
               &nbsp;·&nbsp;
               Carbs {editTargets.carbs}g × 4 = {editTargets.carbs * 4} kcal
@@ -569,7 +565,54 @@ export default function NutritionGoals() {
       {activeTab === 'weekly' && (
         <div className="space-y-4">
 
-          {/* Avg vs goals */}
+          {/* Weekly summary table */}
+          <div className="game-card p-4 overflow-x-auto">
+            <div className="flex items-center gap-2 mb-3">
+              <BarChart3 className="w-4 h-4 text-green-400" />
+              <h3 className="font-semibold text-slate-200 text-sm">7-Day Summary vs. Goals</h3>
+            </div>
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="text-slate-500 border-b border-slate-800">
+                  <th className="text-left py-1.5 pr-2">Macro</th>
+                  <th className="text-right py-1.5 px-2">7-day avg</th>
+                  <th className="text-right py-1.5 px-2">Goal</th>
+                  <th className="text-right py-1.5 pl-2">%</th>
+                  <th className="text-right py-1.5 pl-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MACROS.map(m => {
+                  const avg = weeklyAvg(m.key)
+                  const pct = targets[m.key] > 0 ? (avg / targets[m.key]) : 0
+                  const pass = pct >= 0.8
+                  return (
+                    <tr key={m.key} className="border-b border-slate-800/50">
+                      <td className={`py-2 pr-2 font-medium ${m.color}`}>{m.label}</td>
+                      <td className="text-right py-2 px-2 text-slate-300 font-mono">
+                        {avg}{m.unit}
+                      </td>
+                      <td className="text-right py-2 px-2 text-slate-500 font-mono">
+                        {targets[m.key]}{m.unit}
+                      </td>
+                      <td className="text-right py-2 pl-2 font-mono"
+                        style={{ color: pct >= 1 ? '#f97316' : pct >= 0.8 ? '#22c55e' : '#ef4444' }}>
+                        {Math.round(pct * 100)}%
+                      </td>
+                      <td className="text-right py-2 pl-2">
+                        {pass
+                          ? <span className="inline-flex items-center justify-center"><Check className="w-3.5 h-3.5 text-green-400" /></span>
+                          : <span className="text-red-400 font-bold">✗</span>
+                        }
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* 7-day avg vs goals bars */}
           <div className="game-card p-5 space-y-4">
             <div className="flex items-center gap-2 mb-1">
               <TrendingUp className="w-4 h-4 text-green-400" />
@@ -608,7 +651,7 @@ export default function NutritionGoals() {
             })}
           </div>
 
-          {/* Daily breakdown bars */}
+          {/* Daily protein chart */}
           <div className="game-card p-4">
             <div className="flex items-center gap-2 mb-3">
               <Apple className="w-4 h-4 text-green-400" />
@@ -640,7 +683,7 @@ export default function NutritionGoals() {
             </div>
           </div>
 
-          {/* Calories chart */}
+          {/* Daily calories chart */}
           <div className="game-card p-4">
             <div className="flex items-center gap-2 mb-3">
               <Target className="w-4 h-4 text-red-400" />
@@ -677,14 +720,13 @@ export default function NutritionGoals() {
                 )
               })}
             </div>
-            {/* Goal line indicator label */}
             <div className="flex items-center gap-2 mt-2">
               <div className="w-6 border-t border-dashed border-green-500/40" />
               <span className="text-[10px] text-slate-600">Goal: {targets.calories} kcal</span>
             </div>
           </div>
 
-          {/* Water chart */}
+          {/* Daily water chart */}
           <div className="game-card p-4">
             <div className="flex items-center gap-2 mb-3">
               <Droplets className="w-4 h-4 text-cyan-400" />
@@ -715,6 +757,7 @@ export default function NutritionGoals() {
               })}
             </div>
           </div>
+
         </div>
       )}
 

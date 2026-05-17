@@ -1,23 +1,18 @@
 import { useState, useEffect } from 'react'
-import { Moon, Plus, Trash2, Check, ArrowUp, ArrowDown } from 'lucide-react'
+import { Moon, Plus, Trash2, Check, ArrowUp, ArrowDown, Star, Clock } from 'lucide-react'
 import { useToast } from '../contexts/ToastContext'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
-type RitualCategory = 'Physical' | 'Mental' | 'Environmental' | 'Social'
+type RitualCategory = 'Physical' | 'Mental' | 'Environmental'
 
-interface SleepRitual {
+interface RitualItem {
   id: string
   name: string
   category: RitualCategory
   targetTime: string   // e.g. "9:30 PM"
   duration: number     // minutes
   order: number
-}
-
-interface RitualLog {
-  date: string
-  completedIds: string[]
 }
 
 // ── Constants ──────────────────────────────────────────────────────────────
@@ -28,17 +23,16 @@ const CATEGORIES: { name: RitualCategory; color: string; bg: string }[] = [
   { name: 'Physical',      color: 'text-green-400',  bg: 'bg-green-500/10 border-green-500/30' },
   { name: 'Mental',        color: 'text-violet-400', bg: 'bg-violet-500/10 border-violet-500/30' },
   { name: 'Environmental', color: 'text-blue-400',   bg: 'bg-blue-500/10 border-blue-500/30' },
-  { name: 'Social',        color: 'text-pink-400',   bg: 'bg-pink-500/10 border-pink-500/30' },
 ]
 
-const PRESETS: Omit<SleepRitual, 'id' | 'order'>[] = [
-  { name: 'No screens 1hr before bed', category: 'Environmental', targetTime: '9:00 PM', duration: 60 },
-  { name: 'Dim lights',                category: 'Environmental', targetTime: '9:30 PM', duration: 10 },
-  { name: 'Herbal tea',                category: 'Physical',      targetTime: '9:00 PM', duration: 10 },
-  { name: 'Read fiction',              category: 'Mental',        targetTime: '9:30 PM', duration: 30 },
-  { name: 'Journal',                   category: 'Mental',        targetTime: '10:00 PM', duration: 15 },
-  { name: 'Meditate 10min',            category: 'Mental',        targetTime: '9:45 PM', duration: 10 },
-  { name: "Set tomorrow's intention",  category: 'Mental',        targetTime: '10:15 PM', duration: 5 },
+const PRESETS: Omit<RitualItem, 'id' | 'order'>[] = [
+  { name: 'No screens 1hr before bed',     category: 'Environmental', targetTime: '9:00 PM', duration: 60 },
+  { name: 'Dim lights',                    category: 'Environmental', targetTime: '9:30 PM', duration: 10 },
+  { name: 'Herbal tea',                    category: 'Physical',      targetTime: '9:00 PM', duration: 10 },
+  { name: 'Read fiction 20min',            category: 'Mental',        targetTime: '9:30 PM', duration: 20 },
+  { name: 'Journal gratitude',             category: 'Mental',        targetTime: '10:00 PM', duration: 10 },
+  { name: 'Meditate 10min',               category: 'Mental',        targetTime: '9:45 PM', duration: 10 },
+  { name: "Tomorrow's top 3 intentions",  category: 'Mental',        targetTime: '10:15 PM', duration: 5 },
 ]
 
 const DEFAULT_FORM = {
@@ -54,8 +48,8 @@ function todayKey(): string {
   return new Date().toISOString().split('T')[0]
 }
 
-function logKey(date: string): string {
-  return `sleep_rituals_log_${date}`
+function dailyKey(date: string): string {
+  return `sleep_rituals_${date}`
 }
 
 function getLast7Dates(): string[] {
@@ -66,7 +60,7 @@ function getLast7Dates(): string[] {
   }).reverse()
 }
 
-function loadRituals(): SleepRitual[] {
+function loadRituals(): RitualItem[] {
   try {
     const raw = localStorage.getItem(RITUALS_KEY)
     return raw ? JSON.parse(raw) : []
@@ -75,29 +69,29 @@ function loadRituals(): SleepRitual[] {
   }
 }
 
-function loadLog(date: string): RitualLog {
+function loadCompletions(date: string): Set<string> {
   try {
-    const raw = localStorage.getItem(logKey(date))
-    return raw ? JSON.parse(raw) : { date, completedIds: [] }
+    const raw = localStorage.getItem(dailyKey(date))
+    const arr: string[] = raw ? JSON.parse(raw) : []
+    return new Set(arr)
   } catch {
-    return { date, completedIds: [] }
+    return new Set()
   }
 }
 
-// ── Sleep Score Gauge ──────────────────────────────────────────────────────
+function saveCompletions(date: string, completed: Set<string>): void {
+  localStorage.setItem(dailyKey(date), JSON.stringify(Array.from(completed)))
+}
+
+// ── Sleep Gauge ────────────────────────────────────────────────────────────
 
 function SleepGauge({ pct }: { pct: number }) {
-  const r = 52
-  const circ = 2 * Math.PI * r
-  // Half-circle gauge: use 180deg arc rendered as a semicircle
-  const halfCirc = Math.PI * r   // length of the semicircle
-  const offset = halfCirc * (1 - pct)
+  const halfCirc = Math.PI * 50
   const color = pct >= 0.8 ? '#22c55e' : pct >= 0.5 ? '#8b5cf6' : '#f59e0b'
 
   return (
     <div className="flex flex-col items-center">
-      <svg viewBox="0 0 120 70" className="w-40 h-24">
-        {/* Background arc */}
+      <svg viewBox="0 0 120 70" className="w-44 h-28">
         <path
           d="M 10 60 A 50 50 0 0 1 110 60"
           fill="none"
@@ -105,7 +99,6 @@ function SleepGauge({ pct }: { pct: number }) {
           strokeWidth="10"
           strokeLinecap="round"
         />
-        {/* Filled arc */}
         <path
           d="M 10 60 A 50 50 0 0 1 110 60"
           fill="none"
@@ -115,13 +108,12 @@ function SleepGauge({ pct }: { pct: number }) {
           strokeDasharray={`${halfCirc * pct} ${halfCirc}`}
           className="transition-all duration-700"
         />
-        {/* Score text */}
         <text x="60" y="58" textAnchor="middle" fill="#e2e8f0" fontSize="18" fontWeight="700"
           style={{ fontFamily: 'Orbitron, monospace' }}>
           {Math.round(pct * 100)}%
         </text>
         <text x="60" y="70" textAnchor="middle" fill="#64748b" fontSize="8">
-          SLEEP SCORE
+          COMPLETION
         </text>
       </svg>
     </div>
@@ -134,38 +126,33 @@ export default function SleepRituals() {
   const { toastSuccess } = useToast()
   const today = todayKey()
 
-  const [rituals, setRituals]     = useState<SleepRitual[]>([])
-  const [log, setLog]             = useState<RitualLog>({ date: today, completedIds: [] })
-  const [showForm, setShowForm]   = useState(false)
+  const [rituals, setRituals]         = useState<RitualItem[]>([])
+  const [completed, setCompleted]     = useState<Set<string>>(new Set())
+  const [showForm, setShowForm]       = useState(false)
   const [showPresets, setShowPresets] = useState(false)
-  const [form, setForm]           = useState(DEFAULT_FORM)
-  const [activeTab, setActiveTab] = useState<'tonight' | 'manage'>('tonight')
+  const [form, setForm]               = useState(DEFAULT_FORM)
+  const [activeTab, setActiveTab]     = useState<'tonight' | 'manage'>('tonight')
 
   // ── Load ──
 
   useEffect(() => {
     setRituals(loadRituals())
-    setLog(loadLog(today))
+    setCompleted(loadCompletions(today))
   }, [today])
 
-  // ── Persist ──
+  // ── Persist rituals ──
 
-  const saveRituals = (updated: SleepRitual[]) => {
+  const saveRituals = (updated: RitualItem[]) => {
     const sorted = [...updated].sort((a, b) => a.order - b.order)
     setRituals(sorted)
     localStorage.setItem(RITUALS_KEY, JSON.stringify(sorted))
-  }
-
-  const saveLog = (updated: RitualLog) => {
-    setLog(updated)
-    localStorage.setItem(logKey(today), JSON.stringify(updated))
   }
 
   // ── Ritual CRUD ──
 
   const addRitual = () => {
     if (!form.name.trim()) return
-    const next: SleepRitual = {
+    const next: RitualItem = {
       id: Date.now().toString(),
       name: form.name.trim(),
       category: form.category,
@@ -179,19 +166,18 @@ export default function SleepRituals() {
     toastSuccess('Ritual added!', form.name)
   }
 
-  const addPreset = (preset: Omit<SleepRitual, 'id' | 'order'>) => {
-    const alreadyExists = rituals.some(r => r.name === preset.name)
-    if (alreadyExists) {
+  const addPreset = (preset: Omit<RitualItem, 'id' | 'order'>) => {
+    if (rituals.some(r => r.name === preset.name)) {
       toastSuccess('Already added!', preset.name)
       return
     }
-    const next: SleepRitual = {
+    const next: RitualItem = {
       ...preset,
       id: Date.now().toString(),
       order: rituals.length,
     }
     saveRituals([...rituals, next])
-    toastSuccess('Preset ritual added!', preset.name)
+    toastSuccess('Preset added!', preset.name)
   }
 
   const deleteRitual = (id: string) => {
@@ -199,8 +185,10 @@ export default function SleepRituals() {
       .filter(r => r.id !== id)
       .map((r, i) => ({ ...r, order: i }))
     saveRituals(updated)
-    // Remove from today's log too
-    saveLog({ ...log, completedIds: log.completedIds.filter(cid => cid !== id) })
+    const next = new Set(completed)
+    next.delete(id)
+    setCompleted(next)
+    saveCompletions(today, next)
   }
 
   const moveRitual = (id: string, dir: 'up' | 'down') => {
@@ -213,19 +201,17 @@ export default function SleepRituals() {
     saveRituals(next.map((r, i) => ({ ...r, order: i })))
   }
 
-  // ── Daily Check ──
+  // ── Daily Check-off ──
 
   const toggleComplete = (id: string) => {
-    const isCompleted = log.completedIds.includes(id)
-    const completedIds = isCompleted
-      ? log.completedIds.filter(cid => cid !== id)
-      : [...log.completedIds, id]
-    saveLog({ date: today, completedIds })
-
-    if (!isCompleted) {
+    const next = new Set(completed)
+    if (next.has(id)) {
+      next.delete(id)
+    } else {
+      next.add(id)
       const ritual = rituals.find(r => r.id === id)
       if (ritual) {
-        const allDone = rituals.every(r => completedIds.includes(r.id))
+        const allDone = rituals.every(r => next.has(r.id))
         if (allDone && rituals.length > 0) {
           toastSuccess('Perfect night!', 'All rituals complete!')
         } else {
@@ -233,26 +219,25 @@ export default function SleepRituals() {
         }
       }
     }
+    setCompleted(next)
+    saveCompletions(today, next)
   }
 
   // ── Stats ──
 
-  const completionPct = rituals.length === 0
-    ? 0
-    : log.completedIds.filter(id => rituals.some(r => r.id === id)).length / rituals.length
+  const validCompleted = rituals.filter(r => completed.has(r.id)).length
+  const completionPct = rituals.length === 0 ? 0 : validCompleted / rituals.length
 
   const avgLast7 = (() => {
-    const dates = getLast7Dates()
     if (rituals.length === 0) return 0
+    const dates = getLast7Dates()
     const totals = dates.map(d => {
-      const l = loadLog(d)
-      const valid = l.completedIds.filter(id => rituals.some(r => r.id === id))
-      return valid.length / rituals.length
+      const c = loadCompletions(d)
+      const valid = rituals.filter(r => c.has(r.id)).length
+      return valid / rituals.length
     })
     return totals.reduce((a, b) => a + b, 0) / totals.length
   })()
-
-  const completedCount = log.completedIds.filter(id => rituals.some(r => r.id === id)).length
 
   // ── Category info ──
 
@@ -285,11 +270,24 @@ export default function SleepRituals() {
       <div className="game-card p-5 flex flex-col items-center gap-4 border border-indigo-500/20 bg-indigo-900/5">
         <SleepGauge pct={completionPct} />
 
+        {/* Progress bar */}
+        <div className="w-full">
+          <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-700"
+              style={{
+                width: `${completionPct * 100}%`,
+                backgroundColor: completionPct >= 0.8 ? '#22c55e' : completionPct >= 0.5 ? '#8b5cf6' : '#f59e0b',
+              }}
+            />
+          </div>
+        </div>
+
         <div className="w-full grid grid-cols-3 gap-3 text-center">
           <div>
             <div className="text-xl font-bold text-indigo-400"
               style={{ fontFamily: 'Orbitron, monospace' }}>
-              {completedCount}/{rituals.length}
+              {validCompleted}/{rituals.length}
             </div>
             <div className="text-xs text-slate-500">Tonight</div>
           </div>
@@ -321,7 +319,7 @@ export default function SleepRituals() {
                 ? 'bg-indigo-600 text-white shadow'
                 : 'text-slate-400 hover:text-slate-200'
             }`}>
-            {tab === 'tonight' ? 'Tonight\'s Checklist' : 'Manage Rituals'}
+            {tab === 'tonight' ? "Tonight's Checklist" : 'Manage Rituals'}
           </button>
         ))}
       </div>
@@ -333,11 +331,11 @@ export default function SleepRituals() {
             <div className="text-center py-14 text-slate-500">
               <Moon className="w-12 h-12 mx-auto mb-3 opacity-20" />
               <p className="mb-1">No rituals yet.</p>
-              <p className="text-sm">Add rituals in the Manage tab or use presets.</p>
+              <p className="text-sm">Switch to "Manage Rituals" to add some.</p>
             </div>
           ) : (
             rituals.map(ritual => {
-              const done = log.completedIds.includes(ritual.id)
+              const done = completed.has(ritual.id)
               const cat = getCategoryInfo(ritual.category)
               return (
                 <button
@@ -366,18 +364,25 @@ export default function SleepRituals() {
                       <span className={`text-xs px-1.5 py-0.5 rounded border ${cat.bg} ${cat.color}`}>
                         {ritual.category}
                       </span>
-                      <span className="text-xs text-slate-600">{ritual.targetTime}</span>
+                      <span className="flex items-center gap-0.5 text-xs text-slate-600">
+                        <Clock className="w-3 h-3" />
+                        {ritual.targetTime}
+                      </span>
                       <span className="text-xs text-slate-600">{ritual.duration}min</span>
                     </div>
                   </div>
+
+                  {done && <Star className="w-4 h-4 text-amber-400 flex-shrink-0" />}
                 </button>
               )
             })
           )}
 
           {rituals.length > 0 && completionPct === 1 && (
-            <div className="text-center py-4 text-indigo-300 font-semibold text-sm">
+            <div className="text-center py-4 text-indigo-300 font-semibold text-sm flex items-center justify-center gap-2">
+              <Star className="w-4 h-4 text-amber-400" />
               All rituals complete. Sleep well!
+              <Star className="w-4 h-4 text-amber-400" />
             </div>
           )}
         </div>
@@ -387,12 +392,15 @@ export default function SleepRituals() {
       {activeTab === 'manage' && (
         <div className="space-y-4">
 
-          {/* Presets */}
+          {/* Preset rituals */}
           <div>
             <button
               onClick={() => setShowPresets(p => !p)}
               className="w-full p-3 rounded-xl bg-slate-800 text-slate-400 hover:text-slate-200 text-sm text-left flex items-center justify-between transition-colors">
-              <span>Quick-add preset rituals</span>
+              <span className="flex items-center gap-2">
+                <Star className="w-4 h-4 text-amber-400" />
+                Quick-add preset rituals
+              </span>
               <Plus className={`w-4 h-4 transition-transform ${showPresets ? 'rotate-45' : ''}`} />
             </button>
 
@@ -411,12 +419,15 @@ export default function SleepRituals() {
                           ? 'opacity-40 cursor-default border-slate-700 bg-slate-800'
                           : 'border-slate-700 bg-slate-800 hover:border-indigo-500/40 hover:bg-slate-700'
                       }`}>
-                      <div className={`text-xs px-2 py-0.5 rounded border flex-shrink-0 ${cat.bg} ${cat.color}`}>
+                      <span className={`text-xs px-2 py-0.5 rounded border flex-shrink-0 ${cat.bg} ${cat.color}`}>
                         {preset.category}
-                      </div>
-                      <div className="flex-1">
+                      </span>
+                      <div className="flex-1 min-w-0">
                         <div className="text-sm text-slate-200">{preset.name}</div>
-                        <div className="text-xs text-slate-500">{preset.targetTime} · {preset.duration}min</div>
+                        <div className="flex items-center gap-1 text-xs text-slate-500 mt-0.5">
+                          <Clock className="w-3 h-3" />
+                          {preset.targetTime} · {preset.duration}min
+                        </div>
                       </div>
                       {alreadyAdded
                         ? <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
@@ -515,12 +526,13 @@ export default function SleepRituals() {
             </div>
           ) : (
             <div className="space-y-2">
-              <p className="text-xs text-slate-600 px-1">Drag order · use arrows to reorder</p>
+              <p className="text-xs text-slate-600 px-1">Use arrows to reorder</p>
               {rituals.map((ritual, idx) => {
                 const cat = getCategoryInfo(ritual.category)
+                const done = completed.has(ritual.id)
                 return (
                   <div key={ritual.id}
-                    className="game-card p-3 flex items-center gap-3">
+                    className={`game-card p-3 flex items-center gap-3 ${done ? 'border-indigo-500/20' : ''}`}>
 
                     {/* Order arrows */}
                     <div className="flex flex-col gap-0.5 flex-shrink-0">
@@ -538,14 +550,22 @@ export default function SleepRituals() {
                       </button>
                     </div>
 
+                    {/* Done indicator */}
+                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${done ? 'bg-indigo-400' : 'bg-slate-700'}`} />
+
                     {/* Info */}
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-slate-200 truncate">{ritual.name}</div>
+                      <div className={`text-sm font-semibold truncate ${done ? 'text-slate-500 line-through' : 'text-slate-200'}`}>
+                        {ritual.name}
+                      </div>
                       <div className="flex items-center gap-2 mt-0.5">
                         <span className={`text-xs px-1.5 py-0.5 rounded border ${cat.bg} ${cat.color}`}>
                           {ritual.category}
                         </span>
-                        <span className="text-xs text-slate-600">{ritual.targetTime}</span>
+                        <span className="flex items-center gap-0.5 text-xs text-slate-600">
+                          <Clock className="w-3 h-3" />
+                          {ritual.targetTime}
+                        </span>
                         <span className="text-xs text-slate-600">{ritual.duration}min</span>
                       </div>
                     </div>
@@ -564,21 +584,19 @@ export default function SleepRituals() {
         </div>
       )}
 
-      {/* 7-day mini calendar */}
+      {/* 7-day mini chart */}
       <div className="game-card p-4">
         <div className="flex items-center gap-2 mb-3">
           <Moon className="w-4 h-4 text-indigo-400" />
           <span className="text-sm font-semibold text-slate-400">Last 7 Nights</span>
-          <span className="text-xs text-slate-600 ml-auto">
-            avg {Math.round(avgLast7 * 100)}%
-          </span>
+          <span className="text-xs text-slate-600 ml-auto">avg {Math.round(avgLast7 * 100)}%</span>
         </div>
         <div className="flex gap-1.5">
           {getLast7Dates().map(date => {
-            const l = loadLog(date)
+            const c = loadCompletions(date)
             const dayPct = rituals.length === 0
               ? 0
-              : l.completedIds.filter(id => rituals.some(r => r.id === id)).length / rituals.length
+              : rituals.filter(r => c.has(r.id)).length / rituals.length
             const isToday = date === today
             const label = new Date(date + 'T12:00:00')
               .toLocaleDateString('en-US', { weekday: 'narrow' })
