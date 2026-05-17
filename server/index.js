@@ -143,6 +143,12 @@ app.use('/api/stress', stressRouter);
 const gratitudeChainRouter = require('./routes/gratitude_chain');
 app.use('/api/gratitude-chain', gratitudeChainRouter);
 
+const checkInsRouter = require('./routes/check_ins');
+app.use('/api/check-ins', checkInsRouter);
+
+const xpEventsRouter = require('./routes/xp_events');
+app.use('/api/xp-events', xpEventsRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

@@ -135,6 +135,8 @@ import WeeklyWins from './pages/WeeklyWins'
 import NightlyReview from './pages/NightlyReview'
 import PowerHour from './pages/PowerHour'
 import HabitDesigner from './pages/HabitDesigner'
+import DailyCheckIn from './pages/DailyCheckIn'
+import XPCenter from './pages/XPCenter'
 
 function App() {
   return (
@@ -279,6 +281,8 @@ function App() {
               <Route path="/nightly-review"       element={<NightlyReview />}         />
               <Route path="/power-hour"           element={<PowerHour />}             />
               <Route path="/habit-designer"       element={<HabitDesigner />}         />
+              <Route path="/daily-check-in"       element={<DailyCheckIn />}          />
+              <Route path="/xp-center"            element={<XPCenter />}              />
             </Routes>
           </div>
         </main>
