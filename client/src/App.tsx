@@ -123,6 +123,11 @@ import StreakChallenge from './pages/StreakChallenge'
 import LifeEvents from './pages/LifeEvents'
 import StressTracker from './pages/StressTracker'
 import GratitudeChain from './pages/GratitudeChain'
+import OKRTracker from './pages/OKRTracker'
+import DailyStandup from './pages/DailyStandup'
+import StudyTracker from './pages/StudyTracker'
+import PersonalKPIs from './pages/PersonalKPIs'
+import BucketList from './pages/BucketList'
 
 function App() {
   return (
@@ -255,6 +260,11 @@ function App() {
               <Route path="/life-events"          element={<LifeEvents />}            />
               <Route path="/stress"               element={<StressTracker />}         />
               <Route path="/gratitude-chain"      element={<GratitudeChain />}        />
+              <Route path="/okr"                  element={<OKRTracker />}            />
+              <Route path="/standup"              element={<DailyStandup />}          />
+              <Route path="/study"                element={<StudyTracker />}          />
+              <Route path="/kpis"                 element={<PersonalKPIs />}          />
+              <Route path="/bucket-list"          element={<BucketList />}            />
             </Routes>
           </div>
         </main>

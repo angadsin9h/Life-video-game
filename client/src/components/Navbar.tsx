@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -55,6 +55,8 @@ const NAV_GROUPS = [
       { to: '/priority-matrix', icon: Target,       label: 'Priority Matrix'},
       { to: '/affirmations', icon: Star,             label: 'Affirmations'},
       { to: '/vision-board', icon: Star,            label: 'Vision Board'},
+      { to: '/standup',      icon: ListChecks,      label: 'Daily Standup'},
+      { to: '/okr',          icon: Presentation,    label: 'OKRs'         },
     ],
   },
   {
@@ -126,6 +128,9 @@ const NAV_GROUPS = [
       { to: '/financial-goals', icon: PiggyBank,  label: 'Financial Goals'},
       { to: '/mind-map',        icon: Network,   label: 'Mind Maps'     },
       { to: '/streaks-calendar',  icon: Flame,      label: 'Streaks Cal.' },
+      { to: '/study',             icon: FlaskConical, label: 'Study Tracker'},
+      { to: '/kpis',              icon: List,         label: 'Personal KPIs'},
+      { to: '/bucket-list',       icon: Star,         label: 'Bucket List'  },
     ],
   },
   {
