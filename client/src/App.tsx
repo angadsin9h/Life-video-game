@@ -148,6 +148,12 @@ import LifeMap from './pages/LifeMap'
 import AntiHabits from './pages/AntiHabits'
 import LifeRules from './pages/LifeRules'
 import RewardSystem from './pages/RewardSystem'
+import ContentCalendar from './pages/ContentCalendar'
+import DigitalDetox from './pages/DigitalDetox'
+import EmotionalIntelligence from './pages/EmotionalIntelligence'
+import GratitudeLetter from './pages/GratitudeLetter'
+import HealthDashboard from './pages/HealthDashboard'
+import SavingsChallenge from './pages/SavingsChallenge'
 import LifeTimeline from './pages/LifeTimeline'
 import ObstacleLog from './pages/ObstacleLog'
 import PersonalCRM from './pages/PersonalCRM'
@@ -321,6 +327,12 @@ function App() {
               <Route path="/anti-habits"          element={<AntiHabits />}            />
               <Route path="/life-rules"           element={<LifeRules />}             />
               <Route path="/reward-system"        element={<RewardSystem />}          />
+              <Route path="/content-calendar"     element={<ContentCalendar />}       />
+              <Route path="/digital-detox"        element={<DigitalDetox />}          />
+              <Route path="/emotional-iq"         element={<EmotionalIntelligence />} />
+              <Route path="/gratitude-letter"     element={<GratitudeLetter />}       />
+              <Route path="/health-dashboard"     element={<HealthDashboard />}       />
+              <Route path="/savings-challenge"    element={<SavingsChallenge />}      />
               <Route path="/life-timeline"        element={<LifeTimeline />}          />
               <Route path="/obstacle-log"         element={<ObstacleLog />}           />
               <Route path="/personal-crm"         element={<PersonalCRM />}           />

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, MapPin, AlertOctagon, Phone, Briefcase, Lightbulb, Pencil, Eye,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, MapPin, AlertOctagon, Phone, Briefcase, Lightbulb, Pencil, Eye,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -114,7 +114,13 @@ const NAV_GROUPS = [
       { to: '/success-formula', icon: Trophy,  label: 'Success Formula'},
       { to: '/anti-habits',     icon: Shield,  label: 'Anti-Habits'    },
       { to: '/life-rules',      icon: Shield,  label: 'Life Rules'     },
-      { to: '/reward-system',   icon: Gift,    label: 'Rewards'        },
+      { to: '/reward-system',    icon: Gift,          label: 'Rewards'         },
+      { to: '/content-calendar', icon: Globe,         label: 'Content Calendar'},
+      { to: '/digital-detox',    icon: Smartphone, label: 'Digital Detox'   },
+      { to: '/emotional-iq',     icon: Brain,         label: 'Emotional IQ'    },
+      { to: '/gratitude-letter', icon: Sparkles,      label: 'Gratitude Letter'},
+      { to: '/health-dashboard', icon: Activity,      label: 'Health Dashboard'},
+      { to: '/savings-challenge', icon: PiggyBank,    label: 'Savings Challenge'},
       { to: '/sleep-rituals',   icon: Moon,    label: 'Sleep Rituals'  },
       { to: '/money-mindset',   icon: TrendingUp, label: 'Money Mindset'},
       { to: '/obstacle-log',    icon: AlertOctagon, label: 'Obstacles' },
