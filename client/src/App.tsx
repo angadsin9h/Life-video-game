@@ -159,6 +159,16 @@ import SavingsChallenge from './pages/SavingsChallenge'
 import LifeTimeline from './pages/LifeTimeline'
 import ObstacleLog from './pages/ObstacleLog'
 import SleepRituals from './pages/SleepRituals'
+import TodayFocus from './pages/TodayFocus'
+import GratitudeJar from './pages/GratitudeJar'
+import DailyScorecard from './pages/DailyScorecard'
+import BreathworkTimer from './pages/BreathworkTimer'
+import IdeaIncubator from './pages/IdeaIncubator'
+import ProjectRetro from './pages/ProjectRetro'
+import HealthMetrics from './pages/HealthMetrics'
+import MentalHealthLog from './pages/MentalHealthLog'
+import WeeklySprint from './pages/WeeklySprint'
+import PersonalOKR from './pages/PersonalOKR'
 import MoneyMindset from './pages/MoneyMindset'
 import NutritionGoals from './pages/NutritionGoals'
 import CareerTracker from './pages/CareerTracker'
@@ -338,6 +348,16 @@ function App() {
               <Route path="/life-timeline"        element={<LifeTimeline />}          />
               <Route path="/obstacle-log"         element={<ObstacleLog />}           />
               <Route path="/sleep-rituals"        element={<SleepRituals />}          />
+              <Route path="/today-focus"          element={<TodayFocus />}            />
+              <Route path="/gratitude-jar"        element={<GratitudeJar />}          />
+              <Route path="/daily-scorecard"      element={<DailyScorecard />}        />
+              <Route path="/breathwork"           element={<BreathworkTimer />}       />
+              <Route path="/idea-incubator"       element={<IdeaIncubator />}         />
+              <Route path="/project-retro"        element={<ProjectRetro />}          />
+              <Route path="/health-metrics"       element={<HealthMetrics />}         />
+              <Route path="/mental-health"        element={<MentalHealthLog />}       />
+              <Route path="/weekly-sprint"        element={<WeeklySprint />}          />
+              <Route path="/personal-okr"         element={<PersonalOKR />}           />
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
               <Route path="/career"               element={<CareerTracker />}         />
