@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, MapPin, AlertOctagon, Phone, Briefcase,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, MapPin, AlertOctagon, Phone, Briefcase, Lightbulb, Pencil, Eye,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -64,7 +64,14 @@ const NAV_GROUPS = [
       { to: '/identity',        icon: User,   label: 'Identity'       },
       { to: '/weekly-wins',     icon: Trophy, label: 'Weekly Wins'    },
       { to: '/personal-brand',  icon: Star,   label: 'Personal Brand' },
-      { to: '/cognitive-reframe', icon: Brain, label: 'Reframe'       },
+      { to: '/cognitive-reframe', icon: Brain,    label: 'Reframe'       },
+      { to: '/daily-script',      icon: Pencil,   label: 'Daily Script'  },
+      { to: '/life-vision',       icon: Eye,      label: 'Life Vision'   },
+      { to: '/win-streak',        icon: Trophy,   label: 'Win Streak'    },
+      { to: '/fear-log',          icon: Shield,   label: 'Fear Log'      },
+      { to: '/flow-state',        icon: Zap,      label: 'Flow State'    },
+      { to: '/creative-journal',  icon: Pencil,   label: 'Creative Write'},
+      { to: '/idea-vault',        icon: Lightbulb, label: 'Idea Vault'   },
     ],
   },
   {
@@ -156,6 +163,7 @@ const NAV_GROUPS = [
       { to: '/time-audit',        icon: Clock,        label: 'Time Audit'   },
       { to: '/habit-coach',       icon: Brain,        label: 'Habit Coach'  },
       { to: '/career',            icon: Briefcase,    label: 'Career'       },
+      { to: '/project-sprint',   icon: Zap,          label: 'Sprints'      },
     ],
   },
   {

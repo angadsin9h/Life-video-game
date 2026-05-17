@@ -156,6 +156,14 @@ import SleepRituals from './pages/SleepRituals'
 import MoneyMindset from './pages/MoneyMindset'
 import NutritionGoals from './pages/NutritionGoals'
 import CareerTracker from './pages/CareerTracker'
+import IdeaVault from './pages/IdeaVault'
+import ProjectSprint from './pages/ProjectSprint'
+import CreativeJournal from './pages/CreativeJournal'
+import FlowState from './pages/FlowState'
+import FearLog from './pages/FearLog'
+import WinStreak from './pages/WinStreak'
+import DailyScript from './pages/DailyScript'
+import LifeVision from './pages/LifeVision'
 
 function App() {
   return (
@@ -321,6 +329,14 @@ function App() {
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
               <Route path="/career"               element={<CareerTracker />}         />
+              <Route path="/idea-vault"           element={<IdeaVault />}             />
+              <Route path="/project-sprint"       element={<ProjectSprint />}         />
+              <Route path="/creative-journal"     element={<CreativeJournal />}       />
+              <Route path="/flow-state"           element={<FlowState />}             />
+              <Route path="/fear-log"             element={<FearLog />}               />
+              <Route path="/win-streak"           element={<WinStreak />}             />
+              <Route path="/daily-script"         element={<DailyScript />}           />
+              <Route path="/life-vision"          element={<LifeVision />}            />
             </Routes>
           </div>
         </main>
