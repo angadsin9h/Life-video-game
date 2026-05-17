@@ -149,6 +149,9 @@ app.use('/api/check-ins', checkInsRouter);
 const xpEventsRouter = require('./routes/xp_events');
 app.use('/api/xp-events', xpEventsRouter);
 
+const focusJournalRouter = require('./routes/focus_journal');
+app.use('/api/focus-journal', focusJournalRouter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

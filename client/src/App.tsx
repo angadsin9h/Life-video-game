@@ -143,6 +143,7 @@ import MicroHabits from './pages/MicroHabits'
 import SuccessFormula from './pages/SuccessFormula'
 import GoalHierarchy from './pages/GoalHierarchy'
 import PerformanceReview from './pages/PerformanceReview'
+import FocusJournal from './pages/FocusJournal'
 
 function App() {
   return (
@@ -295,6 +296,7 @@ function App() {
               <Route path="/success-formula"      element={<SuccessFormula />}        />
               <Route path="/goal-hierarchy"       element={<GoalHierarchy />}         />
               <Route path="/monthly-review"       element={<PerformanceReview />}     />
+              <Route path="/focus-journal"        element={<FocusJournal />}          />
             </Routes>
           </div>
         </main>
