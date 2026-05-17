@@ -132,6 +132,9 @@ import HabitCoach from './pages/HabitCoach'
 import TimeAudit from './pages/TimeAudit'
 import IdentityBuilder from './pages/IdentityBuilder'
 import WeeklyWins from './pages/WeeklyWins'
+import NightlyReview from './pages/NightlyReview'
+import PowerHour from './pages/PowerHour'
+import HabitDesigner from './pages/HabitDesigner'
 
 function App() {
   return (
@@ -273,6 +276,9 @@ function App() {
               <Route path="/time-audit"           element={<TimeAudit />}             />
               <Route path="/identity"             element={<IdentityBuilder />}       />
               <Route path="/weekly-wins"          element={<WeeklyWins />}            />
+              <Route path="/nightly-review"       element={<NightlyReview />}         />
+              <Route path="/power-hour"           element={<PowerHour />}             />
+              <Route path="/habit-designer"       element={<HabitDesigner />}         />
             </Routes>
           </div>
         </main>
