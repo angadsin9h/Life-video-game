@@ -141,6 +141,8 @@ import CognitiveReframe from './pages/CognitiveReframe'
 import PersonalBrand from './pages/PersonalBrand'
 import MicroHabits from './pages/MicroHabits'
 import SuccessFormula from './pages/SuccessFormula'
+import GoalHierarchy from './pages/GoalHierarchy'
+import PerformanceReview from './pages/PerformanceReview'
 
 function App() {
   return (
@@ -291,6 +293,8 @@ function App() {
               <Route path="/personal-brand"       element={<PersonalBrand />}         />
               <Route path="/micro-habits"         element={<MicroHabits />}           />
               <Route path="/success-formula"      element={<SuccessFormula />}        />
+              <Route path="/goal-hierarchy"       element={<GoalHierarchy />}         />
+              <Route path="/monthly-review"       element={<PerformanceReview />}     />
             </Routes>
           </div>
         </main>
