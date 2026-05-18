@@ -383,6 +383,10 @@ const NAV_GROUPS = [
       { to: '/core-values',      icon: Heart,       label: 'Core Values'        },
       { to: '/annual-review',    icon: Calendar,    label: 'Annual Review'      },
       { to: '/goal-review',      icon: Target,      label: 'Goal Reviews'       },
+      { to: '/neg-visualization', icon: Eye,        label: 'Neg. Visualization' },
+      { to: '/relapse-log',      icon: RefreshCw,   label: 'Relapse Log'        },
+      { to: '/energy-food',      icon: Zap,         label: 'Energy Food Log'    },
+      { to: '/life-interests',   icon: Layers,      label: 'Life Interests'     },
     ],
   },
 ]

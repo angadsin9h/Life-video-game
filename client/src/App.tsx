@@ -342,6 +342,10 @@ import ReadingList from './pages/ReadingList'
 import PersonalValues2 from './pages/PersonalValues2'
 import AnnualReview from './pages/AnnualReview'
 import GoalReview from './pages/GoalReview'
+import NegativeVisualization from './pages/NegativeVisualization'
+import RelapseLog from './pages/RelapseLog'
+import EnergyFood from './pages/EnergyFood'
+import LifeInterests from './pages/LifeInterests'
 import BoundariesLog from './pages/BoundariesLog'
 import PhilosophyNotes from './pages/PhilosophyNotes'
 import SleepGoals from './pages/SleepGoals'
@@ -703,6 +707,10 @@ function App() {
               <Route path="/core-values"     element={<PersonalValues2 />}   />
               <Route path="/annual-review"   element={<AnnualReview />}      />
               <Route path="/goal-review"     element={<GoalReview />}        />
+              <Route path="/neg-visualization" element={<NegativeVisualization />} />
+              <Route path="/relapse-log"     element={<RelapseLog />}        />
+              <Route path="/energy-food"     element={<EnergyFood />}        />
+              <Route path="/life-interests"  element={<LifeInterests />}     />
             </Routes>
           </div>
         </main>
