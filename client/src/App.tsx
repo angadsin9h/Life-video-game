@@ -300,6 +300,13 @@ import BreakupJournal from './pages/BreakupJournal'
 import SelfCarePlan from './pages/SelfCarePlan'
 import MonthlyIntentions from './pages/MonthlyIntentions'
 import PersonalLegacy from './pages/PersonalLegacy'
+import ClimateLog from './pages/ClimateLog'
+import JoyLog from './pages/JoyLog'
+import LearningGoals from './pages/LearningGoals'
+import LifePurpose from './pages/LifePurpose'
+import ThoughtPatterns from './pages/ThoughtPatterns'
+import PersonalFinanceRatios from './pages/PersonalFinanceRatios'
+import HabitMindsetShift from './pages/HabitMindsetShift'
 
 function App() {
   return (
@@ -609,6 +616,13 @@ function App() {
               <Route path="/self-care"          element={<SelfCarePlan />}          />
               <Route path="/monthly-intentions" element={<MonthlyIntentions />}     />
               <Route path="/personal-legacy"    element={<PersonalLegacy />}        />
+              <Route path="/climate-log"        element={<ClimateLog />}            />
+              <Route path="/joy-log"            element={<JoyLog />}                />
+              <Route path="/learning-goals"     element={<LearningGoals />}         />
+              <Route path="/life-purpose"       element={<LifePurpose />}           />
+              <Route path="/thought-patterns"   element={<ThoughtPatterns />}       />
+              <Route path="/finance-ratios"     element={<PersonalFinanceRatios />} />
+              <Route path="/mindset-shifts"     element={<HabitMindsetShift />}     />
             </Routes>
           </div>
         </main>

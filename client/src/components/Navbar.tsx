@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -336,6 +336,13 @@ const NAV_GROUPS = [
       { to: '/self-care',          icon: Heart,         label: 'Self-Care Plan'    },
       { to: '/monthly-intentions', icon: Target,        label: 'Monthly Intentions'},
       { to: '/personal-legacy',    icon: Star,          label: 'Personal Legacy'   },
+      { to: '/climate-log',        icon: Leaf,          label: 'Climate Log'        },
+      { to: '/joy-log',            icon: Sun,           label: 'Joy Log'            },
+      { to: '/learning-goals',     icon: GraduationCap, label: 'Learning Goals'     },
+      { to: '/life-purpose',       icon: Compass,       label: 'Life Purpose'       },
+      { to: '/thought-patterns',   icon: Brain,         label: 'Thought Patterns'   },
+      { to: '/finance-ratios',     icon: TrendingUp,    label: 'Finance Ratios'     },
+      { to: '/mindset-shifts',     icon: RefreshCw,     label: 'Mindset Shifts'     },
     ],
   },
 ]
