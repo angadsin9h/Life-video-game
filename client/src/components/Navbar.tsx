@@ -348,6 +348,11 @@ const NAV_GROUPS = [
       { to: '/weekly-reflection',  icon: Calendar,      label: 'Weekly Reflection'  },
       { to: '/mantra-log',         icon: Sparkles,      label: 'Mantra Log'         },
       { to: '/personal-swot',      icon: BarChart3,     label: 'Personal SWOT'      },
+      { to: '/goal-post-mortem',   icon: Target,        label: 'Goal Post-Mortem'   },
+      { to: '/self-talk',          icon: Brain,         label: 'Self-Talk Log'      },
+      { to: '/vulnerability-log',  icon: Shield,        label: 'Vulnerability Log'  },
+      { to: '/micro-wins',         icon: Trophy,        label: 'Micro Wins'         },
+      { to: '/rel-values',         icon: Heart,         label: 'Rel. Values'        },
     ],
   },
 ]

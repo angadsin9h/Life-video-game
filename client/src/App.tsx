@@ -312,6 +312,11 @@ import SkillInventory from './pages/SkillInventory'
 import WeeklyReflection from './pages/WeeklyReflection'
 import MantraLog from './pages/MantraLog'
 import PersonalSWOT from './pages/PersonalSWOT'
+import GoalPostMortem from './pages/GoalPostMortem'
+import SelfTalk from './pages/SelfTalk'
+import VulnerabilityLog from './pages/VulnerabilityLog'
+import MicroWins from './pages/MicroWins'
+import RelationshipValues from './pages/RelationshipValues'
 
 function App() {
   return (
@@ -633,6 +638,11 @@ function App() {
               <Route path="/weekly-reflection"  element={<WeeklyReflection />}      />
               <Route path="/mantra-log"         element={<MantraLog />}             />
               <Route path="/personal-swot"      element={<PersonalSWOT />}          />
+              <Route path="/goal-post-mortem"   element={<GoalPostMortem />}        />
+              <Route path="/self-talk"          element={<SelfTalk />}              />
+              <Route path="/vulnerability-log"  element={<VulnerabilityLog />}      />
+              <Route path="/micro-wins"         element={<MicroWins />}             />
+              <Route path="/rel-values"         element={<RelationshipValues />}    />
             </Routes>
           </div>
         </main>
