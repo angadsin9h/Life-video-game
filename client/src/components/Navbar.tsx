@@ -369,6 +369,11 @@ const NAV_GROUPS = [
       { to: '/sleep-goals',      icon: Moon,          label: 'Sleep Goals'        },
       { to: '/challenge-tracker', icon: Swords,       label: 'Challenge Tracker'  },
       { to: '/debt-tracker',     icon: CreditCard,    label: 'Debt Tracker'       },
+      { to: '/strengths-log',   icon: Zap,           label: 'Strengths Log'      },
+      { to: '/time-wasters',    icon: Clock,         label: 'Time Wasters'       },
+      { to: '/health-habits',   icon: Activity,      label: 'Health Habits'      },
+      { to: '/wisdom-log',      icon: Scroll,        label: 'Wisdom Log'         },
+      { to: '/gratitude-practice', icon: Sparkles,   label: 'Gratitude Practice' },
     ],
   },
 ]

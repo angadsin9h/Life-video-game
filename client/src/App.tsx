@@ -328,6 +328,11 @@ import SocialProjects from './pages/SocialProjects'
 import DigitalMinimalism from './pages/DigitalMinimalism'
 import NutritionWins from './pages/NutritionWins'
 import CrisisLog from './pages/CrisisLog'
+import StrengthsLog from './pages/StrengthsLog'
+import TimeWasters from './pages/TimeWasters'
+import HealthHabits from './pages/HealthHabits'
+import WisdomLog from './pages/WisdomLog'
+import GratitudePractice from './pages/GratitudePractice'
 import BoundariesLog from './pages/BoundariesLog'
 import PhilosophyNotes from './pages/PhilosophyNotes'
 import SleepGoals from './pages/SleepGoals'
@@ -675,6 +680,11 @@ function App() {
               <Route path="/sleep-goals"      element={<SleepGoals />}            />
               <Route path="/challenge-tracker" element={<ChallengeTracker />}    />
               <Route path="/debt-tracker"     element={<PersonalDebts />}         />
+              <Route path="/strengths-log"   element={<StrengthsLog />}          />
+              <Route path="/time-wasters"    element={<TimeWasters />}           />
+              <Route path="/health-habits"   element={<HealthHabits />}          />
+              <Route path="/wisdom-log"      element={<WisdomLog />}             />
+              <Route path="/gratitude-practice" element={<GratitudePractice />} />
             </Routes>
           </div>
         </main>
