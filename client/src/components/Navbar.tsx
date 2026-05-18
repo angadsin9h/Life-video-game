@@ -298,6 +298,10 @@ const NAV_GROUPS = [
       { to: '/personal-research',  icon: Search,        label: 'My Research'       },
       { to: '/daily-affirmations', icon: Sun,           label: 'Affirmations+'     },
       { to: '/body-scan',          icon: Wind,          label: 'Body Scan'         },
+      { to: '/financial-literacy', icon: TrendingUp,    label: 'Financial Literacy'},
+      { to: '/private-journal',    icon: FileText,      label: 'Private Journal'   },
+      { to: '/rel-goals',          icon: Heart,         label: 'Relationship Goals'},
+      { to: '/life-experiences',   icon: Globe,         label: 'Life Experiences'  },
     ],
   },
 ]
