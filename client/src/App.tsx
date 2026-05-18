@@ -224,6 +224,10 @@ import GardeningLog from './pages/GardeningLog'
 import ReadingChallenge from './pages/ReadingChallenge'
 import NegotiationLog from './pages/NegotiationLog'
 import LoveLanguages from './pages/LoveLanguages'
+import DreamsJournal from './pages/DreamsJournal'
+import TherapyLog from './pages/TherapyLog'
+import SupplementLog from './pages/SupplementLog'
+import ScreenTimeLog from './pages/ScreenTimeLog'
 import RecipeJournal from './pages/RecipeJournal'
 import SocialCalendar from './pages/SocialCalendar'
 import PersonalInventory from './pages/PersonalInventory'
@@ -463,6 +467,10 @@ function App() {
               <Route path="/recipes"             element={<RecipeJournal />}         />
               <Route path="/social-calendar"     element={<SocialCalendar />}        />
               <Route path="/inventory"           element={<PersonalInventory />}     />
+              <Route path="/dreams"             element={<DreamsJournal />}         />
+              <Route path="/therapy"            element={<TherapyLog />}            />
+              <Route path="/supplements"        element={<SupplementLog />}         />
+              <Route path="/screen-time"        element={<ScreenTimeLog />}         />
             </Routes>
           </div>
         </main>

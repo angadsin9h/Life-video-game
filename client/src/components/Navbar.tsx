@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -263,6 +263,10 @@ const NAV_GROUPS = [
       { to: '/recipes',            icon: Utensils,      label: 'Recipe Journal'    },
       { to: '/social-calendar',    icon: Users,         label: 'Social Calendar'   },
       { to: '/inventory',          icon: Package,       label: 'Inventory'         },
+      { to: '/dreams',             icon: Moon,          label: 'Dreams Journal'    },
+      { to: '/therapy',            icon: Brain,         label: 'Therapy Log'       },
+      { to: '/supplements',        icon: Pill,          label: 'Supplements'       },
+      { to: '/screen-time',        icon: Smartphone,    label: 'Screen Time'       },
     ],
   },
 ]
