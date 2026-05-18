@@ -307,6 +307,11 @@ import LifePurpose from './pages/LifePurpose'
 import ThoughtPatterns from './pages/ThoughtPatterns'
 import PersonalFinanceRatios from './pages/PersonalFinanceRatios'
 import HabitMindsetShift from './pages/HabitMindsetShift'
+import GratefulMoments from './pages/GratefulMoments'
+import SkillInventory from './pages/SkillInventory'
+import WeeklyReflection from './pages/WeeklyReflection'
+import MantraLog from './pages/MantraLog'
+import PersonalSWOT from './pages/PersonalSWOT'
 
 function App() {
   return (
@@ -623,6 +628,11 @@ function App() {
               <Route path="/thought-patterns"   element={<ThoughtPatterns />}       />
               <Route path="/finance-ratios"     element={<PersonalFinanceRatios />} />
               <Route path="/mindset-shifts"     element={<HabitMindsetShift />}     />
+              <Route path="/grateful-moments"   element={<GratefulMoments />}       />
+              <Route path="/skill-inventory"    element={<SkillInventory />}        />
+              <Route path="/weekly-reflection"  element={<WeeklyReflection />}      />
+              <Route path="/mantra-log"         element={<MantraLog />}             />
+              <Route path="/personal-swot"      element={<PersonalSWOT />}          />
             </Routes>
           </div>
         </main>

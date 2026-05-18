@@ -343,6 +343,11 @@ const NAV_GROUPS = [
       { to: '/thought-patterns',   icon: Brain,         label: 'Thought Patterns'   },
       { to: '/finance-ratios',     icon: TrendingUp,    label: 'Finance Ratios'     },
       { to: '/mindset-shifts',     icon: RefreshCw,     label: 'Mindset Shifts'     },
+      { to: '/grateful-moments',   icon: Sparkles,      label: 'Grateful Moments'   },
+      { to: '/skill-inventory',    icon: Zap,           label: 'Skill Inventory'    },
+      { to: '/weekly-reflection',  icon: Calendar,      label: 'Weekly Reflection'  },
+      { to: '/mantra-log',         icon: Sparkles,      label: 'Mantra Log'         },
+      { to: '/personal-swot',      icon: BarChart3,     label: 'Personal SWOT'      },
     ],
   },
 ]
