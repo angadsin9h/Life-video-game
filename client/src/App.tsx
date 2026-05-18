@@ -180,6 +180,8 @@ import StudyFlashcards from './pages/StudyFlashcards'
 import RecoveryTracker from './pages/RecoveryTracker'
 import SkillRoadmap from './pages/SkillRoadmap'
 import QuickCapture from './pages/QuickCapture'
+import ConversationLog from './pages/ConversationLog'
+import FitnessLog from './pages/FitnessLog'
 import EveningReview from './pages/EveningReview'
 import YearInReview from './pages/YearInReview'
 import MorningRoutine from './pages/MorningRoutine'
@@ -194,6 +196,7 @@ import FearLog from './pages/FearLog'
 import WinStreak from './pages/WinStreak'
 import DailyScript from './pages/DailyScript'
 import LifeVision from './pages/LifeVision'
+import LifeChapters from './pages/LifeChapters'
 
 function App() {
   return (
@@ -386,6 +389,8 @@ function App() {
               <Route path="/evening-review"       element={<EveningReview />}         />
               <Route path="/year-review"          element={<YearInReview />}          />
               <Route path="/morning-routine"      element={<MorningRoutine />}        />
+              <Route path="/conversation-log"     element={<ConversationLog />}       />
+              <Route path="/fitness-log"          element={<FitnessLog />}            />
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
               <Route path="/career"               element={<CareerTracker />}         />
@@ -397,6 +402,7 @@ function App() {
               <Route path="/win-streak"           element={<WinStreak />}             />
               <Route path="/daily-script"         element={<DailyScript />}           />
               <Route path="/life-vision"          element={<LifeVision />}            />
+              <Route path="/life-chapters"        element={<LifeChapters />}          />
             </Routes>
           </div>
         </main>

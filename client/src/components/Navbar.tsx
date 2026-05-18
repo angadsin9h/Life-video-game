@@ -92,6 +92,9 @@ const NAV_GROUPS = [
       { to: '/evening-review',   icon: Moon,      label: 'Evening Review' },
       { to: '/year-review',      icon: Trophy,    label: 'Year Review'    },
       { to: '/morning-routine',  icon: Sun,       label: 'Morning Routine'},
+      { to: '/conversation-log', icon: Users,     label: 'Conversations'  },
+      { to: '/fitness-log',      icon: Dumbbell,  label: 'Fitness Log'    },
+      { to: '/life-chapters',    icon: BookOpen,  label: 'Life Chapters'  },
     ],
   },
   {
