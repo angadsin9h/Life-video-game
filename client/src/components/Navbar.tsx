@@ -325,6 +325,10 @@ const NAV_GROUPS = [
       { to: '/confidence',         icon: Zap,           label: 'Confidence Builder'},
       { to: '/social-skills',      icon: Users,         label: 'Social Skills'     },
       { to: '/life-numbers',       icon: Activity,      label: 'Life Numbers'      },
+      { to: '/personal-mythology', icon: Scroll,        label: 'Personal Mythology'},
+      { to: '/daily-questions',    icon: Star,          label: 'Daily Questions'   },
+      { to: '/energy-audit',       icon: Zap,           label: 'Energy Audit'      },
+      { to: '/moral-compass',      icon: Shield,        label: 'Moral Compass'     },
     ],
   },
 ]

@@ -289,6 +289,10 @@ import SuccessStories from './pages/SuccessStories'
 import ConfidenceBuilder from './pages/ConfidenceBuilder'
 import SocialSkillsLog from './pages/SocialSkillsLog'
 import LifeNumbersTracker from './pages/LifeNumbersTracker'
+import PersonalMythology from './pages/PersonalMythology'
+import DailyQuestions from './pages/DailyQuestions'
+import EnergyAudit from './pages/EnergyAudit'
+import MoralCompass from './pages/MoralCompass'
 
 function App() {
   return (
@@ -587,6 +591,10 @@ function App() {
               <Route path="/confidence"         element={<ConfidenceBuilder />}     />
               <Route path="/social-skills"      element={<SocialSkillsLog />}       />
               <Route path="/life-numbers"       element={<LifeNumbersTracker />}    />
+              <Route path="/personal-mythology" element={<PersonalMythology />}     />
+              <Route path="/daily-questions"    element={<DailyQuestions />}        />
+              <Route path="/energy-audit"       element={<EnergyAudit />}           />
+              <Route path="/moral-compass"      element={<MoralCompass />}          />
             </Routes>
           </div>
         </main>
