@@ -317,6 +317,10 @@ const NAV_GROUPS = [
       { to: '/digital-footprint',  icon: Globe,         label: 'Digital Footprint' },
       { to: '/life-letters',       icon: Mail,          label: 'Life Letters'      },
       { to: '/mindfulness-log',    icon: Wind,          label: 'Mindfulness Log'   },
+      { to: '/anger-log',          icon: AlertCircle,   label: 'Anger Log'         },
+      { to: '/curiosity-journal',  icon: Lightbulb,     label: 'Curiosity Journal' },
+      { to: '/time-capsule',       icon: Clock,         label: 'Time Capsule'      },
+      { to: '/workplace-log',      icon: Briefcase,     label: 'Workplace Log'     },
     ],
   },
 ]

@@ -281,6 +281,10 @@ import FriendshipTracker from './pages/FriendshipTracker'
 import DigitalFootprint from './pages/DigitalFootprint'
 import LifeLetters from './pages/LifeLetters'
 import MindfulnessLog from './pages/MindfulnessLog'
+import AngerLog from './pages/AngerLog'
+import CuriosityJournal from './pages/CuriosityJournal'
+import PersonalTimeCapsule from './pages/PersonalTimeCapsule'
+import WorkplaceLog from './pages/WorkplaceLog'
 
 function App() {
   return (
@@ -571,6 +575,10 @@ function App() {
               <Route path="/digital-footprint"  element={<DigitalFootprint />}      />
               <Route path="/life-letters"       element={<LifeLetters />}           />
               <Route path="/mindfulness-log"    element={<MindfulnessLog />}        />
+              <Route path="/anger-log"          element={<AngerLog />}              />
+              <Route path="/curiosity-journal"  element={<CuriosityJournal />}      />
+              <Route path="/time-capsule"       element={<PersonalTimeCapsule />}   />
+              <Route path="/workplace-log"      element={<WorkplaceLog />}          />
             </Routes>
           </div>
         </main>
