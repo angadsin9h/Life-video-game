@@ -324,6 +324,9 @@ import PeakPerformance from './pages/PeakPerformance'
 import BreathworkLog from './pages/BreathworkLog'
 import PersonalPRs from './pages/PersonalPRs'
 import EmotionLibrary from './pages/EmotionLibrary'
+import SocialProjects from './pages/SocialProjects'
+import DigitalMinimalism from './pages/DigitalMinimalism'
+import NutritionWins from './pages/NutritionWins'
 
 function App() {
   return (
@@ -657,6 +660,9 @@ function App() {
               <Route path="/breathwork-log"     element={<BreathworkLog />}         />
               <Route path="/personal-prs"       element={<PersonalPRs />}           />
               <Route path="/emotion-library"    element={<EmotionLibrary />}        />
+              <Route path="/social-projects"   element={<SocialProjects />}        />
+              <Route path="/digital-minimalism" element={<DigitalMinimalism />}   />
+              <Route path="/nutrition-wins"    element={<NutritionWins />}         />
             </Routes>
           </div>
         </main>

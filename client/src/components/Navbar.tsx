@@ -360,6 +360,9 @@ const NAV_GROUPS = [
       { to: '/breathwork-log',     icon: Wind,          label: 'Breathwork Log'     },
       { to: '/personal-prs',       icon: Trophy,        label: 'Personal Records'   },
       { to: '/emotion-library',    icon: Heart,         label: 'Emotion Library'    },
+      { to: '/social-projects',   icon: Users,         label: 'Social Projects'    },
+      { to: '/digital-minimalism', icon: Smartphone,   label: 'Digital Minimalism' },
+      { to: '/nutrition-wins',    icon: Apple,         label: 'Nutrition Wins'     },
     ],
   },
 ]
