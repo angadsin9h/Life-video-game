@@ -332,6 +332,10 @@ const NAV_GROUPS = [
       { to: '/sabbatical',         icon: Calendar,      label: 'Sabbatical Planner'},
       { to: '/adventure-log',      icon: MapPin,        label: 'Adventure Log'     },
       { to: '/dating-journal',     icon: Heart,         label: 'Dating Journal'    },
+      { to: '/breakup-journal',    icon: Heart,         label: 'Healing Journal'   },
+      { to: '/self-care',          icon: Heart,         label: 'Self-Care Plan'    },
+      { to: '/monthly-intentions', icon: Target,        label: 'Monthly Intentions'},
+      { to: '/personal-legacy',    icon: Star,          label: 'Personal Legacy'   },
     ],
   },
 ]

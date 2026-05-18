@@ -296,6 +296,10 @@ import MoralCompass from './pages/MoralCompass'
 import SabbaticalPlanner from './pages/SabbaticalPlanner'
 import AdventureLog from './pages/AdventureLog'
 import DatingJournal from './pages/DatingJournal'
+import BreakupJournal from './pages/BreakupJournal'
+import SelfCarePlan from './pages/SelfCarePlan'
+import MonthlyIntentions from './pages/MonthlyIntentions'
+import PersonalLegacy from './pages/PersonalLegacy'
 
 function App() {
   return (
@@ -601,6 +605,10 @@ function App() {
               <Route path="/sabbatical"         element={<SabbaticalPlanner />}     />
               <Route path="/adventure-log"      element={<AdventureLog />}          />
               <Route path="/dating-journal"     element={<DatingJournal />}         />
+              <Route path="/breakup-journal"    element={<BreakupJournal />}        />
+              <Route path="/self-care"          element={<SelfCarePlan />}          />
+              <Route path="/monthly-intentions" element={<MonthlyIntentions />}     />
+              <Route path="/personal-legacy"    element={<PersonalLegacy />}        />
             </Routes>
           </div>
         </main>
