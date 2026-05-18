@@ -216,6 +216,9 @@ import CreativeProjects from './pages/CreativeProjects'
 import HealthSymptoms from './pages/HealthSymptoms'
 import InvestmentTracker from './pages/InvestmentTracker'
 import WeightTracker from './pages/WeightTracker'
+import CharityTracker from './pages/CharityTracker'
+import MoodBoard from './pages/MoodBoard'
+import LessonLearned from './pages/LessonLearned'
 
 function App() {
   return (
@@ -441,6 +444,9 @@ function App() {
               <Route path="/health-symptoms"      element={<HealthSymptoms />}        />
               <Route path="/investments"          element={<InvestmentTracker />}     />
               <Route path="/weight"               element={<WeightTracker />}         />
+              <Route path="/charity"              element={<CharityTracker />}        />
+              <Route path="/mood-board"           element={<MoodBoard />}             />
+              <Route path="/lessons"              element={<LessonLearned />}         />
             </Routes>
           </div>
         </main>

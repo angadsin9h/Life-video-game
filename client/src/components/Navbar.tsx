@@ -252,6 +252,9 @@ const NAV_GROUPS = [
       { to: '/health-symptoms',    icon: Activity,      label: 'Symptoms Log'     },
       { to: '/investments',        icon: TrendingUp,    label: 'Investments'      },
       { to: '/weight',             icon: Activity,      label: 'Weight Tracker'   },
+      { to: '/charity',            icon: Heart,         label: 'Charity'          },
+      { to: '/mood-board',         icon: Sparkles,      label: 'Mood Board'       },
+      { to: '/lessons',            icon: BookOpen,      label: 'Lessons Learned'  },
     ],
   },
 ]
