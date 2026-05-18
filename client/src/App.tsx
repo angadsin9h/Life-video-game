@@ -275,6 +275,12 @@ import MoviesLog from './pages/MoviesLog'
 import FamilyTree from './pages/FamilyTree'
 import CommunicationLog from './pages/CommunicationLog'
 import LanguageJournal from './pages/LanguageJournal'
+import VisionJournal from './pages/VisionJournal'
+import PersonalConstitution from './pages/PersonalConstitution'
+import FriendshipTracker from './pages/FriendshipTracker'
+import DigitalFootprint from './pages/DigitalFootprint'
+import LifeLetters from './pages/LifeLetters'
+import MindfulnessLog from './pages/MindfulnessLog'
 
 function App() {
   return (
@@ -558,7 +564,13 @@ function App() {
               <Route path="/career-journey"     element={<CareerJourney />}         />
               <Route path="/mental-models"      element={<MentalModels />}          />
               <Route path="/travel-planner"     element={<TravelPlanner />}         />
-              <Route path="/language-journal"   element={<LanguageJournal />}       />
+              <Route path="/language-journal"    element={<LanguageJournal />}        />
+              <Route path="/vision-journal"     element={<VisionJournal />}         />
+              <Route path="/constitution"       element={<PersonalConstitution />}  />
+              <Route path="/friendships"        element={<FriendshipTracker />}     />
+              <Route path="/digital-footprint"  element={<DigitalFootprint />}      />
+              <Route path="/life-letters"       element={<LifeLetters />}           />
+              <Route path="/mindfulness-log"    element={<MindfulnessLog />}        />
             </Routes>
           </div>
         </main>

@@ -311,6 +311,12 @@ const NAV_GROUPS = [
       { to: '/mental-models',      icon: Brain,         label: 'Mental Models'     },
       { to: '/travel-planner',     icon: Globe,         label: 'Travel Planner'    },
       { to: '/language-journal',   icon: BookOpen,      label: 'Language Journal'  },
+      { to: '/vision-journal',     icon: Eye,           label: 'Vision Journal'    },
+      { to: '/constitution',       icon: Scroll,        label: 'Constitution'      },
+      { to: '/friendships',        icon: Users,         label: 'Friendships'       },
+      { to: '/digital-footprint',  icon: Globe,         label: 'Digital Footprint' },
+      { to: '/life-letters',       icon: Mail,          label: 'Life Letters'      },
+      { to: '/mindfulness-log',    icon: Wind,          label: 'Mindfulness Log'   },
     ],
   },
 ]
