@@ -286,6 +286,13 @@ const NAV_GROUPS = [
       { to: '/appointments',       icon: CalendarDays,  label: 'Appointments'      },
       { to: '/wish-list',          icon: Star,          label: 'Wish List'         },
       { to: '/memories',           icon: Sparkles,      label: 'Memories Vault'    },
+      { to: '/budget',             icon: PiggyBank,     label: 'Budget Planner'    },
+      { to: '/sleep-diary',        icon: Moon,          label: 'Sleep Diary'       },
+      { to: '/philosophy',         icon: BookOpen,      label: 'Life Philosophy'   },
+      { to: '/music-log',          icon: Headphones,    label: 'Music Log'         },
+      { to: '/movies',             icon: Eye,           label: 'Movies & Shows'    },
+      { to: '/family-tree',        icon: Users,         label: 'Family Tree'       },
+      { to: '/comm-log',           icon: Phone,         label: 'Comm. Log'         },
     ],
   },
 ]

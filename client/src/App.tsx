@@ -250,6 +250,13 @@ import GiftIdeas from './pages/GiftIdeas'
 import AppointmentsLog from './pages/AppointmentsLog'
 import WishList from './pages/WishList'
 import MemoriesVault from './pages/MemoriesVault'
+import BudgetPlanner from './pages/BudgetPlanner'
+import SleepDiary from './pages/SleepDiary'
+import LifePhilosophy from './pages/LifePhilosophy'
+import MusicLog from './pages/MusicLog'
+import MoviesLog from './pages/MoviesLog'
+import FamilyTree from './pages/FamilyTree'
+import CommunicationLog from './pages/CommunicationLog'
 
 function App() {
   return (
@@ -509,6 +516,13 @@ function App() {
               <Route path="/appointments"       element={<AppointmentsLog />}       />
               <Route path="/wish-list"          element={<WishList />}              />
               <Route path="/memories"           element={<MemoriesVault />}         />
+              <Route path="/budget"             element={<BudgetPlanner />}         />
+              <Route path="/sleep-diary"        element={<SleepDiary />}            />
+              <Route path="/philosophy"         element={<LifePhilosophy />}        />
+              <Route path="/music-log"          element={<MusicLog />}              />
+              <Route path="/movies"             element={<MoviesLog />}             />
+              <Route path="/family-tree"        element={<FamilyTree />}            />
+              <Route path="/comm-log"           element={<CommunicationLog />}      />
             </Routes>
           </div>
         </main>
