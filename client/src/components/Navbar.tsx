@@ -271,6 +271,10 @@ const NAV_GROUPS = [
       { to: '/future-letters',     icon: Mail,          label: 'Future Letters'    },
       { to: '/personal-policies',  icon: Shield,        label: 'Personal Policies' },
       { to: '/monthly-retro',      icon: BarChart3,     label: 'Monthly Retro'     },
+      { to: '/mindful-eating',     icon: Apple,         label: 'Mindful Eating'    },
+      { to: '/forgiveness',        icon: Heart,         label: 'Forgiveness Log'   },
+      { to: '/eco',                icon: Leaf,          label: 'Eco Tracker'       },
+      { to: '/life-regrets',       icon: AlertCircle,   label: 'Life Regrets'      },
     ],
   },
 ]

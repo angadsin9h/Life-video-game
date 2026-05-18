@@ -226,6 +226,10 @@ import NegotiationLog from './pages/NegotiationLog'
 import LoveLanguages from './pages/LoveLanguages'
 import DreamsJournal from './pages/DreamsJournal'
 import GratitudeToParents from './pages/GratitudeToParents'
+import MindfulEating from './pages/MindfulEating'
+import ForgivenessLog from './pages/ForgivenessLog'
+import EcoTracker from './pages/EcoTracker'
+import LifeRegrets from './pages/LifeRegrets'
 import FutureLetters from './pages/FutureLetters'
 import PersonalPolicies from './pages/PersonalPolicies'
 import MonthlyRetro from './pages/MonthlyRetro'
@@ -479,6 +483,10 @@ function App() {
               <Route path="/future-letters"     element={<FutureLetters />}         />
               <Route path="/personal-policies"  element={<PersonalPolicies />}      />
               <Route path="/monthly-retro"      element={<MonthlyRetro />}          />
+              <Route path="/mindful-eating"     element={<MindfulEating />}         />
+              <Route path="/forgiveness"        element={<ForgivenessLog />}        />
+              <Route path="/eco"                element={<EcoTracker />}            />
+              <Route path="/life-regrets"       element={<LifeRegrets />}           />
             </Routes>
           </div>
         </main>
