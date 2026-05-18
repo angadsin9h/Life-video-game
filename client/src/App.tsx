@@ -246,6 +246,10 @@ import ScreenTimeLog from './pages/ScreenTimeLog'
 import RecipeJournal from './pages/RecipeJournal'
 import SocialCalendar from './pages/SocialCalendar'
 import PersonalInventory from './pages/PersonalInventory'
+import GiftIdeas from './pages/GiftIdeas'
+import AppointmentsLog from './pages/AppointmentsLog'
+import WishList from './pages/WishList'
+import MemoriesVault from './pages/MemoriesVault'
 
 function App() {
   return (
@@ -501,6 +505,10 @@ function App() {
               <Route path="/skincare"           element={<SkinCareLog />}           />
               <Route path="/career-skills"      element={<CareerSkills />}          />
               <Route path="/morning-mindset"    element={<MorningMindset />}        />
+              <Route path="/gift-ideas"         element={<GiftIdeas />}             />
+              <Route path="/appointments"       element={<AppointmentsLog />}       />
+              <Route path="/wish-list"          element={<WishList />}              />
+              <Route path="/memories"           element={<MemoriesVault />}         />
             </Routes>
           </div>
         </main>

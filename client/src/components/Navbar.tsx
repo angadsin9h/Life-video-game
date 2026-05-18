@@ -282,6 +282,10 @@ const NAV_GROUPS = [
       { to: '/skincare',           icon: Droplets,      label: 'Skin Care Log'     },
       { to: '/career-skills',      icon: Briefcase,     label: 'Career Skills'     },
       { to: '/morning-mindset',    icon: Sun,           label: 'Morning Mindset'   },
+      { to: '/gift-ideas',         icon: Gift,          label: 'Gift Ideas'        },
+      { to: '/appointments',       icon: CalendarDays,  label: 'Appointments'      },
+      { to: '/wish-list',          icon: Star,          label: 'Wish List'         },
+      { to: '/memories',           icon: Sparkles,      label: 'Memories Vault'    },
     ],
   },
 ]
