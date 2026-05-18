@@ -306,6 +306,10 @@ const NAV_GROUPS = [
       { to: '/creativity-log',     icon: Pencil,        label: 'Creativity Log'    },
       { to: '/brand-builder',      icon: Zap,           label: 'Brand Builder'     },
       { to: '/food-diary',         icon: Apple,         label: 'Food Diary'        },
+      { to: '/exercise-log',       icon: Dumbbell,      label: 'Exercise Log'      },
+      { to: '/career-journey',     icon: Briefcase,     label: 'Career Journey'    },
+      { to: '/mental-models',      icon: Brain,         label: 'Mental Models'     },
+      { to: '/travel-planner',     icon: Globe,         label: 'Travel Planner'    },
     ],
   },
 ]

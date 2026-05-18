@@ -255,6 +255,10 @@ import HealthVitals from './pages/HealthVitals'
 import PersonalResearch from './pages/PersonalResearch'
 import DailyAffirmations from './pages/DailyAffirmations'
 import BodyScanLog from './pages/BodyScanLog'
+import ExerciseLog from './pages/ExerciseLog'
+import CareerJourney from './pages/CareerJourney'
+import MentalModels from './pages/MentalModels'
+import TravelPlanner from './pages/TravelPlanner'
 import MoneyTracker from './pages/MoneyTracker'
 import CreativityLog from './pages/CreativityLog'
 import PersonalBrandBuilder from './pages/PersonalBrandBuilder'
@@ -549,6 +553,10 @@ function App() {
               <Route path="/creativity-log"     element={<CreativityLog />}         />
               <Route path="/brand-builder"      element={<PersonalBrandBuilder />}  />
               <Route path="/food-diary"         element={<FoodDiary />}             />
+              <Route path="/exercise-log"       element={<ExerciseLog />}           />
+              <Route path="/career-journey"     element={<CareerJourney />}         />
+              <Route path="/mental-models"      element={<MentalModels />}          />
+              <Route path="/travel-planner"     element={<TravelPlanner />}         />
             </Routes>
           </div>
         </main>
