@@ -248,7 +248,10 @@ const NAV_GROUPS = [
       { to: '/mentoring',          icon: Users,        label: 'Mentoring'       },
       { to: '/public-speaking',    icon: Presentation, label: 'Public Speaking' },
       { to: '/coffee-log',         icon: Flame,        label: 'Coffee Log'      },
-      { to: '/creative-projects',  icon: Pencil,       label: 'Creative Work'   },
+      { to: '/creative-projects',  icon: Pencil,        label: 'Creative Work'    },
+      { to: '/health-symptoms',    icon: Activity,      label: 'Symptoms Log'     },
+      { to: '/investments',        icon: TrendingUp,    label: 'Investments'      },
+      { to: '/weight',             icon: Activity,      label: 'Weight Tracker'   },
     ],
   },
 ]

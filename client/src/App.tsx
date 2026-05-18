@@ -213,6 +213,9 @@ import MentoringJournal from './pages/MentoringJournal'
 import PublicSpeaking from './pages/PublicSpeaking'
 import CoffeeLog from './pages/CoffeeLog'
 import CreativeProjects from './pages/CreativeProjects'
+import HealthSymptoms from './pages/HealthSymptoms'
+import InvestmentTracker from './pages/InvestmentTracker'
+import WeightTracker from './pages/WeightTracker'
 
 function App() {
   return (
@@ -435,6 +438,9 @@ function App() {
               <Route path="/public-speaking"      element={<PublicSpeaking />}        />
               <Route path="/coffee-log"           element={<CoffeeLog />}             />
               <Route path="/creative-projects"    element={<CreativeProjects />}      />
+              <Route path="/health-symptoms"      element={<HealthSymptoms />}        />
+              <Route path="/investments"          element={<InvestmentTracker />}     />
+              <Route path="/weight"               element={<WeightTracker />}         />
             </Routes>
           </div>
         </main>
