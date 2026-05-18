@@ -219,6 +219,8 @@ import WeightTracker from './pages/WeightTracker'
 import CharityTracker from './pages/CharityTracker'
 import MoodBoard from './pages/MoodBoard'
 import LessonLearned from './pages/LessonLearned'
+import ConflictLog from './pages/ConflictLog'
+import GardeningLog from './pages/GardeningLog'
 
 function App() {
   return (
@@ -447,6 +449,8 @@ function App() {
               <Route path="/charity"              element={<CharityTracker />}        />
               <Route path="/mood-board"           element={<MoodBoard />}             />
               <Route path="/lessons"              element={<LessonLearned />}         />
+              <Route path="/conflict-log"         element={<ConflictLog />}           />
+              <Route path="/garden"               element={<GardeningLog />}          />
             </Routes>
           </div>
         </main>
