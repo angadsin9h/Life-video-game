@@ -321,6 +321,10 @@ const NAV_GROUPS = [
       { to: '/curiosity-journal',  icon: Lightbulb,     label: 'Curiosity Journal' },
       { to: '/time-capsule',       icon: Clock,         label: 'Time Capsule'      },
       { to: '/workplace-log',      icon: Briefcase,     label: 'Workplace Log'     },
+      { to: '/success-stories',    icon: Trophy,        label: 'Success Stories'   },
+      { to: '/confidence',         icon: Zap,           label: 'Confidence Builder'},
+      { to: '/social-skills',      icon: Users,         label: 'Social Skills'     },
+      { to: '/life-numbers',       icon: Activity,      label: 'Life Numbers'      },
     ],
   },
 ]

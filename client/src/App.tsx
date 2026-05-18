@@ -285,6 +285,10 @@ import AngerLog from './pages/AngerLog'
 import CuriosityJournal from './pages/CuriosityJournal'
 import PersonalTimeCapsule from './pages/PersonalTimeCapsule'
 import WorkplaceLog from './pages/WorkplaceLog'
+import SuccessStories from './pages/SuccessStories'
+import ConfidenceBuilder from './pages/ConfidenceBuilder'
+import SocialSkillsLog from './pages/SocialSkillsLog'
+import LifeNumbersTracker from './pages/LifeNumbersTracker'
 
 function App() {
   return (
@@ -579,6 +583,10 @@ function App() {
               <Route path="/curiosity-journal"  element={<CuriosityJournal />}      />
               <Route path="/time-capsule"       element={<PersonalTimeCapsule />}   />
               <Route path="/workplace-log"      element={<WorkplaceLog />}          />
+              <Route path="/success-stories"    element={<SuccessStories />}        />
+              <Route path="/confidence"         element={<ConfidenceBuilder />}     />
+              <Route path="/social-skills"      element={<SocialSkillsLog />}       />
+              <Route path="/life-numbers"       element={<LifeNumbersTracker />}    />
             </Routes>
           </div>
         </main>
