@@ -357,6 +357,9 @@ const NAV_GROUPS = [
       { to: '/rituals-log',        icon: RefreshCw,     label: 'Rituals Log'        },
       { to: '/inner-critic',       icon: AlertCircle,   label: 'Inner Critic'       },
       { to: '/peak-performance',   icon: Flame,         label: 'Peak Performance'   },
+      { to: '/breathwork-log',     icon: Wind,          label: 'Breathwork Log'     },
+      { to: '/personal-prs',       icon: Trophy,        label: 'Personal Records'   },
+      { to: '/emotion-library',    icon: Heart,         label: 'Emotion Library'    },
     ],
   },
 ]

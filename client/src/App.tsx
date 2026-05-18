@@ -321,6 +321,9 @@ import FocusBatteries from './pages/FocusBatteries'
 import RitualsLog from './pages/RitualsLog'
 import InnerCriticLog from './pages/InnerCriticLog'
 import PeakPerformance from './pages/PeakPerformance'
+import BreathworkLog from './pages/BreathworkLog'
+import PersonalPRs from './pages/PersonalPRs'
+import EmotionLibrary from './pages/EmotionLibrary'
 
 function App() {
   return (
@@ -651,6 +654,9 @@ function App() {
               <Route path="/rituals-log"        element={<RitualsLog />}            />
               <Route path="/inner-critic"       element={<InnerCriticLog />}        />
               <Route path="/peak-performance"   element={<PeakPerformance />}       />
+              <Route path="/breathwork-log"     element={<BreathworkLog />}         />
+              <Route path="/personal-prs"       element={<PersonalPRs />}           />
+              <Route path="/emotion-library"    element={<EmotionLibrary />}        />
             </Routes>
           </div>
         </main>
