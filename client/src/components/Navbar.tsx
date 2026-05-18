@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -363,6 +363,12 @@ const NAV_GROUPS = [
       { to: '/social-projects',   icon: Users,         label: 'Social Projects'    },
       { to: '/digital-minimalism', icon: Smartphone,   label: 'Digital Minimalism' },
       { to: '/nutrition-wins',    icon: Apple,         label: 'Nutrition Wins'     },
+      { to: '/crisis-log',       icon: AlertOctagon,  label: 'Crisis Log'         },
+      { to: '/boundaries',       icon: Shield,        label: 'Boundaries Log'     },
+      { to: '/philosophy-notes', icon: BookMarked,    label: 'Philosophy Notes'   },
+      { to: '/sleep-goals',      icon: Moon,          label: 'Sleep Goals'        },
+      { to: '/challenge-tracker', icon: Swords,       label: 'Challenge Tracker'  },
+      { to: '/debt-tracker',     icon: CreditCard,    label: 'Debt Tracker'       },
     ],
   },
 ]

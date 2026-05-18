@@ -327,6 +327,12 @@ import EmotionLibrary from './pages/EmotionLibrary'
 import SocialProjects from './pages/SocialProjects'
 import DigitalMinimalism from './pages/DigitalMinimalism'
 import NutritionWins from './pages/NutritionWins'
+import CrisisLog from './pages/CrisisLog'
+import BoundariesLog from './pages/BoundariesLog'
+import PhilosophyNotes from './pages/PhilosophyNotes'
+import SleepGoals from './pages/SleepGoals'
+import ChallengeTracker from './pages/ChallengeTracker'
+import PersonalDebts from './pages/PersonalDebts'
 
 function App() {
   return (
@@ -663,6 +669,12 @@ function App() {
               <Route path="/social-projects"   element={<SocialProjects />}        />
               <Route path="/digital-minimalism" element={<DigitalMinimalism />}   />
               <Route path="/nutrition-wins"    element={<NutritionWins />}         />
+              <Route path="/crisis-log"       element={<CrisisLog />}             />
+              <Route path="/boundaries"       element={<BoundariesLog />}         />
+              <Route path="/philosophy-notes" element={<PhilosophyNotes />}       />
+              <Route path="/sleep-goals"      element={<SleepGoals />}            />
+              <Route path="/challenge-tracker" element={<ChallengeTracker />}    />
+              <Route path="/debt-tracker"     element={<PersonalDebts />}         />
             </Routes>
           </div>
         </main>
