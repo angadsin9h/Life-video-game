@@ -374,6 +374,11 @@ const NAV_GROUPS = [
       { to: '/health-habits',   icon: Activity,      label: 'Health Habits'      },
       { to: '/wisdom-log',      icon: Scroll,        label: 'Wisdom Log'         },
       { to: '/gratitude-practice', icon: Sparkles,   label: 'Gratitude Practice' },
+      { to: '/mindful-movement',  icon: Wind,        label: 'Mindful Movement'   },
+      { to: '/experience-ledger', icon: Globe,       label: 'Experience Ledger'  },
+      { to: '/confidence-journal', icon: Star,       label: 'Confidence Journal' },
+      { to: '/monthly-goals',     icon: Flag,        label: 'Monthly Goals'      },
+      { to: '/body-language',     icon: User,        label: 'Body Language Log'  },
     ],
   },
 ]

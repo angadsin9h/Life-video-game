@@ -333,6 +333,11 @@ import TimeWasters from './pages/TimeWasters'
 import HealthHabits from './pages/HealthHabits'
 import WisdomLog from './pages/WisdomLog'
 import GratitudePractice from './pages/GratitudePractice'
+import MindfulMovement from './pages/MindfulMovement'
+import ExperienceLedger from './pages/ExperienceLedger'
+import ConfidenceJournal from './pages/ConfidenceJournal'
+import MonthlyGoals from './pages/MonthlyGoals'
+import BodyLanguageLog from './pages/BodyLanguageLog'
 import BoundariesLog from './pages/BoundariesLog'
 import PhilosophyNotes from './pages/PhilosophyNotes'
 import SleepGoals from './pages/SleepGoals'
@@ -685,6 +690,11 @@ function App() {
               <Route path="/health-habits"   element={<HealthHabits />}          />
               <Route path="/wisdom-log"      element={<WisdomLog />}             />
               <Route path="/gratitude-practice" element={<GratitudePractice />} />
+              <Route path="/mindful-movement" element={<MindfulMovement />}    />
+              <Route path="/experience-ledger" element={<ExperienceLedger />}  />
+              <Route path="/confidence-journal" element={<ConfidenceJournal />}/>
+              <Route path="/monthly-goals"    element={<MonthlyGoals />}       />
+              <Route path="/body-language"    element={<BodyLanguageLog />}    />
             </Routes>
           </div>
         </main>
