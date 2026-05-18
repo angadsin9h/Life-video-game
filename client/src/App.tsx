@@ -228,6 +228,9 @@ import DreamsJournal from './pages/DreamsJournal'
 import GratitudeToParents from './pages/GratitudeToParents'
 import MindfulEating from './pages/MindfulEating'
 import HobbiesTracker from './pages/HobbiesTracker'
+import SkinCareLog from './pages/SkinCareLog'
+import CareerSkills from './pages/CareerSkills'
+import MorningMindset from './pages/MorningMindset'
 import AllergyLog from './pages/AllergyLog'
 import PasswordVault from './pages/PasswordVault'
 import SportStats from './pages/SportStats'
@@ -495,6 +498,9 @@ function App() {
               <Route path="/allergies"          element={<AllergyLog />}            />
               <Route path="/account-vault"      element={<PasswordVault />}         />
               <Route path="/sport-stats"        element={<SportStats />}            />
+              <Route path="/skincare"           element={<SkinCareLog />}           />
+              <Route path="/career-skills"      element={<CareerSkills />}          />
+              <Route path="/morning-mindset"    element={<MorningMindset />}        />
             </Routes>
           </div>
         </main>

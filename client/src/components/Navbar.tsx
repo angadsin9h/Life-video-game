@@ -279,6 +279,9 @@ const NAV_GROUPS = [
       { to: '/allergies',          icon: AlertTriangle, label: 'Allergy Log'       },
       { to: '/account-vault',      icon: Lock,          label: 'Account Vault'     },
       { to: '/sport-stats',        icon: Trophy,        label: 'Sport Stats'       },
+      { to: '/skincare',           icon: Droplets,      label: 'Skin Care Log'     },
+      { to: '/career-skills',      icon: Briefcase,     label: 'Career Skills'     },
+      { to: '/morning-mindset',    icon: Sun,           label: 'Morning Mindset'   },
     ],
   },
 ]
