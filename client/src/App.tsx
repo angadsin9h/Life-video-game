@@ -210,6 +210,9 @@ import DietTracker from './pages/DietTracker'
 import PetCare from './pages/PetCare'
 import HomeImprovement from './pages/HomeImprovement'
 import MentoringJournal from './pages/MentoringJournal'
+import PublicSpeaking from './pages/PublicSpeaking'
+import CoffeeLog from './pages/CoffeeLog'
+import CreativeProjects from './pages/CreativeProjects'
 
 function App() {
   return (
@@ -429,6 +432,9 @@ function App() {
               <Route path="/pet-care"             element={<PetCare />}               />
               <Route path="/home-improvement"     element={<HomeImprovement />}       />
               <Route path="/mentoring"            element={<MentoringJournal />}      />
+              <Route path="/public-speaking"      element={<PublicSpeaking />}        />
+              <Route path="/coffee-log"           element={<CoffeeLog />}             />
+              <Route path="/creative-projects"    element={<CreativeProjects />}      />
             </Routes>
           </div>
         </main>

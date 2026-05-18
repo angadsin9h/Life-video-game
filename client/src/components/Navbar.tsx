@@ -245,7 +245,10 @@ const NAV_GROUPS = [
       { to: '/diet',             icon: Apple,      label: 'Diet Tracker'   },
       { to: '/pet-care',         icon: Heart,      label: 'Pet Care'       },
       { to: '/home-improvement', icon: Home,       label: 'Home Projects'  },
-      { to: '/mentoring',        icon: Users,      label: 'Mentoring'      },
+      { to: '/mentoring',          icon: Users,        label: 'Mentoring'       },
+      { to: '/public-speaking',    icon: Presentation, label: 'Public Speaking' },
+      { to: '/coffee-log',         icon: Flame,        label: 'Coffee Log'      },
+      { to: '/creative-projects',  icon: Pencil,       label: 'Creative Work'   },
     ],
   },
 ]
