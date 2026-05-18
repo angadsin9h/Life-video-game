@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -275,6 +275,10 @@ const NAV_GROUPS = [
       { to: '/forgiveness',        icon: Heart,         label: 'Forgiveness Log'   },
       { to: '/eco',                icon: Leaf,          label: 'Eco Tracker'       },
       { to: '/life-regrets',       icon: AlertCircle,   label: 'Life Regrets'      },
+      { to: '/hobbies',            icon: Gamepad2,      label: 'Hobbies Tracker'   },
+      { to: '/allergies',          icon: AlertTriangle, label: 'Allergy Log'       },
+      { to: '/account-vault',      icon: Lock,          label: 'Account Vault'     },
+      { to: '/sport-stats',        icon: Trophy,        label: 'Sport Stats'       },
     ],
   },
 ]

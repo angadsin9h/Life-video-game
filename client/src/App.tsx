@@ -227,6 +227,10 @@ import LoveLanguages from './pages/LoveLanguages'
 import DreamsJournal from './pages/DreamsJournal'
 import GratitudeToParents from './pages/GratitudeToParents'
 import MindfulEating from './pages/MindfulEating'
+import HobbiesTracker from './pages/HobbiesTracker'
+import AllergyLog from './pages/AllergyLog'
+import PasswordVault from './pages/PasswordVault'
+import SportStats from './pages/SportStats'
 import ForgivenessLog from './pages/ForgivenessLog'
 import EcoTracker from './pages/EcoTracker'
 import LifeRegrets from './pages/LifeRegrets'
@@ -487,6 +491,10 @@ function App() {
               <Route path="/forgiveness"        element={<ForgivenessLog />}        />
               <Route path="/eco"                element={<EcoTracker />}            />
               <Route path="/life-regrets"       element={<LifeRegrets />}           />
+              <Route path="/hobbies"            element={<HobbiesTracker />}        />
+              <Route path="/allergies"          element={<AllergyLog />}            />
+              <Route path="/account-vault"      element={<PasswordVault />}         />
+              <Route path="/sport-stats"        element={<SportStats />}            />
             </Routes>
           </div>
         </main>
