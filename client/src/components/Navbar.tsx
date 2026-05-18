@@ -293,6 +293,11 @@ const NAV_GROUPS = [
       { to: '/movies',             icon: Eye,           label: 'Movies & Shows'    },
       { to: '/family-tree',        icon: Users,         label: 'Family Tree'       },
       { to: '/comm-log',           icon: Phone,         label: 'Comm. Log'         },
+      { to: '/personal-challenges', icon: Swords,       label: 'Challenges+'       },
+      { to: '/health-vitals',      icon: Activity,      label: 'Health Vitals'     },
+      { to: '/personal-research',  icon: Search,        label: 'My Research'       },
+      { to: '/daily-affirmations', icon: Sun,           label: 'Affirmations+'     },
+      { to: '/body-scan',          icon: Wind,          label: 'Body Scan'         },
     ],
   },
 ]

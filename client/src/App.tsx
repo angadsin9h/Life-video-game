@@ -250,6 +250,11 @@ import GiftIdeas from './pages/GiftIdeas'
 import AppointmentsLog from './pages/AppointmentsLog'
 import WishList from './pages/WishList'
 import MemoriesVault from './pages/MemoriesVault'
+import PersonalChallenges from './pages/PersonalChallenges'
+import HealthVitals from './pages/HealthVitals'
+import PersonalResearch from './pages/PersonalResearch'
+import DailyAffirmations from './pages/DailyAffirmations'
+import BodyScanLog from './pages/BodyScanLog'
 import BudgetPlanner from './pages/BudgetPlanner'
 import SleepDiary from './pages/SleepDiary'
 import LifePhilosophy from './pages/LifePhilosophy'
@@ -523,6 +528,11 @@ function App() {
               <Route path="/movies"             element={<MoviesLog />}             />
               <Route path="/family-tree"        element={<FamilyTree />}            />
               <Route path="/comm-log"           element={<CommunicationLog />}      />
+              <Route path="/personal-challenges" element={<PersonalChallenges />}   />
+              <Route path="/health-vitals"      element={<HealthVitals />}          />
+              <Route path="/personal-research"  element={<PersonalResearch />}      />
+              <Route path="/daily-affirmations" element={<DailyAffirmations />}     />
+              <Route path="/body-scan"          element={<BodyScanLog />}           />
             </Routes>
           </div>
         </main>
