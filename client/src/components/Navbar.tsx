@@ -230,6 +230,20 @@ const NAV_GROUPS = [
       { to: '/settings', icon: Settings, label: 'Settings' },
     ],
   },
+  {
+    label: 'Life',
+    items: [
+      { to: '/network-map',    icon: Network,    label: 'Network Map'    },
+      { to: '/training-plan',  icon: Dumbbell,   label: 'Training Plan'  },
+      { to: '/grief-journal',  icon: Heart,      label: 'Grief Journal'  },
+      { to: '/spiritual',      icon: Sparkles,   label: 'Spiritual'      },
+      { to: '/parenting',      icon: Users,      label: 'Parenting Log'  },
+      { to: '/side-projects',  icon: Lightbulb,  label: 'Side Projects'  },
+      { to: '/volunteer',      icon: Heart,      label: 'Volunteer Log'  },
+      { to: '/travel',         icon: Globe,      label: 'Travel Log'     },
+      { to: '/languages',      icon: BookOpen,   label: 'Languages'      },
+    ],
+  },
 ]
 
 const mobileItems = [

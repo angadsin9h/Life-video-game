@@ -197,6 +197,15 @@ import WinStreak from './pages/WinStreak'
 import DailyScript from './pages/DailyScript'
 import LifeVision from './pages/LifeVision'
 import LifeChapters from './pages/LifeChapters'
+import NetworkMap from './pages/NetworkMap'
+import TrainingPlan from './pages/TrainingPlan'
+import GriefJournal from './pages/GriefJournal'
+import SpiritualJourney from './pages/SpiritualJourney'
+import ParentingLog from './pages/ParentingLog'
+import SideProjects from './pages/SideProjects'
+import VolunteerLog from './pages/VolunteerLog'
+import TravelLog from './pages/TravelLog'
+import LanguageLearning from './pages/LanguageLearning'
 
 function App() {
   return (
@@ -403,6 +412,15 @@ function App() {
               <Route path="/daily-script"         element={<DailyScript />}           />
               <Route path="/life-vision"          element={<LifeVision />}            />
               <Route path="/life-chapters"        element={<LifeChapters />}          />
+              <Route path="/network-map"          element={<NetworkMap />}            />
+              <Route path="/training-plan"        element={<TrainingPlan />}          />
+              <Route path="/grief-journal"        element={<GriefJournal />}          />
+              <Route path="/spiritual"            element={<SpiritualJourney />}      />
+              <Route path="/parenting"            element={<ParentingLog />}          />
+              <Route path="/side-projects"        element={<SideProjects />}          />
+              <Route path="/volunteer"            element={<VolunteerLog />}          />
+              <Route path="/travel"               element={<TravelLog />}             />
+              <Route path="/languages"            element={<LanguageLearning />}      />
             </Routes>
           </div>
         </main>
