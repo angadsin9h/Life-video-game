@@ -353,6 +353,10 @@ const NAV_GROUPS = [
       { to: '/vulnerability-log',  icon: Shield,        label: 'Vulnerability Log'  },
       { to: '/micro-wins',         icon: Trophy,        label: 'Micro Wins'         },
       { to: '/rel-values',         icon: Heart,         label: 'Rel. Values'        },
+      { to: '/focus-batteries',    icon: Zap,           label: 'Focus Batteries'    },
+      { to: '/rituals-log',        icon: RefreshCw,     label: 'Rituals Log'        },
+      { to: '/inner-critic',       icon: AlertCircle,   label: 'Inner Critic'       },
+      { to: '/peak-performance',   icon: Flame,         label: 'Peak Performance'   },
     ],
   },
 ]

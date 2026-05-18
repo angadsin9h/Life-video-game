@@ -317,6 +317,10 @@ import SelfTalk from './pages/SelfTalk'
 import VulnerabilityLog from './pages/VulnerabilityLog'
 import MicroWins from './pages/MicroWins'
 import RelationshipValues from './pages/RelationshipValues'
+import FocusBatteries from './pages/FocusBatteries'
+import RitualsLog from './pages/RitualsLog'
+import InnerCriticLog from './pages/InnerCriticLog'
+import PeakPerformance from './pages/PeakPerformance'
 
 function App() {
   return (
@@ -643,6 +647,10 @@ function App() {
               <Route path="/vulnerability-log"  element={<VulnerabilityLog />}      />
               <Route path="/micro-wins"         element={<MicroWins />}             />
               <Route path="/rel-values"         element={<RelationshipValues />}    />
+              <Route path="/focus-batteries"    element={<FocusBatteries />}        />
+              <Route path="/rituals-log"        element={<RitualsLog />}            />
+              <Route path="/inner-critic"       element={<InnerCriticLog />}        />
+              <Route path="/peak-performance"   element={<PeakPerformance />}       />
             </Routes>
           </div>
         </main>
