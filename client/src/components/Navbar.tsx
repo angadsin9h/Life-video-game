@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -241,7 +241,11 @@ const NAV_GROUPS = [
       { to: '/side-projects',  icon: Lightbulb,  label: 'Side Projects'  },
       { to: '/volunteer',      icon: Heart,      label: 'Volunteer Log'  },
       { to: '/travel',         icon: Globe,      label: 'Travel Log'     },
-      { to: '/languages',      icon: BookOpen,   label: 'Languages'      },
+      { to: '/languages',        icon: BookOpen,   label: 'Languages'      },
+      { to: '/diet',             icon: Apple,      label: 'Diet Tracker'   },
+      { to: '/pet-care',         icon: Heart,      label: 'Pet Care'       },
+      { to: '/home-improvement', icon: Home,       label: 'Home Projects'  },
+      { to: '/mentoring',        icon: Users,      label: 'Mentoring'      },
     ],
   },
 ]

@@ -206,6 +206,10 @@ import SideProjects from './pages/SideProjects'
 import VolunteerLog from './pages/VolunteerLog'
 import TravelLog from './pages/TravelLog'
 import LanguageLearning from './pages/LanguageLearning'
+import DietTracker from './pages/DietTracker'
+import PetCare from './pages/PetCare'
+import HomeImprovement from './pages/HomeImprovement'
+import MentoringJournal from './pages/MentoringJournal'
 
 function App() {
   return (
@@ -421,6 +425,10 @@ function App() {
               <Route path="/volunteer"            element={<VolunteerLog />}          />
               <Route path="/travel"               element={<TravelLog />}             />
               <Route path="/languages"            element={<LanguageLearning />}      />
+              <Route path="/diet"                 element={<DietTracker />}           />
+              <Route path="/pet-care"             element={<PetCare />}               />
+              <Route path="/home-improvement"     element={<HomeImprovement />}       />
+              <Route path="/mentoring"            element={<MentoringJournal />}      />
             </Routes>
           </div>
         </main>
