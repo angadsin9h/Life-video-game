@@ -351,6 +351,9 @@ import PhilosophyNotes from './pages/PhilosophyNotes'
 import SleepGoals from './pages/SleepGoals'
 import ChallengeTracker from './pages/ChallengeTracker'
 import PersonalDebts from './pages/PersonalDebts'
+import PersonalAudit from './pages/PersonalAudit'
+import LegacyLetters from './pages/LegacyLetters'
+import EmotionalTriggers from './pages/EmotionalTriggers'
 
 function App() {
   return (
@@ -711,6 +714,9 @@ function App() {
               <Route path="/relapse-log"     element={<RelapseLog />}        />
               <Route path="/energy-food"     element={<EnergyFood />}        />
               <Route path="/life-interests"  element={<LifeInterests />}     />
+              <Route path="/personal-audit"  element={<PersonalAudit />}    />
+              <Route path="/legacy-letters"  element={<LegacyLetters />}    />
+              <Route path="/emotional-triggers" element={<EmotionalTriggers />} />
             </Routes>
           </div>
         </main>

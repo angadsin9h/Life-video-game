@@ -387,6 +387,9 @@ const NAV_GROUPS = [
       { to: '/relapse-log',      icon: RefreshCw,   label: 'Relapse Log'        },
       { to: '/energy-food',      icon: Zap,         label: 'Energy Food Log'    },
       { to: '/life-interests',   icon: Layers,      label: 'Life Interests'     },
+      { to: '/personal-audit',   icon: BarChart3,   label: 'Personal Audit'     },
+      { to: '/legacy-letters',   icon: Mail,        label: 'Legacy Letters'     },
+      { to: '/emotional-triggers', icon: AlertCircle, label: 'Emotional Triggers'},
     ],
   },
 ]
