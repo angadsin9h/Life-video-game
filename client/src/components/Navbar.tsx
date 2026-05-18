@@ -310,6 +310,7 @@ const NAV_GROUPS = [
       { to: '/career-journey',     icon: Briefcase,     label: 'Career Journey'    },
       { to: '/mental-models',      icon: Brain,         label: 'Mental Models'     },
       { to: '/travel-planner',     icon: Globe,         label: 'Travel Planner'    },
+      { to: '/language-journal',   icon: BookOpen,      label: 'Language Journal'  },
     ],
   },
 ]

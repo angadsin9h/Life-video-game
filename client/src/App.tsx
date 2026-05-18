@@ -274,6 +274,7 @@ import MusicLog from './pages/MusicLog'
 import MoviesLog from './pages/MoviesLog'
 import FamilyTree from './pages/FamilyTree'
 import CommunicationLog from './pages/CommunicationLog'
+import LanguageJournal from './pages/LanguageJournal'
 
 function App() {
   return (
@@ -557,6 +558,7 @@ function App() {
               <Route path="/career-journey"     element={<CareerJourney />}         />
               <Route path="/mental-models"      element={<MentalModels />}          />
               <Route path="/travel-planner"     element={<TravelPlanner />}         />
+              <Route path="/language-journal"   element={<LanguageJournal />}       />
             </Routes>
           </div>
         </main>
