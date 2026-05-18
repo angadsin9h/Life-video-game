@@ -329,6 +329,9 @@ const NAV_GROUPS = [
       { to: '/daily-questions',    icon: Star,          label: 'Daily Questions'   },
       { to: '/energy-audit',       icon: Zap,           label: 'Energy Audit'      },
       { to: '/moral-compass',      icon: Shield,        label: 'Moral Compass'     },
+      { to: '/sabbatical',         icon: Calendar,      label: 'Sabbatical Planner'},
+      { to: '/adventure-log',      icon: MapPin,        label: 'Adventure Log'     },
+      { to: '/dating-journal',     icon: Heart,         label: 'Dating Journal'    },
     ],
   },
 ]

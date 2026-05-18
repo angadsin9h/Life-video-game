@@ -293,6 +293,9 @@ import PersonalMythology from './pages/PersonalMythology'
 import DailyQuestions from './pages/DailyQuestions'
 import EnergyAudit from './pages/EnergyAudit'
 import MoralCompass from './pages/MoralCompass'
+import SabbaticalPlanner from './pages/SabbaticalPlanner'
+import AdventureLog from './pages/AdventureLog'
+import DatingJournal from './pages/DatingJournal'
 
 function App() {
   return (
@@ -595,6 +598,9 @@ function App() {
               <Route path="/daily-questions"    element={<DailyQuestions />}        />
               <Route path="/energy-audit"       element={<EnergyAudit />}           />
               <Route path="/moral-compass"      element={<MoralCompass />}          />
+              <Route path="/sabbatical"         element={<SabbaticalPlanner />}     />
+              <Route path="/adventure-log"      element={<AdventureLog />}          />
+              <Route path="/dating-journal"     element={<DatingJournal />}         />
             </Routes>
           </div>
         </main>
