@@ -255,6 +255,10 @@ import HealthVitals from './pages/HealthVitals'
 import PersonalResearch from './pages/PersonalResearch'
 import DailyAffirmations from './pages/DailyAffirmations'
 import BodyScanLog from './pages/BodyScanLog'
+import MoneyTracker from './pages/MoneyTracker'
+import CreativityLog from './pages/CreativityLog'
+import PersonalBrandBuilder from './pages/PersonalBrandBuilder'
+import FoodDiary from './pages/FoodDiary'
 import FinancialLiteracy from './pages/FinancialLiteracy'
 import PasswordJournal from './pages/PasswordJournal'
 import RelationshipGoals from './pages/RelationshipGoals'
@@ -541,6 +545,10 @@ function App() {
               <Route path="/private-journal"    element={<PasswordJournal />}       />
               <Route path="/rel-goals"          element={<RelationshipGoals />}     />
               <Route path="/life-experiences"   element={<LifeExperiences />}       />
+              <Route path="/money-tracker"      element={<MoneyTracker />}          />
+              <Route path="/creativity-log"     element={<CreativityLog />}         />
+              <Route path="/brand-builder"      element={<PersonalBrandBuilder />}  />
+              <Route path="/food-diary"         element={<FoodDiary />}             />
             </Routes>
           </div>
         </main>

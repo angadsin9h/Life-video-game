@@ -302,6 +302,10 @@ const NAV_GROUPS = [
       { to: '/private-journal',    icon: FileText,      label: 'Private Journal'   },
       { to: '/rel-goals',          icon: Heart,         label: 'Relationship Goals'},
       { to: '/life-experiences',   icon: Globe,         label: 'Life Experiences'  },
+      { to: '/money-tracker',      icon: PiggyBank,     label: 'Money Tracker'     },
+      { to: '/creativity-log',     icon: Pencil,        label: 'Creativity Log'    },
+      { to: '/brand-builder',      icon: Zap,           label: 'Brand Builder'     },
+      { to: '/food-diary',         icon: Apple,         label: 'Food Diary'        },
     ],
   },
 ]
