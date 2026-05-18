@@ -354,6 +354,11 @@ import PersonalDebts from './pages/PersonalDebts'
 import PersonalAudit from './pages/PersonalAudit'
 import LegacyLetters from './pages/LegacyLetters'
 import EmotionalTriggers from './pages/EmotionalTriggers'
+import StoicPractice from './pages/StoicPractice'
+import CourageLog from './pages/CourageLog'
+import EgoJournal from './pages/EgoJournal'
+import IntentionSetter from './pages/IntentionSetter'
+import MotivationLog from './pages/MotivationLog'
 
 function App() {
   return (
@@ -717,6 +722,11 @@ function App() {
               <Route path="/personal-audit"  element={<PersonalAudit />}    />
               <Route path="/legacy-letters"  element={<LegacyLetters />}    />
               <Route path="/emotional-triggers" element={<EmotionalTriggers />} />
+              <Route path="/stoic-practice"    element={<StoicPractice />}     />
+              <Route path="/courage-log"       element={<CourageLog />}        />
+              <Route path="/ego-journal"       element={<EgoJournal />}        />
+              <Route path="/intention-setter"  element={<IntentionSetter />}   />
+              <Route path="/motivation-log"    element={<MotivationLog />}     />
             </Routes>
           </div>
         </main>

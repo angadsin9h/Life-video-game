@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -390,6 +390,11 @@ const NAV_GROUPS = [
       { to: '/personal-audit',   icon: BarChart3,   label: 'Personal Audit'     },
       { to: '/legacy-letters',   icon: Mail,        label: 'Legacy Letters'     },
       { to: '/emotional-triggers', icon: AlertCircle, label: 'Emotional Triggers'},
+      { to: '/stoic-practice',   icon: Feather,     label: 'Stoic Practice'     },
+      { to: '/courage-log',      icon: Shield,      label: 'Courage Log'        },
+      { to: '/ego-journal',      icon: Brain,       label: 'Ego Journal'        },
+      { to: '/intention-setter', icon: Target,      label: 'Intention Setter'   },
+      { to: '/motivation-log',   icon: Flame,       label: 'Motivation Log'     },
     ],
   },
 ]
