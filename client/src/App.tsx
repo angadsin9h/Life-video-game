@@ -225,6 +225,10 @@ import ReadingChallenge from './pages/ReadingChallenge'
 import NegotiationLog from './pages/NegotiationLog'
 import LoveLanguages from './pages/LoveLanguages'
 import DreamsJournal from './pages/DreamsJournal'
+import GratitudeToParents from './pages/GratitudeToParents'
+import FutureLetters from './pages/FutureLetters'
+import PersonalPolicies from './pages/PersonalPolicies'
+import MonthlyRetro from './pages/MonthlyRetro'
 import TherapyLog from './pages/TherapyLog'
 import SupplementLog from './pages/SupplementLog'
 import ScreenTimeLog from './pages/ScreenTimeLog'
@@ -471,6 +475,10 @@ function App() {
               <Route path="/therapy"            element={<TherapyLog />}            />
               <Route path="/supplements"        element={<SupplementLog />}         />
               <Route path="/screen-time"        element={<ScreenTimeLog />}         />
+              <Route path="/family-gratitude"   element={<GratitudeToParents />}    />
+              <Route path="/future-letters"     element={<FutureLetters />}         />
+              <Route path="/personal-policies"  element={<PersonalPolicies />}      />
+              <Route path="/monthly-retro"      element={<MonthlyRetro />}          />
             </Routes>
           </div>
         </main>

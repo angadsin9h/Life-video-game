@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -267,6 +267,10 @@ const NAV_GROUPS = [
       { to: '/therapy',            icon: Brain,         label: 'Therapy Log'       },
       { to: '/supplements',        icon: Pill,          label: 'Supplements'       },
       { to: '/screen-time',        icon: Smartphone,    label: 'Screen Time'       },
+      { to: '/family-gratitude',   icon: Heart,         label: 'Family Gratitude'  },
+      { to: '/future-letters',     icon: Mail,          label: 'Future Letters'    },
+      { to: '/personal-policies',  icon: Shield,        label: 'Personal Policies' },
+      { to: '/monthly-retro',      icon: BarChart3,     label: 'Monthly Retro'     },
     ],
   },
 ]
