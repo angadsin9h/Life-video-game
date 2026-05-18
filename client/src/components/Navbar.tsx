@@ -379,6 +379,10 @@ const NAV_GROUPS = [
       { to: '/confidence-journal', icon: Star,       label: 'Confidence Journal' },
       { to: '/monthly-goals',     icon: Flag,        label: 'Monthly Goals'      },
       { to: '/body-language',     icon: User,        label: 'Body Language Log'  },
+      { to: '/reading-list',     icon: BookOpen,    label: 'Reading List'       },
+      { to: '/core-values',      icon: Heart,       label: 'Core Values'        },
+      { to: '/annual-review',    icon: Calendar,    label: 'Annual Review'      },
+      { to: '/goal-review',      icon: Target,      label: 'Goal Reviews'       },
     ],
   },
 ]

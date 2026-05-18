@@ -338,6 +338,10 @@ import ExperienceLedger from './pages/ExperienceLedger'
 import ConfidenceJournal from './pages/ConfidenceJournal'
 import MonthlyGoals from './pages/MonthlyGoals'
 import BodyLanguageLog from './pages/BodyLanguageLog'
+import ReadingList from './pages/ReadingList'
+import PersonalValues2 from './pages/PersonalValues2'
+import AnnualReview from './pages/AnnualReview'
+import GoalReview from './pages/GoalReview'
 import BoundariesLog from './pages/BoundariesLog'
 import PhilosophyNotes from './pages/PhilosophyNotes'
 import SleepGoals from './pages/SleepGoals'
@@ -695,6 +699,10 @@ function App() {
               <Route path="/confidence-journal" element={<ConfidenceJournal />}/>
               <Route path="/monthly-goals"    element={<MonthlyGoals />}       />
               <Route path="/body-language"    element={<BodyLanguageLog />}    />
+              <Route path="/reading-list"    element={<ReadingList />}        />
+              <Route path="/core-values"     element={<PersonalValues2 />}   />
+              <Route path="/annual-review"   element={<AnnualReview />}      />
+              <Route path="/goal-review"     element={<GoalReview />}        />
             </Routes>
           </div>
         </main>
