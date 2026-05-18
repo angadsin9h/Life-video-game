@@ -88,6 +88,10 @@ const NAV_GROUPS = [
       { to: '/flashcards',        icon: BookOpen,  label: 'Flashcards'     },
       { to: '/recovery',          icon: Activity,  label: 'Recovery'       },
       { to: '/skill-roadmap',     icon: TrendingUp, label: 'Skill Roadmap' },
+      { to: '/quick-capture',    icon: Zap,       label: 'Quick Capture'  },
+      { to: '/evening-review',   icon: Moon,      label: 'Evening Review' },
+      { to: '/year-review',      icon: Trophy,    label: 'Year Review'    },
+      { to: '/morning-routine',  icon: Sun,       label: 'Morning Routine'},
     ],
   },
   {

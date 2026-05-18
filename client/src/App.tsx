@@ -179,6 +179,10 @@ import SleepScore from './pages/SleepScore'
 import StudyFlashcards from './pages/StudyFlashcards'
 import RecoveryTracker from './pages/RecoveryTracker'
 import SkillRoadmap from './pages/SkillRoadmap'
+import QuickCapture from './pages/QuickCapture'
+import EveningReview from './pages/EveningReview'
+import YearInReview from './pages/YearInReview'
+import MorningRoutine from './pages/MorningRoutine'
 import MoneyMindset from './pages/MoneyMindset'
 import NutritionGoals from './pages/NutritionGoals'
 import CareerTracker from './pages/CareerTracker'
@@ -378,6 +382,10 @@ function App() {
               <Route path="/flashcards"           element={<StudyFlashcards />}       />
               <Route path="/recovery"             element={<RecoveryTracker />}       />
               <Route path="/skill-roadmap"        element={<SkillRoadmap />}          />
+              <Route path="/quick-capture"        element={<QuickCapture />}          />
+              <Route path="/evening-review"       element={<EveningReview />}         />
+              <Route path="/year-review"          element={<YearInReview />}          />
+              <Route path="/morning-routine"      element={<MorningRoutine />}        />
               <Route path="/money-mindset"        element={<MoneyMindset />}          />
               <Route path="/nutrition-goals"      element={<NutritionGoals />}        />
               <Route path="/career"               element={<CareerTracker />}         />
