@@ -257,6 +257,8 @@ const NAV_GROUPS = [
       { to: '/lessons',            icon: BookOpen,      label: 'Lessons Learned'  },
       { to: '/conflict-log',       icon: Users,         label: 'Conflict Log'     },
       { to: '/garden',             icon: Leaf,          label: 'Gardening'        },
+      { to: '/reading-challenge',  icon: BookOpen,      label: 'Reading Challenge' },
+      { to: '/negotiation-log',    icon: Briefcase,     label: 'Negotiations'      },
     ],
   },
 ]

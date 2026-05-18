@@ -221,6 +221,8 @@ import MoodBoard from './pages/MoodBoard'
 import LessonLearned from './pages/LessonLearned'
 import ConflictLog from './pages/ConflictLog'
 import GardeningLog from './pages/GardeningLog'
+import ReadingChallenge from './pages/ReadingChallenge'
+import NegotiationLog from './pages/NegotiationLog'
 
 function App() {
   return (
@@ -451,6 +453,8 @@ function App() {
               <Route path="/lessons"              element={<LessonLearned />}         />
               <Route path="/conflict-log"         element={<ConflictLog />}           />
               <Route path="/garden"               element={<GardeningLog />}          />
+              <Route path="/reading-challenge"   element={<ReadingChallenge />}      />
+              <Route path="/negotiation-log"     element={<NegotiationLog />}        />
             </Routes>
           </div>
         </main>
