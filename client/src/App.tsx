@@ -429,6 +429,9 @@ import HealthOptimization from './pages/HealthOptimization'
 import CreativeProcess from './pages/CreativeProcess'
 import LifeBalance from './pages/LifeBalance'
 import MortalityLog from './pages/MortalityLog'
+import DecisionArchive from './pages/DecisionArchive'
+import PersonalAlgorithm from './pages/PersonalAlgorithm'
+import WellbeingCheck from './pages/WellbeingCheck'
 
 function App() {
   return (
@@ -867,6 +870,9 @@ function App() {
               <Route path="/creative-process"       element={<CreativeProcess />}          />
               <Route path="/life-balance"           element={<LifeBalance />}              />
               <Route path="/mortality-log"          element={<MortalityLog />}             />
+              <Route path="/decision-archive"       element={<DecisionArchive />}          />
+              <Route path="/personal-algorithm"     element={<PersonalAlgorithm />}        />
+              <Route path="/wellbeing-check"        element={<WellbeingCheck />}           />
             </Routes>
           </div>
         </main>

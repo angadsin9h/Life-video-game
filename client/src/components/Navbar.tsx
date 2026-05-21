@@ -465,6 +465,9 @@ const NAV_GROUPS = [
       { to: '/creative-process',        icon: Pencil,         label: 'Creative Process'     },
       { to: '/life-balance',            icon: Activity,       label: 'Life Balance'         },
       { to: '/mortality-log',           icon: Clock,          label: 'Mortality Log'        },
+      { to: '/decision-archive',        icon: Star,           label: 'Decision Archive'     },
+      { to: '/personal-algorithm',      icon: Layers,         label: 'Personal Algorithm'   },
+      { to: '/wellbeing-check',         icon: Heart,          label: 'Wellbeing Check'      },
     ],
   },
 ]
