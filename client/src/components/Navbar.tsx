@@ -437,7 +437,10 @@ const NAV_GROUPS = [
       { to: '/body-budget',            icon: Activity,     label: 'Body Budget'          },
       { to: '/goal-sprint',           icon: Flag,         label: 'Goal Sprint'          },
       { to: '/thought-leadership',    icon: Lightbulb,    label: 'Thought Leadership'   },
-      { to: '/fear-inventory',        icon: Shield,       label: 'Fear Inventory'       },
+      { to: '/fear-inventory',         icon: Shield,       label: 'Fear Inventory'       },
+      { to: '/investment-portfolio',   icon: TrendingUp,   label: 'Investment Portfolio' },
+      { to: '/habit-stacks-v2',        icon: Layers,       label: 'Habit Stacks+'        },
+      { to: '/identity-log',           icon: User,         label: 'Identity Log'         },
     ],
   },
 ]

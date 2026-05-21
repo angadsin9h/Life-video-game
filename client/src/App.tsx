@@ -402,6 +402,9 @@ import BodyBudget from './pages/BodyBudget'
 import GoalSprint from './pages/GoalSprint'
 import ThoughtLeadership from './pages/ThoughtLeadership'
 import FearInventory from './pages/FearInventory'
+import InvestmentPortfolio from './pages/InvestmentPortfolio'
+import HabitStacks from './pages/HabitStacks'
+import IdentityLog from './pages/IdentityLog'
 
 function App() {
   return (
@@ -813,6 +816,9 @@ function App() {
               <Route path="/goal-sprint"            element={<GoalSprint />}               />
               <Route path="/thought-leadership"     element={<ThoughtLeadership />}        />
               <Route path="/fear-inventory"         element={<FearInventory />}            />
+              <Route path="/investment-portfolio"   element={<InvestmentPortfolio />}      />
+              <Route path="/habit-stacks-v2"        element={<HabitStacks />}              />
+              <Route path="/identity-log"           element={<IdentityLog />}              />
             </Routes>
           </div>
         </main>
