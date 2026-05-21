@@ -491,6 +491,10 @@ import BodyWisdom from './pages/BodyWisdom'
 import GratitudeToself from './pages/GratitudeToself'
 import WillpowerLog from './pages/WillpowerLog'
 import MindfulSleep from './pages/MindfulSleep'
+import ConflictResolution from './pages/ConflictResolution'
+import AbundanceLog from './pages/AbundanceLog'
+import LifeRhythm from './pages/LifeRhythm'
+import HighPerformance from './pages/HighPerformance'
 
 function App() {
   return (
@@ -991,6 +995,10 @@ function App() {
               <Route path="/gratitude-to-self"      element={<GratitudeToself />}          />
               <Route path="/willpower-log"          element={<WillpowerLog />}             />
               <Route path="/mindful-sleep"          element={<MindfulSleep />}             />
+              <Route path="/conflict-resolution"    element={<ConflictResolution />}       />
+              <Route path="/abundance-log"          element={<AbundanceLog />}             />
+              <Route path="/life-rhythm"            element={<LifeRhythm />}               />
+              <Route path="/high-performance"       element={<HighPerformance />}          />
             </Routes>
           </div>
         </main>

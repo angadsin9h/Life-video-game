@@ -527,6 +527,10 @@ const NAV_GROUPS = [
       { to: '/gratitude-to-self',       icon: Heart,          label: 'Gratitude to Self'    },
       { to: '/willpower-log',           icon: Flame,          label: 'Willpower Log'        },
       { to: '/mindful-sleep',           icon: Moon,           label: 'Mindful Sleep'        },
+      { to: '/conflict-resolution',     icon: Users,          label: 'Conflict Resolution'  },
+      { to: '/abundance-log',           icon: Sun,            label: 'Abundance Log'        },
+      { to: '/life-rhythm',             icon: RefreshCw,      label: 'Life Rhythm'          },
+      { to: '/high-performance',        icon: Trophy,         label: 'High Performance'     },
     ],
   },
 ]
