@@ -426,6 +426,9 @@ import MoneyBeliefs from './pages/MoneyBeliefs'
 import CognitiveLoad from './pages/CognitiveLoad'
 import SkillMastery from './pages/SkillMastery'
 import HealthOptimization from './pages/HealthOptimization'
+import CreativeProcess from './pages/CreativeProcess'
+import LifeBalance from './pages/LifeBalance'
+import MortalityLog from './pages/MortalityLog'
 
 function App() {
   return (
@@ -861,6 +864,9 @@ function App() {
               <Route path="/cognitive-load"         element={<CognitiveLoad />}            />
               <Route path="/skill-mastery"          element={<SkillMastery />}             />
               <Route path="/health-optimization"    element={<HealthOptimization />}       />
+              <Route path="/creative-process"       element={<CreativeProcess />}          />
+              <Route path="/life-balance"           element={<LifeBalance />}              />
+              <Route path="/mortality-log"          element={<MortalityLog />}             />
             </Routes>
           </div>
         </main>

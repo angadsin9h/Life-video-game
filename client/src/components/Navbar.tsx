@@ -462,6 +462,9 @@ const NAV_GROUPS = [
       { to: '/cognitive-load',          icon: Brain,          label: 'Cognitive Load'       },
       { to: '/skill-mastery',           icon: GraduationCap,  label: 'Skill Mastery'        },
       { to: '/health-optimization',     icon: Activity,       label: 'Health Optimization'  },
+      { to: '/creative-process',        icon: Pencil,         label: 'Creative Process'     },
+      { to: '/life-balance',            icon: Activity,       label: 'Life Balance'         },
+      { to: '/mortality-log',           icon: Clock,          label: 'Mortality Log'        },
     ],
   },
 ]
