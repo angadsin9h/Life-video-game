@@ -493,6 +493,12 @@ const NAV_GROUPS = [
       { to: '/life-investments',        icon: TrendingUp,     label: 'Life Investments'     },
       { to: '/thinking-styles',         icon: Brain,          label: 'Thinking Styles'      },
       { to: '/life-optimizer',          icon: Zap,            label: 'Life Optimizer'       },
+      { to: '/deep-listening',          icon: Headphones,     label: 'Deep Listening'       },
+      { to: '/emotion-mastery',         icon: Heart,          label: 'Emotion Mastery'      },
+      { to: '/presence-log',            icon: Eye,            label: 'Presence Log'         },
+      { to: '/compassion-log',          icon: Heart,          label: 'Compassion Log'       },
+      { to: '/legacy-builder',          icon: Star,           label: 'Legacy Builder'       },
+      { to: '/life-alchemy',            icon: Sparkles,       label: 'Life Alchemy'         },
     ],
   },
 ]

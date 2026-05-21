@@ -457,6 +457,12 @@ import SuccessDNA from './pages/SuccessDNA'
 import LifeInvestments from './pages/LifeInvestments'
 import ThinkingStyles from './pages/ThinkingStyles'
 import LifeOptimizer from './pages/LifeOptimizer'
+import DeepListening from './pages/DeepListening'
+import EmotionMastery from './pages/EmotionMastery'
+import PresenceLog from './pages/PresenceLog'
+import CompassionLog from './pages/CompassionLog'
+import LegacyBuilder from './pages/LegacyBuilder'
+import LifeAlchemy from './pages/LifeAlchemy'
 
 function App() {
   return (
@@ -923,6 +929,12 @@ function App() {
               <Route path="/life-investments"       element={<LifeInvestments />}          />
               <Route path="/thinking-styles"        element={<ThinkingStyles />}           />
               <Route path="/life-optimizer"         element={<LifeOptimizer />}            />
+              <Route path="/deep-listening"         element={<DeepListening />}            />
+              <Route path="/emotion-mastery"        element={<EmotionMastery />}           />
+              <Route path="/presence-log"           element={<PresenceLog />}              />
+              <Route path="/compassion-log"         element={<CompassionLog />}            />
+              <Route path="/legacy-builder"         element={<LegacyBuilder />}            />
+              <Route path="/life-alchemy"           element={<LifeAlchemy />}              />
             </Routes>
           </div>
         </main>
