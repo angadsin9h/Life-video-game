@@ -468,6 +468,10 @@ import InnerPeaceLog from './pages/InnerPeaceLog'
 import ServiceLog from './pages/ServiceLog'
 import CreativeFlow from './pages/CreativeFlow'
 import GrowthMindset from './pages/GrowthMindset'
+import WealthMindset from './pages/WealthMindset'
+import BoundaryBuilder from './pages/BoundaryBuilder'
+import HealingJournal from './pages/HealingJournal'
+import VisionCasting from './pages/VisionCasting'
 
 function App() {
   return (
@@ -945,6 +949,10 @@ function App() {
               <Route path="/service-log"            element={<ServiceLog />}               />
               <Route path="/creative-flow"          element={<CreativeFlow />}             />
               <Route path="/growth-mindset"         element={<GrowthMindset />}            />
+              <Route path="/wealth-mindset"         element={<WealthMindset />}            />
+              <Route path="/boundary-builder"       element={<BoundaryBuilder />}          />
+              <Route path="/healing-journal"        element={<HealingJournal />}           />
+              <Route path="/vision-casting"         element={<VisionCasting />}            />
             </Routes>
           </div>
         </main>

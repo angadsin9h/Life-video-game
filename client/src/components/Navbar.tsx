@@ -504,6 +504,10 @@ const NAV_GROUPS = [
       { to: '/service-log',             icon: Heart,          label: 'Service Log'          },
       { to: '/creative-flow',           icon: Pencil,         label: 'Creative Flow'        },
       { to: '/growth-mindset',          icon: TrendingUp,     label: 'Growth Mindset'       },
+      { to: '/wealth-mindset',          icon: TrendingUp,     label: 'Wealth Mindset'       },
+      { to: '/boundary-builder',        icon: Shield,         label: 'Boundary Builder'     },
+      { to: '/healing-journal',         icon: Heart,          label: 'Healing Journal'      },
+      { to: '/vision-casting',          icon: Eye,            label: 'Vision Casting'       },
     ],
   },
 ]
