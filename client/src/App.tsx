@@ -364,6 +364,11 @@ import ProcrastinationLog from './pages/ProcrastinationLog'
 import MentorQuotes from './pages/MentorQuotes'
 import PersonalCredo from './pages/PersonalCredo'
 import GrowthEdges from './pages/GrowthEdges'
+import ShadowWork from './pages/ShadowWork'
+import LifeDesign from './pages/LifeDesign'
+import PowerBeliefs from './pages/PowerBeliefs'
+import FamilyGoals from './pages/FamilyGoals'
+import MicroJournal from './pages/MicroJournal'
 
 function App() {
   return (
@@ -737,6 +742,11 @@ function App() {
               <Route path="/mentor-quotes"    element={<MentorQuotes />}      />
               <Route path="/personal-credo"   element={<PersonalCredo />}     />
               <Route path="/growth-edges"     element={<GrowthEdges />}       />
+              <Route path="/shadow-work"      element={<ShadowWork />}        />
+              <Route path="/life-design"      element={<LifeDesign />}        />
+              <Route path="/power-beliefs"    element={<PowerBeliefs />}      />
+              <Route path="/family-goals"     element={<FamilyGoals />}       />
+              <Route path="/micro-journal"    element={<MicroJournal />}      />
             </Routes>
           </div>
         </main>

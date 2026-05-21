@@ -400,6 +400,11 @@ const NAV_GROUPS = [
       { to: '/mentor-quotes',   icon: GraduationCap, label: 'Mentor Quotes'    },
       { to: '/personal-credo',  icon: Scroll,       label: 'Personal Credo'     },
       { to: '/growth-edges',    icon: TrendingUp,   label: 'Growth Edges'       },
+      { to: '/shadow-work',     icon: Moon,         label: 'Shadow Work'        },
+      { to: '/life-design',     icon: Compass,      label: 'Life Design'        },
+      { to: '/power-beliefs',   icon: Zap,          label: 'Power Beliefs'      },
+      { to: '/family-goals',    icon: Home,         label: 'Family Goals'       },
+      { to: '/micro-journal',   icon: StickyNote,   label: 'Micro Journal'      },
     ],
   },
 ]
