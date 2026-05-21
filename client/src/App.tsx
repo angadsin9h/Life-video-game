@@ -472,6 +472,9 @@ import WealthMindset from './pages/WealthMindset'
 import BoundaryBuilder from './pages/BoundaryBuilder'
 import HealingJournal from './pages/HealingJournal'
 import VisionCasting from './pages/VisionCasting'
+import PurposeLog from './pages/PurposeLog'
+import SelfMasteryLog from './pages/SelfMasteryLog'
+import TimePhilosophy from './pages/TimePhilosophy'
 
 function App() {
   return (
@@ -953,6 +956,9 @@ function App() {
               <Route path="/boundary-builder"       element={<BoundaryBuilder />}          />
               <Route path="/healing-journal"        element={<HealingJournal />}           />
               <Route path="/vision-casting"         element={<VisionCasting />}            />
+              <Route path="/purpose-log"            element={<PurposeLog />}               />
+              <Route path="/self-mastery-log"       element={<SelfMasteryLog />}           />
+              <Route path="/time-philosophy"        element={<TimePhilosophy />}           />
             </Routes>
           </div>
         </main>

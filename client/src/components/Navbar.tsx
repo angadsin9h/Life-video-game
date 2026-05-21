@@ -508,6 +508,9 @@ const NAV_GROUPS = [
       { to: '/boundary-builder',        icon: Shield,         label: 'Boundary Builder'     },
       { to: '/healing-journal',         icon: Heart,          label: 'Healing Journal'      },
       { to: '/vision-casting',          icon: Eye,            label: 'Vision Casting'       },
+      { to: '/purpose-log',             icon: Compass,        label: 'Purpose Log'          },
+      { to: '/self-mastery-log',        icon: Trophy,         label: 'Self Mastery Log'     },
+      { to: '/time-philosophy',         icon: Clock,          label: 'Time Philosophy'      },
     ],
   },
 ]
