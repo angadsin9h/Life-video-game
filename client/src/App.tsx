@@ -418,6 +418,10 @@ import FlowTriggers from './pages/FlowTriggers'
 import GrowthChallenges from './pages/GrowthChallenges'
 import StrategicVision from './pages/StrategicVision'
 import EmotionalRegulation from './pages/EmotionalRegulation'
+import PurposeAlignment from './pages/PurposeAlignment'
+import LifeMoments from './pages/LifeMoments'
+import BeliefSystem from './pages/BeliefSystem'
+import SocialContributions from './pages/SocialContributions'
 
 function App() {
   return (
@@ -845,6 +849,10 @@ function App() {
               <Route path="/growth-challenges"      element={<GrowthChallenges />}         />
               <Route path="/strategic-vision"       element={<StrategicVision />}          />
               <Route path="/emotional-regulation"   element={<EmotionalRegulation />}      />
+              <Route path="/purpose-alignment"      element={<PurposeAlignment />}         />
+              <Route path="/life-moments"           element={<LifeMoments />}              />
+              <Route path="/belief-system"          element={<BeliefSystem />}             />
+              <Route path="/social-contributions"   element={<SocialContributions />}      />
             </Routes>
           </div>
         </main>

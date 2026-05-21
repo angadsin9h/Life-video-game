@@ -454,6 +454,10 @@ const NAV_GROUPS = [
       { to: '/growth-challenges',       icon: Flame,          label: 'Growth Challenges'    },
       { to: '/strategic-vision',        icon: Compass,        label: 'Strategic Vision'     },
       { to: '/emotional-regulation',    icon: Heart,          label: 'Emotional Regulation' },
+      { to: '/purpose-alignment',       icon: Compass,        label: 'Purpose Alignment'    },
+      { to: '/life-moments',            icon: Star,           label: 'Life Moments'         },
+      { to: '/belief-system',           icon: BookOpen,       label: 'Belief System'        },
+      { to: '/social-contributions',    icon: Globe,          label: 'Social Contributions' },
     ],
   },
 ]
