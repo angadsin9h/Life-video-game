@@ -373,6 +373,9 @@ import ExerciseLibrary from './pages/ExerciseLibrary'
 import MealLog from './pages/MealLog'
 import MindsetShifts from './pages/MindsetShifts'
 import FinancialIndependence from './pages/FinancialIndependence'
+import SocialCircle from './pages/SocialCircle'
+import CareerMilestones from './pages/CareerMilestones'
+import PersonalRituals from './pages/PersonalRituals'
 
 function App() {
   return (
@@ -755,6 +758,9 @@ function App() {
               <Route path="/meal-log"         element={<MealLog />}          />
               <Route path="/mindset-shifts-v2" element={<MindsetShifts />}  />
               <Route path="/fi-tracker"       element={<FinancialIndependence />} />
+              <Route path="/social-circle"    element={<SocialCircle />}      />
+              <Route path="/career-milestones" element={<CareerMilestones />} />
+              <Route path="/personal-rituals" element={<PersonalRituals />}   />
             </Routes>
           </div>
         </main>

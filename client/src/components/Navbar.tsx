@@ -409,6 +409,9 @@ const NAV_GROUPS = [
       { to: '/meal-log',        icon: Utensils,    label: 'Meal Log'           },
       { to: '/mindset-shifts-v2', icon: Brain,     label: 'Mindset Shifts+'    },
       { to: '/fi-tracker',      icon: TrendingUp,  label: 'Financial Freedom'  },
+      { to: '/social-circle',   icon: Users,       label: 'Social Circle'      },
+      { to: '/career-milestones', icon: Briefcase, label: 'Career Milestones'  },
+      { to: '/personal-rituals', icon: RefreshCw,  label: 'Personal Rituals'   },
     ],
   },
 ]
