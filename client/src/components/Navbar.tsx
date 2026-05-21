@@ -499,6 +499,11 @@ const NAV_GROUPS = [
       { to: '/compassion-log',          icon: Heart,          label: 'Compassion Log'       },
       { to: '/legacy-builder',          icon: Star,           label: 'Legacy Builder'       },
       { to: '/life-alchemy',            icon: Sparkles,       label: 'Life Alchemy'         },
+      { to: '/existential-log',         icon: Compass,        label: 'Existential Log'      },
+      { to: '/inner-peace-log',         icon: Wind,           label: 'Inner Peace Log'      },
+      { to: '/service-log',             icon: Heart,          label: 'Service Log'          },
+      { to: '/creative-flow',           icon: Pencil,         label: 'Creative Flow'        },
+      { to: '/growth-mindset',          icon: TrendingUp,     label: 'Growth Mindset'       },
     ],
   },
 ]

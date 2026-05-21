@@ -463,6 +463,11 @@ import PresenceLog from './pages/PresenceLog'
 import CompassionLog from './pages/CompassionLog'
 import LegacyBuilder from './pages/LegacyBuilder'
 import LifeAlchemy from './pages/LifeAlchemy'
+import ExistentialLog from './pages/ExistentialLog'
+import InnerPeaceLog from './pages/InnerPeaceLog'
+import ServiceLog from './pages/ServiceLog'
+import CreativeFlow from './pages/CreativeFlow'
+import GrowthMindset from './pages/GrowthMindset'
 
 function App() {
   return (
@@ -935,6 +940,11 @@ function App() {
               <Route path="/compassion-log"         element={<CompassionLog />}            />
               <Route path="/legacy-builder"         element={<LegacyBuilder />}            />
               <Route path="/life-alchemy"           element={<LifeAlchemy />}              />
+              <Route path="/existential-log"        element={<ExistentialLog />}           />
+              <Route path="/inner-peace-log"        element={<InnerPeaceLog />}            />
+              <Route path="/service-log"            element={<ServiceLog />}               />
+              <Route path="/creative-flow"          element={<CreativeFlow />}             />
+              <Route path="/growth-mindset"         element={<GrowthMindset />}            />
             </Routes>
           </div>
         </main>
