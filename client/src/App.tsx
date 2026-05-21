@@ -422,6 +422,10 @@ import PurposeAlignment from './pages/PurposeAlignment'
 import LifeMoments from './pages/LifeMoments'
 import BeliefSystem from './pages/BeliefSystem'
 import SocialContributions from './pages/SocialContributions'
+import MoneyBeliefs from './pages/MoneyBeliefs'
+import CognitiveLoad from './pages/CognitiveLoad'
+import SkillMastery from './pages/SkillMastery'
+import HealthOptimization from './pages/HealthOptimization'
 
 function App() {
   return (
@@ -853,6 +857,10 @@ function App() {
               <Route path="/life-moments"           element={<LifeMoments />}              />
               <Route path="/belief-system"          element={<BeliefSystem />}             />
               <Route path="/social-contributions"   element={<SocialContributions />}      />
+              <Route path="/money-beliefs"          element={<MoneyBeliefs />}             />
+              <Route path="/cognitive-load"         element={<CognitiveLoad />}            />
+              <Route path="/skill-mastery"          element={<SkillMastery />}             />
+              <Route path="/health-optimization"    element={<HealthOptimization />}       />
             </Routes>
           </div>
         </main>

@@ -458,6 +458,10 @@ const NAV_GROUPS = [
       { to: '/life-moments',            icon: Star,           label: 'Life Moments'         },
       { to: '/belief-system',           icon: BookOpen,       label: 'Belief System'        },
       { to: '/social-contributions',    icon: Globe,          label: 'Social Contributions' },
+      { to: '/money-beliefs',           icon: TrendingUp,     label: 'Money Beliefs'        },
+      { to: '/cognitive-load',          icon: Brain,          label: 'Cognitive Load'       },
+      { to: '/skill-mastery',           icon: GraduationCap,  label: 'Skill Mastery'        },
+      { to: '/health-optimization',     icon: Activity,       label: 'Health Optimization'  },
     ],
   },
 ]
