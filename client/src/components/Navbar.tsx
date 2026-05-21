@@ -427,6 +427,10 @@ const NAV_GROUPS = [
       { to: '/character-sheet',    icon: User,         label: 'Character Sheet'    },
       { to: '/debt-free',          icon: CreditCard,   label: 'Debt-Free Journey'  },
       { to: '/life-experiments',   icon: FlaskConical, label: 'Life Experiments'   },
+      { to: '/mindfulness-timer',  icon: Wind,         label: 'Mindfulness Timer'  },
+      { to: '/health-protocols',   icon: Activity,     label: 'Health Protocols'   },
+      { to: '/network-builder',    icon: Network,      label: 'Network Builder'    },
+      { to: '/learning-roadmap',   icon: BookOpen,     label: 'Learning Roadmap'   },
     ],
   },
 ]

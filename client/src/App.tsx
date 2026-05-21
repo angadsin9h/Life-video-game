@@ -391,6 +391,10 @@ import BreakLog from './pages/BreakLog'
 import CharacterSheet from './pages/CharacterSheet'
 import DebtFreeJourney from './pages/DebtFreeJourney'
 import LifeExperiments from './pages/LifeExperiments'
+import MindfulnessTimer from './pages/MindfulnessTimer'
+import HealthProtocols from './pages/HealthProtocols'
+import NetworkBuilder from './pages/NetworkBuilder'
+import LearningRoadmap from './pages/LearningRoadmap'
 
 function App() {
   return (
@@ -790,7 +794,11 @@ function App() {
               <Route path="/break-log"         element={<BreakLog />}          />
               <Route path="/character-sheet"   element={<CharacterSheet />}    />
               <Route path="/debt-free"         element={<DebtFreeJourney />}   />
-              <Route path="/life-experiments"  element={<LifeExperiments />}   />
+              <Route path="/life-experiments"   element={<LifeExperiments />}    />
+              <Route path="/mindfulness-timer" element={<MindfulnessTimer />}  />
+              <Route path="/health-protocols"  element={<HealthProtocols />}   />
+              <Route path="/network-builder"   element={<NetworkBuilder />}    />
+              <Route path="/learning-roadmap"  element={<LearningRoadmap />}   />
             </Routes>
           </div>
         </main>
