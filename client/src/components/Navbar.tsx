@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -443,6 +443,12 @@ const NAV_GROUPS = [
       { to: '/identity-log',            icon: User,         label: 'Identity Log'         },
       { to: '/relationship-nurture',    icon: Users,        label: 'Rel. Nurture'         },
       { to: '/philosophy-log',          icon: BookOpen,     label: 'Philosophy Log'       },
+      { to: '/success-rituals',         icon: Sparkles,       label: 'Success Rituals'      },
+      { to: '/antifragile-log',         icon: Zap,            label: 'Antifragile Log'      },
+      { to: '/deep-work-sessions',      icon: Brain,          label: 'Deep Work Sessions'   },
+      { to: '/clarity-journal',         icon: Eye,            label: 'Clarity Journal'      },
+      { to: '/mindset-armor',           icon: Shield,         label: 'Mindset Armor'        },
+      { to: '/life-conversations',      icon: MessageSquare,  label: 'Life Conversations'   },
     ],
   },
 ]

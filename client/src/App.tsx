@@ -407,6 +407,12 @@ import HabitStacks from './pages/HabitStacks'
 import IdentityLog from './pages/IdentityLog'
 import RelationshipNurture from './pages/RelationshipNurture'
 import LifePhilosophyLog from './pages/LifePhilosophyLog'
+import SuccessRituals from './pages/SuccessRituals'
+import AntifragileLog from './pages/AntifragileLog'
+import DeepWorkSession from './pages/DeepWorkSession'
+import ClarityJournal from './pages/ClarityJournal'
+import MindsetArmor from './pages/MindsetArmor'
+import LifeConversations from './pages/LifeConversations'
 
 function App() {
   return (
@@ -823,6 +829,12 @@ function App() {
               <Route path="/identity-log"           element={<IdentityLog />}              />
               <Route path="/relationship-nurture"   element={<RelationshipNurture />}      />
               <Route path="/philosophy-log"         element={<LifePhilosophyLog />}        />
+              <Route path="/success-rituals"        element={<SuccessRituals />}           />
+              <Route path="/antifragile-log"        element={<AntifragileLog />}           />
+              <Route path="/deep-work-sessions"     element={<DeepWorkSession />}          />
+              <Route path="/clarity-journal"        element={<ClarityJournal />}           />
+              <Route path="/mindset-armor"          element={<MindsetArmor />}             />
+              <Route path="/life-conversations"     element={<LifeConversations />}        />
             </Routes>
           </div>
         </main>
