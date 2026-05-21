@@ -479,6 +479,9 @@ import JoyDesign from './pages/JoyDesign'
 import EnergyBudget from './pages/EnergyBudget'
 import InspiredAction from './pages/InspiredAction'
 import MindfulCommunication from './pages/MindfulCommunication'
+import PhysicalPeak from './pages/PhysicalPeak'
+import SocialIntelligence from './pages/SocialIntelligence'
+import DailyExcellence from './pages/DailyExcellence'
 
 function App() {
   return (
@@ -967,6 +970,9 @@ function App() {
               <Route path="/energy-budget"          element={<EnergyBudget />}             />
               <Route path="/inspired-action"        element={<InspiredAction />}           />
               <Route path="/mindful-communication"  element={<MindfulCommunication />}     />
+              <Route path="/physical-peak"          element={<PhysicalPeak />}             />
+              <Route path="/social-intelligence"    element={<SocialIntelligence />}       />
+              <Route path="/daily-excellence"       element={<DailyExcellence />}          />
             </Routes>
           </div>
         </main>

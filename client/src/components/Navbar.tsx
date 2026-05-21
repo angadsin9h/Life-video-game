@@ -515,6 +515,9 @@ const NAV_GROUPS = [
       { to: '/energy-budget',           icon: Zap,            label: 'Energy Budget'        },
       { to: '/inspired-action',         icon: Zap,            label: 'Inspired Action'      },
       { to: '/mindful-communication',   icon: MessageSquare,  label: 'Mindful Comm.'        },
+      { to: '/physical-peak',           icon: Activity,       label: 'Physical Peak'        },
+      { to: '/social-intelligence',     icon: Users,          label: 'Social Intelligence'  },
+      { to: '/daily-excellence',        icon: Star,           label: 'Daily Excellence'     },
     ],
   },
 ]
