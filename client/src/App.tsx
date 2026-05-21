@@ -405,6 +405,8 @@ import FearInventory from './pages/FearInventory'
 import InvestmentPortfolio from './pages/InvestmentPortfolio'
 import HabitStacks from './pages/HabitStacks'
 import IdentityLog from './pages/IdentityLog'
+import RelationshipNurture from './pages/RelationshipNurture'
+import LifePhilosophyLog from './pages/LifePhilosophyLog'
 
 function App() {
   return (
@@ -819,6 +821,8 @@ function App() {
               <Route path="/investment-portfolio"   element={<InvestmentPortfolio />}      />
               <Route path="/habit-stacks-v2"        element={<HabitStacks />}              />
               <Route path="/identity-log"           element={<IdentityLog />}              />
+              <Route path="/relationship-nurture"   element={<RelationshipNurture />}      />
+              <Route path="/philosophy-log"         element={<LifePhilosophyLog />}        />
             </Routes>
           </div>
         </main>

@@ -440,7 +440,9 @@ const NAV_GROUPS = [
       { to: '/fear-inventory',         icon: Shield,       label: 'Fear Inventory'       },
       { to: '/investment-portfolio',   icon: TrendingUp,   label: 'Investment Portfolio' },
       { to: '/habit-stacks-v2',        icon: Layers,       label: 'Habit Stacks+'        },
-      { to: '/identity-log',           icon: User,         label: 'Identity Log'         },
+      { to: '/identity-log',            icon: User,         label: 'Identity Log'         },
+      { to: '/relationship-nurture',    icon: Users,        label: 'Rel. Nurture'         },
+      { to: '/philosophy-log',          icon: BookOpen,     label: 'Philosophy Log'       },
     ],
   },
 ]
