@@ -447,6 +447,9 @@ import WisdomArchive from './pages/WisdomArchive'
 import GratitudeForChallenges from './pages/GratitudeForChallenges'
 import LifeExitStrategy from './pages/LifeExitStrategy'
 import CharacterVirtues from './pages/CharacterVirtues'
+import LifeExperimentLog from './pages/LifeExperimentLog'
+import LifePhases from './pages/LifePhases'
+import RelationshipDepth from './pages/RelationshipDepth'
 
 function App() {
   return (
@@ -903,6 +906,9 @@ function App() {
               <Route path="/gratitude-challenges"   element={<GratitudeForChallenges />}   />
               <Route path="/life-exit-strategy"     element={<LifeExitStrategy />}         />
               <Route path="/character-virtues"      element={<CharacterVirtues />}         />
+              <Route path="/life-experiment-log"    element={<LifeExperimentLog />}        />
+              <Route path="/life-phases"            element={<LifePhases />}               />
+              <Route path="/relationship-depth"     element={<RelationshipDepth />}        />
             </Routes>
           </div>
         </main>

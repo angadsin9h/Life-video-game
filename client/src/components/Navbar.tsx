@@ -483,6 +483,9 @@ const NAV_GROUPS = [
       { to: '/gratitude-challenges',    icon: Sparkles,       label: 'Gratitude Challenges' },
       { to: '/life-exit-strategy',      icon: AlertOctagon,   label: 'Exit Strategies'      },
       { to: '/character-virtues',       icon: Award,          label: 'Character Virtues'    },
+      { to: '/life-experiment-log',     icon: FlaskConical,   label: 'Life Experiments+'    },
+      { to: '/life-phases',             icon: Clock,          label: 'Life Phases'          },
+      { to: '/relationship-depth',      icon: Users,          label: 'Relationship Depth'   },
     ],
   },
 ]
