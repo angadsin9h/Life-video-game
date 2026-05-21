@@ -395,6 +395,10 @@ import MindfulnessTimer from './pages/MindfulnessTimer'
 import HealthProtocols from './pages/HealthProtocols'
 import NetworkBuilder from './pages/NetworkBuilder'
 import LearningRoadmap from './pages/LearningRoadmap'
+import MorningMindfulnessJournal from './pages/MorningMindfulnessJournal'
+import EveningWindDown from './pages/EveningWindDown'
+import ValuesAlignment from './pages/ValuesAlignment'
+import BodyBudget from './pages/BodyBudget'
 
 function App() {
   return (
@@ -798,7 +802,11 @@ function App() {
               <Route path="/mindfulness-timer" element={<MindfulnessTimer />}  />
               <Route path="/health-protocols"  element={<HealthProtocols />}   />
               <Route path="/network-builder"   element={<NetworkBuilder />}    />
-              <Route path="/learning-roadmap"  element={<LearningRoadmap />}   />
+              <Route path="/learning-roadmap"       element={<LearningRoadmap />}          />
+              <Route path="/morning-mindfulness"     element={<MorningMindfulnessJournal />}/>
+              <Route path="/evening-wind-down"       element={<EveningWindDown />}          />
+              <Route path="/values-alignment"        element={<ValuesAlignment />}          />
+              <Route path="/body-budget"             element={<BodyBudget />}               />
             </Routes>
           </div>
         </main>
