@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -422,6 +422,11 @@ const NAV_GROUPS = [
       { to: '/spiritual-practice', icon: Sparkles,     label: 'Spiritual Practice' },
       { to: '/performance-log',    icon: TrendingUp,   label: 'Performance Log'    },
       { to: '/obstacle-map',       icon: AlertOctagon, label: 'Obstacle Map'       },
+      { to: '/resilience-log',     icon: Shield,       label: 'Resilience Log'     },
+      { to: '/break-log',          icon: Coffee,       label: 'Break Log'          },
+      { to: '/character-sheet',    icon: User,         label: 'Character Sheet'    },
+      { to: '/debt-free',          icon: CreditCard,   label: 'Debt-Free Journey'  },
+      { to: '/life-experiments',   icon: FlaskConical, label: 'Life Experiments'   },
     ],
   },
 ]

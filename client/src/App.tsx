@@ -386,6 +386,11 @@ import FocusModes from './pages/FocusModes'
 import SpiritualPractice from './pages/SpiritualPractice'
 import PerformanceLog from './pages/PerformanceLog'
 import ObstacleMap from './pages/ObstacleMap'
+import ResilienceLog from './pages/ResilienceLog'
+import BreakLog from './pages/BreakLog'
+import CharacterSheet from './pages/CharacterSheet'
+import DebtFreeJourney from './pages/DebtFreeJourney'
+import LifeExperiments from './pages/LifeExperiments'
 
 function App() {
   return (
@@ -781,6 +786,11 @@ function App() {
               <Route path="/spiritual-practice" element={<SpiritualPractice />}/>
               <Route path="/performance-log"   element={<PerformanceLog />}    />
               <Route path="/obstacle-map"      element={<ObstacleMap />}       />
+              <Route path="/resilience-log"    element={<ResilienceLog />}     />
+              <Route path="/break-log"         element={<BreakLog />}          />
+              <Route path="/character-sheet"   element={<CharacterSheet />}    />
+              <Route path="/debt-free"         element={<DebtFreeJourney />}   />
+              <Route path="/life-experiments"  element={<LifeExperiments />}   />
             </Routes>
           </div>
         </main>
