@@ -454,6 +454,9 @@ import NarrativeReframe from './pages/NarrativeReframe'
 import ValueHierarchy from './pages/ValueHierarchy'
 import MindfulnessDepth from './pages/MindfulnessDepth'
 import SuccessDNA from './pages/SuccessDNA'
+import LifeInvestments from './pages/LifeInvestments'
+import ThinkingStyles from './pages/ThinkingStyles'
+import LifeOptimizer from './pages/LifeOptimizer'
 
 function App() {
   return (
@@ -917,6 +920,9 @@ function App() {
               <Route path="/value-hierarchy"        element={<ValueHierarchy />}           />
               <Route path="/mindfulness-depth"      element={<MindfulnessDepth />}         />
               <Route path="/success-dna"            element={<SuccessDNA />}               />
+              <Route path="/life-investments"       element={<LifeInvestments />}          />
+              <Route path="/thinking-styles"        element={<ThinkingStyles />}           />
+              <Route path="/life-optimizer"         element={<LifeOptimizer />}            />
             </Routes>
           </div>
         </main>

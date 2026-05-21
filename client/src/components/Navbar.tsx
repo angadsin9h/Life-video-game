@@ -490,6 +490,9 @@ const NAV_GROUPS = [
       { to: '/value-hierarchy',         icon: Heart,          label: 'Value Hierarchy'      },
       { to: '/mindfulness-depth',       icon: Wind,           label: 'Mindfulness Depth'    },
       { to: '/success-dna',             icon: Trophy,         label: 'Success DNA'          },
+      { to: '/life-investments',        icon: TrendingUp,     label: 'Life Investments'     },
+      { to: '/thinking-styles',         icon: Brain,          label: 'Thinking Styles'      },
+      { to: '/life-optimizer',          icon: Zap,            label: 'Life Optimizer'       },
     ],
   },
 ]
