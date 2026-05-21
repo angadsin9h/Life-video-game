@@ -468,6 +468,12 @@ const NAV_GROUPS = [
       { to: '/decision-archive',        icon: Star,           label: 'Decision Archive'     },
       { to: '/personal-algorithm',      icon: Layers,         label: 'Personal Algorithm'   },
       { to: '/wellbeing-check',         icon: Heart,          label: 'Wellbeing Check'      },
+      { to: '/gratitude-depth',         icon: Sparkles,       label: 'Gratitude Depth'      },
+      { to: '/abundance-mindset',       icon: Sun,            label: 'Abundance Mindset'    },
+      { to: '/power-moments',           icon: Zap,            label: 'Power Moments'        },
+      { to: '/integrity-log',           icon: Shield,         label: 'Integrity Log'        },
+      { to: '/soul-purpose',            icon: Compass,        label: 'Soul Purpose'         },
+      { to: '/life-curriculum',         icon: BookOpen,       label: 'Life Curriculum'      },
     ],
   },
 ]

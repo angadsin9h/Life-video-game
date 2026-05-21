@@ -432,6 +432,12 @@ import MortalityLog from './pages/MortalityLog'
 import DecisionArchive from './pages/DecisionArchive'
 import PersonalAlgorithm from './pages/PersonalAlgorithm'
 import WellbeingCheck from './pages/WellbeingCheck'
+import GratitudeDepth from './pages/GratitudeDepth'
+import AbundanceMindset from './pages/AbundanceMindset'
+import PowerMoments from './pages/PowerMoments'
+import IntegrityLog from './pages/IntegrityLog'
+import SoulPurpose from './pages/SoulPurpose'
+import LifeCurriculum from './pages/LifeCurriculum'
 
 function App() {
   return (
@@ -873,6 +879,12 @@ function App() {
               <Route path="/decision-archive"       element={<DecisionArchive />}          />
               <Route path="/personal-algorithm"     element={<PersonalAlgorithm />}        />
               <Route path="/wellbeing-check"        element={<WellbeingCheck />}           />
+              <Route path="/gratitude-depth"        element={<GratitudeDepth />}           />
+              <Route path="/abundance-mindset"      element={<AbundanceMindset />}         />
+              <Route path="/power-moments"          element={<PowerMoments />}             />
+              <Route path="/integrity-log"          element={<IntegrityLog />}             />
+              <Route path="/soul-purpose"           element={<SoulPurpose />}              />
+              <Route path="/life-curriculum"        element={<LifeCurriculum />}           />
             </Routes>
           </div>
         </main>
