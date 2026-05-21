@@ -379,6 +379,13 @@ import PersonalRituals from './pages/PersonalRituals'
 import SkillGaps from './pages/SkillGaps'
 import PainPoints from './pages/PainPoints'
 import DisciplineLog from './pages/DisciplineLog'
+import WinJournal from './pages/WinJournal'
+import GratitudeMap from './pages/GratitudeMap'
+import LifeContracts from './pages/LifeContracts'
+import FocusModes from './pages/FocusModes'
+import SpiritualPractice from './pages/SpiritualPractice'
+import PerformanceLog from './pages/PerformanceLog'
+import ObstacleMap from './pages/ObstacleMap'
 
 function App() {
   return (
@@ -767,6 +774,13 @@ function App() {
               <Route path="/skill-gaps"       element={<SkillGaps />}         />
               <Route path="/pain-points"      element={<PainPoints />}        />
               <Route path="/discipline-log"   element={<DisciplineLog />}     />
+              <Route path="/win-journal"       element={<WinJournal />}        />
+              <Route path="/gratitude-map"     element={<GratitudeMap />}      />
+              <Route path="/life-contracts"    element={<LifeContracts />}     />
+              <Route path="/focus-modes"       element={<FocusModes />}        />
+              <Route path="/spiritual-practice" element={<SpiritualPractice />}/>
+              <Route path="/performance-log"   element={<PerformanceLog />}    />
+              <Route path="/obstacle-map"      element={<ObstacleMap />}       />
             </Routes>
           </div>
         </main>

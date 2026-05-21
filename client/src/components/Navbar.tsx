@@ -415,6 +415,13 @@ const NAV_GROUPS = [
       { to: '/skill-gaps',      icon: GraduationCap, label: 'Skill Gaps'       },
       { to: '/pain-points',     icon: AlertTriangle, label: 'Pain Points'       },
       { to: '/discipline-log',  icon: Sword,      label: 'Discipline Log'     },
+      { to: '/win-journal',        icon: Trophy,       label: 'Win Journal'        },
+      { to: '/gratitude-map',      icon: Heart,        label: 'Gratitude Map'      },
+      { to: '/life-contracts',     icon: FileText,     label: 'Life Contracts'     },
+      { to: '/focus-modes',        icon: Target,       label: 'Focus Modes'        },
+      { to: '/spiritual-practice', icon: Sparkles,     label: 'Spiritual Practice' },
+      { to: '/performance-log',    icon: TrendingUp,   label: 'Performance Log'    },
+      { to: '/obstacle-map',       icon: AlertOctagon, label: 'Obstacle Map'       },
     ],
   },
 ]
