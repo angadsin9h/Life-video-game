@@ -449,6 +449,11 @@ const NAV_GROUPS = [
       { to: '/clarity-journal',         icon: Eye,            label: 'Clarity Journal'      },
       { to: '/mindset-armor',           icon: Shield,         label: 'Mindset Armor'        },
       { to: '/life-conversations',      icon: MessageSquare,  label: 'Life Conversations'   },
+      { to: '/personal-boardroom',      icon: Users,          label: 'Personal Boardroom'   },
+      { to: '/flow-triggers',           icon: Zap,            label: 'Flow Triggers'        },
+      { to: '/growth-challenges',       icon: Flame,          label: 'Growth Challenges'    },
+      { to: '/strategic-vision',        icon: Compass,        label: 'Strategic Vision'     },
+      { to: '/emotional-regulation',    icon: Heart,          label: 'Emotional Regulation' },
     ],
   },
 ]

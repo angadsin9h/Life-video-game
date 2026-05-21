@@ -413,6 +413,11 @@ import DeepWorkSession from './pages/DeepWorkSession'
 import ClarityJournal from './pages/ClarityJournal'
 import MindsetArmor from './pages/MindsetArmor'
 import LifeConversations from './pages/LifeConversations'
+import PersonalBoardroom from './pages/PersonalBoardroom'
+import FlowTriggers from './pages/FlowTriggers'
+import GrowthChallenges from './pages/GrowthChallenges'
+import StrategicVision from './pages/StrategicVision'
+import EmotionalRegulation from './pages/EmotionalRegulation'
 
 function App() {
   return (
@@ -835,6 +840,11 @@ function App() {
               <Route path="/clarity-journal"        element={<ClarityJournal />}           />
               <Route path="/mindset-armor"          element={<MindsetArmor />}             />
               <Route path="/life-conversations"     element={<LifeConversations />}        />
+              <Route path="/personal-boardroom"     element={<PersonalBoardroom />}        />
+              <Route path="/flow-triggers"          element={<FlowTriggers />}             />
+              <Route path="/growth-challenges"      element={<GrowthChallenges />}         />
+              <Route path="/strategic-vision"       element={<StrategicVision />}          />
+              <Route path="/emotional-regulation"   element={<EmotionalRegulation />}      />
             </Routes>
           </div>
         </main>
