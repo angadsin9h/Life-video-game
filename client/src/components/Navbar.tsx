@@ -412,6 +412,9 @@ const NAV_GROUPS = [
       { to: '/social-circle',   icon: Users,       label: 'Social Circle'      },
       { to: '/career-milestones', icon: Briefcase, label: 'Career Milestones'  },
       { to: '/personal-rituals', icon: RefreshCw,  label: 'Personal Rituals'   },
+      { to: '/skill-gaps',      icon: GraduationCap, label: 'Skill Gaps'       },
+      { to: '/pain-points',     icon: AlertTriangle, label: 'Pain Points'       },
+      { to: '/discipline-log',  icon: Sword,      label: 'Discipline Log'     },
     ],
   },
 ]

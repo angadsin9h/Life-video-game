@@ -376,6 +376,9 @@ import FinancialIndependence from './pages/FinancialIndependence'
 import SocialCircle from './pages/SocialCircle'
 import CareerMilestones from './pages/CareerMilestones'
 import PersonalRituals from './pages/PersonalRituals'
+import SkillGaps from './pages/SkillGaps'
+import PainPoints from './pages/PainPoints'
+import DisciplineLog from './pages/DisciplineLog'
 
 function App() {
   return (
@@ -761,6 +764,9 @@ function App() {
               <Route path="/social-circle"    element={<SocialCircle />}      />
               <Route path="/career-milestones" element={<CareerMilestones />} />
               <Route path="/personal-rituals" element={<PersonalRituals />}   />
+              <Route path="/skill-gaps"       element={<SkillGaps />}         />
+              <Route path="/pain-points"      element={<PainPoints />}        />
+              <Route path="/discipline-log"   element={<DisciplineLog />}     />
             </Routes>
           </div>
         </main>
