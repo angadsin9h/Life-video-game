@@ -443,6 +443,10 @@ import PeakStateLog from './pages/PeakStateLog'
 import InnerDialogue from './pages/InnerDialogue'
 import ContributionLog from './pages/ContributionLog'
 import MindBodyLog from './pages/MindBodyLog'
+import WisdomArchive from './pages/WisdomArchive'
+import GratitudeForChallenges from './pages/GratitudeForChallenges'
+import LifeExitStrategy from './pages/LifeExitStrategy'
+import CharacterVirtues from './pages/CharacterVirtues'
 
 function App() {
   return (
@@ -895,6 +899,10 @@ function App() {
               <Route path="/inner-dialogue"         element={<InnerDialogue />}            />
               <Route path="/contribution-log"       element={<ContributionLog />}          />
               <Route path="/mind-body-log"          element={<MindBodyLog />}              />
+              <Route path="/wisdom-archive"         element={<WisdomArchive />}            />
+              <Route path="/gratitude-challenges"   element={<GratitudeForChallenges />}   />
+              <Route path="/life-exit-strategy"     element={<LifeExitStrategy />}         />
+              <Route path="/character-virtues"      element={<CharacterVirtues />}         />
             </Routes>
           </div>
         </main>

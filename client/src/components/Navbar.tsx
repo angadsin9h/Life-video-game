@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare, Award,
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -479,6 +479,10 @@ const NAV_GROUPS = [
       { to: '/inner-dialogue',          icon: Brain,          label: 'Inner Dialogue'       },
       { to: '/contribution-log',        icon: Globe,          label: 'Contribution Log'     },
       { to: '/mind-body-log',           icon: Activity,       label: 'Mind-Body Log'        },
+      { to: '/wisdom-archive',          icon: BookOpen,       label: 'Wisdom Archive'       },
+      { to: '/gratitude-challenges',    icon: Sparkles,       label: 'Gratitude Challenges' },
+      { to: '/life-exit-strategy',      icon: AlertOctagon,   label: 'Exit Strategies'      },
+      { to: '/character-virtues',       icon: Award,          label: 'Character Virtues'    },
     ],
   },
 ]
