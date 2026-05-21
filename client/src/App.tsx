@@ -369,6 +369,10 @@ import LifeDesign from './pages/LifeDesign'
 import PowerBeliefs from './pages/PowerBeliefs'
 import FamilyGoals from './pages/FamilyGoals'
 import MicroJournal from './pages/MicroJournal'
+import ExerciseLibrary from './pages/ExerciseLibrary'
+import MealLog from './pages/MealLog'
+import MindsetShifts from './pages/MindsetShifts'
+import FinancialIndependence from './pages/FinancialIndependence'
 
 function App() {
   return (
@@ -747,6 +751,10 @@ function App() {
               <Route path="/power-beliefs"    element={<PowerBeliefs />}      />
               <Route path="/family-goals"     element={<FamilyGoals />}       />
               <Route path="/micro-journal"    element={<MicroJournal />}      />
+              <Route path="/exercise-library" element={<ExerciseLibrary />}  />
+              <Route path="/meal-log"         element={<MealLog />}          />
+              <Route path="/mindset-shifts-v2" element={<MindsetShifts />}  />
+              <Route path="/fi-tracker"       element={<FinancialIndependence />} />
             </Routes>
           </div>
         </main>

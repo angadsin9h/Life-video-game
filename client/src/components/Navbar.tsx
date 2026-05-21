@@ -405,6 +405,10 @@ const NAV_GROUPS = [
       { to: '/power-beliefs',   icon: Zap,          label: 'Power Beliefs'      },
       { to: '/family-goals',    icon: Home,         label: 'Family Goals'       },
       { to: '/micro-journal',   icon: StickyNote,   label: 'Micro Journal'      },
+      { to: '/exercise-library', icon: Dumbbell,   label: 'Exercise Library'   },
+      { to: '/meal-log',        icon: Utensils,    label: 'Meal Log'           },
+      { to: '/mindset-shifts-v2', icon: Brain,     label: 'Mindset Shifts+'    },
+      { to: '/fi-tracker',      icon: TrendingUp,  label: 'Financial Freedom'  },
     ],
   },
 ]
