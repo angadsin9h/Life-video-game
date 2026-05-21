@@ -486,6 +486,10 @@ const NAV_GROUPS = [
       { to: '/life-experiment-log',     icon: FlaskConical,   label: 'Life Experiments+'    },
       { to: '/life-phases',             icon: Clock,          label: 'Life Phases'          },
       { to: '/relationship-depth',      icon: Users,          label: 'Relationship Depth'   },
+      { to: '/narrative-reframe',       icon: RefreshCw,      label: 'Narrative Reframe'    },
+      { to: '/value-hierarchy',         icon: Heart,          label: 'Value Hierarchy'      },
+      { to: '/mindfulness-depth',       icon: Wind,           label: 'Mindfulness Depth'    },
+      { to: '/success-dna',             icon: Trophy,         label: 'Success DNA'          },
     ],
   },
 ]

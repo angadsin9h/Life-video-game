@@ -450,6 +450,10 @@ import CharacterVirtues from './pages/CharacterVirtues'
 import LifeExperimentLog from './pages/LifeExperimentLog'
 import LifePhases from './pages/LifePhases'
 import RelationshipDepth from './pages/RelationshipDepth'
+import NarrativeReframe from './pages/NarrativeReframe'
+import ValueHierarchy from './pages/ValueHierarchy'
+import MindfulnessDepth from './pages/MindfulnessDepth'
+import SuccessDNA from './pages/SuccessDNA'
 
 function App() {
   return (
@@ -909,6 +913,10 @@ function App() {
               <Route path="/life-experiment-log"    element={<LifeExperimentLog />}        />
               <Route path="/life-phases"            element={<LifePhases />}               />
               <Route path="/relationship-depth"     element={<RelationshipDepth />}        />
+              <Route path="/narrative-reframe"      element={<NarrativeReframe />}         />
+              <Route path="/value-hierarchy"        element={<ValueHierarchy />}           />
+              <Route path="/mindfulness-depth"      element={<MindfulnessDepth />}         />
+              <Route path="/success-dna"            element={<SuccessDNA />}               />
             </Routes>
           </div>
         </main>
