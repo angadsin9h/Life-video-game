@@ -475,6 +475,10 @@ import VisionCasting from './pages/VisionCasting'
 import PurposeLog from './pages/PurposeLog'
 import SelfMasteryLog from './pages/SelfMasteryLog'
 import TimePhilosophy from './pages/TimePhilosophy'
+import JoyDesign from './pages/JoyDesign'
+import EnergyBudget from './pages/EnergyBudget'
+import InspiredAction from './pages/InspiredAction'
+import MindfulCommunication from './pages/MindfulCommunication'
 
 function App() {
   return (
@@ -959,6 +963,10 @@ function App() {
               <Route path="/purpose-log"            element={<PurposeLog />}               />
               <Route path="/self-mastery-log"       element={<SelfMasteryLog />}           />
               <Route path="/time-philosophy"        element={<TimePhilosophy />}           />
+              <Route path="/joy-design"             element={<JoyDesign />}                />
+              <Route path="/energy-budget"          element={<EnergyBudget />}             />
+              <Route path="/inspired-action"        element={<InspiredAction />}           />
+              <Route path="/mindful-communication"  element={<MindfulCommunication />}     />
             </Routes>
           </div>
         </main>

@@ -511,6 +511,10 @@ const NAV_GROUPS = [
       { to: '/purpose-log',             icon: Compass,        label: 'Purpose Log'          },
       { to: '/self-mastery-log',        icon: Trophy,         label: 'Self Mastery Log'     },
       { to: '/time-philosophy',         icon: Clock,          label: 'Time Philosophy'      },
+      { to: '/joy-design',              icon: Sun,            label: 'Joy Design'           },
+      { to: '/energy-budget',           icon: Zap,            label: 'Energy Budget'        },
+      { to: '/inspired-action',         icon: Zap,            label: 'Inspired Action'      },
+      { to: '/mindful-communication',   icon: MessageSquare,  label: 'Mindful Comm.'        },
     ],
   },
 ]
