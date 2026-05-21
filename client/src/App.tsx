@@ -438,6 +438,11 @@ import PowerMoments from './pages/PowerMoments'
 import IntegrityLog from './pages/IntegrityLog'
 import SoulPurpose from './pages/SoulPurpose'
 import LifeCurriculum from './pages/LifeCurriculum'
+import FutureSelfLog from './pages/FutureSelfLog'
+import PeakStateLog from './pages/PeakStateLog'
+import InnerDialogue from './pages/InnerDialogue'
+import ContributionLog from './pages/ContributionLog'
+import MindBodyLog from './pages/MindBodyLog'
 
 function App() {
   return (
@@ -885,6 +890,11 @@ function App() {
               <Route path="/integrity-log"          element={<IntegrityLog />}             />
               <Route path="/soul-purpose"           element={<SoulPurpose />}              />
               <Route path="/life-curriculum"        element={<LifeCurriculum />}           />
+              <Route path="/future-self"            element={<FutureSelfLog />}            />
+              <Route path="/peak-state"             element={<PeakStateLog />}             />
+              <Route path="/inner-dialogue"         element={<InnerDialogue />}            />
+              <Route path="/contribution-log"       element={<ContributionLog />}          />
+              <Route path="/mind-body-log"          element={<MindBodyLog />}              />
             </Routes>
           </div>
         </main>

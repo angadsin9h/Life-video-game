@@ -474,6 +474,11 @@ const NAV_GROUPS = [
       { to: '/integrity-log',           icon: Shield,         label: 'Integrity Log'        },
       { to: '/soul-purpose',            icon: Compass,        label: 'Soul Purpose'         },
       { to: '/life-curriculum',         icon: BookOpen,       label: 'Life Curriculum'      },
+      { to: '/future-self',             icon: Star,           label: 'Future Self Log'      },
+      { to: '/peak-state',              icon: Flame,          label: 'Peak State Log'       },
+      { to: '/inner-dialogue',          icon: Brain,          label: 'Inner Dialogue'       },
+      { to: '/contribution-log',        icon: Globe,          label: 'Contribution Log'     },
+      { to: '/mind-body-log',           icon: Activity,       label: 'Mind-Body Log'        },
     ],
   },
 ]
