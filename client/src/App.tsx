@@ -359,6 +359,11 @@ import CourageLog from './pages/CourageLog'
 import EgoJournal from './pages/EgoJournal'
 import IntentionSetter from './pages/IntentionSetter'
 import MotivationLog from './pages/MotivationLog'
+import HabitAutopsy from './pages/HabitAutopsy'
+import ProcrastinationLog from './pages/ProcrastinationLog'
+import MentorQuotes from './pages/MentorQuotes'
+import PersonalCredo from './pages/PersonalCredo'
+import GrowthEdges from './pages/GrowthEdges'
 
 function App() {
   return (
@@ -727,6 +732,11 @@ function App() {
               <Route path="/ego-journal"       element={<EgoJournal />}        />
               <Route path="/intention-setter"  element={<IntentionSetter />}   />
               <Route path="/motivation-log"    element={<MotivationLog />}     />
+              <Route path="/habit-autopsy"    element={<HabitAutopsy />}      />
+              <Route path="/procrastination"  element={<ProcrastinationLog />}/>
+              <Route path="/mentor-quotes"    element={<MentorQuotes />}      />
+              <Route path="/personal-credo"   element={<PersonalCredo />}     />
+              <Route path="/growth-edges"     element={<GrowthEdges />}       />
             </Routes>
           </div>
         </main>

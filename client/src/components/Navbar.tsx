@@ -395,6 +395,11 @@ const NAV_GROUPS = [
       { to: '/ego-journal',      icon: Brain,       label: 'Ego Journal'        },
       { to: '/intention-setter', icon: Target,      label: 'Intention Setter'   },
       { to: '/motivation-log',   icon: Flame,       label: 'Motivation Log'     },
+      { to: '/habit-autopsy',   icon: FlaskConical, label: 'Habit Autopsy'     },
+      { to: '/procrastination', icon: Clock,        label: 'Procrastination'    },
+      { to: '/mentor-quotes',   icon: GraduationCap, label: 'Mentor Quotes'    },
+      { to: '/personal-credo',  icon: Scroll,       label: 'Personal Credo'     },
+      { to: '/growth-edges',    icon: TrendingUp,   label: 'Growth Edges'       },
     ],
   },
 ]
