@@ -482,6 +482,11 @@ import MindfulCommunication from './pages/MindfulCommunication'
 import PhysicalPeak from './pages/PhysicalPeak'
 import SocialIntelligence from './pages/SocialIntelligence'
 import DailyExcellence from './pages/DailyExcellence'
+import LifeReview from './pages/LifeReview'
+import ResilientThinking from './pages/ResilientThinking'
+import DigitalWellness from './pages/DigitalWellness'
+import NeuroplasticityLog from './pages/NeuroplasticityLog'
+import IntuitiveDecision from './pages/IntuitiveDecision'
 
 function App() {
   return (
@@ -973,6 +978,11 @@ function App() {
               <Route path="/physical-peak"          element={<PhysicalPeak />}             />
               <Route path="/social-intelligence"    element={<SocialIntelligence />}       />
               <Route path="/daily-excellence"       element={<DailyExcellence />}          />
+              <Route path="/life-review"            element={<LifeReview />}               />
+              <Route path="/resilient-thinking"     element={<ResilientThinking />}        />
+              <Route path="/digital-wellness"       element={<DigitalWellness />}          />
+              <Route path="/neuroplasticity"        element={<NeuroplasticityLog />}       />
+              <Route path="/intuitive-decision"     element={<IntuitiveDecision />}        />
             </Routes>
           </div>
         </main>

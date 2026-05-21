@@ -518,6 +518,11 @@ const NAV_GROUPS = [
       { to: '/physical-peak',           icon: Activity,       label: 'Physical Peak'        },
       { to: '/social-intelligence',     icon: Users,          label: 'Social Intelligence'  },
       { to: '/daily-excellence',        icon: Star,           label: 'Daily Excellence'     },
+      { to: '/life-review',             icon: BarChart3,      label: 'Life Review'          },
+      { to: '/resilient-thinking',      icon: Shield,         label: 'Resilient Thinking'   },
+      { to: '/digital-wellness',        icon: Smartphone,     label: 'Digital Wellness'     },
+      { to: '/neuroplasticity',         icon: Brain,          label: 'Neuroplasticity'      },
+      { to: '/intuitive-decision',      icon: Compass,        label: 'Intuitive Decision'   },
     ],
   },
 ]
