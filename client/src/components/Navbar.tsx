@@ -434,7 +434,10 @@ const NAV_GROUPS = [
       { to: '/morning-mindfulness',    icon: Sun,        label: 'Morning Journal+'     },
       { to: '/evening-wind-down',      icon: Moon,       label: 'Evening Wind Down'    },
       { to: '/values-alignment',       icon: Heart,      label: 'Values Alignment'     },
-      { to: '/body-budget',            icon: Activity,   label: 'Body Budget'          },
+      { to: '/body-budget',            icon: Activity,     label: 'Body Budget'          },
+      { to: '/goal-sprint',           icon: Flag,         label: 'Goal Sprint'          },
+      { to: '/thought-leadership',    icon: Lightbulb,    label: 'Thought Leadership'   },
+      { to: '/fear-inventory',        icon: Shield,       label: 'Fear Inventory'       },
     ],
   },
 ]

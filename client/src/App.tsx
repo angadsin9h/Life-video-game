@@ -399,6 +399,9 @@ import MorningMindfulnessJournal from './pages/MorningMindfulnessJournal'
 import EveningWindDown from './pages/EveningWindDown'
 import ValuesAlignment from './pages/ValuesAlignment'
 import BodyBudget from './pages/BodyBudget'
+import GoalSprint from './pages/GoalSprint'
+import ThoughtLeadership from './pages/ThoughtLeadership'
+import FearInventory from './pages/FearInventory'
 
 function App() {
   return (
@@ -807,6 +810,9 @@ function App() {
               <Route path="/evening-wind-down"       element={<EveningWindDown />}          />
               <Route path="/values-alignment"        element={<ValuesAlignment />}          />
               <Route path="/body-budget"             element={<BodyBudget />}               />
+              <Route path="/goal-sprint"            element={<GoalSprint />}               />
+              <Route path="/thought-leadership"     element={<ThoughtLeadership />}        />
+              <Route path="/fear-inventory"         element={<FearInventory />}            />
             </Routes>
           </div>
         </main>
