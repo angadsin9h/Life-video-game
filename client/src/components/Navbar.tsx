@@ -523,6 +523,10 @@ const NAV_GROUPS = [
       { to: '/digital-wellness',        icon: Smartphone,     label: 'Digital Wellness'     },
       { to: '/neuroplasticity',         icon: Brain,          label: 'Neuroplasticity'      },
       { to: '/intuitive-decision',      icon: Compass,        label: 'Intuitive Decision'   },
+      { to: '/body-wisdom',             icon: Activity,       label: 'Body Wisdom'          },
+      { to: '/gratitude-to-self',       icon: Heart,          label: 'Gratitude to Self'    },
+      { to: '/willpower-log',           icon: Flame,          label: 'Willpower Log'        },
+      { to: '/mindful-sleep',           icon: Moon,           label: 'Mindful Sleep'        },
     ],
   },
 ]

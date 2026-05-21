@@ -487,6 +487,10 @@ import ResilientThinking from './pages/ResilientThinking'
 import DigitalWellness from './pages/DigitalWellness'
 import NeuroplasticityLog from './pages/NeuroplasticityLog'
 import IntuitiveDecision from './pages/IntuitiveDecision'
+import BodyWisdom from './pages/BodyWisdom'
+import GratitudeToself from './pages/GratitudeToself'
+import WillpowerLog from './pages/WillpowerLog'
+import MindfulSleep from './pages/MindfulSleep'
 
 function App() {
   return (
@@ -983,6 +987,10 @@ function App() {
               <Route path="/digital-wellness"       element={<DigitalWellness />}          />
               <Route path="/neuroplasticity"        element={<NeuroplasticityLog />}       />
               <Route path="/intuitive-decision"     element={<IntuitiveDecision />}        />
+              <Route path="/body-wisdom"            element={<BodyWisdom />}               />
+              <Route path="/gratitude-to-self"      element={<GratitudeToself />}          />
+              <Route path="/willpower-log"          element={<WillpowerLog />}             />
+              <Route path="/mindful-sleep"          element={<MindfulSleep />}             />
             </Routes>
           </div>
         </main>
