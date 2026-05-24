@@ -500,6 +500,12 @@ import LifeScoreEngine from './pages/LifeScoreEngine'
 import UltimateMorningRitual from './pages/UltimateMorningRitual'
 import IkigaiCompass from './pages/IkigaiCompass'
 import CommandCenter from './pages/CommandCenter'
+import DailyDriver from './pages/DailyDriver'
+import WeeklyPowerSession from './pages/WeeklyPowerSession'
+import LifeGPS from './pages/LifeGPS'
+import NightlyDebrief from './pages/NightlyDebrief'
+import PersonalPlaybook from './pages/PersonalPlaybook'
+import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 
 function App() {
   return (
@@ -1009,6 +1015,12 @@ function App() {
               <Route path="/ultimate-morning"      element={<UltimateMorningRitual />}    />
               <Route path="/ikigai-compass"        element={<IkigaiCompass />}            />
               <Route path="/command-center"        element={<CommandCenter />}            />
+              <Route path="/daily-driver"          element={<DailyDriver />}              />
+              <Route path="/weekly-power"          element={<WeeklyPowerSession />}       />
+              <Route path="/life-gps"              element={<LifeGPS />}                  />
+              <Route path="/nightly-debrief"       element={<NightlyDebrief />}           />
+              <Route path="/personal-playbook"     element={<PersonalPlaybook />}         />
+              <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
             </Routes>
           </div>
         </main>

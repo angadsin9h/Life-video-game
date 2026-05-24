@@ -536,6 +536,12 @@ const NAV_GROUPS = [
       { to: '/ultimate-morning',        icon: Sun,            label: 'Morning Ritual'       },
       { to: '/ikigai-compass',          icon: Compass,        label: 'Ikigai Compass'       },
       { to: '/command-center',          icon: LayoutDashboard, label: 'Command Center'      },
+      { to: '/daily-driver',            icon: Zap,            label: 'Daily Driver'         },
+      { to: '/weekly-power',            icon: Trophy,         label: 'Weekly Power Session' },
+      { to: '/life-gps',               icon: Compass,        label: 'Life GPS'             },
+      { to: '/nightly-debrief',        icon: Moon,           label: 'Nightly Debrief'      },
+      { to: '/personal-playbook',      icon: BookOpen,       label: 'Personal Playbook'    },
+      { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
     ],
   },
 ]
