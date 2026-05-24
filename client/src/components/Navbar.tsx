@@ -532,6 +532,10 @@ const NAV_GROUPS = [
       { to: '/life-rhythm',             icon: RefreshCw,      label: 'Life Rhythm'          },
       { to: '/high-performance',        icon: Trophy,         label: 'High Performance'     },
       { to: '/screen-time-connect',     icon: Smartphone,     label: 'Screen Time Connect'  },
+      { to: '/life-score-engine',       icon: Zap,            label: 'Life Score Engine'    },
+      { to: '/ultimate-morning',        icon: Sun,            label: 'Morning Ritual'       },
+      { to: '/ikigai-compass',          icon: Compass,        label: 'Ikigai Compass'       },
+      { to: '/command-center',          icon: LayoutDashboard, label: 'Command Center'      },
     ],
   },
 ]

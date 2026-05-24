@@ -496,6 +496,10 @@ import AbundanceLog from './pages/AbundanceLog'
 import LifeRhythm from './pages/LifeRhythm'
 import HighPerformance from './pages/HighPerformance'
 import ScreenTimeConnect from './pages/ScreenTimeConnect'
+import LifeScoreEngine from './pages/LifeScoreEngine'
+import UltimateMorningRitual from './pages/UltimateMorningRitual'
+import IkigaiCompass from './pages/IkigaiCompass'
+import CommandCenter from './pages/CommandCenter'
 
 function App() {
   return (
@@ -1001,6 +1005,10 @@ function App() {
               <Route path="/life-rhythm"            element={<LifeRhythm />}               />
               <Route path="/high-performance"       element={<HighPerformance />}          />
               <Route path="/screen-time-connect"   element={<ScreenTimeConnect />}        />
+              <Route path="/life-score-engine"     element={<LifeScoreEngine />}          />
+              <Route path="/ultimate-morning"      element={<UltimateMorningRitual />}    />
+              <Route path="/ikigai-compass"        element={<IkigaiCompass />}            />
+              <Route path="/command-center"        element={<CommandCenter />}            />
             </Routes>
           </div>
         </main>
