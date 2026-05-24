@@ -46,7 +46,7 @@ const DIMS: DimConfig[] = [
   { key: 'neuroplasticity_log',    label: 'Mind',        emoji: '🧠', scoreField: 'sharpnessScore',   icon: <Brain className="w-4 h-4" /> },
   { key: 'life_review_log',        label: 'Life Review', emoji: '📊', scoreField: 'satisfactionScore',icon: <BarChart3 className="w-4 h-4" /> },
   { key: 'nightly_debrief_log',    label: 'Debrief',     emoji: '🌙', scoreField: 'debriefScore',     icon: <Moon className="w-4 h-4" /> },
-  { key: 'daily_driver_log',       label: 'Daily',       emoji: '🚀', scoreField: 'dailyScore',       icon: <Clock className="w-4 h-4" /> },
+  { key: 'daily_driver_log',       label: 'Daily',       emoji: '🚀', scoreField: 'score',            icon: <Clock className="w-4 h-4" /> },
 ]
 
 // ── helpers ────────────────────────────────────────────────────────────────

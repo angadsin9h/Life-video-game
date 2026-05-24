@@ -506,6 +506,9 @@ import LifeGPS from './pages/LifeGPS'
 import NightlyDebrief from './pages/NightlyDebrief'
 import PersonalPlaybook from './pages/PersonalPlaybook'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
+import WeeklyChanges from './pages/WeeklyChanges'
+import MonthlyChanges from './pages/MonthlyChanges'
+import ScoreTrends from './pages/ScoreTrends'
 
 function App() {
   return (
@@ -1021,6 +1024,9 @@ function App() {
               <Route path="/nightly-debrief"       element={<NightlyDebrief />}           />
               <Route path="/personal-playbook"     element={<PersonalPlaybook />}         />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
+              <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
+              <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
+              <Route path="/score-trends"          element={<ScoreTrends />}              />
             </Routes>
           </div>
         </main>

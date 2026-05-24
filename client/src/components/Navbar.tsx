@@ -542,6 +542,9 @@ const NAV_GROUPS = [
       { to: '/nightly-debrief',        icon: Moon,           label: 'Nightly Debrief'      },
       { to: '/personal-playbook',      icon: BookOpen,       label: 'Personal Playbook'    },
       { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
+      { to: '/weekly-changes',         icon: TrendingUp,     label: 'Weekly Changes'       },
+      { to: '/monthly-changes',        icon: Calendar,       label: 'Monthly Changes'      },
+      { to: '/score-trends',           icon: Activity,       label: 'Score Trends'         },
     ],
   },
 ]
