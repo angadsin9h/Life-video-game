@@ -511,6 +511,13 @@ import StrategicLifePlan from './pages/StrategicLifePlan'
 import HabitMatrix from './pages/HabitMatrix'
 import LifeCheckup from './pages/LifeCheckup'
 import FlowStateTracker from './pages/FlowStateTracker'
+import MindfulnessCenter from './pages/MindfulnessCenter'
+import WealthBuilder from './pages/WealthBuilder'
+import RelationshipTracker from './pages/RelationshipTracker'
+import CreativeStudio from './pages/CreativeStudio'
+import DeepWorkLog from './pages/DeepWorkLog'
+import GrowthJournal from './pages/GrowthJournal'
+import LifeEnergy from './pages/LifeEnergy'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1035,6 +1042,13 @@ function App() {
               <Route path="/habit-matrix"          element={<HabitMatrix />}              />
               <Route path="/life-checkup"          element={<LifeCheckup />}              />
               <Route path="/flow-state-tracker"    element={<FlowStateTracker />}         />
+              <Route path="/mindfulness-center"    element={<MindfulnessCenter />}        />
+              <Route path="/wealth-builder"        element={<WealthBuilder />}            />
+              <Route path="/relationship-tracker"  element={<RelationshipTracker />}      />
+              <Route path="/creative-studio"       element={<CreativeStudio />}           />
+              <Route path="/deep-work-log"         element={<DeepWorkLog />}              />
+              <Route path="/growth-journal"        element={<GrowthJournal />}            />
+              <Route path="/life-energy"           element={<LifeEnergy />}               />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
