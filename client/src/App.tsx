@@ -495,6 +495,7 @@ import ConflictResolution from './pages/ConflictResolution'
 import AbundanceLog from './pages/AbundanceLog'
 import LifeRhythm from './pages/LifeRhythm'
 import HighPerformance from './pages/HighPerformance'
+import ScreenTimeConnect from './pages/ScreenTimeConnect'
 
 function App() {
   return (
@@ -999,6 +1000,7 @@ function App() {
               <Route path="/abundance-log"          element={<AbundanceLog />}             />
               <Route path="/life-rhythm"            element={<LifeRhythm />}               />
               <Route path="/high-performance"       element={<HighPerformance />}          />
+              <Route path="/screen-time-connect"   element={<ScreenTimeConnect />}        />
             </Routes>
           </div>
         </main>

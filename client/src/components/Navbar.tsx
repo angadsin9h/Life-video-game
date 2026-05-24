@@ -531,6 +531,7 @@ const NAV_GROUPS = [
       { to: '/abundance-log',           icon: Sun,            label: 'Abundance Log'        },
       { to: '/life-rhythm',             icon: RefreshCw,      label: 'Life Rhythm'          },
       { to: '/high-performance',        icon: Trophy,         label: 'High Performance'     },
+      { to: '/screen-time-connect',     icon: Smartphone,     label: 'Screen Time Connect'  },
     ],
   },
 ]
