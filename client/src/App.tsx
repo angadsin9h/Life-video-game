@@ -505,6 +505,12 @@ import WeeklyPowerSession from './pages/WeeklyPowerSession'
 import LifeGPS from './pages/LifeGPS'
 import NightlyDebrief from './pages/NightlyDebrief'
 import PersonalPlaybook from './pages/PersonalPlaybook'
+import MindBodyBalance from './pages/MindBodyBalance'
+import EmotionalDashboard from './pages/EmotionalDashboard'
+import StrategicLifePlan from './pages/StrategicLifePlan'
+import HabitMatrix from './pages/HabitMatrix'
+import LifeCheckup from './pages/LifeCheckup'
+import FlowStateTracker from './pages/FlowStateTracker'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1023,6 +1029,12 @@ function App() {
               <Route path="/life-gps"              element={<LifeGPS />}                  />
               <Route path="/nightly-debrief"       element={<NightlyDebrief />}           />
               <Route path="/personal-playbook"     element={<PersonalPlaybook />}         />
+              <Route path="/mind-body-balance"     element={<MindBodyBalance />}          />
+              <Route path="/emotional-dashboard"   element={<EmotionalDashboard />}       />
+              <Route path="/strategic-life-plan"   element={<StrategicLifePlan />}        />
+              <Route path="/habit-matrix"          element={<HabitMatrix />}              />
+              <Route path="/life-checkup"          element={<LifeCheckup />}              />
+              <Route path="/flow-state-tracker"    element={<FlowStateTracker />}         />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
