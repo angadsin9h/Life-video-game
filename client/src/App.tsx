@@ -543,6 +543,7 @@ import ChallengeAcceptor from './pages/ChallengeAcceptor'
 import PersonalFinanceLog from './pages/PersonalFinanceLog'
 import MentalStrengthLog from './pages/MentalStrengthLog'
 import SocialCapitalLog from './pages/SocialCapitalLog'
+import LegacyProjectLog from './pages/LegacyProjectLog'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1099,6 +1100,7 @@ function App() {
               <Route path="/personal-finance-log"  element={<PersonalFinanceLog />}       />
               <Route path="/mental-strength-log"   element={<MentalStrengthLog />}        />
               <Route path="/social-capital-log"    element={<SocialCapitalLog />}         />
+              <Route path="/legacy-project-log"    element={<LegacyProjectLog />}         />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
