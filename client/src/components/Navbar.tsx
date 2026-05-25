@@ -571,6 +571,8 @@ const NAV_GROUPS = [
       { to: '/mindset-gym',             icon: Brain,          label: 'Mindset Gym'          },
       { to: '/life-design-board',       icon: Layers,         label: 'Life Design Board'    },
       { to: '/gratitude-power',         icon: Sparkles,       label: 'Gratitude Power'      },
+      { to: '/success-blueprint',       icon: Trophy,         label: 'Success Blueprint'    },
+      { to: '/time-investment',         icon: Clock,          label: 'Time Investment'      },
       { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
       { to: '/weekly-changes',         icon: TrendingUp,     label: 'Weekly Changes'       },
       { to: '/monthly-changes',        icon: Calendar,       label: 'Monthly Changes'      },

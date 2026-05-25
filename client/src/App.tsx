@@ -535,6 +535,8 @@ import BodyOptimizer from './pages/BodyOptimizer'
 import MindsetGym from './pages/MindsetGym'
 import LifeDesignBoard from './pages/LifeDesignBoard'
 import GratitudePower from './pages/GratitudePower'
+import SuccessBlueprintLog from './pages/SuccessBlueprintLog'
+import TimeInvestment from './pages/TimeInvestment'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1083,6 +1085,8 @@ function App() {
               <Route path="/mindset-gym"           element={<MindsetGym />}               />
               <Route path="/life-design-board"     element={<LifeDesignBoard />}          />
               <Route path="/gratitude-power"       element={<GratitudePower />}           />
+              <Route path="/success-blueprint"     element={<SuccessBlueprintLog />}      />
+              <Route path="/time-investment"       element={<TimeInvestment />}           />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
