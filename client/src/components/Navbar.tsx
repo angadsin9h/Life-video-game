@@ -587,6 +587,8 @@ const NAV_GROUPS = [
       { to: '/morning-intention',        icon: Sun,            label: 'Morning Intention'    },
       { to: '/emotional-alchemy',        icon: Flame,          label: 'Emotional Alchemy'    },
       { to: '/body-signal-log',          icon: Activity,       label: 'Body Signal Log'      },
+      { to: '/micro-moment-log',         icon: Sparkles,       label: 'Micro Moment Log'     },
+      { to: '/life-force-log',           icon: Zap,            label: 'Life Force Log'       },
       { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
       { to: '/weekly-changes',         icon: TrendingUp,     label: 'Weekly Changes'       },
       { to: '/monthly-changes',        icon: Calendar,       label: 'Monthly Changes'      },
