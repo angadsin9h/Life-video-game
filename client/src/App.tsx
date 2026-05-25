@@ -548,6 +548,7 @@ import SelfCompassionLog from './pages/SelfCompassionLog'
 import PresenceTracker from './pages/PresenceTracker'
 import LifeLab from './pages/LifeLab'
 import DailyIntentionSetter from './pages/DailyIntentionSetter'
+import MorningIntentionRitual from './pages/MorningIntentionRitual'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1108,7 +1109,8 @@ function App() {
               <Route path="/self-compassion-log"   element={<SelfCompassionLog />}        />
               <Route path="/presence-tracker"      element={<PresenceTracker />}          />
               <Route path="/life-lab"              element={<LifeLab />}                  />
-              <Route path="/daily-intention-setter" element={<DailyIntentionSetter />}    />
+              <Route path="/daily-intention-setter"  element={<DailyIntentionSetter />}    />
+              <Route path="/morning-intention"       element={<MorningIntentionRitual />}  />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />

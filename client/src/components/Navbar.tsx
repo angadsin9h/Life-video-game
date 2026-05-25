@@ -584,6 +584,7 @@ const NAV_GROUPS = [
       { to: '/presence-tracker',         icon: Eye,            label: 'Presence Tracker'     },
       { to: '/life-lab',                 icon: Lightbulb,      label: 'Life Lab'             },
       { to: '/daily-intention-setter',   icon: Sun,            label: 'Intention Setter+'    },
+      { to: '/morning-intention',        icon: Sun,            label: 'Morning Intention'    },
       { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
       { to: '/weekly-changes',         icon: TrendingUp,     label: 'Weekly Changes'       },
       { to: '/monthly-changes',        icon: Calendar,       label: 'Monthly Changes'      },
