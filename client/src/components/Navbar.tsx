@@ -580,6 +580,7 @@ const NAV_GROUPS = [
       { to: '/mental-strength-log',     icon: Shield,         label: 'Mental Strength Log'  },
       { to: '/social-capital-log',      icon: Users,          label: 'Social Capital Log'   },
       { to: '/legacy-project-log',      icon: Globe,          label: 'Legacy Project Log'   },
+      { to: '/self-compassion-log',      icon: Heart,          label: 'Self-Compassion Log'  },
       { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
       { to: '/weekly-changes',         icon: TrendingUp,     label: 'Weekly Changes'       },
       { to: '/monthly-changes',        icon: Calendar,       label: 'Monthly Changes'      },
