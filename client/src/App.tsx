@@ -523,6 +523,18 @@ import ValueAlignmentLog from './pages/ValueAlignmentLog'
 import WinBoard from './pages/WinBoard'
 import ReflectionEngine from './pages/ReflectionEngine'
 import LifeRating from './pages/LifeRating'
+import LifeMetricsHub from './pages/LifeMetricsHub'
+import MorningPowerup from './pages/MorningPowerup'
+
+import GoalCrusher from './pages/GoalCrusher'
+import HabitEvolution from './pages/HabitEvolution'
+import SpiritualLog from './pages/SpiritualLog'
+import ObstacleDestroyer from './pages/ObstacleDestroyer'
+import FocusProtocol from './pages/FocusProtocol'
+import BodyOptimizer from './pages/BodyOptimizer'
+import MindsetGym from './pages/MindsetGym'
+import LifeDesignBoard from './pages/LifeDesignBoard'
+import GratitudePower from './pages/GratitudePower'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1059,6 +1071,18 @@ function App() {
               <Route path="/win-board"             element={<WinBoard />}                 />
               <Route path="/reflection-engine"     element={<ReflectionEngine />}         />
               <Route path="/life-rating"           element={<LifeRating />}               />
+              <Route path="/life-metrics-hub"      element={<LifeMetricsHub />}           />
+              <Route path="/morning-powerup"       element={<MorningPowerup />}           />
+
+              <Route path="/goal-crusher"          element={<GoalCrusher />}              />
+              <Route path="/habit-evolution"       element={<HabitEvolution />}           />
+              <Route path="/spiritual-log"         element={<SpiritualLog />}             />
+              <Route path="/obstacle-destroyer"    element={<ObstacleDestroyer />}        />
+              <Route path="/focus-protocol"        element={<FocusProtocol />}            />
+              <Route path="/body-optimizer"        element={<BodyOptimizer />}            />
+              <Route path="/mindset-gym"           element={<MindsetGym />}               />
+              <Route path="/life-design-board"     element={<LifeDesignBoard />}          />
+              <Route path="/gratitude-power"       element={<GratitudePower />}           />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
