@@ -537,6 +537,10 @@ import LifeDesignBoard from './pages/LifeDesignBoard'
 import GratitudePower from './pages/GratitudePower'
 import SuccessBlueprintLog from './pages/SuccessBlueprintLog'
 import TimeInvestment from './pages/TimeInvestment'
+import ClaritySession from './pages/ClaritySession'
+import PeakMomentLog from './pages/PeakMomentLog'
+import ChallengeAcceptor from './pages/ChallengeAcceptor'
+import PersonalFinanceLog from './pages/PersonalFinanceLog'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1087,6 +1091,10 @@ function App() {
               <Route path="/gratitude-power"       element={<GratitudePower />}           />
               <Route path="/success-blueprint"     element={<SuccessBlueprintLog />}      />
               <Route path="/time-investment"       element={<TimeInvestment />}           />
+              <Route path="/clarity-session"       element={<ClaritySession />}           />
+              <Route path="/peak-moment-log"       element={<PeakMomentLog />}            />
+              <Route path="/challenge-acceptor"    element={<ChallengeAcceptor />}        />
+              <Route path="/personal-finance-log"  element={<PersonalFinanceLog />}       />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
