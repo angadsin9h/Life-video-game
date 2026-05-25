@@ -553,6 +553,7 @@ import EmotionalAlchemy from './pages/EmotionalAlchemy'
 import BodySignalLog from './pages/BodySignalLog'
 import MicroMomentLog from './pages/MicroMomentLog'
 import LifeForceLog from './pages/LifeForceLog'
+import NeuralReprogramming from './pages/NeuralReprogramming'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1119,6 +1120,7 @@ function App() {
               <Route path="/body-signal-log"         element={<BodySignalLog />}           />
               <Route path="/micro-moment-log"        element={<MicroMomentLog />}          />
               <Route path="/life-force-log"          element={<LifeForceLog />}            />
+              <Route path="/neural-reprogramming"    element={<NeuralReprogramming />}     />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
