@@ -518,6 +518,11 @@ import CreativeStudio from './pages/CreativeStudio'
 import DeepWorkLog from './pages/DeepWorkLog'
 import GrowthJournal from './pages/GrowthJournal'
 import LifeEnergy from './pages/LifeEnergy'
+import IdentityArchitect from './pages/IdentityArchitect'
+import ValueAlignmentLog from './pages/ValueAlignmentLog'
+import WinBoard from './pages/WinBoard'
+import ReflectionEngine from './pages/ReflectionEngine'
+import LifeRating from './pages/LifeRating'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1049,6 +1054,11 @@ function App() {
               <Route path="/deep-work-log"         element={<DeepWorkLog />}              />
               <Route path="/growth-journal"        element={<GrowthJournal />}            />
               <Route path="/life-energy"           element={<LifeEnergy />}               />
+              <Route path="/identity-architect"    element={<IdentityArchitect />}        />
+              <Route path="/value-alignment-log"   element={<ValueAlignmentLog />}        />
+              <Route path="/win-board"             element={<WinBoard />}                 />
+              <Route path="/reflection-engine"     element={<ReflectionEngine />}         />
+              <Route path="/life-rating"           element={<LifeRating />}               />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
