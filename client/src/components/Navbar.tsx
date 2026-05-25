@@ -577,6 +577,8 @@ const NAV_GROUPS = [
       { to: '/peak-moment-log',         icon: Star,           label: 'Peak Moment Log'      },
       { to: '/challenge-acceptor',      icon: Flag,           label: 'Challenge Acceptor'   },
       { to: '/personal-finance-log',    icon: TrendingUp,     label: 'Personal Finance Log' },
+      { to: '/mental-strength-log',     icon: Shield,         label: 'Mental Strength Log'  },
+      { to: '/social-capital-log',      icon: Users,          label: 'Social Capital Log'   },
       { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
       { to: '/weekly-changes',         icon: TrendingUp,     label: 'Weekly Changes'       },
       { to: '/monthly-changes',        icon: Calendar,       label: 'Monthly Changes'      },
