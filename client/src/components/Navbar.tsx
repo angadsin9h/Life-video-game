@@ -581,6 +581,8 @@ const NAV_GROUPS = [
       { to: '/social-capital-log',      icon: Users,          label: 'Social Capital Log'   },
       { to: '/legacy-project-log',      icon: Globe,          label: 'Legacy Project Log'   },
       { to: '/self-compassion-log',      icon: Heart,          label: 'Self-Compassion Log'  },
+      { to: '/presence-tracker',         icon: Eye,            label: 'Presence Tracker'     },
+      { to: '/life-lab',                 icon: Lightbulb,      label: 'Life Lab'             },
       { to: '/life-history',           icon: BarChart3,      label: 'Life History'         },
       { to: '/weekly-changes',         icon: TrendingUp,     label: 'Weekly Changes'       },
       { to: '/monthly-changes',        icon: Calendar,       label: 'Monthly Changes'      },

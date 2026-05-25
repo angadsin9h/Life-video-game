@@ -199,7 +199,7 @@ export default function LifeLab() {
           <input
             value={form.hypothesis}
             onChange={e => setForm(f => ({ ...f, hypothesis: e.target.value }))}
-            placeholder='Hypothesis (e.g. "If I sleep by 10pm, I\'ll have more energy") *'
+            placeholder="Hypothesis (e.g. If I sleep by 10pm I will have more energy) *"
             className="game-input w-full text-sm"
             autoFocus
           />
