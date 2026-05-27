@@ -570,6 +570,20 @@ import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
 import ScoreTrends from './pages/ScoreTrends'
 import PlatformStatusBar from './components/PlatformStatusBar'
+import SleepProtocol from './pages/SleepProtocol'
+import QuantifiedSelf from './pages/QuantifiedSelf'
+import PersonalMission from './pages/PersonalMission'
+import AnnualPlanning from './pages/AnnualPlanning'
+import LifeAlignmentPage from './pages/LifeAlignmentPage'
+import MomentumDashboard from './pages/MomentumDashboard'
+import FutureSelfLetter from './pages/FutureSelfLetter'
+import RelationshipHealth from './pages/RelationshipHealth'
+import HabitDesignLab from './pages/HabitDesignLab'
+import PersonalEconomy from './pages/PersonalEconomy'
+import EveningRitualDesigner from './pages/EveningRitualDesigner'
+import MentalModelLab from './pages/MentalModelLab'
+import BodyReset from './pages/BodyReset'
+import LifeVisionBoard from './pages/LifeVisionBoard'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1162,6 +1176,20 @@ function App() {
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
               <Route path="/score-trends"          element={<ScoreTrends />}              />
+              <Route path="/sleep-protocol"        element={<SleepProtocol />}            />
+              <Route path="/quantified-self"       element={<QuantifiedSelf />}           />
+              <Route path="/personal-mission"      element={<PersonalMission />}          />
+              <Route path="/annual-planning"       element={<AnnualPlanning />}           />
+              <Route path="/life-alignment"        element={<LifeAlignmentPage />}        />
+              <Route path="/momentum-dashboard"    element={<MomentumDashboard />}        />
+              <Route path="/future-self-letter"    element={<FutureSelfLetter />}         />
+              <Route path="/relationship-health"   element={<RelationshipHealth />}       />
+              <Route path="/habit-design-lab"      element={<HabitDesignLab />}           />
+              <Route path="/personal-economy"      element={<PersonalEconomy />}          />
+              <Route path="/evening-ritual"        element={<EveningRitualDesigner />}    />
+              <Route path="/mental-model-lab"      element={<MentalModelLab />}           />
+              <Route path="/body-reset"            element={<BodyReset />}                />
+              <Route path="/life-vision-board"     element={<LifeVisionBoard />}          />
             </Routes>
           </div>
         </main>
