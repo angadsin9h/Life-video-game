@@ -226,8 +226,9 @@ const NAV_GROUPS = [
   {
     label: 'Tools',
     items: [
-      { to: '/ai-coach', icon: Bot,      label: 'AI Coach' },
-      { to: '/settings', icon: Settings, label: 'Settings' },
+      { to: '/ai-coach',   icon: Bot,           label: 'AI Coach'   },
+      { to: '/data-hub',   icon: LayoutDashboard, label: 'Data Hub' },
+      { to: '/settings',   icon: Settings,      label: 'Settings'   },
     ],
   },
   {

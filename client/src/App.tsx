@@ -560,11 +560,11 @@ import MomentumTracker from './pages/MomentumTracker'
 import FearInventoryLog from './pages/FearInventoryLog'
 import MindReset from './pages/MindReset'
 import VitalityRituals from './pages/VitalityRituals'
+import DataHub from './pages/DataHub'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
 import ScoreTrends from './pages/ScoreTrends'
-import DataHub from './pages/DataHub'
 import PlatformStatusBar from './components/PlatformStatusBar'
 
 function App() {
@@ -1136,11 +1136,11 @@ function App() {
               <Route path="/fear-inventory-log"     element={<FearInventoryLog />}        />
               <Route path="/mind-reset"             element={<MindReset />}               />
               <Route path="/vitality-rituals"       element={<VitalityRituals />}         />
+              <Route path="/data-hub"              element={<DataHub />}                 />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
               <Route path="/score-trends"          element={<ScoreTrends />}              />
-              <Route path="/data-hub"              element={<DataHub />}                  />
             </Routes>
           </div>
         </main>

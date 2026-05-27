@@ -3,6 +3,7 @@ import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts'
 import KeyboardShortcutsHelp from './KeyboardShortcutsHelp'
 import SearchModal from './SearchModal'
 import QuickLogFAB from './QuickLogFAB'
+import PlatformStatusBar from './PlatformStatusBar'
 
 interface Props {
   children: React.ReactNode
@@ -25,6 +26,7 @@ export default function AppShell({ children }: Props) {
 
   return (
     <>
+      <PlatformStatusBar />
       {children}
       <KeyboardShortcutsHelp
         show={showHelp}
