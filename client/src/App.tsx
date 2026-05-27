@@ -564,6 +564,8 @@ import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
 import ScoreTrends from './pages/ScoreTrends'
+import DataHub from './pages/DataHub'
+import PlatformStatusBar from './components/PlatformStatusBar'
 
 function App() {
   return (
@@ -571,6 +573,7 @@ function App() {
       <ToastProvider>
       <AppShell>
       <div className="min-h-screen bg-slate-900">
+        <PlatformStatusBar />
         <Navbar />
         <main className="pb-20 md:pb-0 md:pl-56">
           <div className="max-w-6xl mx-auto px-4 py-6">
@@ -1137,6 +1140,7 @@ function App() {
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />
               <Route path="/score-trends"          element={<ScoreTrends />}              />
+              <Route path="/data-hub"              element={<DataHub />}                  />
             </Routes>
           </div>
         </main>

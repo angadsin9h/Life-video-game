@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Moon, Plus, Trash2 } from 'lucide-react'
 import { useToast } from '../contexts/ToastContext'
+import CrossPageInsights from '../components/CrossPageInsights'
 
 type SleepChallenge = 'racing-mind' | 'anxiety' | 'phone-use' | 'late-night-eating' | 'noise' | 'temperature' | 'stress' | 'irregular-schedule' | 'caffeine' | 'overthinking'
 type SleepQuality = 'terrible' | 'poor' | 'okay' | 'good' | 'restorative'
@@ -178,6 +179,7 @@ export default function MindfulSleep() {
             <p className="text-sm">Sleep is the single most powerful thing you can do for brain and body health.</p>
           </div>
         )}
+        <CrossPageInsights contextKey="sleep" compact />
       </div>
     </div>
   )

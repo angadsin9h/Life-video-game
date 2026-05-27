@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Zap, Circle, CheckCircle2, Clock, TrendingUp, ChevronRight } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
+import CrossPageInsights from '../components/CrossPageInsights'
 
 // All major log keys with their display config
 const LOG_PANELS = [
@@ -250,6 +251,9 @@ export default function CommandCenter() {
           ))}
         </div>
       </div>
+
+      {/* Cross-platform insights */}
+      <CrossPageInsights contextKey="life" />
 
       {/* Motivational footer */}
       <div className="text-center pb-2">

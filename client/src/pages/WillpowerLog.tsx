@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Flame, Plus, Trash2 } from 'lucide-react'
 import { useToast } from '../contexts/ToastContext'
+import CrossPageInsights from '../components/CrossPageInsights'
 
 type WillpowerDomain = 'diet' | 'exercise' | 'focus' | 'spending' | 'social-media' | 'relationships' | 'substance' | 'procrastination' | 'anger' | 'negative-thinking'
 type WillpowerOutcome = 'surrendered' | 'struggled' | 'held' | 'strong' | 'effortless'
@@ -181,6 +182,7 @@ export default function WillpowerLog() {
             <p className="text-sm">Discipline is choosing what you want most over what you want now.</p>
           </div>
         )}
+        <CrossPageInsights contextKey="willpower" compact />
       </div>
     </div>
   )
