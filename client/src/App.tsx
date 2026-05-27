@@ -1,7 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import AppShell from './components/AppShell'
 import { ToastProvider } from './contexts/ToastContext'
+import { useAuth } from './contexts/AuthContext'
+import LoginPage from './pages/LoginPage'
+import AccountPage from './pages/AccountPage'
 import Dashboard from './pages/Dashboard'
 import LogTasks from './pages/LogTasks'
 import Progress from './pages/Progress'
@@ -568,10 +571,24 @@ import MonthlyChanges from './pages/MonthlyChanges'
 import ScoreTrends from './pages/ScoreTrends'
 import PlatformStatusBar from './components/PlatformStatusBar'
 
+function AuthGate({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth()
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    )
+  }
+  if (!user) return <LoginPage />
+  return <>{children}</>
+}
+
 function App() {
   return (
     <BrowserRouter>
       <ToastProvider>
+      <AuthGate>
       <AppShell>
       <div className="min-h-screen bg-slate-900">
         <PlatformStatusBar />
@@ -579,6 +596,8 @@ function App() {
         <main className="pb-20 md:pb-0 md:pl-56">
           <div className="max-w-6xl mx-auto px-4 py-6">
             <Routes>
+              <Route path="/login" element={<Navigate to="/" replace />} />
+              <Route path="/account" element={<AccountPage />} />
               <Route path="/"             element={<Dashboard />}    />
               <Route path="/log"          element={<LogTasks />}     />
               <Route path="/progress"     element={<Progress />}     />
@@ -1148,6 +1167,7 @@ function App() {
         </main>
       </div>
       </AppShell>
+      </AuthGate>
       </ToastProvider>
     </BrowserRouter>
   )

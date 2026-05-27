@@ -1,9 +1,11 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target, Bell,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare, Award,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare, Award, Cloud, CheckCircle,
 } from 'lucide-react'
+import { useAuth } from '../contexts/AuthContext'
+import { useSync } from '../contexts/SyncContext'
 
 const NAV_GROUPS = [
   {
@@ -611,10 +613,13 @@ const mobileItems = [
   { to: '/log',        icon: ClipboardList,   label: 'Log'     },
   { to: '/timer',      icon: Timer,           label: 'Timer'   },
   { to: '/boss',       icon: Sword,           label: 'Boss'    },
-  { to: '/profile',    icon: User,            label: 'Profile' },
+  { to: '/account',    icon: User,            label: 'Account' },
 ]
 
 export default function Navbar() {
+  const { user } = useAuth()
+  const { syncStatus } = useSync()
+
   return (
     <>
       {/* Desktop sidebar */}
@@ -663,15 +668,35 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="px-4 py-3 border-t border-slate-700 flex items-center justify-between">
-          <p className="text-xs text-slate-600">Level up your life ⚔️</p>
-          <button
-            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: '?' }))}
-            className="text-slate-600 hover:text-slate-400 transition-colors"
-            title="Keyboard shortcuts (?)"
-          >
-            <Keyboard className="w-3.5 h-3.5" />
-          </button>
+        <div className="border-t border-slate-700">
+          {user && (
+            <Link to="/account" className="flex items-center gap-2.5 px-3 py-2.5 hover:bg-slate-800 transition-colors">
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="" className="w-7 h-7 rounded-full flex-shrink-0" />
+              ) : (
+                <div className="w-7 h-7 rounded-full bg-violet-900 flex items-center justify-center flex-shrink-0">
+                  <User className="w-3.5 h-3.5 text-violet-300" />
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <div className="text-xs font-medium text-slate-300 truncate">{user.displayName ?? user.email}</div>
+                <div className={`text-[10px] flex items-center gap-1 ${syncStatus === 'saved' ? 'text-green-500' : syncStatus === 'syncing' ? 'text-blue-400' : syncStatus === 'error' ? 'text-red-400' : 'text-slate-500'}`}>
+                  {syncStatus === 'saved' ? <CheckCircle className="w-2.5 h-2.5" /> : <Cloud className="w-2.5 h-2.5" />}
+                  {syncStatus === 'saved' ? 'Saved' : syncStatus === 'syncing' ? 'Syncing…' : syncStatus === 'error' ? 'Sync error' : 'Cloud sync'}
+                </div>
+              </div>
+            </Link>
+          )}
+          <div className="px-4 py-2 flex items-center justify-between">
+            <p className="text-xs text-slate-600">Level up your life ⚔️</p>
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: '?' }))}
+              className="text-slate-600 hover:text-slate-400 transition-colors"
+              title="Keyboard shortcuts (?)"
+            >
+              <Keyboard className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </aside>
 
