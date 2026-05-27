@@ -561,6 +561,7 @@ import FearInventoryLog from './pages/FearInventoryLog'
 import MindReset from './pages/MindReset'
 import VitalityRituals from './pages/VitalityRituals'
 import DataHub from './pages/DataHub'
+import ReminderSettings from './pages/ReminderSettings'
 import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
 import WeeklyChanges from './pages/WeeklyChanges'
 import MonthlyChanges from './pages/MonthlyChanges'
@@ -1137,6 +1138,7 @@ function App() {
               <Route path="/mind-reset"             element={<MindReset />}               />
               <Route path="/vitality-rituals"       element={<VitalityRituals />}         />
               <Route path="/data-hub"              element={<DataHub />}                 />
+              <Route path="/reminders"            element={<ReminderSettings />}         />
               <Route path="/life-history"          element={<LifeHistoryTimeline />}      />
               <Route path="/weekly-changes"        element={<WeeklyChanges />}            />
               <Route path="/monthly-changes"       element={<MonthlyChanges />}           />

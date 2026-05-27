@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import {
-  LayoutDashboard, ClipboardList, BarChart3, Bot, Target,
+  LayoutDashboard, ClipboardList, BarChart3, Bot, Target, Bell,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
   Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare, Award,
 } from 'lucide-react'
@@ -228,6 +228,7 @@ const NAV_GROUPS = [
     items: [
       { to: '/ai-coach',   icon: Bot,           label: 'AI Coach'   },
       { to: '/data-hub',   icon: LayoutDashboard, label: 'Data Hub' },
+      { to: '/reminders',  icon: Bell,          label: 'Reminders'  },
       { to: '/settings',   icon: Settings,      label: 'Settings'   },
     ],
   },
