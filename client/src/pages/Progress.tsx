@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { TrendingUp, Award, Flame, Clock } from 'lucide-react'
+import { TrendingUp, Award, Flame, Clock, BarChart2 } from 'lucide-react'
 import ProgressChart from '../components/ProgressChart'
+import ScoreSparkline from '../components/ScoreSparkline'
 
 interface Stats {
   last30Days: Array<{ date: string; score: number }>
@@ -65,6 +66,37 @@ export default function Progress() {
           </div>
         ))}
       </div>
+
+      {/* Score Sparkline */}
+      {(stats?.last30Days ?? []).length > 1 && (
+        <div className="game-card p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <BarChart2 className="w-5 h-5 text-violet-400" />
+            <h2 className="text-lg font-semibold text-slate-200">Score Trend (Last 30 Days)</h2>
+          </div>
+          <ScoreSparkline data={stats!.last30Days} height={100} showLabels />
+          <div className="mt-3 grid grid-cols-3 gap-3 text-center">
+            <div>
+              <div className="text-sm font-bold text-green-400" style={{ fontFamily: 'Orbitron, monospace' }}>
+                {Math.max(...(stats?.last30Days ?? []).map(d => d.score), 0)}
+              </div>
+              <div className="text-xs text-slate-500">Peak Score</div>
+            </div>
+            <div>
+              <div className="text-sm font-bold text-violet-400" style={{ fontFamily: 'Orbitron, monospace' }}>
+                {stats?.monthlyAvg ?? 0}
+              </div>
+              <div className="text-xs text-slate-500">30d Average</div>
+            </div>
+            <div>
+              <div className="text-sm font-bold text-cyan-400" style={{ fontFamily: 'Orbitron, monospace' }}>
+                {(stats?.last30Days ?? []).filter(d => d.score >= 50).length}
+              </div>
+              <div className="text-xs text-slate-500">50+ Days</div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Line chart */}
       <div className="game-card p-5">

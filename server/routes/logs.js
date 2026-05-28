@@ -62,10 +62,8 @@ router.post('/', (req, res) => {
       log = { id: result.lastInsertRowid, date };
     }
 
-    // Remove old tasks for this date
+    // Replace tasks for this date
     db.prepare('DELETE FROM task_entries WHERE log_id = ?').run(log.id);
-
-    // Insert new tasks
     const insertTask = db.prepare(
       'INSERT INTO task_entries (log_id, category, task_name, duration_minutes, completed, notes) VALUES (?, ?, ?, ?, ?, ?)'
     );
@@ -75,7 +73,100 @@ router.post('/', (req, res) => {
 
     const allTasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
     const score = calculateScore(allTasks);
+
+    // Capture pre-existing achievements for delta detection
+    const preAchievements = new Set(db.prepare('SELECT key FROM achievements').all().map(a => a.key));
+
+    // Run achievement check synchronously so we can detect new unlocks
+    let newAchievements = [];
+    try {
+      const { checkAndAwardAchievements, getStats, ACHIEVEMENTS } = require('./achievements');
+      checkAndAwardAchievements(getStats());
+      const postAchievements = db.prepare('SELECT key, unlocked_at FROM achievements').all();
+      newAchievements = postAchievements
+        .filter(a => !preAchievements.has(a.key))
+        .map(a => {
+          const def = ACHIEVEMENTS.find(d => d.key === a.key);
+          return def ? { key: a.key, title: def.title, icon: def.icon, xp: def.xp, rarity: def.rarity } : null;
+        })
+        .filter(Boolean);
+    } catch (_) {}
+
+    // Boss HP sync (non-blocking)
+    setImmediate(() => {
+      try {
+        const { syncBossHp, getWeekStart } = require('./boss');
+        const weekStart = getWeekStart(date);
+        syncBossHp(weekStart);
+      } catch (_) {}
+    });
+
+    // XP earned estimate: score * 2 + achievement xp
+    const xp_earned = score * 2 + newAchievements.reduce((s, a) => s + (a?.xp || 0), 0);
+
+    res.json({ ...log, tasks: allTasks, score, xp_earned, newAchievements });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /task - quick-add a single task to today's log (append mode)
+router.post('/task', (req, res) => {
+  try {
+    const { date, category, task_name, duration_minutes } = req.body;
+    if (!date || !category || !task_name) return res.status(400).json({ error: 'date, category, and task_name required' });
+
+    let log = db.prepare('SELECT * FROM daily_logs WHERE date = ?').get(date);
+    if (!log) {
+      const result = db.prepare('INSERT INTO daily_logs (date) VALUES (?)').run(date);
+      log = { id: result.lastInsertRowid, date };
+    }
+
+    db.prepare(
+      'INSERT INTO task_entries (log_id, category, task_name, duration_minutes, completed) VALUES (?, ?, ?, ?, 1)'
+    ).run(log.id, category, task_name, duration_minutes || 30);
+
+    const allTasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
+    const score = calculateScore(allTasks);
+
+    setImmediate(() => {
+      try {
+        const { checkAndAwardAchievements, getStats } = require('./achievements');
+        checkAndAwardAchievements(getStats());
+        const { syncBossHp, getWeekStart } = require('./boss');
+        syncBossHp(getWeekStart(date));
+      } catch (_) {}
+    });
+
     res.json({ ...log, tasks: allTasks, score });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// PATCH /task/:id - update a task (completed status, etc.)
+router.patch('/task/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const { completed } = req.body;
+    const task = db.prepare('SELECT * FROM task_entries WHERE id = ?').get(id);
+    if (!task) return res.status(404).json({ error: 'Task not found' });
+    if (completed !== undefined) {
+      db.prepare('UPDATE task_entries SET completed = ? WHERE id = ?').run(completed, id);
+    }
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE /task/:id - delete a single task
+router.delete('/task/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = db.prepare('DELETE FROM task_entries WHERE id = ?').run(id);
+    if (result.changes === 0) return res.status(404).json({ error: 'Task not found' });
+    res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

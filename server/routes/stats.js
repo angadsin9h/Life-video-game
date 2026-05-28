@@ -96,10 +96,15 @@ router.get('/', (req, res) => {
       }
     }
 
-    // Total hours
-    const allTasks = db.prepare('SELECT duration_minutes FROM task_entries').all();
+    // Total hours + per-category all-time totals
+    const allTasks = db.prepare('SELECT category, duration_minutes FROM task_entries').all();
     const totalMinutes = allTasks.reduce((a, t) => a + (t.duration_minutes || 0), 0);
     const totalHours = Math.round(totalMinutes / 60);
+    const categoryTotalMinutes = { health: 0, mind: 0, work: 0, social: 0, growth: 0 };
+    for (const t of allTasks) {
+      const cat = (t.category || '').toLowerCase();
+      if (categoryTotalMinutes[cat] !== undefined) categoryTotalMinutes[cat] += t.duration_minutes || 0;
+    }
 
     // Best score day
     const bestDay = logsWithData.reduce((best, l) => (!best || l.score > best.score) ? l : best, null);
@@ -113,7 +118,22 @@ router.get('/', (req, res) => {
       bestStreak,
       totalHours,
       bestDay: bestDay ? { date: bestDay.date, score: bestDay.score } : null,
+      categoryTotalMinutes,
     });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /all-days — all logged days with scores (for year view)
+router.get('/all-days', (req, res) => {
+  try {
+    const logs = db.prepare('SELECT * FROM daily_logs ORDER BY date ASC').all();
+    const result = logs.map(log => {
+      const tasks = db.prepare('SELECT * FROM task_entries WHERE log_id = ?').all(log.id);
+      return { date: log.date, score: calculateScore(tasks) };
+    });
+    res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
