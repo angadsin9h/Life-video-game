@@ -584,6 +584,14 @@ import EveningRitualDesigner from './pages/EveningRitualDesigner'
 import MentalModelLab from './pages/MentalModelLab'
 import BodyReset from './pages/BodyReset'
 import LifeVisionBoard from './pages/LifeVisionBoard'
+import DailyWinsLog from './pages/DailyWinsLog'
+import MorningGratitudeRitual from './pages/MorningGratitudeRitual'
+import LifeScorecard from './pages/LifeScorecard'
+import WeeklyRetrospective from './pages/WeeklyRetrospective'
+import CreativeIdeaVault from './pages/CreativeIdeaVault'
+import SkillLevelUp from './pages/SkillLevelUp'
+import ProjectTracker from './pages/ProjectTrackerPage'
+import SelfCareRitual from './pages/SelfCareRitual'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1190,6 +1198,14 @@ function App() {
               <Route path="/mental-model-lab"      element={<MentalModelLab />}           />
               <Route path="/body-reset"            element={<BodyReset />}                />
               <Route path="/life-vision-board"     element={<LifeVisionBoard />}          />
+              <Route path="/daily-wins"            element={<DailyWinsLog />}             />
+              <Route path="/morning-gratitude"     element={<MorningGratitudeRitual />}   />
+              <Route path="/life-scorecard"        element={<LifeScorecard />}            />
+              <Route path="/weekly-retro"          element={<WeeklyRetrospective />}      />
+              <Route path="/idea-vault"            element={<CreativeIdeaVault />}        />
+              <Route path="/skill-levelup"         element={<SkillLevelUp />}             />
+              <Route path="/project-tracker"       element={<ProjectTracker />}           />
+              <Route path="/self-care"             element={<SelfCareRitual />}           />
             </Routes>
           </div>
         </main>
