@@ -592,6 +592,10 @@ import CreativeIdeaVault from './pages/CreativeIdeaVault'
 import SkillLevelUp from './pages/SkillLevelUp'
 import ProjectTracker from './pages/ProjectTrackerPage'
 import SelfCareRitual from './pages/SelfCareRitual'
+import GratitudeChainLog from './pages/GratitudeChainLog'
+import NutritionPlanner from './pages/NutritionPlanner'
+import StressTrackerLog from './pages/StressTrackerLog'
+import TimeAuditLog from './pages/TimeAuditLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1206,6 +1210,10 @@ function App() {
               <Route path="/skill-levelup"         element={<SkillLevelUp />}             />
               <Route path="/project-tracker"       element={<ProjectTracker />}           />
               <Route path="/self-care"             element={<SelfCareRitual />}           />
+              <Route path="/gratitude-chain-log"   element={<GratitudeChainLog />}        />
+              <Route path="/nutrition-planner"     element={<NutritionPlanner />}         />
+              <Route path="/stress-tracker-log"    element={<StressTrackerLog />}         />
+              <Route path="/time-audit-log"        element={<TimeAuditLog />}             />
             </Routes>
           </div>
         </main>

@@ -626,6 +626,10 @@ const NAV_GROUPS = [
       { to: '/skill-levelup',          icon: TrendingUp,     label: 'Skill Level Up'       },
       { to: '/project-tracker',        icon: Target,         label: 'Project Tracker'      },
       { to: '/self-care',              icon: Heart,          label: 'Self-Care Ritual'     },
+      { to: '/gratitude-chain-log',    icon: Sparkles,       label: 'Gratitude Chain Log'  },
+      { to: '/nutrition-planner',      icon: Apple,          label: 'Nutrition Planner'    },
+      { to: '/stress-tracker-log',     icon: AlertCircle,    label: 'Stress Tracker Log'   },
+      { to: '/time-audit-log',         icon: Clock,          label: 'Time Audit Log'       },
     ],
   },
 ]
