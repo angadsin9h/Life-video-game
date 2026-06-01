@@ -611,6 +611,7 @@ import BodyLanguageTracker from './pages/BodyLanguageTracker'
 import IntentionalLiving from './pages/IntentionalLiving'
 import SocialEnergyLog from './pages/SocialEnergyLog'
 import FinancialFreedomLog from './pages/FinancialFreedomLog'
+import LifeExperimentDesigner from './pages/LifeExperimentDesigner'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1244,6 +1245,7 @@ function App() {
               <Route path="/intentional-living"    element={<IntentionalLiving />}        />
               <Route path="/social-energy"         element={<SocialEnergyLog />}          />
               <Route path="/financial-freedom"     element={<FinancialFreedomLog />}      />
+              <Route path="/experiment-designer"   element={<LifeExperimentDesigner />}   />
             </Routes>
           </div>
         </main>

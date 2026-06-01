@@ -645,6 +645,7 @@ const NAV_GROUPS = [
       { to: '/intentional-living',     icon: Target,         label: 'Intentional Living'   },
       { to: '/social-energy',          icon: Zap,            label: 'Social Energy'        },
       { to: '/financial-freedom',      icon: TrendingUp,     label: 'Financial Freedom'    },
+      { to: '/experiment-designer',    icon: FlaskConical,   label: 'Life Experiments'     },
     ],
   },
 ]
