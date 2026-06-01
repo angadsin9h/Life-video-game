@@ -604,6 +604,7 @@ import DigitalHabitsLog from './pages/DigitalHabitsLog'
 import CognitiveFitnessLog from './pages/CognitiveFitnessLog'
 import PhysicalWellnessLog from './pages/PhysicalWellnessLog'
 import SerendipityLog from './pages/SerendipityLog'
+import MoodTriggerLog from './pages/MoodTriggerLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1230,6 +1231,7 @@ function App() {
               <Route path="/cognitive-fitness"     element={<CognitiveFitnessLog />}      />
               <Route path="/physical-wellness"     element={<PhysicalWellnessLog />}      />
               <Route path="/serendipity"           element={<SerendipityLog />}           />
+              <Route path="/mood-triggers"         element={<MoodTriggerLog />}           />
             </Routes>
           </div>
         </main>

@@ -638,6 +638,7 @@ const NAV_GROUPS = [
       { to: '/cognitive-fitness',      icon: Brain,          label: 'Cognitive Fitness'    },
       { to: '/physical-wellness',      icon: Activity,       label: 'Physical Wellness'    },
       { to: '/serendipity',            icon: Sparkles,       label: 'Serendipity Log'      },
+      { to: '/mood-triggers',          icon: Brain,          label: 'Mood Triggers'        },
     ],
   },
 ]
