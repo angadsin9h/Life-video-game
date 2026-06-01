@@ -658,6 +658,10 @@ const NAV_GROUPS = [
       { to: '/legacy-timeline',        icon: Calendar,       label: 'Legacy Timeline'      },
       { to: '/sleep-ritual-designer',  icon: Moon,           label: 'Sleep Ritual'         },
       { to: '/wake-up-log',            icon: Sun,            label: 'Wake Up Log'          },
+      { to: '/network-strength',       icon: Network,        label: 'Network Strength'     },
+      { to: '/contributions',          icon: Heart,          label: 'Contributions'        },
+      { to: '/health-protocols-log',   icon: Activity,       label: 'Health Protocols'     },
+      { to: '/biomarkers',             icon: BarChart3,      label: 'Biomarker Tracker'    },
     ],
   },
 ]

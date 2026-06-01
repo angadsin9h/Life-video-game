@@ -624,6 +624,10 @@ import VoiceJournal from './pages/VoiceJournal'
 import LegacyTimelineLog from './pages/LegacyTimelineLog'
 import SleepRitualDesigner from './pages/SleepRitualDesigner'
 import WakeUpLog from './pages/WakeUpLog'
+import NetworkStrengthLog from './pages/NetworkStrengthLog'
+import ContributionTracker from './pages/ContributionTracker'
+import HealthProtocolLog from './pages/HealthProtocolLog'
+import BiomarkerTracker from './pages/BiomarkerTracker'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1270,6 +1274,10 @@ function App() {
               <Route path="/legacy-timeline"       element={<LegacyTimelineLog />}        />
               <Route path="/sleep-ritual-designer" element={<SleepRitualDesigner />}      />
               <Route path="/wake-up-log"           element={<WakeUpLog />}                />
+              <Route path="/network-strength"      element={<NetworkStrengthLog />}       />
+              <Route path="/contributions"         element={<ContributionTracker />}      />
+              <Route path="/health-protocols-log"  element={<HealthProtocolLog />}        />
+              <Route path="/biomarkers"            element={<BiomarkerTracker />}         />
             </Routes>
           </div>
         </main>
