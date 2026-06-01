@@ -596,6 +596,14 @@ import GratitudeChainLog from './pages/GratitudeChainLog'
 import NutritionPlanner from './pages/NutritionPlanner'
 import StressTrackerLog from './pages/StressTrackerLog'
 import TimeAuditLog from './pages/TimeAuditLog'
+import SleepQualityTracker from './pages/SleepQualityTracker'
+import ConcentrationTracker from './pages/ConcentrationTracker'
+import DailyHighlights from './pages/DailyHighlights'
+import AnticipationJournal from './pages/AnticipationJournal'
+import DigitalHabitsLog from './pages/DigitalHabitsLog'
+import CognitiveFitnessLog from './pages/CognitiveFitnessLog'
+import PhysicalWellnessLog from './pages/PhysicalWellnessLog'
+import SerendipityLog from './pages/SerendipityLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1214,6 +1222,14 @@ function App() {
               <Route path="/nutrition-planner"     element={<NutritionPlanner />}         />
               <Route path="/stress-tracker-log"    element={<StressTrackerLog />}         />
               <Route path="/time-audit-log"        element={<TimeAuditLog />}             />
+              <Route path="/sleep-quality"         element={<SleepQualityTracker />}      />
+              <Route path="/concentration"         element={<ConcentrationTracker />}     />
+              <Route path="/daily-highlights"      element={<DailyHighlights />}          />
+              <Route path="/anticipation"          element={<AnticipationJournal />}      />
+              <Route path="/digital-habits"        element={<DigitalHabitsLog />}         />
+              <Route path="/cognitive-fitness"     element={<CognitiveFitnessLog />}      />
+              <Route path="/physical-wellness"     element={<PhysicalWellnessLog />}      />
+              <Route path="/serendipity"           element={<SerendipityLog />}           />
             </Routes>
           </div>
         </main>
