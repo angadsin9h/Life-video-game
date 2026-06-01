@@ -639,6 +639,9 @@ const NAV_GROUPS = [
       { to: '/physical-wellness',      icon: Activity,       label: 'Physical Wellness'    },
       { to: '/serendipity',            icon: Sparkles,       label: 'Serendipity Log'      },
       { to: '/mood-triggers',          icon: Brain,          label: 'Mood Triggers'        },
+      { to: '/emotional-weather',      icon: Sun,            label: 'Emotional Weather'    },
+      { to: '/minute-journal',         icon: BookOpen,       label: 'Minute Journal'       },
+      { to: '/body-language',          icon: Activity,       label: 'Body Language'        },
     ],
   },
 ]
