@@ -2,7 +2,7 @@ import { NavLink, Link } from 'react-router-dom'
 import {
   LayoutDashboard, ClipboardList, BarChart3, Bot, Target, Bell,
   Gamepad2, Trophy, RefreshCw, Sword, BookOpen, Calendar, FileText,
-  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare, Award, Cloud, CheckCircle,
+  Timer, User, Users, Settings, Zap, Scroll, Medal, Swords, Brain, Heart, Keyboard, Search, StickyNote, Star, Activity, CalendarDays, Sparkles, Flag, Wind, Moon, TrendingUp, Dumbbell, Sun, Apple, Clock, Flame, GraduationCap, Headphones, Droplets, FolderOpen, Layers, Shield, AlertCircle, Network, PiggyBank, ListChecks, Presentation, FlaskConical, List, Gift, Globe, Smartphone, Phone, MapPin, AlertTriangle, Briefcase, Lightbulb, Pencil, Eye, Home, Leaf, Utensils, Package, Pill, Mail, Lock, Compass, AlertOctagon, BookMarked, CreditCard, Feather, Coffee, MessageSquare, Award, Cloud, CheckCircle, Mic,
 } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { useSync } from '../contexts/SyncContext'
@@ -654,6 +654,10 @@ const NAV_GROUPS = [
       { to: '/growth-plan',            icon: TrendingUp,     label: 'Growth Plan'          },
       { to: '/micro-win-log',          icon: Star,           label: 'Micro Win Log'        },
       { to: '/ritual-designer',        icon: Sun,            label: 'Ritual Designer'      },
+      { to: '/voice-journal',          icon: Mic,            label: 'Voice Journal'        },
+      { to: '/legacy-timeline',        icon: Calendar,       label: 'Legacy Timeline'      },
+      { to: '/sleep-ritual-designer',  icon: Moon,           label: 'Sleep Ritual'         },
+      { to: '/wake-up-log',            icon: Sun,            label: 'Wake Up Log'          },
     ],
   },
 ]

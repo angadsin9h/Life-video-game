@@ -620,6 +620,10 @@ import HabitReflectionLog from './pages/HabitReflectionLog'
 import PersonalGrowthPlan from './pages/PersonalGrowthPlan'
 import MicroWinLog from './pages/MicroWinLog'
 import DailyRitualDesigner from './pages/DailyRitualDesigner'
+import VoiceJournal from './pages/VoiceJournal'
+import LegacyTimelineLog from './pages/LegacyTimelineLog'
+import SleepRitualDesigner from './pages/SleepRitualDesigner'
+import WakeUpLog from './pages/WakeUpLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1262,6 +1266,10 @@ function App() {
               <Route path="/growth-plan"           element={<PersonalGrowthPlan />}       />
               <Route path="/micro-win-log"         element={<MicroWinLog />}              />
               <Route path="/ritual-designer"       element={<DailyRitualDesigner />}      />
+              <Route path="/voice-journal"         element={<VoiceJournal />}             />
+              <Route path="/legacy-timeline"       element={<LegacyTimelineLog />}        />
+              <Route path="/sleep-ritual-designer" element={<SleepRitualDesigner />}      />
+              <Route path="/wake-up-log"           element={<WakeUpLog />}                />
             </Routes>
           </div>
         </main>
