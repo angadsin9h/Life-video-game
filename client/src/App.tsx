@@ -612,6 +612,14 @@ import IntentionalLiving from './pages/IntentionalLiving'
 import SocialEnergyLog from './pages/SocialEnergyLog'
 import FinancialFreedomLog from './pages/FinancialFreedomLog'
 import LifeExperimentDesigner from './pages/LifeExperimentDesigner'
+import GratitudeLetterLog from './pages/GratitudeLetterLog'
+import LifePurposeLog from './pages/LifePurposeLog'
+import RelationshipCheckIn from './pages/RelationshipCheckIn'
+import CreativeSprintLog from './pages/CreativeSprintLog'
+import HabitReflectionLog from './pages/HabitReflectionLog'
+import PersonalGrowthPlan from './pages/PersonalGrowthPlan'
+import MicroWinLog from './pages/MicroWinLog'
+import DailyRitualDesigner from './pages/DailyRitualDesigner'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1246,6 +1254,14 @@ function App() {
               <Route path="/social-energy"         element={<SocialEnergyLog />}          />
               <Route path="/financial-freedom"     element={<FinancialFreedomLog />}      />
               <Route path="/experiment-designer"   element={<LifeExperimentDesigner />}   />
+              <Route path="/gratitude-letters"     element={<GratitudeLetterLog />}       />
+              <Route path="/life-purpose-log"      element={<LifePurposeLog />}           />
+              <Route path="/relationship-checkin"  element={<RelationshipCheckIn />}      />
+              <Route path="/creative-sprint"       element={<CreativeSprintLog />}        />
+              <Route path="/habit-reflection"      element={<HabitReflectionLog />}       />
+              <Route path="/growth-plan"           element={<PersonalGrowthPlan />}       />
+              <Route path="/micro-win-log"         element={<MicroWinLog />}              />
+              <Route path="/ritual-designer"       element={<DailyRitualDesigner />}      />
             </Routes>
           </div>
         </main>
