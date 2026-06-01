@@ -608,6 +608,9 @@ import MoodTriggerLog from './pages/MoodTriggerLog'
 import EmotionalWeatherLog from './pages/EmotionalWeatherLog'
 import MinuteJournal from './pages/MinuteJournal'
 import BodyLanguageTracker from './pages/BodyLanguageTracker'
+import IntentionalLiving from './pages/IntentionalLiving'
+import SocialEnergyLog from './pages/SocialEnergyLog'
+import FinancialFreedomLog from './pages/FinancialFreedomLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1238,6 +1241,9 @@ function App() {
               <Route path="/emotional-weather"     element={<EmotionalWeatherLog />}      />
               <Route path="/minute-journal"        element={<MinuteJournal />}            />
               <Route path="/body-language"         element={<BodyLanguageTracker />}      />
+              <Route path="/intentional-living"    element={<IntentionalLiving />}        />
+              <Route path="/social-energy"         element={<SocialEnergyLog />}          />
+              <Route path="/financial-freedom"     element={<FinancialFreedomLog />}      />
             </Routes>
           </div>
         </main>

@@ -642,6 +642,9 @@ const NAV_GROUPS = [
       { to: '/emotional-weather',      icon: Sun,            label: 'Emotional Weather'    },
       { to: '/minute-journal',         icon: BookOpen,       label: 'Minute Journal'       },
       { to: '/body-language',          icon: Activity,       label: 'Body Language'        },
+      { to: '/intentional-living',     icon: Target,         label: 'Intentional Living'   },
+      { to: '/social-energy',          icon: Zap,            label: 'Social Energy'        },
+      { to: '/financial-freedom',      icon: TrendingUp,     label: 'Financial Freedom'    },
     ],
   },
 ]
