@@ -665,6 +665,13 @@ const NAV_GROUPS = [
       { to: '/flow-state-journal',     icon: Zap,            label: 'Flow State'           },
       { to: '/gratitude-visualization',icon: Sparkles,       label: 'Gratitude Garden'     },
       { to: '/money-flow-log',         icon: TrendingUp,     label: 'Money Flow'           },
+      { to: '/affirmation-builder',    icon: Sparkles,       label: 'Affirmations Builder' },
+      { to: '/edge-of-comfort',        icon: Flame,          label: 'Edge of Comfort'      },
+      { to: '/energy-vampires',        icon: Shield,         label: 'Energy Vampires'      },
+      { to: '/peak-hours',             icon: Clock,          label: 'Peak Hours'           },
+      { to: '/success-autopsy',        icon: Trophy,         label: 'Success Autopsy'      },
+      { to: '/time-warp',              icon: RefreshCw,      label: 'Time Warp'            },
+      { to: '/wealth-rituals',         icon: Medal,          label: 'Wealth Rituals'       },
     ],
   },
 ]

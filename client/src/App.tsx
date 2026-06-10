@@ -631,6 +631,13 @@ import BiomarkerTracker from './pages/BiomarkerTracker'
 import FlowStateJournal from './pages/FlowStateJournal'
 import GratitudeVisualization from './pages/GratitudeVisualization'
 import MoneyFlowLog from './pages/MoneyFlowLog'
+import AffirmationBuilder from './pages/AffirmationBuilder'
+import EdgeOfComfortLog from './pages/EdgeOfComfortLog'
+import EnergyVampireLog from './pages/EnergyVampireLog'
+import PeakHoursLog from './pages/PeakHoursLog'
+import SuccessAutopsy from './pages/SuccessAutopsy'
+import TimeWarpLog from './pages/TimeWarpLog'
+import WealthRitualLog from './pages/WealthRitualLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1284,6 +1291,13 @@ function App() {
               <Route path="/flow-state-journal"    element={<FlowStateJournal />}         />
               <Route path="/gratitude-visualization" element={<GratitudeVisualization />} />
               <Route path="/money-flow-log"        element={<MoneyFlowLog />}             />
+              <Route path="/affirmation-builder"   element={<AffirmationBuilder />}       />
+              <Route path="/edge-of-comfort"       element={<EdgeOfComfortLog />}         />
+              <Route path="/energy-vampires"       element={<EnergyVampireLog />}         />
+              <Route path="/peak-hours"            element={<PeakHoursLog />}             />
+              <Route path="/success-autopsy"       element={<SuccessAutopsy />}           />
+              <Route path="/time-warp"             element={<TimeWarpLog />}              />
+              <Route path="/wealth-rituals"        element={<WealthRitualLog />}          />
             </Routes>
           </div>
         </main>
