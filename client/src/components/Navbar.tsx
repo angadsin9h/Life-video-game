@@ -673,6 +673,8 @@ const NAV_GROUPS = [
       { to: '/time-warp',              icon: RefreshCw,      label: 'Time Warp'            },
       { to: '/wealth-rituals',         icon: Medal,          label: 'Wealth Rituals'       },
       { to: '/spiral-journal',         icon: RefreshCw,      label: 'Spiral Journal'       },
+      { to: '/alive-log',              icon: Flame,          label: 'Alive Log'            },
+      { to: '/resonance-journal',      icon: Heart,          label: 'Resonance Journal'    },
     ],
   },
 ]
