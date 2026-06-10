@@ -628,6 +628,9 @@ import NetworkStrengthLog from './pages/NetworkStrengthLog'
 import ContributionTracker from './pages/ContributionTracker'
 import HealthProtocolLog from './pages/HealthProtocolLog'
 import BiomarkerTracker from './pages/BiomarkerTracker'
+import FlowStateJournal from './pages/FlowStateJournal'
+import GratitudeVisualization from './pages/GratitudeVisualization'
+import MoneyFlowLog from './pages/MoneyFlowLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1278,6 +1281,9 @@ function App() {
               <Route path="/contributions"         element={<ContributionTracker />}      />
               <Route path="/health-protocols-log"  element={<HealthProtocolLog />}        />
               <Route path="/biomarkers"            element={<BiomarkerTracker />}         />
+              <Route path="/flow-state-journal"    element={<FlowStateJournal />}         />
+              <Route path="/gratitude-visualization" element={<GratitudeVisualization />} />
+              <Route path="/money-flow-log"        element={<MoneyFlowLog />}             />
             </Routes>
           </div>
         </main>

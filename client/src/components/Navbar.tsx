@@ -662,6 +662,9 @@ const NAV_GROUPS = [
       { to: '/contributions',          icon: Heart,          label: 'Contributions'        },
       { to: '/health-protocols-log',   icon: Activity,       label: 'Health Protocols'     },
       { to: '/biomarkers',             icon: BarChart3,      label: 'Biomarker Tracker'    },
+      { to: '/flow-state-journal',     icon: Zap,            label: 'Flow State'           },
+      { to: '/gratitude-visualization',icon: Sparkles,       label: 'Gratitude Garden'     },
+      { to: '/money-flow-log',         icon: TrendingUp,     label: 'Money Flow'           },
     ],
   },
 ]
