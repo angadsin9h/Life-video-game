@@ -675,6 +675,7 @@ const NAV_GROUPS = [
       { to: '/spiral-journal',         icon: RefreshCw,      label: 'Spiral Journal'       },
       { to: '/alive-log',              icon: Flame,          label: 'Alive Log'            },
       { to: '/resonance-journal',      icon: Heart,          label: 'Resonance Journal'    },
+      { to: '/momentum-builder',       icon: TrendingUp,     label: 'Momentum Builder'     },
     ],
   },
 ]

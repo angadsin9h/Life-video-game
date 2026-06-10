@@ -641,6 +641,7 @@ import WealthRitualLog from './pages/WealthRitualLog'
 import SpiralJournal from './pages/SpiralJournal'
 import AliveLog from './pages/AliveLog'
 import ResonanceJournal from './pages/ResonanceJournal'
+import MomentumBuilderLog from './pages/MomentumBuilderLog'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1304,6 +1305,7 @@ function App() {
               <Route path="/spiral-journal"        element={<SpiralJournal />}            />
               <Route path="/alive-log"             element={<AliveLog />}                 />
               <Route path="/resonance-journal"     element={<ResonanceJournal />}         />
+              <Route path="/momentum-builder"      element={<MomentumBuilderLog />}       />
             </Routes>
           </div>
         </main>
