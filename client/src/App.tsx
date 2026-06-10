@@ -642,6 +642,8 @@ import SpiralJournal from './pages/SpiralJournal'
 import AliveLog from './pages/AliveLog'
 import ResonanceJournal from './pages/ResonanceJournal'
 import MomentumBuilderLog from './pages/MomentumBuilderLog'
+import SkillPracticeLog from './pages/SkillPracticeLog'
+import LearningReview from './pages/LearningReview'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1306,6 +1308,8 @@ function App() {
               <Route path="/alive-log"             element={<AliveLog />}                 />
               <Route path="/resonance-journal"     element={<ResonanceJournal />}         />
               <Route path="/momentum-builder"      element={<MomentumBuilderLog />}       />
+              <Route path="/skill-practice"        element={<SkillPracticeLog />}         />
+              <Route path="/learning-review"       element={<LearningReview />}           />
             </Routes>
           </div>
         </main>

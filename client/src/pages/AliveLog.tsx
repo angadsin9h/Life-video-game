@@ -20,7 +20,7 @@ type AliveEntry = {
 
 const STORAGE_KEY = 'lq-alive-log'
 
-const CAT_CONFIG: Record<AliveCategory, { label: string; color: string; bg: string; Icon: React.FC<{ className?: string }> }> = {
+const CAT_CONFIG: Record<AliveCategory, { label: string; color: string; bg: string; Icon: React.FC<{ className?: string; style?: React.CSSProperties }> }> = {
   nature:     { label: 'Nature',     color: '#22c55e', bg: 'rgba(34,197,94,0.15)',   Icon: Leaf },
   connection: { label: 'Connection', color: '#f97316', bg: 'rgba(249,115,22,0.15)',  Icon: Heart },
   creation:   { label: 'Creation',   color: '#a855f7', bg: 'rgba(168,85,247,0.15)', Icon: Music },
