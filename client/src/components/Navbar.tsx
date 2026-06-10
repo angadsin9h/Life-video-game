@@ -672,6 +672,7 @@ const NAV_GROUPS = [
       { to: '/success-autopsy',        icon: Trophy,         label: 'Success Autopsy'      },
       { to: '/time-warp',              icon: RefreshCw,      label: 'Time Warp'            },
       { to: '/wealth-rituals',         icon: Medal,          label: 'Wealth Rituals'       },
+      { to: '/spiral-journal',         icon: RefreshCw,      label: 'Spiral Journal'       },
     ],
   },
 ]

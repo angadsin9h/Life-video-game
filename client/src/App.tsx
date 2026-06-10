@@ -638,6 +638,7 @@ import PeakHoursLog from './pages/PeakHoursLog'
 import SuccessAutopsy from './pages/SuccessAutopsy'
 import TimeWarpLog from './pages/TimeWarpLog'
 import WealthRitualLog from './pages/WealthRitualLog'
+import SpiralJournal from './pages/SpiralJournal'
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -1298,6 +1299,7 @@ function App() {
               <Route path="/success-autopsy"       element={<SuccessAutopsy />}           />
               <Route path="/time-warp"             element={<TimeWarpLog />}              />
               <Route path="/wealth-rituals"        element={<WealthRitualLog />}          />
+              <Route path="/spiral-journal"        element={<SpiralJournal />}            />
             </Routes>
           </div>
         </main>
