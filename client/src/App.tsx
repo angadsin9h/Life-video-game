@@ -657,6 +657,10 @@ const LongevityLog = lazy(() => import('./pages/LongevityLog'))
 const CognitiveEdgeLog = lazy(() => import('./pages/CognitiveEdgeLog'))
 const IntegrityCheckLog = lazy(() => import('./pages/IntegrityCheckLog'))
 const BeliefAudit = lazy(() => import('./pages/BeliefAudit'))
+const EnvironmentDesignLog = lazy(() => import('./pages/EnvironmentDesignLog'))
+const RitualsOfExcellence = lazy(() => import('./pages/RitualsOfExcellence'))
+const PersonalWinsLog = lazy(() => import('./pages/PersonalWinsLog'))
+const MastermindLog = lazy(() => import('./pages/MastermindLog'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1346,6 +1350,10 @@ function App() {
               <Route path="/cognitive-edge"        element={<CognitiveEdgeLog />}         />
               <Route path="/integrity-check"       element={<IntegrityCheckLog />}        />
               <Route path="/belief-audit"          element={<BeliefAudit />}              />
+              <Route path="/environment-design"    element={<EnvironmentDesignLog />}     />
+              <Route path="/rituals-excellence"    element={<RitualsOfExcellence />}      />
+              <Route path="/personal-wins"         element={<PersonalWinsLog />}          />
+              <Route path="/mastermind-log"        element={<MastermindLog />}            />
             </Routes>
             </Suspense>
           </div>

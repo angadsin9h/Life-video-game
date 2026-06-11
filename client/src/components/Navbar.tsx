@@ -692,6 +692,10 @@ const NAV_GROUPS = [
       { to: '/cognitive-edge',         icon: Activity,       label: 'Cognitive Edge'       },
       { to: '/integrity-check',        icon: Shield,         label: 'Integrity Check'      },
       { to: '/belief-audit',           icon: Eye,            label: 'Belief Audit'         },
+      { to: '/environment-design',     icon: Home,           label: 'Environment Design'   },
+      { to: '/rituals-excellence',     icon: Star,           label: 'Rituals Excellence'   },
+      { to: '/personal-wins',          icon: Trophy,         label: 'Personal Wins'        },
+      { to: '/mastermind-log',         icon: Users,          label: 'Mastermind Log'       },
     ],
   },
 ]
