@@ -678,6 +678,8 @@ const NAV_GROUPS = [
       { to: '/momentum-builder',       icon: TrendingUp,     label: 'Momentum Builder'     },
       { to: '/skill-practice',         icon: Dumbbell,       label: 'Skill Practice'       },
       { to: '/learning-review',        icon: GraduationCap,  label: 'Learning Review'      },
+      { to: '/seasons-of-life',        icon: Leaf,           label: 'Seasons of Life'      },
+      { to: '/conversation-debrief',   icon: MessageSquare,  label: 'Conversation'         },
     ],
   },
 ]

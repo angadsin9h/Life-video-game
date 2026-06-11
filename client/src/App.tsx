@@ -1,649 +1,652 @@
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import AppShell from './components/AppShell'
 import { ToastProvider } from './contexts/ToastContext'
 import { useAuth } from './contexts/AuthContext'
 import LoginPage from './pages/LoginPage'
-import AccountPage from './pages/AccountPage'
+const AccountPage = lazy(() => import('./pages/AccountPage'))
 import Dashboard from './pages/Dashboard'
-import LogTasks from './pages/LogTasks'
-import Progress from './pages/Progress'
-import AICoach from './pages/AICoach'
-import Goals from './pages/Goals'
-import Achievements from './pages/Achievements'
-import Habits from './pages/Habits'
-import BossBattle from './pages/BossBattle'
-import Journal from './pages/Journal'
-import Heatmap from './pages/Heatmap'
-import WeeklyReport from './pages/WeeklyReport'
-import Timer from './pages/Timer'
-import Profile from './pages/Profile'
-import Settings from './pages/Settings'
-import SkillTree from './pages/SkillTree'
-import Quests from './pages/Quests'
-import Milestones from './pages/Milestones'
-import Challenges from './pages/Challenges'
-import Insights from './pages/Insights'
-import MoodTracker from './pages/MoodTracker'
-import Notes from './pages/Notes'
-import DailyReview from './pages/DailyReview'
-import BodyMetrics from './pages/BodyMetrics'
-import Planner from './pages/Planner'
-import Gratitude from './pages/Gratitude'
-import Records from './pages/Records'
-import Intentions from './pages/Intentions'
-import LifeScore from './pages/LifeScore'
-import CategoryGoals from './pages/CategoryGoals'
-import FocusSessions from './pages/FocusSessions'
-import YearView from './pages/YearView'
-import Affirmations from './pages/Affirmations'
-import MoodAnalytics from './pages/MoodAnalytics'
-import WeeklyGoals from './pages/WeeklyGoals'
-import Breathing from './pages/Breathing'
-import SleepTracker from './pages/SleepTracker'
-import HabitAnalytics from './pages/HabitAnalytics'
-import DailyChallenge from './pages/DailyChallenge'
-import Books from './pages/Books'
-import Workouts from './pages/Workouts'
-import Expenses from './pages/Expenses'
-import Briefing from './pages/Briefing'
-import Nutrition from './pages/Nutrition'
-import Timeline from './pages/Timeline'
-import LifeCalendar from './pages/LifeCalendar'
-import Streaks from './pages/Streaks'
-import CheckIn from './pages/CheckIn'
-import WindDown from './pages/WindDown'
-import Learning from './pages/Learning'
-import AmbientFocus from './pages/AmbientFocus'
-import TaskBoard from './pages/TaskBoard'
-import Routines from './pages/Routines'
-import LifeWheel from './pages/LifeWheel'
-import DecisionJournal from './pages/DecisionJournal'
-import Values from './pages/Values'
-import WeeklyPlanning from './pages/WeeklyPlanning'
-import XPLog from './pages/XPLog'
-import WaterTracker from './pages/WaterTracker'
-import FocusStats from './pages/FocusStats'
-import JournalInsights from './pages/JournalInsights'
-import MealPlanner from './pages/MealPlanner'
-import ReadingNotes from './pages/ReadingNotes'
-import Projects from './pages/Projects'
-import WellnessCheck from './pages/WellnessCheck'
-import MeditationTimer from './pages/MeditationTimer'
-import HabitChallenges from './pages/HabitChallenges'
-import LifeOS from './pages/LifeOS'
-import QuoteJournal from './pages/QuoteJournal'
-import Relationships from './pages/Relationships'
-import SleepAnalytics from './pages/SleepAnalytics'
-import MorningPages from './pages/MorningPages'
-import ExpenseAnalytics from './pages/ExpenseAnalytics'
-import StreaksCalendar from './pages/StreaksCalendar'
-import GoalAnalytics from './pages/GoalAnalytics'
-import WorkoutAnalytics from './pages/WorkoutAnalytics'
-import NutritionAnalytics from './pages/NutritionAnalytics'
-import BookAnalytics from './pages/BookAnalytics'
-import ProductivityDashboard from './pages/ProductivityDashboard'
-import LearningAnalytics from './pages/LearningAnalytics'
-import ProjectAnalytics from './pages/ProjectAnalytics'
-import MetricsAnalytics from './pages/MetricsAnalytics'
-import GratitudeAnalytics from './pages/GratitudeAnalytics'
-import RelationshipAnalytics from './pages/RelationshipAnalytics'
-import TimeBlocking from './pages/TimeBlocking'
-import EmotionCheck from './pages/EmotionCheck'
-import VisionBoard from './pages/VisionBoard'
-import PriorityMatrix from './pages/PriorityMatrix'
-import HabitWizard from './pages/HabitWizard'
-import MindsetJournal from './pages/MindsetJournal'
-import HabitStacking from './pages/HabitStacking'
-import DailyWins from './pages/DailyWins'
-import ReflectionPrompts from './pages/ReflectionPrompts'
-import WeeklyScorecard from './pages/WeeklyScorecard'
-import Accountability from './pages/Accountability'
-import SleepOptimizer from './pages/SleepOptimizer'
-import FinancialGoals from './pages/FinancialGoals'
-import EnergyTracker from './pages/EnergyTracker'
-import ChallengeMode from './pages/ChallengeMode'
-import SkillProgress from './pages/SkillProgress'
-import LifeMetricsDashboard from './pages/LifeMetricsDashboard'
-import FocusRituals from './pages/FocusRituals'
-import HabitInsights from './pages/HabitInsights'
-import PersonalManifesto from './pages/PersonalManifesto'
-import MoodPatterns from './pages/MoodPatterns'
-import TaskAnalytics from './pages/TaskAnalytics'
-import BodyComposition from './pages/BodyComposition'
-import DailyIntentions from './pages/DailyIntentions'
-import GrowthLog from './pages/GrowthLog'
-import PomodoroTracker from './pages/PomodoroTracker'
-import WeeklyReview from './pages/WeeklyReview'
-import MindMapPage from './pages/MindMap'
-import LifeAudit from './pages/LifeAudit'
-import AnxietyJournal from './pages/AnxietyJournal'
-import FitnessGoals from './pages/FitnessGoals'
-import SocialBattery from './pages/SocialBattery'
-import ContentLibrary from './pages/ContentLibrary'
-import DeepWorkPlanner from './pages/DeepWorkPlanner'
-import StreakChallenge from './pages/StreakChallenge'
-import LifeEvents from './pages/LifeEvents'
-import StressTracker from './pages/StressTracker'
-import GratitudeChain from './pages/GratitudeChain'
-import OKRTracker from './pages/OKRTracker'
-import DailyStandup from './pages/DailyStandup'
-import StudyTracker from './pages/StudyTracker'
-import PersonalKPIs from './pages/PersonalKPIs'
-import BucketList from './pages/BucketList'
-import HabitCoach from './pages/HabitCoach'
-import TimeAudit from './pages/TimeAudit'
-import IdentityBuilder from './pages/IdentityBuilder'
-import WeeklyWins from './pages/WeeklyWins'
-import NightlyReview from './pages/NightlyReview'
-import PowerHour from './pages/PowerHour'
-import HabitDesigner from './pages/HabitDesigner'
-import DailyCheckIn from './pages/DailyCheckIn'
-import XPCenter from './pages/XPCenter'
-import CognitiveReframe from './pages/CognitiveReframe'
-import PersonalBrand from './pages/PersonalBrand'
-import MicroHabits from './pages/MicroHabits'
-import SuccessFormula from './pages/SuccessFormula'
-import GoalHierarchy from './pages/GoalHierarchy'
-import PerformanceReview from './pages/PerformanceReview'
-import FocusJournal from './pages/FocusJournal'
-import LifeMap from './pages/LifeMap'
-import AntiHabits from './pages/AntiHabits'
-import LifeRules from './pages/LifeRules'
-import RewardSystem from './pages/RewardSystem'
-import ContentCalendar from './pages/ContentCalendar'
-import SkillChallenge from './pages/SkillChallenge'
-import PodcastTracker from './pages/PodcastTracker'
-import DigitalDetox from './pages/DigitalDetox'
-import EmotionalIntelligence from './pages/EmotionalIntelligence'
-import GratitudeLetter from './pages/GratitudeLetter'
-import HealthDashboard from './pages/HealthDashboard'
-import SavingsChallenge from './pages/SavingsChallenge'
-import LifeTimeline from './pages/LifeTimeline'
-import ObstacleLog from './pages/ObstacleLog'
-import SleepRituals from './pages/SleepRituals'
-import TodayFocus from './pages/TodayFocus'
-import GratitudeJar from './pages/GratitudeJar'
-import DailyScorecard from './pages/DailyScorecard'
-import BreathworkTimer from './pages/BreathworkTimer'
-import IdeaIncubator from './pages/IdeaIncubator'
-import ProjectRetro from './pages/ProjectRetro'
-import HealthMetrics from './pages/HealthMetrics'
-import MentalHealthLog from './pages/MentalHealthLog'
-import WeeklySprint from './pages/WeeklySprint'
-import PersonalOKR from './pages/PersonalOKR'
-import LifeLegacy from './pages/LifeLegacy'
-import DecisionMatrix from './pages/DecisionMatrix'
-import ChallengeCalendar from './pages/ChallengeCalendar'
-import FinanceTracker from './pages/FinanceTracker'
-import LifeTheme from './pages/LifeTheme'
-import NetWorthTracker from './pages/NetWorthTracker'
-import SleepScore from './pages/SleepScore'
-import StudyFlashcards from './pages/StudyFlashcards'
-import RecoveryTracker from './pages/RecoveryTracker'
-import SkillRoadmap from './pages/SkillRoadmap'
-import QuickCapture from './pages/QuickCapture'
-import ConversationLog from './pages/ConversationLog'
-import FitnessLog from './pages/FitnessLog'
-import EveningReview from './pages/EveningReview'
-import YearInReview from './pages/YearInReview'
-import MorningRoutine from './pages/MorningRoutine'
-import MoneyMindset from './pages/MoneyMindset'
-import NutritionGoals from './pages/NutritionGoals'
-import CareerTracker from './pages/CareerTracker'
-import IdeaVault from './pages/IdeaVault'
-import ProjectSprint from './pages/ProjectSprint'
-import CreativeJournal from './pages/CreativeJournal'
-import FlowState from './pages/FlowState'
-import FearLog from './pages/FearLog'
-import WinStreak from './pages/WinStreak'
-import DailyScript from './pages/DailyScript'
-import LifeVision from './pages/LifeVision'
-import LifeChapters from './pages/LifeChapters'
-import NetworkMap from './pages/NetworkMap'
-import TrainingPlan from './pages/TrainingPlan'
-import GriefJournal from './pages/GriefJournal'
-import SpiritualJourney from './pages/SpiritualJourney'
-import ParentingLog from './pages/ParentingLog'
-import SideProjects from './pages/SideProjects'
-import VolunteerLog from './pages/VolunteerLog'
-import TravelLog from './pages/TravelLog'
-import LanguageLearning from './pages/LanguageLearning'
-import DietTracker from './pages/DietTracker'
-import PetCare from './pages/PetCare'
-import HomeImprovement from './pages/HomeImprovement'
-import MentoringJournal from './pages/MentoringJournal'
-import PublicSpeaking from './pages/PublicSpeaking'
-import CoffeeLog from './pages/CoffeeLog'
-import CreativeProjects from './pages/CreativeProjects'
-import HealthSymptoms from './pages/HealthSymptoms'
-import InvestmentTracker from './pages/InvestmentTracker'
-import WeightTracker from './pages/WeightTracker'
-import CharityTracker from './pages/CharityTracker'
-import MoodBoard from './pages/MoodBoard'
-import LessonLearned from './pages/LessonLearned'
-import ConflictLog from './pages/ConflictLog'
-import GardeningLog from './pages/GardeningLog'
-import ReadingChallenge from './pages/ReadingChallenge'
-import NegotiationLog from './pages/NegotiationLog'
-import LoveLanguages from './pages/LoveLanguages'
-import DreamsJournal from './pages/DreamsJournal'
-import GratitudeToParents from './pages/GratitudeToParents'
-import MindfulEating from './pages/MindfulEating'
-import HobbiesTracker from './pages/HobbiesTracker'
-import SkinCareLog from './pages/SkinCareLog'
-import CareerSkills from './pages/CareerSkills'
-import MorningMindset from './pages/MorningMindset'
-import AllergyLog from './pages/AllergyLog'
-import PasswordVault from './pages/PasswordVault'
-import SportStats from './pages/SportStats'
-import ForgivenessLog from './pages/ForgivenessLog'
-import EcoTracker from './pages/EcoTracker'
-import LifeRegrets from './pages/LifeRegrets'
-import FutureLetters from './pages/FutureLetters'
-import PersonalPolicies from './pages/PersonalPolicies'
-import MonthlyRetro from './pages/MonthlyRetro'
-import TherapyLog from './pages/TherapyLog'
-import SupplementLog from './pages/SupplementLog'
-import ScreenTimeLog from './pages/ScreenTimeLog'
-import RecipeJournal from './pages/RecipeJournal'
-import SocialCalendar from './pages/SocialCalendar'
-import PersonalInventory from './pages/PersonalInventory'
-import GiftIdeas from './pages/GiftIdeas'
-import AppointmentsLog from './pages/AppointmentsLog'
-import WishList from './pages/WishList'
-import MemoriesVault from './pages/MemoriesVault'
-import PersonalChallenges from './pages/PersonalChallenges'
-import HealthVitals from './pages/HealthVitals'
-import PersonalResearch from './pages/PersonalResearch'
-import DailyAffirmations from './pages/DailyAffirmations'
-import BodyScanLog from './pages/BodyScanLog'
-import ExerciseLog from './pages/ExerciseLog'
-import CareerJourney from './pages/CareerJourney'
-import MentalModels from './pages/MentalModels'
-import TravelPlanner from './pages/TravelPlanner'
-import MoneyTracker from './pages/MoneyTracker'
-import CreativityLog from './pages/CreativityLog'
-import PersonalBrandBuilder from './pages/PersonalBrandBuilder'
-import FoodDiary from './pages/FoodDiary'
-import FinancialLiteracy from './pages/FinancialLiteracy'
-import PasswordJournal from './pages/PasswordJournal'
-import RelationshipGoals from './pages/RelationshipGoals'
-import LifeExperiences from './pages/LifeExperiences'
-import BudgetPlanner from './pages/BudgetPlanner'
-import SleepDiary from './pages/SleepDiary'
-import LifePhilosophy from './pages/LifePhilosophy'
-import MusicLog from './pages/MusicLog'
-import MoviesLog from './pages/MoviesLog'
-import FamilyTree from './pages/FamilyTree'
-import CommunicationLog from './pages/CommunicationLog'
-import LanguageJournal from './pages/LanguageJournal'
-import VisionJournal from './pages/VisionJournal'
-import PersonalConstitution from './pages/PersonalConstitution'
-import FriendshipTracker from './pages/FriendshipTracker'
-import DigitalFootprint from './pages/DigitalFootprint'
-import LifeLetters from './pages/LifeLetters'
-import MindfulnessLog from './pages/MindfulnessLog'
-import AngerLog from './pages/AngerLog'
-import CuriosityJournal from './pages/CuriosityJournal'
-import PersonalTimeCapsule from './pages/PersonalTimeCapsule'
-import WorkplaceLog from './pages/WorkplaceLog'
-import SuccessStories from './pages/SuccessStories'
-import ConfidenceBuilder from './pages/ConfidenceBuilder'
-import SocialSkillsLog from './pages/SocialSkillsLog'
-import LifeNumbersTracker from './pages/LifeNumbersTracker'
-import PersonalMythology from './pages/PersonalMythology'
-import DailyQuestions from './pages/DailyQuestions'
-import EnergyAudit from './pages/EnergyAudit'
-import MoralCompass from './pages/MoralCompass'
-import SabbaticalPlanner from './pages/SabbaticalPlanner'
-import AdventureLog from './pages/AdventureLog'
-import DatingJournal from './pages/DatingJournal'
-import BreakupJournal from './pages/BreakupJournal'
-import SelfCarePlan from './pages/SelfCarePlan'
-import MonthlyIntentions from './pages/MonthlyIntentions'
-import PersonalLegacy from './pages/PersonalLegacy'
-import ClimateLog from './pages/ClimateLog'
-import JoyLog from './pages/JoyLog'
-import LearningGoals from './pages/LearningGoals'
-import LifePurpose from './pages/LifePurpose'
-import ThoughtPatterns from './pages/ThoughtPatterns'
-import PersonalFinanceRatios from './pages/PersonalFinanceRatios'
-import HabitMindsetShift from './pages/HabitMindsetShift'
-import GratefulMoments from './pages/GratefulMoments'
-import SkillInventory from './pages/SkillInventory'
-import WeeklyReflection from './pages/WeeklyReflection'
-import MantraLog from './pages/MantraLog'
-import PersonalSWOT from './pages/PersonalSWOT'
-import GoalPostMortem from './pages/GoalPostMortem'
-import SelfTalk from './pages/SelfTalk'
-import VulnerabilityLog from './pages/VulnerabilityLog'
-import MicroWins from './pages/MicroWins'
-import RelationshipValues from './pages/RelationshipValues'
-import FocusBatteries from './pages/FocusBatteries'
-import RitualsLog from './pages/RitualsLog'
-import InnerCriticLog from './pages/InnerCriticLog'
-import PeakPerformance from './pages/PeakPerformance'
-import BreathworkLog from './pages/BreathworkLog'
-import PersonalPRs from './pages/PersonalPRs'
-import EmotionLibrary from './pages/EmotionLibrary'
-import SocialProjects from './pages/SocialProjects'
-import DigitalMinimalism from './pages/DigitalMinimalism'
-import NutritionWins from './pages/NutritionWins'
-import CrisisLog from './pages/CrisisLog'
-import StrengthsLog from './pages/StrengthsLog'
-import TimeWasters from './pages/TimeWasters'
-import HealthHabits from './pages/HealthHabits'
-import WisdomLog from './pages/WisdomLog'
-import GratitudePractice from './pages/GratitudePractice'
-import MindfulMovement from './pages/MindfulMovement'
-import ExperienceLedger from './pages/ExperienceLedger'
-import ConfidenceJournal from './pages/ConfidenceJournal'
-import MonthlyGoals from './pages/MonthlyGoals'
-import BodyLanguageLog from './pages/BodyLanguageLog'
-import ReadingList from './pages/ReadingList'
-import PersonalValues2 from './pages/PersonalValues2'
-import AnnualReview from './pages/AnnualReview'
-import GoalReview from './pages/GoalReview'
-import NegativeVisualization from './pages/NegativeVisualization'
-import RelapseLog from './pages/RelapseLog'
-import EnergyFood from './pages/EnergyFood'
-import LifeInterests from './pages/LifeInterests'
-import BoundariesLog from './pages/BoundariesLog'
-import PhilosophyNotes from './pages/PhilosophyNotes'
-import SleepGoals from './pages/SleepGoals'
-import ChallengeTracker from './pages/ChallengeTracker'
-import PersonalDebts from './pages/PersonalDebts'
-import PersonalAudit from './pages/PersonalAudit'
-import LegacyLetters from './pages/LegacyLetters'
-import EmotionalTriggers from './pages/EmotionalTriggers'
-import StoicPractice from './pages/StoicPractice'
-import CourageLog from './pages/CourageLog'
-import EgoJournal from './pages/EgoJournal'
-import IntentionSetter from './pages/IntentionSetter'
-import MotivationLog from './pages/MotivationLog'
-import HabitAutopsy from './pages/HabitAutopsy'
-import ProcrastinationLog from './pages/ProcrastinationLog'
-import MentorQuotes from './pages/MentorQuotes'
-import PersonalCredo from './pages/PersonalCredo'
-import GrowthEdges from './pages/GrowthEdges'
-import ShadowWork from './pages/ShadowWork'
-import LifeDesign from './pages/LifeDesign'
-import PowerBeliefs from './pages/PowerBeliefs'
-import FamilyGoals from './pages/FamilyGoals'
-import MicroJournal from './pages/MicroJournal'
-import ExerciseLibrary from './pages/ExerciseLibrary'
-import MealLog from './pages/MealLog'
-import MindsetShifts from './pages/MindsetShifts'
-import FinancialIndependence from './pages/FinancialIndependence'
-import SocialCircle from './pages/SocialCircle'
-import CareerMilestones from './pages/CareerMilestones'
-import PersonalRituals from './pages/PersonalRituals'
-import SkillGaps from './pages/SkillGaps'
-import PainPoints from './pages/PainPoints'
-import DisciplineLog from './pages/DisciplineLog'
-import WinJournal from './pages/WinJournal'
-import GratitudeMap from './pages/GratitudeMap'
-import LifeContracts from './pages/LifeContracts'
-import FocusModes from './pages/FocusModes'
-import SpiritualPractice from './pages/SpiritualPractice'
-import PerformanceLog from './pages/PerformanceLog'
-import ObstacleMap from './pages/ObstacleMap'
-import ResilienceLog from './pages/ResilienceLog'
-import BreakLog from './pages/BreakLog'
-import CharacterSheet from './pages/CharacterSheet'
-import DebtFreeJourney from './pages/DebtFreeJourney'
-import LifeExperiments from './pages/LifeExperiments'
-import MindfulnessTimer from './pages/MindfulnessTimer'
-import HealthProtocols from './pages/HealthProtocols'
-import NetworkBuilder from './pages/NetworkBuilder'
-import LearningRoadmap from './pages/LearningRoadmap'
-import MorningMindfulnessJournal from './pages/MorningMindfulnessJournal'
-import EveningWindDown from './pages/EveningWindDown'
-import ValuesAlignment from './pages/ValuesAlignment'
-import BodyBudget from './pages/BodyBudget'
-import GoalSprint from './pages/GoalSprint'
-import ThoughtLeadership from './pages/ThoughtLeadership'
-import FearInventory from './pages/FearInventory'
-import InvestmentPortfolio from './pages/InvestmentPortfolio'
-import HabitStacks from './pages/HabitStacks'
-import IdentityLog from './pages/IdentityLog'
-import RelationshipNurture from './pages/RelationshipNurture'
-import LifePhilosophyLog from './pages/LifePhilosophyLog'
-import SuccessRituals from './pages/SuccessRituals'
-import AntifragileLog from './pages/AntifragileLog'
-import DeepWorkSession from './pages/DeepWorkSession'
-import ClarityJournal from './pages/ClarityJournal'
-import MindsetArmor from './pages/MindsetArmor'
-import LifeConversations from './pages/LifeConversations'
-import PersonalBoardroom from './pages/PersonalBoardroom'
-import FlowTriggers from './pages/FlowTriggers'
-import GrowthChallenges from './pages/GrowthChallenges'
-import StrategicVision from './pages/StrategicVision'
-import EmotionalRegulation from './pages/EmotionalRegulation'
-import PurposeAlignment from './pages/PurposeAlignment'
-import LifeMoments from './pages/LifeMoments'
-import BeliefSystem from './pages/BeliefSystem'
-import SocialContributions from './pages/SocialContributions'
-import MoneyBeliefs from './pages/MoneyBeliefs'
-import CognitiveLoad from './pages/CognitiveLoad'
-import SkillMastery from './pages/SkillMastery'
-import HealthOptimization from './pages/HealthOptimization'
-import CreativeProcess from './pages/CreativeProcess'
-import LifeBalance from './pages/LifeBalance'
-import MortalityLog from './pages/MortalityLog'
-import DecisionArchive from './pages/DecisionArchive'
-import PersonalAlgorithm from './pages/PersonalAlgorithm'
-import WellbeingCheck from './pages/WellbeingCheck'
-import GratitudeDepth from './pages/GratitudeDepth'
-import AbundanceMindset from './pages/AbundanceMindset'
-import PowerMoments from './pages/PowerMoments'
-import IntegrityLog from './pages/IntegrityLog'
-import SoulPurpose from './pages/SoulPurpose'
-import LifeCurriculum from './pages/LifeCurriculum'
-import FutureSelfLog from './pages/FutureSelfLog'
-import PeakStateLog from './pages/PeakStateLog'
-import InnerDialogue from './pages/InnerDialogue'
-import ContributionLog from './pages/ContributionLog'
-import MindBodyLog from './pages/MindBodyLog'
-import WisdomArchive from './pages/WisdomArchive'
-import GratitudeForChallenges from './pages/GratitudeForChallenges'
-import LifeExitStrategy from './pages/LifeExitStrategy'
-import CharacterVirtues from './pages/CharacterVirtues'
-import LifeExperimentLog from './pages/LifeExperimentLog'
-import LifePhases from './pages/LifePhases'
-import RelationshipDepth from './pages/RelationshipDepth'
-import NarrativeReframe from './pages/NarrativeReframe'
-import ValueHierarchy from './pages/ValueHierarchy'
-import MindfulnessDepth from './pages/MindfulnessDepth'
-import SuccessDNA from './pages/SuccessDNA'
-import LifeInvestments from './pages/LifeInvestments'
-import ThinkingStyles from './pages/ThinkingStyles'
-import LifeOptimizer from './pages/LifeOptimizer'
-import DeepListening from './pages/DeepListening'
-import EmotionMastery from './pages/EmotionMastery'
-import PresenceLog from './pages/PresenceLog'
-import CompassionLog from './pages/CompassionLog'
-import LegacyBuilder from './pages/LegacyBuilder'
-import LifeAlchemy from './pages/LifeAlchemy'
-import ExistentialLog from './pages/ExistentialLog'
-import InnerPeaceLog from './pages/InnerPeaceLog'
-import ServiceLog from './pages/ServiceLog'
-import CreativeFlow from './pages/CreativeFlow'
-import GrowthMindset from './pages/GrowthMindset'
-import WealthMindset from './pages/WealthMindset'
-import BoundaryBuilder from './pages/BoundaryBuilder'
-import HealingJournal from './pages/HealingJournal'
-import VisionCasting from './pages/VisionCasting'
-import PurposeLog from './pages/PurposeLog'
-import SelfMasteryLog from './pages/SelfMasteryLog'
-import TimePhilosophy from './pages/TimePhilosophy'
-import JoyDesign from './pages/JoyDesign'
-import EnergyBudget from './pages/EnergyBudget'
-import InspiredAction from './pages/InspiredAction'
-import MindfulCommunication from './pages/MindfulCommunication'
-import PhysicalPeak from './pages/PhysicalPeak'
-import SocialIntelligence from './pages/SocialIntelligence'
-import DailyExcellence from './pages/DailyExcellence'
-import LifeReview from './pages/LifeReview'
-import ResilientThinking from './pages/ResilientThinking'
-import DigitalWellness from './pages/DigitalWellness'
-import NeuroplasticityLog from './pages/NeuroplasticityLog'
-import IntuitiveDecision from './pages/IntuitiveDecision'
-import BodyWisdom from './pages/BodyWisdom'
-import GratitudeToself from './pages/GratitudeToself'
-import WillpowerLog from './pages/WillpowerLog'
-import MindfulSleep from './pages/MindfulSleep'
-import ConflictResolution from './pages/ConflictResolution'
-import AbundanceLog from './pages/AbundanceLog'
-import LifeRhythm from './pages/LifeRhythm'
-import HighPerformance from './pages/HighPerformance'
-import ScreenTimeConnect from './pages/ScreenTimeConnect'
-import LifeScoreEngine from './pages/LifeScoreEngine'
-import UltimateMorningRitual from './pages/UltimateMorningRitual'
-import IkigaiCompass from './pages/IkigaiCompass'
-import CommandCenter from './pages/CommandCenter'
-import DailyDriver from './pages/DailyDriver'
-import WeeklyPowerSession from './pages/WeeklyPowerSession'
-import LifeGPS from './pages/LifeGPS'
-import NightlyDebrief from './pages/NightlyDebrief'
-import PersonalPlaybook from './pages/PersonalPlaybook'
-import MindBodyBalance from './pages/MindBodyBalance'
-import EmotionalDashboard from './pages/EmotionalDashboard'
-import StrategicLifePlan from './pages/StrategicLifePlan'
-import HabitMatrix from './pages/HabitMatrix'
-import LifeCheckup from './pages/LifeCheckup'
-import FlowStateTracker from './pages/FlowStateTracker'
-import MindfulnessCenter from './pages/MindfulnessCenter'
-import WealthBuilder from './pages/WealthBuilder'
-import RelationshipTracker from './pages/RelationshipTracker'
-import CreativeStudio from './pages/CreativeStudio'
-import DeepWorkLog from './pages/DeepWorkLog'
-import GrowthJournal from './pages/GrowthJournal'
-import LifeEnergy from './pages/LifeEnergy'
-import IdentityArchitect from './pages/IdentityArchitect'
-import ValueAlignmentLog from './pages/ValueAlignmentLog'
-import WinBoard from './pages/WinBoard'
-import ReflectionEngine from './pages/ReflectionEngine'
-import LifeRating from './pages/LifeRating'
-import LifeMetricsHub from './pages/LifeMetricsHub'
-import MorningPowerup from './pages/MorningPowerup'
+const LogTasks = lazy(() => import('./pages/LogTasks'))
+const Progress = lazy(() => import('./pages/Progress'))
+const AICoach = lazy(() => import('./pages/AICoach'))
+const Goals = lazy(() => import('./pages/Goals'))
+const Achievements = lazy(() => import('./pages/Achievements'))
+const Habits = lazy(() => import('./pages/Habits'))
+const BossBattle = lazy(() => import('./pages/BossBattle'))
+const Journal = lazy(() => import('./pages/Journal'))
+const Heatmap = lazy(() => import('./pages/Heatmap'))
+const WeeklyReport = lazy(() => import('./pages/WeeklyReport'))
+const Timer = lazy(() => import('./pages/Timer'))
+const Profile = lazy(() => import('./pages/Profile'))
+const Settings = lazy(() => import('./pages/Settings'))
+const SkillTree = lazy(() => import('./pages/SkillTree'))
+const Quests = lazy(() => import('./pages/Quests'))
+const Milestones = lazy(() => import('./pages/Milestones'))
+const Challenges = lazy(() => import('./pages/Challenges'))
+const Insights = lazy(() => import('./pages/Insights'))
+const MoodTracker = lazy(() => import('./pages/MoodTracker'))
+const Notes = lazy(() => import('./pages/Notes'))
+const DailyReview = lazy(() => import('./pages/DailyReview'))
+const BodyMetrics = lazy(() => import('./pages/BodyMetrics'))
+const Planner = lazy(() => import('./pages/Planner'))
+const Gratitude = lazy(() => import('./pages/Gratitude'))
+const Records = lazy(() => import('./pages/Records'))
+const Intentions = lazy(() => import('./pages/Intentions'))
+const LifeScore = lazy(() => import('./pages/LifeScore'))
+const CategoryGoals = lazy(() => import('./pages/CategoryGoals'))
+const FocusSessions = lazy(() => import('./pages/FocusSessions'))
+const YearView = lazy(() => import('./pages/YearView'))
+const Affirmations = lazy(() => import('./pages/Affirmations'))
+const MoodAnalytics = lazy(() => import('./pages/MoodAnalytics'))
+const WeeklyGoals = lazy(() => import('./pages/WeeklyGoals'))
+const Breathing = lazy(() => import('./pages/Breathing'))
+const SleepTracker = lazy(() => import('./pages/SleepTracker'))
+const HabitAnalytics = lazy(() => import('./pages/HabitAnalytics'))
+const DailyChallenge = lazy(() => import('./pages/DailyChallenge'))
+const Books = lazy(() => import('./pages/Books'))
+const Workouts = lazy(() => import('./pages/Workouts'))
+const Expenses = lazy(() => import('./pages/Expenses'))
+const Briefing = lazy(() => import('./pages/Briefing'))
+const Nutrition = lazy(() => import('./pages/Nutrition'))
+const Timeline = lazy(() => import('./pages/Timeline'))
+const LifeCalendar = lazy(() => import('./pages/LifeCalendar'))
+const Streaks = lazy(() => import('./pages/Streaks'))
+const CheckIn = lazy(() => import('./pages/CheckIn'))
+const WindDown = lazy(() => import('./pages/WindDown'))
+const Learning = lazy(() => import('./pages/Learning'))
+const AmbientFocus = lazy(() => import('./pages/AmbientFocus'))
+const TaskBoard = lazy(() => import('./pages/TaskBoard'))
+const Routines = lazy(() => import('./pages/Routines'))
+const LifeWheel = lazy(() => import('./pages/LifeWheel'))
+const DecisionJournal = lazy(() => import('./pages/DecisionJournal'))
+const Values = lazy(() => import('./pages/Values'))
+const WeeklyPlanning = lazy(() => import('./pages/WeeklyPlanning'))
+const XPLog = lazy(() => import('./pages/XPLog'))
+const WaterTracker = lazy(() => import('./pages/WaterTracker'))
+const FocusStats = lazy(() => import('./pages/FocusStats'))
+const JournalInsights = lazy(() => import('./pages/JournalInsights'))
+const MealPlanner = lazy(() => import('./pages/MealPlanner'))
+const ReadingNotes = lazy(() => import('./pages/ReadingNotes'))
+const Projects = lazy(() => import('./pages/Projects'))
+const WellnessCheck = lazy(() => import('./pages/WellnessCheck'))
+const MeditationTimer = lazy(() => import('./pages/MeditationTimer'))
+const HabitChallenges = lazy(() => import('./pages/HabitChallenges'))
+const LifeOS = lazy(() => import('./pages/LifeOS'))
+const QuoteJournal = lazy(() => import('./pages/QuoteJournal'))
+const Relationships = lazy(() => import('./pages/Relationships'))
+const SleepAnalytics = lazy(() => import('./pages/SleepAnalytics'))
+const MorningPages = lazy(() => import('./pages/MorningPages'))
+const ExpenseAnalytics = lazy(() => import('./pages/ExpenseAnalytics'))
+const StreaksCalendar = lazy(() => import('./pages/StreaksCalendar'))
+const GoalAnalytics = lazy(() => import('./pages/GoalAnalytics'))
+const WorkoutAnalytics = lazy(() => import('./pages/WorkoutAnalytics'))
+const NutritionAnalytics = lazy(() => import('./pages/NutritionAnalytics'))
+const BookAnalytics = lazy(() => import('./pages/BookAnalytics'))
+const ProductivityDashboard = lazy(() => import('./pages/ProductivityDashboard'))
+const LearningAnalytics = lazy(() => import('./pages/LearningAnalytics'))
+const ProjectAnalytics = lazy(() => import('./pages/ProjectAnalytics'))
+const MetricsAnalytics = lazy(() => import('./pages/MetricsAnalytics'))
+const GratitudeAnalytics = lazy(() => import('./pages/GratitudeAnalytics'))
+const RelationshipAnalytics = lazy(() => import('./pages/RelationshipAnalytics'))
+const TimeBlocking = lazy(() => import('./pages/TimeBlocking'))
+const EmotionCheck = lazy(() => import('./pages/EmotionCheck'))
+const VisionBoard = lazy(() => import('./pages/VisionBoard'))
+const PriorityMatrix = lazy(() => import('./pages/PriorityMatrix'))
+const HabitWizard = lazy(() => import('./pages/HabitWizard'))
+const MindsetJournal = lazy(() => import('./pages/MindsetJournal'))
+const HabitStacking = lazy(() => import('./pages/HabitStacking'))
+const DailyWins = lazy(() => import('./pages/DailyWins'))
+const ReflectionPrompts = lazy(() => import('./pages/ReflectionPrompts'))
+const WeeklyScorecard = lazy(() => import('./pages/WeeklyScorecard'))
+const Accountability = lazy(() => import('./pages/Accountability'))
+const SleepOptimizer = lazy(() => import('./pages/SleepOptimizer'))
+const FinancialGoals = lazy(() => import('./pages/FinancialGoals'))
+const EnergyTracker = lazy(() => import('./pages/EnergyTracker'))
+const ChallengeMode = lazy(() => import('./pages/ChallengeMode'))
+const SkillProgress = lazy(() => import('./pages/SkillProgress'))
+const LifeMetricsDashboard = lazy(() => import('./pages/LifeMetricsDashboard'))
+const FocusRituals = lazy(() => import('./pages/FocusRituals'))
+const HabitInsights = lazy(() => import('./pages/HabitInsights'))
+const PersonalManifesto = lazy(() => import('./pages/PersonalManifesto'))
+const MoodPatterns = lazy(() => import('./pages/MoodPatterns'))
+const TaskAnalytics = lazy(() => import('./pages/TaskAnalytics'))
+const BodyComposition = lazy(() => import('./pages/BodyComposition'))
+const DailyIntentions = lazy(() => import('./pages/DailyIntentions'))
+const GrowthLog = lazy(() => import('./pages/GrowthLog'))
+const PomodoroTracker = lazy(() => import('./pages/PomodoroTracker'))
+const WeeklyReview = lazy(() => import('./pages/WeeklyReview'))
+const MindMapPage = lazy(() => import('./pages/MindMap'))
+const LifeAudit = lazy(() => import('./pages/LifeAudit'))
+const AnxietyJournal = lazy(() => import('./pages/AnxietyJournal'))
+const FitnessGoals = lazy(() => import('./pages/FitnessGoals'))
+const SocialBattery = lazy(() => import('./pages/SocialBattery'))
+const ContentLibrary = lazy(() => import('./pages/ContentLibrary'))
+const DeepWorkPlanner = lazy(() => import('./pages/DeepWorkPlanner'))
+const StreakChallenge = lazy(() => import('./pages/StreakChallenge'))
+const LifeEvents = lazy(() => import('./pages/LifeEvents'))
+const StressTracker = lazy(() => import('./pages/StressTracker'))
+const GratitudeChain = lazy(() => import('./pages/GratitudeChain'))
+const OKRTracker = lazy(() => import('./pages/OKRTracker'))
+const DailyStandup = lazy(() => import('./pages/DailyStandup'))
+const StudyTracker = lazy(() => import('./pages/StudyTracker'))
+const PersonalKPIs = lazy(() => import('./pages/PersonalKPIs'))
+const BucketList = lazy(() => import('./pages/BucketList'))
+const HabitCoach = lazy(() => import('./pages/HabitCoach'))
+const TimeAudit = lazy(() => import('./pages/TimeAudit'))
+const IdentityBuilder = lazy(() => import('./pages/IdentityBuilder'))
+const WeeklyWins = lazy(() => import('./pages/WeeklyWins'))
+const NightlyReview = lazy(() => import('./pages/NightlyReview'))
+const PowerHour = lazy(() => import('./pages/PowerHour'))
+const HabitDesigner = lazy(() => import('./pages/HabitDesigner'))
+const DailyCheckIn = lazy(() => import('./pages/DailyCheckIn'))
+const XPCenter = lazy(() => import('./pages/XPCenter'))
+const CognitiveReframe = lazy(() => import('./pages/CognitiveReframe'))
+const PersonalBrand = lazy(() => import('./pages/PersonalBrand'))
+const MicroHabits = lazy(() => import('./pages/MicroHabits'))
+const SuccessFormula = lazy(() => import('./pages/SuccessFormula'))
+const GoalHierarchy = lazy(() => import('./pages/GoalHierarchy'))
+const PerformanceReview = lazy(() => import('./pages/PerformanceReview'))
+const FocusJournal = lazy(() => import('./pages/FocusJournal'))
+const LifeMap = lazy(() => import('./pages/LifeMap'))
+const AntiHabits = lazy(() => import('./pages/AntiHabits'))
+const LifeRules = lazy(() => import('./pages/LifeRules'))
+const RewardSystem = lazy(() => import('./pages/RewardSystem'))
+const ContentCalendar = lazy(() => import('./pages/ContentCalendar'))
+const SkillChallenge = lazy(() => import('./pages/SkillChallenge'))
+const PodcastTracker = lazy(() => import('./pages/PodcastTracker'))
+const DigitalDetox = lazy(() => import('./pages/DigitalDetox'))
+const EmotionalIntelligence = lazy(() => import('./pages/EmotionalIntelligence'))
+const GratitudeLetter = lazy(() => import('./pages/GratitudeLetter'))
+const HealthDashboard = lazy(() => import('./pages/HealthDashboard'))
+const SavingsChallenge = lazy(() => import('./pages/SavingsChallenge'))
+const LifeTimeline = lazy(() => import('./pages/LifeTimeline'))
+const ObstacleLog = lazy(() => import('./pages/ObstacleLog'))
+const SleepRituals = lazy(() => import('./pages/SleepRituals'))
+const TodayFocus = lazy(() => import('./pages/TodayFocus'))
+const GratitudeJar = lazy(() => import('./pages/GratitudeJar'))
+const DailyScorecard = lazy(() => import('./pages/DailyScorecard'))
+const BreathworkTimer = lazy(() => import('./pages/BreathworkTimer'))
+const IdeaIncubator = lazy(() => import('./pages/IdeaIncubator'))
+const ProjectRetro = lazy(() => import('./pages/ProjectRetro'))
+const HealthMetrics = lazy(() => import('./pages/HealthMetrics'))
+const MentalHealthLog = lazy(() => import('./pages/MentalHealthLog'))
+const WeeklySprint = lazy(() => import('./pages/WeeklySprint'))
+const PersonalOKR = lazy(() => import('./pages/PersonalOKR'))
+const LifeLegacy = lazy(() => import('./pages/LifeLegacy'))
+const DecisionMatrix = lazy(() => import('./pages/DecisionMatrix'))
+const ChallengeCalendar = lazy(() => import('./pages/ChallengeCalendar'))
+const FinanceTracker = lazy(() => import('./pages/FinanceTracker'))
+const LifeTheme = lazy(() => import('./pages/LifeTheme'))
+const NetWorthTracker = lazy(() => import('./pages/NetWorthTracker'))
+const SleepScore = lazy(() => import('./pages/SleepScore'))
+const StudyFlashcards = lazy(() => import('./pages/StudyFlashcards'))
+const RecoveryTracker = lazy(() => import('./pages/RecoveryTracker'))
+const SkillRoadmap = lazy(() => import('./pages/SkillRoadmap'))
+const QuickCapture = lazy(() => import('./pages/QuickCapture'))
+const ConversationLog = lazy(() => import('./pages/ConversationLog'))
+const FitnessLog = lazy(() => import('./pages/FitnessLog'))
+const EveningReview = lazy(() => import('./pages/EveningReview'))
+const YearInReview = lazy(() => import('./pages/YearInReview'))
+const MorningRoutine = lazy(() => import('./pages/MorningRoutine'))
+const MoneyMindset = lazy(() => import('./pages/MoneyMindset'))
+const NutritionGoals = lazy(() => import('./pages/NutritionGoals'))
+const CareerTracker = lazy(() => import('./pages/CareerTracker'))
+const IdeaVault = lazy(() => import('./pages/IdeaVault'))
+const ProjectSprint = lazy(() => import('./pages/ProjectSprint'))
+const CreativeJournal = lazy(() => import('./pages/CreativeJournal'))
+const FlowState = lazy(() => import('./pages/FlowState'))
+const FearLog = lazy(() => import('./pages/FearLog'))
+const WinStreak = lazy(() => import('./pages/WinStreak'))
+const DailyScript = lazy(() => import('./pages/DailyScript'))
+const LifeVision = lazy(() => import('./pages/LifeVision'))
+const LifeChapters = lazy(() => import('./pages/LifeChapters'))
+const NetworkMap = lazy(() => import('./pages/NetworkMap'))
+const TrainingPlan = lazy(() => import('./pages/TrainingPlan'))
+const GriefJournal = lazy(() => import('./pages/GriefJournal'))
+const SpiritualJourney = lazy(() => import('./pages/SpiritualJourney'))
+const ParentingLog = lazy(() => import('./pages/ParentingLog'))
+const SideProjects = lazy(() => import('./pages/SideProjects'))
+const VolunteerLog = lazy(() => import('./pages/VolunteerLog'))
+const TravelLog = lazy(() => import('./pages/TravelLog'))
+const LanguageLearning = lazy(() => import('./pages/LanguageLearning'))
+const DietTracker = lazy(() => import('./pages/DietTracker'))
+const PetCare = lazy(() => import('./pages/PetCare'))
+const HomeImprovement = lazy(() => import('./pages/HomeImprovement'))
+const MentoringJournal = lazy(() => import('./pages/MentoringJournal'))
+const PublicSpeaking = lazy(() => import('./pages/PublicSpeaking'))
+const CoffeeLog = lazy(() => import('./pages/CoffeeLog'))
+const CreativeProjects = lazy(() => import('./pages/CreativeProjects'))
+const HealthSymptoms = lazy(() => import('./pages/HealthSymptoms'))
+const InvestmentTracker = lazy(() => import('./pages/InvestmentTracker'))
+const WeightTracker = lazy(() => import('./pages/WeightTracker'))
+const CharityTracker = lazy(() => import('./pages/CharityTracker'))
+const MoodBoard = lazy(() => import('./pages/MoodBoard'))
+const LessonLearned = lazy(() => import('./pages/LessonLearned'))
+const ConflictLog = lazy(() => import('./pages/ConflictLog'))
+const GardeningLog = lazy(() => import('./pages/GardeningLog'))
+const ReadingChallenge = lazy(() => import('./pages/ReadingChallenge'))
+const NegotiationLog = lazy(() => import('./pages/NegotiationLog'))
+const LoveLanguages = lazy(() => import('./pages/LoveLanguages'))
+const DreamsJournal = lazy(() => import('./pages/DreamsJournal'))
+const GratitudeToParents = lazy(() => import('./pages/GratitudeToParents'))
+const MindfulEating = lazy(() => import('./pages/MindfulEating'))
+const HobbiesTracker = lazy(() => import('./pages/HobbiesTracker'))
+const SkinCareLog = lazy(() => import('./pages/SkinCareLog'))
+const CareerSkills = lazy(() => import('./pages/CareerSkills'))
+const MorningMindset = lazy(() => import('./pages/MorningMindset'))
+const AllergyLog = lazy(() => import('./pages/AllergyLog'))
+const PasswordVault = lazy(() => import('./pages/PasswordVault'))
+const SportStats = lazy(() => import('./pages/SportStats'))
+const ForgivenessLog = lazy(() => import('./pages/ForgivenessLog'))
+const EcoTracker = lazy(() => import('./pages/EcoTracker'))
+const LifeRegrets = lazy(() => import('./pages/LifeRegrets'))
+const FutureLetters = lazy(() => import('./pages/FutureLetters'))
+const PersonalPolicies = lazy(() => import('./pages/PersonalPolicies'))
+const MonthlyRetro = lazy(() => import('./pages/MonthlyRetro'))
+const TherapyLog = lazy(() => import('./pages/TherapyLog'))
+const SupplementLog = lazy(() => import('./pages/SupplementLog'))
+const ScreenTimeLog = lazy(() => import('./pages/ScreenTimeLog'))
+const RecipeJournal = lazy(() => import('./pages/RecipeJournal'))
+const SocialCalendar = lazy(() => import('./pages/SocialCalendar'))
+const PersonalInventory = lazy(() => import('./pages/PersonalInventory'))
+const GiftIdeas = lazy(() => import('./pages/GiftIdeas'))
+const AppointmentsLog = lazy(() => import('./pages/AppointmentsLog'))
+const WishList = lazy(() => import('./pages/WishList'))
+const MemoriesVault = lazy(() => import('./pages/MemoriesVault'))
+const PersonalChallenges = lazy(() => import('./pages/PersonalChallenges'))
+const HealthVitals = lazy(() => import('./pages/HealthVitals'))
+const PersonalResearch = lazy(() => import('./pages/PersonalResearch'))
+const DailyAffirmations = lazy(() => import('./pages/DailyAffirmations'))
+const BodyScanLog = lazy(() => import('./pages/BodyScanLog'))
+const ExerciseLog = lazy(() => import('./pages/ExerciseLog'))
+const CareerJourney = lazy(() => import('./pages/CareerJourney'))
+const MentalModels = lazy(() => import('./pages/MentalModels'))
+const TravelPlanner = lazy(() => import('./pages/TravelPlanner'))
+const MoneyTracker = lazy(() => import('./pages/MoneyTracker'))
+const CreativityLog = lazy(() => import('./pages/CreativityLog'))
+const PersonalBrandBuilder = lazy(() => import('./pages/PersonalBrandBuilder'))
+const FoodDiary = lazy(() => import('./pages/FoodDiary'))
+const FinancialLiteracy = lazy(() => import('./pages/FinancialLiteracy'))
+const PasswordJournal = lazy(() => import('./pages/PasswordJournal'))
+const RelationshipGoals = lazy(() => import('./pages/RelationshipGoals'))
+const LifeExperiences = lazy(() => import('./pages/LifeExperiences'))
+const BudgetPlanner = lazy(() => import('./pages/BudgetPlanner'))
+const SleepDiary = lazy(() => import('./pages/SleepDiary'))
+const LifePhilosophy = lazy(() => import('./pages/LifePhilosophy'))
+const MusicLog = lazy(() => import('./pages/MusicLog'))
+const MoviesLog = lazy(() => import('./pages/MoviesLog'))
+const FamilyTree = lazy(() => import('./pages/FamilyTree'))
+const CommunicationLog = lazy(() => import('./pages/CommunicationLog'))
+const LanguageJournal = lazy(() => import('./pages/LanguageJournal'))
+const VisionJournal = lazy(() => import('./pages/VisionJournal'))
+const PersonalConstitution = lazy(() => import('./pages/PersonalConstitution'))
+const FriendshipTracker = lazy(() => import('./pages/FriendshipTracker'))
+const DigitalFootprint = lazy(() => import('./pages/DigitalFootprint'))
+const LifeLetters = lazy(() => import('./pages/LifeLetters'))
+const MindfulnessLog = lazy(() => import('./pages/MindfulnessLog'))
+const AngerLog = lazy(() => import('./pages/AngerLog'))
+const CuriosityJournal = lazy(() => import('./pages/CuriosityJournal'))
+const PersonalTimeCapsule = lazy(() => import('./pages/PersonalTimeCapsule'))
+const WorkplaceLog = lazy(() => import('./pages/WorkplaceLog'))
+const SuccessStories = lazy(() => import('./pages/SuccessStories'))
+const ConfidenceBuilder = lazy(() => import('./pages/ConfidenceBuilder'))
+const SocialSkillsLog = lazy(() => import('./pages/SocialSkillsLog'))
+const LifeNumbersTracker = lazy(() => import('./pages/LifeNumbersTracker'))
+const PersonalMythology = lazy(() => import('./pages/PersonalMythology'))
+const DailyQuestions = lazy(() => import('./pages/DailyQuestions'))
+const EnergyAudit = lazy(() => import('./pages/EnergyAudit'))
+const MoralCompass = lazy(() => import('./pages/MoralCompass'))
+const SabbaticalPlanner = lazy(() => import('./pages/SabbaticalPlanner'))
+const AdventureLog = lazy(() => import('./pages/AdventureLog'))
+const DatingJournal = lazy(() => import('./pages/DatingJournal'))
+const BreakupJournal = lazy(() => import('./pages/BreakupJournal'))
+const SelfCarePlan = lazy(() => import('./pages/SelfCarePlan'))
+const MonthlyIntentions = lazy(() => import('./pages/MonthlyIntentions'))
+const PersonalLegacy = lazy(() => import('./pages/PersonalLegacy'))
+const ClimateLog = lazy(() => import('./pages/ClimateLog'))
+const JoyLog = lazy(() => import('./pages/JoyLog'))
+const LearningGoals = lazy(() => import('./pages/LearningGoals'))
+const LifePurpose = lazy(() => import('./pages/LifePurpose'))
+const ThoughtPatterns = lazy(() => import('./pages/ThoughtPatterns'))
+const PersonalFinanceRatios = lazy(() => import('./pages/PersonalFinanceRatios'))
+const HabitMindsetShift = lazy(() => import('./pages/HabitMindsetShift'))
+const GratefulMoments = lazy(() => import('./pages/GratefulMoments'))
+const SkillInventory = lazy(() => import('./pages/SkillInventory'))
+const WeeklyReflection = lazy(() => import('./pages/WeeklyReflection'))
+const MantraLog = lazy(() => import('./pages/MantraLog'))
+const PersonalSWOT = lazy(() => import('./pages/PersonalSWOT'))
+const GoalPostMortem = lazy(() => import('./pages/GoalPostMortem'))
+const SelfTalk = lazy(() => import('./pages/SelfTalk'))
+const VulnerabilityLog = lazy(() => import('./pages/VulnerabilityLog'))
+const MicroWins = lazy(() => import('./pages/MicroWins'))
+const RelationshipValues = lazy(() => import('./pages/RelationshipValues'))
+const FocusBatteries = lazy(() => import('./pages/FocusBatteries'))
+const RitualsLog = lazy(() => import('./pages/RitualsLog'))
+const InnerCriticLog = lazy(() => import('./pages/InnerCriticLog'))
+const PeakPerformance = lazy(() => import('./pages/PeakPerformance'))
+const BreathworkLog = lazy(() => import('./pages/BreathworkLog'))
+const PersonalPRs = lazy(() => import('./pages/PersonalPRs'))
+const EmotionLibrary = lazy(() => import('./pages/EmotionLibrary'))
+const SocialProjects = lazy(() => import('./pages/SocialProjects'))
+const DigitalMinimalism = lazy(() => import('./pages/DigitalMinimalism'))
+const NutritionWins = lazy(() => import('./pages/NutritionWins'))
+const CrisisLog = lazy(() => import('./pages/CrisisLog'))
+const StrengthsLog = lazy(() => import('./pages/StrengthsLog'))
+const TimeWasters = lazy(() => import('./pages/TimeWasters'))
+const HealthHabits = lazy(() => import('./pages/HealthHabits'))
+const WisdomLog = lazy(() => import('./pages/WisdomLog'))
+const GratitudePractice = lazy(() => import('./pages/GratitudePractice'))
+const MindfulMovement = lazy(() => import('./pages/MindfulMovement'))
+const ExperienceLedger = lazy(() => import('./pages/ExperienceLedger'))
+const ConfidenceJournal = lazy(() => import('./pages/ConfidenceJournal'))
+const MonthlyGoals = lazy(() => import('./pages/MonthlyGoals'))
+const BodyLanguageLog = lazy(() => import('./pages/BodyLanguageLog'))
+const ReadingList = lazy(() => import('./pages/ReadingList'))
+const PersonalValues2 = lazy(() => import('./pages/PersonalValues2'))
+const AnnualReview = lazy(() => import('./pages/AnnualReview'))
+const GoalReview = lazy(() => import('./pages/GoalReview'))
+const NegativeVisualization = lazy(() => import('./pages/NegativeVisualization'))
+const RelapseLog = lazy(() => import('./pages/RelapseLog'))
+const EnergyFood = lazy(() => import('./pages/EnergyFood'))
+const LifeInterests = lazy(() => import('./pages/LifeInterests'))
+const BoundariesLog = lazy(() => import('./pages/BoundariesLog'))
+const PhilosophyNotes = lazy(() => import('./pages/PhilosophyNotes'))
+const SleepGoals = lazy(() => import('./pages/SleepGoals'))
+const ChallengeTracker = lazy(() => import('./pages/ChallengeTracker'))
+const PersonalDebts = lazy(() => import('./pages/PersonalDebts'))
+const PersonalAudit = lazy(() => import('./pages/PersonalAudit'))
+const LegacyLetters = lazy(() => import('./pages/LegacyLetters'))
+const EmotionalTriggers = lazy(() => import('./pages/EmotionalTriggers'))
+const StoicPractice = lazy(() => import('./pages/StoicPractice'))
+const CourageLog = lazy(() => import('./pages/CourageLog'))
+const EgoJournal = lazy(() => import('./pages/EgoJournal'))
+const IntentionSetter = lazy(() => import('./pages/IntentionSetter'))
+const MotivationLog = lazy(() => import('./pages/MotivationLog'))
+const HabitAutopsy = lazy(() => import('./pages/HabitAutopsy'))
+const ProcrastinationLog = lazy(() => import('./pages/ProcrastinationLog'))
+const MentorQuotes = lazy(() => import('./pages/MentorQuotes'))
+const PersonalCredo = lazy(() => import('./pages/PersonalCredo'))
+const GrowthEdges = lazy(() => import('./pages/GrowthEdges'))
+const ShadowWork = lazy(() => import('./pages/ShadowWork'))
+const LifeDesign = lazy(() => import('./pages/LifeDesign'))
+const PowerBeliefs = lazy(() => import('./pages/PowerBeliefs'))
+const FamilyGoals = lazy(() => import('./pages/FamilyGoals'))
+const MicroJournal = lazy(() => import('./pages/MicroJournal'))
+const ExerciseLibrary = lazy(() => import('./pages/ExerciseLibrary'))
+const MealLog = lazy(() => import('./pages/MealLog'))
+const MindsetShifts = lazy(() => import('./pages/MindsetShifts'))
+const FinancialIndependence = lazy(() => import('./pages/FinancialIndependence'))
+const SocialCircle = lazy(() => import('./pages/SocialCircle'))
+const CareerMilestones = lazy(() => import('./pages/CareerMilestones'))
+const PersonalRituals = lazy(() => import('./pages/PersonalRituals'))
+const SkillGaps = lazy(() => import('./pages/SkillGaps'))
+const PainPoints = lazy(() => import('./pages/PainPoints'))
+const DisciplineLog = lazy(() => import('./pages/DisciplineLog'))
+const WinJournal = lazy(() => import('./pages/WinJournal'))
+const GratitudeMap = lazy(() => import('./pages/GratitudeMap'))
+const LifeContracts = lazy(() => import('./pages/LifeContracts'))
+const FocusModes = lazy(() => import('./pages/FocusModes'))
+const SpiritualPractice = lazy(() => import('./pages/SpiritualPractice'))
+const PerformanceLog = lazy(() => import('./pages/PerformanceLog'))
+const ObstacleMap = lazy(() => import('./pages/ObstacleMap'))
+const ResilienceLog = lazy(() => import('./pages/ResilienceLog'))
+const BreakLog = lazy(() => import('./pages/BreakLog'))
+const CharacterSheet = lazy(() => import('./pages/CharacterSheet'))
+const DebtFreeJourney = lazy(() => import('./pages/DebtFreeJourney'))
+const LifeExperiments = lazy(() => import('./pages/LifeExperiments'))
+const MindfulnessTimer = lazy(() => import('./pages/MindfulnessTimer'))
+const HealthProtocols = lazy(() => import('./pages/HealthProtocols'))
+const NetworkBuilder = lazy(() => import('./pages/NetworkBuilder'))
+const LearningRoadmap = lazy(() => import('./pages/LearningRoadmap'))
+const MorningMindfulnessJournal = lazy(() => import('./pages/MorningMindfulnessJournal'))
+const EveningWindDown = lazy(() => import('./pages/EveningWindDown'))
+const ValuesAlignment = lazy(() => import('./pages/ValuesAlignment'))
+const BodyBudget = lazy(() => import('./pages/BodyBudget'))
+const GoalSprint = lazy(() => import('./pages/GoalSprint'))
+const ThoughtLeadership = lazy(() => import('./pages/ThoughtLeadership'))
+const FearInventory = lazy(() => import('./pages/FearInventory'))
+const InvestmentPortfolio = lazy(() => import('./pages/InvestmentPortfolio'))
+const HabitStacks = lazy(() => import('./pages/HabitStacks'))
+const IdentityLog = lazy(() => import('./pages/IdentityLog'))
+const RelationshipNurture = lazy(() => import('./pages/RelationshipNurture'))
+const LifePhilosophyLog = lazy(() => import('./pages/LifePhilosophyLog'))
+const SuccessRituals = lazy(() => import('./pages/SuccessRituals'))
+const AntifragileLog = lazy(() => import('./pages/AntifragileLog'))
+const DeepWorkSession = lazy(() => import('./pages/DeepWorkSession'))
+const ClarityJournal = lazy(() => import('./pages/ClarityJournal'))
+const MindsetArmor = lazy(() => import('./pages/MindsetArmor'))
+const LifeConversations = lazy(() => import('./pages/LifeConversations'))
+const PersonalBoardroom = lazy(() => import('./pages/PersonalBoardroom'))
+const FlowTriggers = lazy(() => import('./pages/FlowTriggers'))
+const GrowthChallenges = lazy(() => import('./pages/GrowthChallenges'))
+const StrategicVision = lazy(() => import('./pages/StrategicVision'))
+const EmotionalRegulation = lazy(() => import('./pages/EmotionalRegulation'))
+const PurposeAlignment = lazy(() => import('./pages/PurposeAlignment'))
+const LifeMoments = lazy(() => import('./pages/LifeMoments'))
+const BeliefSystem = lazy(() => import('./pages/BeliefSystem'))
+const SocialContributions = lazy(() => import('./pages/SocialContributions'))
+const MoneyBeliefs = lazy(() => import('./pages/MoneyBeliefs'))
+const CognitiveLoad = lazy(() => import('./pages/CognitiveLoad'))
+const SkillMastery = lazy(() => import('./pages/SkillMastery'))
+const HealthOptimization = lazy(() => import('./pages/HealthOptimization'))
+const CreativeProcess = lazy(() => import('./pages/CreativeProcess'))
+const LifeBalance = lazy(() => import('./pages/LifeBalance'))
+const MortalityLog = lazy(() => import('./pages/MortalityLog'))
+const DecisionArchive = lazy(() => import('./pages/DecisionArchive'))
+const PersonalAlgorithm = lazy(() => import('./pages/PersonalAlgorithm'))
+const WellbeingCheck = lazy(() => import('./pages/WellbeingCheck'))
+const GratitudeDepth = lazy(() => import('./pages/GratitudeDepth'))
+const AbundanceMindset = lazy(() => import('./pages/AbundanceMindset'))
+const PowerMoments = lazy(() => import('./pages/PowerMoments'))
+const IntegrityLog = lazy(() => import('./pages/IntegrityLog'))
+const SoulPurpose = lazy(() => import('./pages/SoulPurpose'))
+const LifeCurriculum = lazy(() => import('./pages/LifeCurriculum'))
+const FutureSelfLog = lazy(() => import('./pages/FutureSelfLog'))
+const PeakStateLog = lazy(() => import('./pages/PeakStateLog'))
+const InnerDialogue = lazy(() => import('./pages/InnerDialogue'))
+const ContributionLog = lazy(() => import('./pages/ContributionLog'))
+const MindBodyLog = lazy(() => import('./pages/MindBodyLog'))
+const WisdomArchive = lazy(() => import('./pages/WisdomArchive'))
+const GratitudeForChallenges = lazy(() => import('./pages/GratitudeForChallenges'))
+const LifeExitStrategy = lazy(() => import('./pages/LifeExitStrategy'))
+const CharacterVirtues = lazy(() => import('./pages/CharacterVirtues'))
+const LifeExperimentLog = lazy(() => import('./pages/LifeExperimentLog'))
+const LifePhases = lazy(() => import('./pages/LifePhases'))
+const RelationshipDepth = lazy(() => import('./pages/RelationshipDepth'))
+const NarrativeReframe = lazy(() => import('./pages/NarrativeReframe'))
+const ValueHierarchy = lazy(() => import('./pages/ValueHierarchy'))
+const MindfulnessDepth = lazy(() => import('./pages/MindfulnessDepth'))
+const SuccessDNA = lazy(() => import('./pages/SuccessDNA'))
+const LifeInvestments = lazy(() => import('./pages/LifeInvestments'))
+const ThinkingStyles = lazy(() => import('./pages/ThinkingStyles'))
+const LifeOptimizer = lazy(() => import('./pages/LifeOptimizer'))
+const DeepListening = lazy(() => import('./pages/DeepListening'))
+const EmotionMastery = lazy(() => import('./pages/EmotionMastery'))
+const PresenceLog = lazy(() => import('./pages/PresenceLog'))
+const CompassionLog = lazy(() => import('./pages/CompassionLog'))
+const LegacyBuilder = lazy(() => import('./pages/LegacyBuilder'))
+const LifeAlchemy = lazy(() => import('./pages/LifeAlchemy'))
+const ExistentialLog = lazy(() => import('./pages/ExistentialLog'))
+const InnerPeaceLog = lazy(() => import('./pages/InnerPeaceLog'))
+const ServiceLog = lazy(() => import('./pages/ServiceLog'))
+const CreativeFlow = lazy(() => import('./pages/CreativeFlow'))
+const GrowthMindset = lazy(() => import('./pages/GrowthMindset'))
+const WealthMindset = lazy(() => import('./pages/WealthMindset'))
+const BoundaryBuilder = lazy(() => import('./pages/BoundaryBuilder'))
+const HealingJournal = lazy(() => import('./pages/HealingJournal'))
+const VisionCasting = lazy(() => import('./pages/VisionCasting'))
+const PurposeLog = lazy(() => import('./pages/PurposeLog'))
+const SelfMasteryLog = lazy(() => import('./pages/SelfMasteryLog'))
+const TimePhilosophy = lazy(() => import('./pages/TimePhilosophy'))
+const JoyDesign = lazy(() => import('./pages/JoyDesign'))
+const EnergyBudget = lazy(() => import('./pages/EnergyBudget'))
+const InspiredAction = lazy(() => import('./pages/InspiredAction'))
+const MindfulCommunication = lazy(() => import('./pages/MindfulCommunication'))
+const PhysicalPeak = lazy(() => import('./pages/PhysicalPeak'))
+const SocialIntelligence = lazy(() => import('./pages/SocialIntelligence'))
+const DailyExcellence = lazy(() => import('./pages/DailyExcellence'))
+const LifeReview = lazy(() => import('./pages/LifeReview'))
+const ResilientThinking = lazy(() => import('./pages/ResilientThinking'))
+const DigitalWellness = lazy(() => import('./pages/DigitalWellness'))
+const NeuroplasticityLog = lazy(() => import('./pages/NeuroplasticityLog'))
+const IntuitiveDecision = lazy(() => import('./pages/IntuitiveDecision'))
+const BodyWisdom = lazy(() => import('./pages/BodyWisdom'))
+const GratitudeToself = lazy(() => import('./pages/GratitudeToself'))
+const WillpowerLog = lazy(() => import('./pages/WillpowerLog'))
+const MindfulSleep = lazy(() => import('./pages/MindfulSleep'))
+const ConflictResolution = lazy(() => import('./pages/ConflictResolution'))
+const AbundanceLog = lazy(() => import('./pages/AbundanceLog'))
+const LifeRhythm = lazy(() => import('./pages/LifeRhythm'))
+const HighPerformance = lazy(() => import('./pages/HighPerformance'))
+const ScreenTimeConnect = lazy(() => import('./pages/ScreenTimeConnect'))
+const LifeScoreEngine = lazy(() => import('./pages/LifeScoreEngine'))
+const UltimateMorningRitual = lazy(() => import('./pages/UltimateMorningRitual'))
+const IkigaiCompass = lazy(() => import('./pages/IkigaiCompass'))
+const CommandCenter = lazy(() => import('./pages/CommandCenter'))
+const DailyDriver = lazy(() => import('./pages/DailyDriver'))
+const WeeklyPowerSession = lazy(() => import('./pages/WeeklyPowerSession'))
+const LifeGPS = lazy(() => import('./pages/LifeGPS'))
+const NightlyDebrief = lazy(() => import('./pages/NightlyDebrief'))
+const PersonalPlaybook = lazy(() => import('./pages/PersonalPlaybook'))
+const MindBodyBalance = lazy(() => import('./pages/MindBodyBalance'))
+const EmotionalDashboard = lazy(() => import('./pages/EmotionalDashboard'))
+const StrategicLifePlan = lazy(() => import('./pages/StrategicLifePlan'))
+const HabitMatrix = lazy(() => import('./pages/HabitMatrix'))
+const LifeCheckup = lazy(() => import('./pages/LifeCheckup'))
+const FlowStateTracker = lazy(() => import('./pages/FlowStateTracker'))
+const MindfulnessCenter = lazy(() => import('./pages/MindfulnessCenter'))
+const WealthBuilder = lazy(() => import('./pages/WealthBuilder'))
+const RelationshipTracker = lazy(() => import('./pages/RelationshipTracker'))
+const CreativeStudio = lazy(() => import('./pages/CreativeStudio'))
+const DeepWorkLog = lazy(() => import('./pages/DeepWorkLog'))
+const GrowthJournal = lazy(() => import('./pages/GrowthJournal'))
+const LifeEnergy = lazy(() => import('./pages/LifeEnergy'))
+const IdentityArchitect = lazy(() => import('./pages/IdentityArchitect'))
+const ValueAlignmentLog = lazy(() => import('./pages/ValueAlignmentLog'))
+const WinBoard = lazy(() => import('./pages/WinBoard'))
+const ReflectionEngine = lazy(() => import('./pages/ReflectionEngine'))
+const LifeRating = lazy(() => import('./pages/LifeRating'))
+const LifeMetricsHub = lazy(() => import('./pages/LifeMetricsHub'))
+const MorningPowerup = lazy(() => import('./pages/MorningPowerup'))
 
-import GoalCrusher from './pages/GoalCrusher'
-import HabitEvolution from './pages/HabitEvolution'
-import SpiritualLog from './pages/SpiritualLog'
-import ObstacleDestroyer from './pages/ObstacleDestroyer'
-import FocusProtocol from './pages/FocusProtocol'
-import BodyOptimizer from './pages/BodyOptimizer'
-import MindsetGym from './pages/MindsetGym'
-import LifeDesignBoard from './pages/LifeDesignBoard'
-import GratitudePower from './pages/GratitudePower'
-import SuccessBlueprintLog from './pages/SuccessBlueprintLog'
-import TimeInvestment from './pages/TimeInvestment'
-import ClaritySession from './pages/ClaritySession'
-import PeakMomentLog from './pages/PeakMomentLog'
-import ChallengeAcceptor from './pages/ChallengeAcceptor'
-import PersonalFinanceLog from './pages/PersonalFinanceLog'
-import MentalStrengthLog from './pages/MentalStrengthLog'
-import SocialCapitalLog from './pages/SocialCapitalLog'
-import LegacyProjectLog from './pages/LegacyProjectLog'
-import SelfCompassionLog from './pages/SelfCompassionLog'
-import PresenceTracker from './pages/PresenceTracker'
-import LifeLab from './pages/LifeLab'
-import DailyIntentionSetter from './pages/DailyIntentionSetter'
-import MorningIntentionRitual from './pages/MorningIntentionRitual'
-import EmotionalAlchemy from './pages/EmotionalAlchemy'
-import BodySignalLog from './pages/BodySignalLog'
-import MicroMomentLog from './pages/MicroMomentLog'
-import LifeForceLog from './pages/LifeForceLog'
-import NeuralReprogramming from './pages/NeuralReprogramming'
-import ThoughtAudit from './pages/ThoughtAudit'
-import EnergyRituals from './pages/EnergyRituals'
-import MomentumTracker from './pages/MomentumTracker'
-import FearInventoryLog from './pages/FearInventoryLog'
-import MindReset from './pages/MindReset'
-import VitalityRituals from './pages/VitalityRituals'
-import DataHub from './pages/DataHub'
-import ReminderSettings from './pages/ReminderSettings'
-import LifeHistoryTimeline from './pages/LifeHistoryTimeline'
-import WeeklyChanges from './pages/WeeklyChanges'
-import MonthlyChanges from './pages/MonthlyChanges'
-import ScoreTrends from './pages/ScoreTrends'
+const GoalCrusher = lazy(() => import('./pages/GoalCrusher'))
+const HabitEvolution = lazy(() => import('./pages/HabitEvolution'))
+const SpiritualLog = lazy(() => import('./pages/SpiritualLog'))
+const ObstacleDestroyer = lazy(() => import('./pages/ObstacleDestroyer'))
+const FocusProtocol = lazy(() => import('./pages/FocusProtocol'))
+const BodyOptimizer = lazy(() => import('./pages/BodyOptimizer'))
+const MindsetGym = lazy(() => import('./pages/MindsetGym'))
+const LifeDesignBoard = lazy(() => import('./pages/LifeDesignBoard'))
+const GratitudePower = lazy(() => import('./pages/GratitudePower'))
+const SuccessBlueprintLog = lazy(() => import('./pages/SuccessBlueprintLog'))
+const TimeInvestment = lazy(() => import('./pages/TimeInvestment'))
+const ClaritySession = lazy(() => import('./pages/ClaritySession'))
+const PeakMomentLog = lazy(() => import('./pages/PeakMomentLog'))
+const ChallengeAcceptor = lazy(() => import('./pages/ChallengeAcceptor'))
+const PersonalFinanceLog = lazy(() => import('./pages/PersonalFinanceLog'))
+const MentalStrengthLog = lazy(() => import('./pages/MentalStrengthLog'))
+const SocialCapitalLog = lazy(() => import('./pages/SocialCapitalLog'))
+const LegacyProjectLog = lazy(() => import('./pages/LegacyProjectLog'))
+const SelfCompassionLog = lazy(() => import('./pages/SelfCompassionLog'))
+const PresenceTracker = lazy(() => import('./pages/PresenceTracker'))
+const LifeLab = lazy(() => import('./pages/LifeLab'))
+const DailyIntentionSetter = lazy(() => import('./pages/DailyIntentionSetter'))
+const MorningIntentionRitual = lazy(() => import('./pages/MorningIntentionRitual'))
+const EmotionalAlchemy = lazy(() => import('./pages/EmotionalAlchemy'))
+const BodySignalLog = lazy(() => import('./pages/BodySignalLog'))
+const MicroMomentLog = lazy(() => import('./pages/MicroMomentLog'))
+const LifeForceLog = lazy(() => import('./pages/LifeForceLog'))
+const NeuralReprogramming = lazy(() => import('./pages/NeuralReprogramming'))
+const ThoughtAudit = lazy(() => import('./pages/ThoughtAudit'))
+const EnergyRituals = lazy(() => import('./pages/EnergyRituals'))
+const MomentumTracker = lazy(() => import('./pages/MomentumTracker'))
+const FearInventoryLog = lazy(() => import('./pages/FearInventoryLog'))
+const MindReset = lazy(() => import('./pages/MindReset'))
+const VitalityRituals = lazy(() => import('./pages/VitalityRituals'))
+const DataHub = lazy(() => import('./pages/DataHub'))
+const ReminderSettings = lazy(() => import('./pages/ReminderSettings'))
+const LifeHistoryTimeline = lazy(() => import('./pages/LifeHistoryTimeline'))
+const WeeklyChanges = lazy(() => import('./pages/WeeklyChanges'))
+const MonthlyChanges = lazy(() => import('./pages/MonthlyChanges'))
+const ScoreTrends = lazy(() => import('./pages/ScoreTrends'))
 import PlatformStatusBar from './components/PlatformStatusBar'
-import SleepProtocol from './pages/SleepProtocol'
-import QuantifiedSelf from './pages/QuantifiedSelf'
-import PersonalMission from './pages/PersonalMission'
-import AnnualPlanning from './pages/AnnualPlanning'
-import LifeAlignmentPage from './pages/LifeAlignmentPage'
-import MomentumDashboard from './pages/MomentumDashboard'
-import FutureSelfLetter from './pages/FutureSelfLetter'
-import RelationshipHealth from './pages/RelationshipHealth'
-import HabitDesignLab from './pages/HabitDesignLab'
-import PersonalEconomy from './pages/PersonalEconomy'
-import EveningRitualDesigner from './pages/EveningRitualDesigner'
-import MentalModelLab from './pages/MentalModelLab'
-import BodyReset from './pages/BodyReset'
-import LifeVisionBoard from './pages/LifeVisionBoard'
-import DailyWinsLog from './pages/DailyWinsLog'
-import MorningGratitudeRitual from './pages/MorningGratitudeRitual'
-import LifeScorecard from './pages/LifeScorecard'
-import WeeklyRetrospective from './pages/WeeklyRetrospective'
-import CreativeIdeaVault from './pages/CreativeIdeaVault'
-import SkillLevelUp from './pages/SkillLevelUp'
-import ProjectTracker from './pages/ProjectTrackerPage'
-import SelfCareRitual from './pages/SelfCareRitual'
-import GratitudeChainLog from './pages/GratitudeChainLog'
-import NutritionPlanner from './pages/NutritionPlanner'
-import StressTrackerLog from './pages/StressTrackerLog'
-import TimeAuditLog from './pages/TimeAuditLog'
-import SleepQualityTracker from './pages/SleepQualityTracker'
-import ConcentrationTracker from './pages/ConcentrationTracker'
-import DailyHighlights from './pages/DailyHighlights'
-import AnticipationJournal from './pages/AnticipationJournal'
-import DigitalHabitsLog from './pages/DigitalHabitsLog'
-import CognitiveFitnessLog from './pages/CognitiveFitnessLog'
-import PhysicalWellnessLog from './pages/PhysicalWellnessLog'
-import SerendipityLog from './pages/SerendipityLog'
-import MoodTriggerLog from './pages/MoodTriggerLog'
-import EmotionalWeatherLog from './pages/EmotionalWeatherLog'
-import MinuteJournal from './pages/MinuteJournal'
-import BodyLanguageTracker from './pages/BodyLanguageTracker'
-import IntentionalLiving from './pages/IntentionalLiving'
-import SocialEnergyLog from './pages/SocialEnergyLog'
-import FinancialFreedomLog from './pages/FinancialFreedomLog'
-import LifeExperimentDesigner from './pages/LifeExperimentDesigner'
-import GratitudeLetterLog from './pages/GratitudeLetterLog'
-import LifePurposeLog from './pages/LifePurposeLog'
-import RelationshipCheckIn from './pages/RelationshipCheckIn'
-import CreativeSprintLog from './pages/CreativeSprintLog'
-import HabitReflectionLog from './pages/HabitReflectionLog'
-import PersonalGrowthPlan from './pages/PersonalGrowthPlan'
-import MicroWinLog from './pages/MicroWinLog'
-import DailyRitualDesigner from './pages/DailyRitualDesigner'
-import VoiceJournal from './pages/VoiceJournal'
-import LegacyTimelineLog from './pages/LegacyTimelineLog'
-import SleepRitualDesigner from './pages/SleepRitualDesigner'
-import WakeUpLog from './pages/WakeUpLog'
-import NetworkStrengthLog from './pages/NetworkStrengthLog'
-import ContributionTracker from './pages/ContributionTracker'
-import HealthProtocolLog from './pages/HealthProtocolLog'
-import BiomarkerTracker from './pages/BiomarkerTracker'
-import FlowStateJournal from './pages/FlowStateJournal'
-import GratitudeVisualization from './pages/GratitudeVisualization'
-import MoneyFlowLog from './pages/MoneyFlowLog'
-import AffirmationBuilder from './pages/AffirmationBuilder'
-import EdgeOfComfortLog from './pages/EdgeOfComfortLog'
-import EnergyVampireLog from './pages/EnergyVampireLog'
-import PeakHoursLog from './pages/PeakHoursLog'
-import SuccessAutopsy from './pages/SuccessAutopsy'
-import TimeWarpLog from './pages/TimeWarpLog'
-import WealthRitualLog from './pages/WealthRitualLog'
-import SpiralJournal from './pages/SpiralJournal'
-import AliveLog from './pages/AliveLog'
-import ResonanceJournal from './pages/ResonanceJournal'
-import MomentumBuilderLog from './pages/MomentumBuilderLog'
-import SkillPracticeLog from './pages/SkillPracticeLog'
-import LearningReview from './pages/LearningReview'
+const SleepProtocol = lazy(() => import('./pages/SleepProtocol'))
+const QuantifiedSelf = lazy(() => import('./pages/QuantifiedSelf'))
+const PersonalMission = lazy(() => import('./pages/PersonalMission'))
+const AnnualPlanning = lazy(() => import('./pages/AnnualPlanning'))
+const LifeAlignmentPage = lazy(() => import('./pages/LifeAlignmentPage'))
+const MomentumDashboard = lazy(() => import('./pages/MomentumDashboard'))
+const FutureSelfLetter = lazy(() => import('./pages/FutureSelfLetter'))
+const RelationshipHealth = lazy(() => import('./pages/RelationshipHealth'))
+const HabitDesignLab = lazy(() => import('./pages/HabitDesignLab'))
+const PersonalEconomy = lazy(() => import('./pages/PersonalEconomy'))
+const EveningRitualDesigner = lazy(() => import('./pages/EveningRitualDesigner'))
+const MentalModelLab = lazy(() => import('./pages/MentalModelLab'))
+const BodyReset = lazy(() => import('./pages/BodyReset'))
+const LifeVisionBoard = lazy(() => import('./pages/LifeVisionBoard'))
+const DailyWinsLog = lazy(() => import('./pages/DailyWinsLog'))
+const MorningGratitudeRitual = lazy(() => import('./pages/MorningGratitudeRitual'))
+const LifeScorecard = lazy(() => import('./pages/LifeScorecard'))
+const WeeklyRetrospective = lazy(() => import('./pages/WeeklyRetrospective'))
+const CreativeIdeaVault = lazy(() => import('./pages/CreativeIdeaVault'))
+const SkillLevelUp = lazy(() => import('./pages/SkillLevelUp'))
+const ProjectTracker = lazy(() => import('./pages/ProjectTrackerPage'))
+const SelfCareRitual = lazy(() => import('./pages/SelfCareRitual'))
+const GratitudeChainLog = lazy(() => import('./pages/GratitudeChainLog'))
+const NutritionPlanner = lazy(() => import('./pages/NutritionPlanner'))
+const StressTrackerLog = lazy(() => import('./pages/StressTrackerLog'))
+const TimeAuditLog = lazy(() => import('./pages/TimeAuditLog'))
+const SleepQualityTracker = lazy(() => import('./pages/SleepQualityTracker'))
+const ConcentrationTracker = lazy(() => import('./pages/ConcentrationTracker'))
+const DailyHighlights = lazy(() => import('./pages/DailyHighlights'))
+const AnticipationJournal = lazy(() => import('./pages/AnticipationJournal'))
+const DigitalHabitsLog = lazy(() => import('./pages/DigitalHabitsLog'))
+const CognitiveFitnessLog = lazy(() => import('./pages/CognitiveFitnessLog'))
+const PhysicalWellnessLog = lazy(() => import('./pages/PhysicalWellnessLog'))
+const SerendipityLog = lazy(() => import('./pages/SerendipityLog'))
+const MoodTriggerLog = lazy(() => import('./pages/MoodTriggerLog'))
+const EmotionalWeatherLog = lazy(() => import('./pages/EmotionalWeatherLog'))
+const MinuteJournal = lazy(() => import('./pages/MinuteJournal'))
+const BodyLanguageTracker = lazy(() => import('./pages/BodyLanguageTracker'))
+const IntentionalLiving = lazy(() => import('./pages/IntentionalLiving'))
+const SocialEnergyLog = lazy(() => import('./pages/SocialEnergyLog'))
+const FinancialFreedomLog = lazy(() => import('./pages/FinancialFreedomLog'))
+const LifeExperimentDesigner = lazy(() => import('./pages/LifeExperimentDesigner'))
+const GratitudeLetterLog = lazy(() => import('./pages/GratitudeLetterLog'))
+const LifePurposeLog = lazy(() => import('./pages/LifePurposeLog'))
+const RelationshipCheckIn = lazy(() => import('./pages/RelationshipCheckIn'))
+const CreativeSprintLog = lazy(() => import('./pages/CreativeSprintLog'))
+const HabitReflectionLog = lazy(() => import('./pages/HabitReflectionLog'))
+const PersonalGrowthPlan = lazy(() => import('./pages/PersonalGrowthPlan'))
+const MicroWinLog = lazy(() => import('./pages/MicroWinLog'))
+const DailyRitualDesigner = lazy(() => import('./pages/DailyRitualDesigner'))
+const VoiceJournal = lazy(() => import('./pages/VoiceJournal'))
+const LegacyTimelineLog = lazy(() => import('./pages/LegacyTimelineLog'))
+const SleepRitualDesigner = lazy(() => import('./pages/SleepRitualDesigner'))
+const WakeUpLog = lazy(() => import('./pages/WakeUpLog'))
+const NetworkStrengthLog = lazy(() => import('./pages/NetworkStrengthLog'))
+const ContributionTracker = lazy(() => import('./pages/ContributionTracker'))
+const HealthProtocolLog = lazy(() => import('./pages/HealthProtocolLog'))
+const BiomarkerTracker = lazy(() => import('./pages/BiomarkerTracker'))
+const FlowStateJournal = lazy(() => import('./pages/FlowStateJournal'))
+const GratitudeVisualization = lazy(() => import('./pages/GratitudeVisualization'))
+const MoneyFlowLog = lazy(() => import('./pages/MoneyFlowLog'))
+const AffirmationBuilder = lazy(() => import('./pages/AffirmationBuilder'))
+const EdgeOfComfortLog = lazy(() => import('./pages/EdgeOfComfortLog'))
+const EnergyVampireLog = lazy(() => import('./pages/EnergyVampireLog'))
+const PeakHoursLog = lazy(() => import('./pages/PeakHoursLog'))
+const SuccessAutopsy = lazy(() => import('./pages/SuccessAutopsy'))
+const TimeWarpLog = lazy(() => import('./pages/TimeWarpLog'))
+const WealthRitualLog = lazy(() => import('./pages/WealthRitualLog'))
+const SpiralJournal = lazy(() => import('./pages/SpiralJournal'))
+const AliveLog = lazy(() => import('./pages/AliveLog'))
+const ResonanceJournal = lazy(() => import('./pages/ResonanceJournal'))
+const MomentumBuilderLog = lazy(() => import('./pages/MomentumBuilderLog'))
+const SeasonsOfLife = lazy(() => import('./pages/SeasonsOfLife'))
+const ConversationDebrief = lazy(() => import('./pages/ConversationDebrief'))
+const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
+const LearningReview = lazy(() => import('./pages/LearningReview'))
 
 function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
@@ -669,6 +672,13 @@ function App() {
         <Navbar />
         <main className="pb-20 md:pb-0 md:pl-56">
           <div className="max-w-6xl mx-auto px-4 py-6">
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center py-24">
+                  <div className="w-8 h-8 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+                </div>
+              }
+            >
             <Routes>
               <Route path="/login" element={<Navigate to="/" replace />} />
               <Route path="/account" element={<AccountPage />} />
@@ -1310,7 +1320,10 @@ function App() {
               <Route path="/momentum-builder"      element={<MomentumBuilderLog />}       />
               <Route path="/skill-practice"        element={<SkillPracticeLog />}         />
               <Route path="/learning-review"       element={<LearningReview />}           />
+              <Route path="/seasons-of-life"       element={<SeasonsOfLife />}            />
+              <Route path="/conversation-debrief"  element={<ConversationDebrief />}      />
             </Routes>
+            </Suspense>
           </div>
         </main>
       </div>
