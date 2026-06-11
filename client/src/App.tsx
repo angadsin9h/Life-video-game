@@ -647,6 +647,8 @@ const SeasonsOfLife = lazy(() => import('./pages/SeasonsOfLife'))
 const ConversationDebrief = lazy(() => import('./pages/ConversationDebrief'))
 const InnerCompass = lazy(() => import('./pages/InnerCompass'))
 const NarrativeIdentity = lazy(() => import('./pages/NarrativeIdentity'))
+const GenerosityLog = lazy(() => import('./pages/GenerosityLog'))
+const VitalityStack = lazy(() => import('./pages/VitalityStack'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1326,6 +1328,8 @@ function App() {
               <Route path="/conversation-debrief"  element={<ConversationDebrief />}      />
               <Route path="/inner-compass"         element={<InnerCompass />}             />
               <Route path="/narrative-identity"    element={<NarrativeIdentity />}        />
+              <Route path="/generosity-log"        element={<GenerosityLog />}            />
+              <Route path="/vitality-stack"        element={<VitalityStack />}            />
             </Routes>
             </Suspense>
           </div>

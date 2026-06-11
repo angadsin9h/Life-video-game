@@ -682,6 +682,8 @@ const NAV_GROUPS = [
       { to: '/conversation-debrief',   icon: MessageSquare,  label: 'Conversation'         },
       { to: '/inner-compass',          icon: Compass,        label: 'Inner Compass'        },
       { to: '/narrative-identity',     icon: BookOpen,       label: 'Narrative Identity'   },
+      { to: '/generosity-log',         icon: Gift,           label: 'Generosity Log'       },
+      { to: '/vitality-stack',         icon: Zap,            label: 'Vitality Stack'       },
     ],
   },
 ]
