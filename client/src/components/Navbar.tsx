@@ -698,6 +698,8 @@ const NAV_GROUPS = [
       { to: '/mastermind-log',         icon: Users,          label: 'Mastermind Log'       },
       { to: '/obstacle-premortem',     icon: AlertTriangle,  label: 'Pre-Mortem'           },
       { to: '/adaptability-log',       icon: RefreshCw,      label: 'Adaptability'         },
+      { to: '/future-memories',        icon: Sparkles,       label: 'Future Memories'      },
+      { to: '/daily-story',            icon: BookOpen,       label: 'Daily Story'          },
     ],
   },
 ]

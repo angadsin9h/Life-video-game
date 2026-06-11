@@ -663,6 +663,8 @@ const PersonalWinsLog = lazy(() => import('./pages/PersonalWinsLog'))
 const MastermindLog = lazy(() => import('./pages/MastermindLog'))
 const ObstaclePreMortem = lazy(() => import('./pages/ObstaclePreMortem'))
 const AdaptabilityLog = lazy(() => import('./pages/AdaptabilityLog'))
+const FutureMemoriesLog = lazy(() => import('./pages/FutureMemoriesLog'))
+const DailyStoryLog = lazy(() => import('./pages/DailyStoryLog'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1358,6 +1360,8 @@ function App() {
               <Route path="/mastermind-log"        element={<MastermindLog />}            />
               <Route path="/obstacle-premortem"    element={<ObstaclePreMortem />}        />
               <Route path="/adaptability-log"      element={<AdaptabilityLog />}          />
+              <Route path="/future-memories"       element={<FutureMemoriesLog />}        />
+              <Route path="/daily-story"           element={<DailyStoryLog />}            />
             </Routes>
             </Suspense>
           </div>
