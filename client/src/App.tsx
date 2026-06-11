@@ -653,6 +653,10 @@ const DeepWorkOS = lazy(() => import('./pages/DeepWorkOS'))
 const QuantumLeapLog = lazy(() => import('./pages/QuantumLeapLog'))
 const AnxietyAlchemy = lazy(() => import('./pages/AnxietyAlchemy'))
 const MindfulMoneyLog = lazy(() => import('./pages/MindfulMoneyLog'))
+const LongevityLog = lazy(() => import('./pages/LongevityLog'))
+const CognitiveEdgeLog = lazy(() => import('./pages/CognitiveEdgeLog'))
+const IntegrityCheckLog = lazy(() => import('./pages/IntegrityCheckLog'))
+const BeliefAudit = lazy(() => import('./pages/BeliefAudit'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1338,6 +1342,10 @@ function App() {
               <Route path="/quantum-leap-log"      element={<QuantumLeapLog />}           />
               <Route path="/anxiety-alchemy"       element={<AnxietyAlchemy />}           />
               <Route path="/mindful-money"         element={<MindfulMoneyLog />}          />
+              <Route path="/longevity-log"         element={<LongevityLog />}             />
+              <Route path="/cognitive-edge"        element={<CognitiveEdgeLog />}         />
+              <Route path="/integrity-check"       element={<IntegrityCheckLog />}        />
+              <Route path="/belief-audit"          element={<BeliefAudit />}              />
             </Routes>
             </Suspense>
           </div>

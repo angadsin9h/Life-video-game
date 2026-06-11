@@ -688,6 +688,10 @@ const NAV_GROUPS = [
       { to: '/quantum-leap-log',       icon: Sparkles,       label: 'Quantum Leaps'        },
       { to: '/anxiety-alchemy',        icon: Wind,           label: 'Anxiety Alchemy'      },
       { to: '/mindful-money',          icon: PiggyBank,      label: 'Mindful Money'        },
+      { to: '/longevity-log',          icon: Heart,          label: 'Longevity Log'        },
+      { to: '/cognitive-edge',         icon: Activity,       label: 'Cognitive Edge'       },
+      { to: '/integrity-check',        icon: Shield,         label: 'Integrity Check'      },
+      { to: '/belief-audit',           icon: Eye,            label: 'Belief Audit'         },
     ],
   },
 ]
