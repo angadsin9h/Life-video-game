@@ -645,6 +645,8 @@ const ResonanceJournal = lazy(() => import('./pages/ResonanceJournal'))
 const MomentumBuilderLog = lazy(() => import('./pages/MomentumBuilderLog'))
 const SeasonsOfLife = lazy(() => import('./pages/SeasonsOfLife'))
 const ConversationDebrief = lazy(() => import('./pages/ConversationDebrief'))
+const InnerCompass = lazy(() => import('./pages/InnerCompass'))
+const NarrativeIdentity = lazy(() => import('./pages/NarrativeIdentity'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1322,6 +1324,8 @@ function App() {
               <Route path="/learning-review"       element={<LearningReview />}           />
               <Route path="/seasons-of-life"       element={<SeasonsOfLife />}            />
               <Route path="/conversation-debrief"  element={<ConversationDebrief />}      />
+              <Route path="/inner-compass"         element={<InnerCompass />}             />
+              <Route path="/narrative-identity"    element={<NarrativeIdentity />}        />
             </Routes>
             </Suspense>
           </div>

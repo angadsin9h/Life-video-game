@@ -680,6 +680,8 @@ const NAV_GROUPS = [
       { to: '/learning-review',        icon: GraduationCap,  label: 'Learning Review'      },
       { to: '/seasons-of-life',        icon: Leaf,           label: 'Seasons of Life'      },
       { to: '/conversation-debrief',   icon: MessageSquare,  label: 'Conversation'         },
+      { to: '/inner-compass',          icon: Compass,        label: 'Inner Compass'        },
+      { to: '/narrative-identity',     icon: BookOpen,       label: 'Narrative Identity'   },
     ],
   },
 ]
