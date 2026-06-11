@@ -651,6 +651,8 @@ const GenerosityLog = lazy(() => import('./pages/GenerosityLog'))
 const VitalityStack = lazy(() => import('./pages/VitalityStack'))
 const DeepWorkOS = lazy(() => import('./pages/DeepWorkOS'))
 const QuantumLeapLog = lazy(() => import('./pages/QuantumLeapLog'))
+const AnxietyAlchemy = lazy(() => import('./pages/AnxietyAlchemy'))
+const MindfulMoneyLog = lazy(() => import('./pages/MindfulMoneyLog'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1334,6 +1336,8 @@ function App() {
               <Route path="/vitality-stack"        element={<VitalityStack />}            />
               <Route path="/deep-work-os"          element={<DeepWorkOS />}               />
               <Route path="/quantum-leap-log"      element={<QuantumLeapLog />}           />
+              <Route path="/anxiety-alchemy"       element={<AnxietyAlchemy />}           />
+              <Route path="/mindful-money"         element={<MindfulMoneyLog />}          />
             </Routes>
             </Suspense>
           </div>

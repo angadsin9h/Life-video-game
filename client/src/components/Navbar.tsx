@@ -686,6 +686,8 @@ const NAV_GROUPS = [
       { to: '/vitality-stack',         icon: Zap,            label: 'Vitality Stack'       },
       { to: '/deep-work-os',           icon: Brain,          label: 'Deep Work OS'         },
       { to: '/quantum-leap-log',       icon: Sparkles,       label: 'Quantum Leaps'        },
+      { to: '/anxiety-alchemy',        icon: Wind,           label: 'Anxiety Alchemy'      },
+      { to: '/mindful-money',          icon: PiggyBank,      label: 'Mindful Money'        },
     ],
   },
 ]
