@@ -700,6 +700,10 @@ const NAV_GROUPS = [
       { to: '/adaptability-log',       icon: RefreshCw,      label: 'Adaptability'         },
       { to: '/future-memories',        icon: Sparkles,       label: 'Future Memories'      },
       { to: '/daily-story',            icon: BookOpen,       label: 'Daily Story'          },
+      { to: '/energy-architecture',    icon: Zap,            label: 'Energy Architecture'  },
+      { to: '/sensory-journal',        icon: Sparkles,       label: 'Sensory Journal'      },
+      { to: '/life-exit-plan',         icon: Flag,           label: 'Life Exit Plan'       },
+      { to: '/presence-trainer',       icon: Wind,           label: 'Presence Trainer'     },
     ],
   },
 ]

@@ -665,6 +665,10 @@ const ObstaclePreMortem = lazy(() => import('./pages/ObstaclePreMortem'))
 const AdaptabilityLog = lazy(() => import('./pages/AdaptabilityLog'))
 const FutureMemoriesLog = lazy(() => import('./pages/FutureMemoriesLog'))
 const DailyStoryLog = lazy(() => import('./pages/DailyStoryLog'))
+const EnergyArchitecture = lazy(() => import('./pages/EnergyArchitecture'))
+const SensoryJournal = lazy(() => import('./pages/SensoryJournal'))
+const LifeExitPlan = lazy(() => import('./pages/LifeExitPlan'))
+const PresenceTrainerLog = lazy(() => import('./pages/PresenceTrainerLog'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1362,6 +1366,10 @@ function App() {
               <Route path="/adaptability-log"      element={<AdaptabilityLog />}          />
               <Route path="/future-memories"       element={<FutureMemoriesLog />}        />
               <Route path="/daily-story"           element={<DailyStoryLog />}            />
+              <Route path="/energy-architecture"   element={<EnergyArchitecture />}       />
+              <Route path="/sensory-journal"       element={<SensoryJournal />}           />
+              <Route path="/life-exit-plan"        element={<LifeExitPlan />}             />
+              <Route path="/presence-trainer"      element={<PresenceTrainerLog />}       />
             </Routes>
             </Suspense>
           </div>
