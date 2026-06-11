@@ -649,6 +649,8 @@ const InnerCompass = lazy(() => import('./pages/InnerCompass'))
 const NarrativeIdentity = lazy(() => import('./pages/NarrativeIdentity'))
 const GenerosityLog = lazy(() => import('./pages/GenerosityLog'))
 const VitalityStack = lazy(() => import('./pages/VitalityStack'))
+const DeepWorkOS = lazy(() => import('./pages/DeepWorkOS'))
+const QuantumLeapLog = lazy(() => import('./pages/QuantumLeapLog'))
 const SkillPracticeLog = lazy(() => import('./pages/SkillPracticeLog'))
 const LearningReview = lazy(() => import('./pages/LearningReview'))
 
@@ -1330,6 +1332,8 @@ function App() {
               <Route path="/narrative-identity"    element={<NarrativeIdentity />}        />
               <Route path="/generosity-log"        element={<GenerosityLog />}            />
               <Route path="/vitality-stack"        element={<VitalityStack />}            />
+              <Route path="/deep-work-os"          element={<DeepWorkOS />}               />
+              <Route path="/quantum-leap-log"      element={<QuantumLeapLog />}           />
             </Routes>
             </Suspense>
           </div>

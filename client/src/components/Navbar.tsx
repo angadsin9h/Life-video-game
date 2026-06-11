@@ -684,6 +684,8 @@ const NAV_GROUPS = [
       { to: '/narrative-identity',     icon: BookOpen,       label: 'Narrative Identity'   },
       { to: '/generosity-log',         icon: Gift,           label: 'Generosity Log'       },
       { to: '/vitality-stack',         icon: Zap,            label: 'Vitality Stack'       },
+      { to: '/deep-work-os',           icon: Brain,          label: 'Deep Work OS'         },
+      { to: '/quantum-leap-log',       icon: Sparkles,       label: 'Quantum Leaps'        },
     ],
   },
 ]
