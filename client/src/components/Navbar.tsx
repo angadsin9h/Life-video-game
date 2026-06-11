@@ -696,6 +696,8 @@ const NAV_GROUPS = [
       { to: '/rituals-excellence',     icon: Star,           label: 'Rituals Excellence'   },
       { to: '/personal-wins',          icon: Trophy,         label: 'Personal Wins'        },
       { to: '/mastermind-log',         icon: Users,          label: 'Mastermind Log'       },
+      { to: '/obstacle-premortem',     icon: AlertTriangle,  label: 'Pre-Mortem'           },
+      { to: '/adaptability-log',       icon: RefreshCw,      label: 'Adaptability'         },
     ],
   },
 ]
