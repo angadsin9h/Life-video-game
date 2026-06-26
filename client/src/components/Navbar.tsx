@@ -704,6 +704,10 @@ const NAV_GROUPS = [
       { to: '/sensory-journal',        icon: Sparkles,       label: 'Sensory Journal'      },
       { to: '/life-exit-plan',         icon: Flag,           label: 'Life Exit Plan'       },
       { to: '/presence-trainer',       icon: Wind,           label: 'Presence Trainer'     },
+      { to: '/choice-architecture',    icon: Layers,         label: 'Choice Architecture'  },
+      { to: '/idea-lab',               icon: Lightbulb,      label: 'Idea Lab'             },
+      { to: '/sleep-debt',             icon: Moon,           label: 'Sleep Debt'           },
+      { to: '/recovery-protocol',      icon: Heart,          label: 'Recovery Protocol'    },
     ],
   },
 ]
